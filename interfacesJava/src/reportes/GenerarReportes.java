@@ -34,6 +34,8 @@ public class GenerarReportes {
             JasperReport reporte = (JasperReport) JRLoader.loadObject("salida.jasper");
             Map parametro = new HashMap();
 
+            parametro.put("log", this.getClass().getResourceAsStream("/imagenes/cpu.png"));
+            parametro.put("log2", this.getClass().getResourceAsStream("/imagenes/cpu.png"));
             parametro.put("nume", nume);
 
             JasperPrint j;
@@ -61,6 +63,8 @@ public class GenerarReportes {
             JasperReport reporte = (JasperReport) JRLoader.loadObject("entrada.jasper");
             Map parametro = new HashMap();
 
+            parametro.put("log", this.getClass().getResourceAsStream("/imagenes/cpu.png"));
+            parametro.put("log2", this.getClass().getResourceAsStream("/imagenes/cpu.png"));
             parametro.put("nume", nume);
 
             JasperPrint j;

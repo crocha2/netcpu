@@ -6,6 +6,8 @@
 	<parameter name="nume" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="log" class="java.io.InputStream"/>
+	<parameter name="log2" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[SELECT numero, fecha, empresa, ciudad, direccion, contacto, telefono, correo, equipo, modelo, serie, comentario FROM salidas WHERE numero = $P{nume}]]>
 	</queryString>
@@ -68,7 +70,7 @@ TEL: 3686813 – 3689219
 			</staticText>
 			<image>
 				<reportElement x="50" y="0" width="78" height="54"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\JR\\Desktop\\CARLOS\\IMAGENES_CPU\\cpu.jpg"]]></imageExpression>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{log}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -457,7 +459,7 @@ NIT: 802012349-6
 			</textField>
 			<image>
 				<reportElement x="50" y="343" width="78" height="54"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\JR\\Desktop\\CARLOS\\IMAGENES_CPU\\cpu.jpg"]]></imageExpression>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{log2}]]></imageExpression>
 			</image>
 		</band>
 	</detail>
