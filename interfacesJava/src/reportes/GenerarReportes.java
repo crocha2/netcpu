@@ -92,6 +92,10 @@ public class GenerarReportes {
             JasperReport reporte = (JasperReport) JRLoader.loadObject("envio.jasper");
             Map parametro = new HashMap();
 
+            parametro.put("cpu", this.getClass().getResourceAsStream("/imagenes/Bienvenido.png"));
+            parametro.put("fondo", this.getClass().getResourceAsStream("/imagenes/fondo.png"));
+            parametro.put("data", this.getClass().getResourceAsStream("/imagenes/data.png"));
+            parametro.put("apc", this.getClass().getResourceAsStream("/imagenes/apc.png"));
             parametro.put("nume", nume);
 
             JasperPrint j;
