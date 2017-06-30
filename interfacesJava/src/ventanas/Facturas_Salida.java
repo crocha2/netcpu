@@ -54,8 +54,6 @@ public class Facturas_Salida extends javax.swing.JFrame {
      }
      }
      */
-   
-
     public void CargarCmbSalidas() {
         try {
             Connection cnx = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -68,48 +66,48 @@ public class Facturas_Salida extends javax.swing.JFrame {
         }
     }
     /*
-    void numeros() {
-        int j;
-        String c = "";
-        String SQL = "SELECT MAX(numero) AS numero FROM salidas";
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            if (rs.next()) {
-                c = rs.getString("numero");
-            }
-            System.out.println(c);
-            if (c == null) {
-                txtSec.setText("NS000000001");
-                System.out.println(c);
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                char r5 = c.charAt(6);
-                char r6 = c.charAt(7);
-                char r7 = c.charAt(8);
-                char r8 = c.charAt(9);
-                char r9 = c.charAt(10);
+     void numeros() {
+     int j;
+     String c = "";
+     String SQL = "SELECT MAX(numero) AS numero FROM salidas";
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
+     Statement st = cn.createStatement();
+     ResultSet rs = st.executeQuery(SQL);
+     if (rs.next()) {
+     c = rs.getString("numero");
+     }
+     System.out.println(c);
+     if (c == null) {
+     txtSec.setText("NS000000001");
+     System.out.println(c);
+     } else {
+     char r1 = c.charAt(2);
+     char r2 = c.charAt(3);
+     char r3 = c.charAt(4);
+     char r4 = c.charAt(5);
+     char r5 = c.charAt(6);
+     char r6 = c.charAt(7);
+     char r7 = c.charAt(8);
+     char r8 = c.charAt(9);
+     char r9 = c.charAt(10);
 
-                System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9);
-                String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9;
-                int var = Integer.parseInt(juntar);
+     System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9);
+     String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9;
+     int var = Integer.parseInt(juntar);
 
-                System.out.println("\n lo que vale: " + var);
-                GenerarNumeros gen = new GenerarNumeros();
-                gen.generarSalidas(var);
+     System.out.println("\n lo que vale: " + var);
+     GenerarNumeros gen = new GenerarNumeros();
+     gen.generarSalidas(var);
 
-                txtSec.setDisabledTextColor(java.awt.Color.BLUE);
-                txtSec.setText(gen.serie());
-            }
-        } catch (SQLException | NumberFormatException ex) {
-            Logger.getLogger(Facturas_Salida.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    */
+     txtSec.setDisabledTextColor(java.awt.Color.BLUE);
+     txtSec.setText(gen.serie());
+     }
+     } catch (SQLException | NumberFormatException ex) {
+     Logger.getLogger(Facturas_Salida.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     }
+     */
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -756,10 +754,14 @@ public class Facturas_Salida extends javax.swing.JFrame {
 
     private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
 
-        String nume = txtSec.getText();
-        GenerarReportes g = new GenerarReportes();
-        g.reporteSalida(nume);
-        
+        if (txtSec.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
+        } else {
+            String nume = txtSec.getText();
+            GenerarReportes g = new GenerarReportes();
+            g.reporteSalida(nume);
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPdfActionPerformed
 

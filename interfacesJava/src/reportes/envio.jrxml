@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="109"/>
 	<parameter name="nume" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -60,7 +60,7 @@ NIT. 802012349-6
 				<reportElement x="127" y="531" width="294" height="41"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Calle 75B No. 41D-52  PBX 3686813  Fax  3689219
-E-MAIL:  ventas@cpu-sys.com; servicio.tecnico@cpu-sys.com
+E-MAIL:  francisco.serrano@cpu-sys.com; servicio.tecnico@cpu-sys.com
 BARRANQUILLA – COLOMBIA
 ]]></text>
 			</staticText>
@@ -93,82 +93,84 @@ BARRANQUILLA – COLOMBIA
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="174" y="107" width="100" height="20"/>
+				<reportElement x="133" y="111" width="100" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DESTINATARIO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="107" width="100" height="20"/>
+				<reportElement x="233" y="111" width="287" height="40"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{destinatario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="174" y="127" width="100" height="20"/>
+				<reportElement x="133" y="151" width="100" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ATN:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="127" width="100" height="20"/>
+				<reportElement x="233" y="151" width="287" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{atn}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="106" y="180" width="385" height="262"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{fondo}]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement x="174" y="147" width="100" height="20"/>
+				<reportElement x="133" y="171" width="100" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DIRECCION:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="147" width="100" height="20"/>
+				<reportElement x="233" y="171" width="287" height="39"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="106" y="167" width="385" height="262"/>
-				<imageExpression class="java.io.InputStream"><![CDATA[$P{fondo}]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement x="174" y="167" width="100" height="20"/>
+				<reportElement x="133" y="210" width="100" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TELEFONO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="167" width="100" height="20"/>
+				<reportElement x="233" y="210" width="287" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="174" y="187" width="100" height="20"/>
+				<reportElement x="133" y="230" width="100" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CIUDAD:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="187" width="100" height="20"/>
+				<reportElement x="233" y="230" width="287" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{ciudad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="106" y="241" width="342" height="165"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="106" y="275" width="385" height="144"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{comentario}]]></textFieldExpression>
 			</textField>
 			<image>

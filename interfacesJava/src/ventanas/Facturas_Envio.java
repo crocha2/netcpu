@@ -26,7 +26,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
 
     ArrayList<Entradas> entrada;
     envioMySql db = new envioMySql();
-    
+
     /**
      * Creates new form Entrada
      */
@@ -38,7 +38,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
         txtSec.setEnabled(false);
     }
 
-    public void CargarCmbEnvios(){
+    public void CargarCmbEnvios() {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
@@ -50,8 +50,8 @@ public class Facturas_Envio extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    
-    public void limpiar(){
+
+    public void limpiar() {
         txtSec.setText("");
         txtDestinatario.setText("");
         txtATN.setText("");
@@ -61,50 +61,50 @@ public class Facturas_Envio extends javax.swing.JFrame {
         areaComentario.setText("");
         txtDestinatario.requestFocus();
     }
-  /*  
-    void numerosEnvios() {
-        int j;
-        String c = "";
-        String SQL = "SELECT MAX(numero) AS numero FROM envios";
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            if (rs.next()) {
-                c = rs.getString("numero");
-            }
-            System.out.println(c);
-            if (c == null) {
-                txtSec.setText("EN000000001");
-                System.out.println(c);
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                char r5 = c.charAt(6);
-                char r6 = c.charAt(7);
-                char r7 = c.charAt(8);
-                char r8 = c.charAt(9);
-                char r9 = c.charAt(10);
+    /*  
+     void numerosEnvios() {
+     int j;
+     String c = "";
+     String SQL = "SELECT MAX(numero) AS numero FROM envios";
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
+     Statement st = cn.createStatement();
+     ResultSet rs = st.executeQuery(SQL);
+     if (rs.next()) {
+     c = rs.getString("numero");
+     }
+     System.out.println(c);
+     if (c == null) {
+     txtSec.setText("EN000000001");
+     System.out.println(c);
+     } else {
+     char r1 = c.charAt(2);
+     char r2 = c.charAt(3);
+     char r3 = c.charAt(4);
+     char r4 = c.charAt(5);
+     char r5 = c.charAt(6);
+     char r6 = c.charAt(7);
+     char r7 = c.charAt(8);
+     char r8 = c.charAt(9);
+     char r9 = c.charAt(10);
 
-                System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9);
-                String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9;
-                int var = Integer.parseInt(juntar);
+     System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9);
+     String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9;
+     int var = Integer.parseInt(juntar);
 
-                System.out.println("\n lo que vale: " + var);
-                GenerarNumeros gen = new GenerarNumeros();
-                gen.generarEnvios(var);
+     System.out.println("\n lo que vale: " + var);
+     GenerarNumeros gen = new GenerarNumeros();
+     gen.generarEnvios(var);
 
-                txtSec.setDisabledTextColor(java.awt.Color.BLUE);
-                txtSec.setText(gen.serie());
-            }
-        } catch (SQLException | NumberFormatException ex) {
-            Logger.getLogger(Facturas_Envio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    */
-    
+     txtSec.setDisabledTextColor(java.awt.Color.BLUE);
+     txtSec.setText(gen.serie());
+     }
+     } catch (SQLException | NumberFormatException ex) {
+     Logger.getLogger(Facturas_Envio.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     }
+     */
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -407,7 +407,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
 
     private void btnDescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescartarActionPerformed
 
-      limpiar();
+        limpiar();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDescartarActionPerformed
@@ -418,7 +418,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
 
-       try {
+        try {
 
             String guardar = cmbEnvios.getSelectedItem().toString();
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -452,9 +452,13 @@ public class Facturas_Envio extends javax.swing.JFrame {
 
     private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
 
-        String nume = txtSec.getText();
-        GenerarReportes g = new GenerarReportes();
-        g.reporteEnvio(nume);
+            if (txtSec.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
+            } else {
+                String nume = txtSec.getText();
+                GenerarReportes g = new GenerarReportes();
+                g.reporteEnvio(nume);
+            }
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPdfActionPerformed
@@ -496,6 +500,8 @@ public class Facturas_Envio extends javax.swing.JFrame {
             db.EliminarEnvio(en);
             JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
             limpiar();
+            CargarCmbEnvios();
+
         } catch (Exception e) {
             System.err.println("error" + e);
         }

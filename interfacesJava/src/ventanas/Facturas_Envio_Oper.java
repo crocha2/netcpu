@@ -472,9 +472,13 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
 
     private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
  
-        String nume = txtSec.getText();
-        GenerarReportes g = new GenerarReportes();
-        g.reporteEnvio(nume);
+        if (txtSec.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
+            } else {
+                String nume = txtSec.getText();
+                GenerarReportes g = new GenerarReportes();
+                g.reporteEnvio(nume);
+            }
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnPdfActionPerformed
@@ -546,6 +550,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
             db.EliminarEnvio(en);
             JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
             limpiar();
+            CargarCmbEnvios();
         } catch (Exception e) {
             System.err.println("error" + e);
         }

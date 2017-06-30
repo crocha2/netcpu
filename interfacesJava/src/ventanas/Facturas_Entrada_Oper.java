@@ -824,9 +824,13 @@ public class Facturas_Entrada_Oper extends javax.swing.JFrame {
 
     private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
 
-        String nume = txtSec.getText();
-        GenerarReportes g = new GenerarReportes();
-        g.reporteEntrada(nume);
+        if (txtSec.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
+        } else {
+            String nume = txtSec.getText();
+            GenerarReportes g = new GenerarReportes();
+            g.reporteEntrada(nume);
+        }
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnPdfActionPerformed
