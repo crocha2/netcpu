@@ -55,6 +55,35 @@ public class GenerarReportes {
         }
     }
     
+    public void reportePrestamo(String nume) {
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("salida_1.jasper");
+            Map parametro = new HashMap();
+
+            parametro.put("log", this.getClass().getResourceAsStream("/imagenes/cpu.png"));
+            parametro.put("log2", this.getClass().getResourceAsStream("/imagenes/cpu.png"));
+            parametro.put("nume", nume);
+
+            JasperPrint j;
+            
+            j = JasperFillManager.fillReport(reporte, parametro, cn);
+            System.out.println("conectado correctamente");
+
+            JasperViewer jv = new JasperViewer(j, false);
+            jv.setTitle("REPORTE SALIDA");
+            jv.setVisible(true);
+            //jv.show();
+            cn.close();
+        } catch (JRException e) {
+            System.out.println("Error: \n" + e);
+        } catch (SQLException ex) {
+            Logger.getLogger(GenerarReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void reporteEntrada(String nume) {
 
         try {

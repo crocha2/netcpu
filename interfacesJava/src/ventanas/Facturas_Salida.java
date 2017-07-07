@@ -167,6 +167,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
         btnGuarda = new javax.swing.JButton();
         txtSec = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
+        btnPdf1 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -314,7 +315,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
                 btnPdfActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 50, -1));
+        getContentPane().add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 50, -1));
 
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -444,7 +445,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
                 btnGuardaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 50, -1));
+        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 50, -1));
 
         txtSec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -457,6 +458,25 @@ public class Facturas_Salida extends javax.swing.JFrame {
         jLabel27.setForeground(new java.awt.Color(153, 255, 153));
         jLabel27.setText("No. REM");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 60, 20));
+
+        btnPdf1.setBackground(new java.awt.Color(255, 255, 255));
+        btnPdf1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnPdf1.setForeground(new java.awt.Color(255, 255, 255));
+        btnPdf1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/zzzzz.png"))); // NOI18N
+        btnPdf1.setText("Prestamo");
+        btnPdf1.setBorder(null);
+        btnPdf1.setBorderPainted(false);
+        btnPdf1.setContentAreaFilled(false);
+        btnPdf1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPdf1.setIconTextGap(-1);
+        btnPdf1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnPdf1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPdf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPdf1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPdf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 60, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
@@ -765,6 +785,19 @@ public class Facturas_Salida extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPdfActionPerformed
 
+    private void btnPdf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdf1ActionPerformed
+
+        if (txtSec.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
+        } else {
+            String nume = txtSec.getText();
+            GenerarReportes g = new GenerarReportes();
+            g.reportePrestamo(nume);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPdf1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -824,6 +857,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnPdf;
+    private javax.swing.JButton btnPdf1;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbSalidas;
