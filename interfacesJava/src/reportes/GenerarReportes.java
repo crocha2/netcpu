@@ -114,5 +114,34 @@ public class GenerarReportes {
             Logger.getLogger(GenerarReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void reporteGarantia(String txtFe1, String txtFe2) {
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("garantias.jasper");
+            Map parametro = new HashMap();
+
+            parametro.put("logo", this.getClass().getResourceAsStream("/imagenes/cpu_med.png"));
+            parametro.put("fe1", txtFe1);
+            parametro.put("fe2", txtFe2);
+
+            JasperPrint j;
+            
+            j = JasperFillManager.fillReport(reporte, parametro, cn);
+            System.out.println("conectado correctamente");
+
+            JasperViewer jv = new JasperViewer(j, false);
+            jv.setTitle("REPORTE GARANTIAS");
+            jv.setVisible(true);
+            //jv.show();
+            cn.close();
+        } catch (JRException e) {
+            System.out.println("Error: \n" + e);
+        } catch (SQLException ex) {
+            Logger.getLogger(GenerarReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

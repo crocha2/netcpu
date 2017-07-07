@@ -7,9 +7,13 @@
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/reportes/GenerarReportes.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/reportes/entrada.jrxml</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/reportes/salida.jrxml</file>
-            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/reportes/envio.jrxml</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Envio.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Salida.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Envio_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/reportes/envio.jrxml</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Entrada_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Salida_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Salidass.java</file>
         </group>
     </open-files>
 </project-private>

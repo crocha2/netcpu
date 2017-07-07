@@ -48,16 +48,17 @@ public class Formatos_Oper extends javax.swing.JFrame {
         btnEntrada1 = new javax.swing.JButton();
         btnSalida1 = new javax.swing.JButton();
         btnEnvios1 = new javax.swing.JButton();
+        btnCotizacion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 170, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 170, 10));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Formatos");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         btnSalir2.setBackground(new java.awt.Color(51, 153, 255));
         btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -68,7 +69,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
                 btnSalir2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
         btnVolver.setBackground(new java.awt.Color(51, 153, 255));
         btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -79,7 +80,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 70, -1));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 70, -1));
 
         btnEntrada1.setBackground(new java.awt.Color(255, 255, 255));
         btnEntrada1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -136,10 +137,29 @@ public class Formatos_Oper extends javax.swing.JFrame {
                 btnEnvios1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnvios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 90, 90));
+        getContentPane().add(btnEnvios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 90, 90));
+
+        btnCotizacion.setBackground(new java.awt.Color(255, 255, 255));
+        btnCotizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnCotizacion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/coti.png"))); // NOI18N
+        btnCotizacion.setText("GARANTIAS");
+        btnCotizacion.setBorder(null);
+        btnCotizacion.setBorderPainted(false);
+        btnCotizacion.setContentAreaFilled(false);
+        btnCotizacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCotizacion.setIconTextGap(-1);
+        btnCotizacion.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCotizacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCotizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCotizacionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 200));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -189,6 +209,15 @@ public class Formatos_Oper extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEnvios1ActionPerformed
 
+    private void btnCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacionActionPerformed
+
+        Garantias_Oper obj = new Garantias_Oper();
+        obj.setVisible(true);
+        dispose();
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnCotizacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,6 +257,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCotizacion;
     private javax.swing.JButton btnEntrada1;
     private javax.swing.JButton btnEnvios1;
     private javax.swing.JButton btnSalida1;

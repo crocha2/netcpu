@@ -139,7 +139,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
         btnCotizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCotizacion.setForeground(new java.awt.Color(255, 255, 255));
         btnCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/coti.png"))); // NOI18N
-        btnCotizacion.setText("COTIZACION");
+        btnCotizacion.setText("GARANTIAS");
         btnCotizacion.setBorder(null);
         btnCotizacion.setBorderPainted(false);
         btnCotizacion.setContentAreaFilled(false);
@@ -206,6 +206,11 @@ public class Formatos_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviosActionPerformed
 
     private void btnCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacionActionPerformed
+
+        Garantias_Admin obj = new Garantias_Admin();
+        obj.setVisible(true);
+        dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCotizacionActionPerformed
 
