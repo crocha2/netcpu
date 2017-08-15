@@ -57,14 +57,14 @@ public class Principal_Tec extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Principal");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, 50));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 380, 10));
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 380, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 330, 10));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 330, 10));
 
         lblonline.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(lblonline, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 130, 20));
@@ -73,7 +73,7 @@ public class Principal_Tec extends javax.swing.JFrame {
         btnNuevoCliente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnNuevoCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contrato.png"))); // NOI18N
-        btnNuevoCliente.setText("CONTRATO");
+        btnNuevoCliente.setText("CONTRATOS");
         btnNuevoCliente.setBorder(null);
         btnNuevoCliente.setBorderPainted(false);
         btnNuevoCliente.setContentAreaFilled(false);
@@ -86,13 +86,13 @@ public class Principal_Tec extends javax.swing.JFrame {
                 btnNuevoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 90, 90));
+        getContentPane().add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 90, 90));
 
         btnClientes.setBackground(new java.awt.Color(255, 255, 255));
         btnClientes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/coti.png"))); // NOI18N
-        btnClientes.setText("GARANTIAS MES");
+        btnClientes.setText("GARANTIAS");
         btnClientes.setBorder(null);
         btnClientes.setBorderPainted(false);
         btnClientes.setContentAreaFilled(false);
@@ -105,7 +105,7 @@ public class Principal_Tec extends javax.swing.JFrame {
                 btnClientesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 100, 90));
+        getContentPane().add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 100, 90));
 
         btnFormatos.setBackground(new java.awt.Color(255, 255, 255));
         btnFormatos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -124,10 +124,10 @@ public class Principal_Tec extends javax.swing.JFrame {
                 btnFormatosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFormatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 90, 90));
+        getContentPane().add(btnFormatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima_2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 220));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 220));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
