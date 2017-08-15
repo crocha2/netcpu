@@ -140,7 +140,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
         btnCotizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCotizacion.setForeground(new java.awt.Color(255, 255, 255));
         btnCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/coti.png"))); // NOI18N
-        btnCotizacion.setText("GARANTIAS");
+        btnCotizacion.setText("GARANTIAS MES");
         btnCotizacion.setBorder(null);
         btnCotizacion.setBorderPainted(false);
         btnCotizacion.setContentAreaFilled(false);
@@ -153,7 +153,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnCotizacionActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 90, 90));
+        getContentPane().add(btnCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 100, 90));
 
         btnSalida1.setBackground(new java.awt.Color(255, 255, 255));
         btnSalida1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
