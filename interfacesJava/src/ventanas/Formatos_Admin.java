@@ -45,6 +45,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
         btnSalida = new javax.swing.JButton();
         btnEnvios = new javax.swing.JButton();
         btnCotizacion = new javax.swing.JButton();
+        btnSalida1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +66,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnSalir2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         btnVolver.setBackground(new java.awt.Color(51, 153, 255));
         btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -76,7 +77,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 283, 70, 20));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 70, 20));
 
         btnEntrada.setBackground(new java.awt.Color(255, 255, 255));
         btnEntrada.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -95,7 +96,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnEntradaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 90, 90));
+        getContentPane().add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 90, 90));
 
         btnSalida.setBackground(new java.awt.Color(255, 255, 255));
         btnSalida.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -114,7 +115,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnSalidaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 90, 90));
+        getContentPane().add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 90, 90));
 
         btnEnvios.setBackground(new java.awt.Color(255, 255, 255));
         btnEnvios.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -133,7 +134,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnEnviosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnvios, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 90, 90));
+        getContentPane().add(btnEnvios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 90, 90));
 
         btnCotizacion.setBackground(new java.awt.Color(255, 255, 255));
         btnCotizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -152,10 +153,29 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnCotizacionActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 90, 90));
+        getContentPane().add(btnCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 90, 90));
+
+        btnSalida1.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida1.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contrato.png"))); // NOI18N
+        btnSalida1.setText("CONTRATOS");
+        btnSalida1.setBorder(null);
+        btnSalida1.setBorderPainted(false);
+        btnSalida1.setContentAreaFilled(false);
+        btnSalida1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida1.setIconTextGap(-1);
+        btnSalida1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 90, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 310));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,6 +234,14 @@ public class Formatos_Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCotizacionActionPerformed
 
+    private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
+
+        Contratos obj = new Contratos();
+        obj.setVisible(true);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,6 +283,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
     private javax.swing.JButton btnEntrada;
     private javax.swing.JButton btnEnvios;
     private javax.swing.JButton btnSalida;
+    private javax.swing.JButton btnSalida1;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
