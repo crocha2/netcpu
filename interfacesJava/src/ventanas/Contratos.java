@@ -216,7 +216,7 @@ public class Contratos extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Fecha Inicial");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -227,8 +227,8 @@ public class Contratos extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 255, 153));
         jLabel5.setText("No. Contrato");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
-        getContentPane().add(txtCiudadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 170, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        getContentPane().add(txtCiudadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -299,16 +299,16 @@ public class Contratos extends javax.swing.JFrame {
 
         fechaFinal.setDateFormatString("yyyy/MM/dd");
         fechaFinal.setFocusCycleRoot(true);
-        getContentPane().add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 170, -1));
+        getContentPane().add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 170, -1));
 
         fechaInicial.setDateFormatString("yyyy/MM/dd");
         fechaInicial.setDoubleBuffered(false);
-        getContentPane().add(fechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, -1));
+        getContentPane().add(fechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 170, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Fecha Final");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
         getContentPane().add(txtTelefonoCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, 190, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
