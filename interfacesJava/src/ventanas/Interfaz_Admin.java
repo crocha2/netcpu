@@ -150,6 +150,12 @@ public class Interfaz_Admin extends javax.swing.JFrame {
                     dispose();
                     this.setVisible(false);
                 }
+                if (tipo == 3) {
+
+                    new Principal_Tec().setVisible(true);
+                    dispose();
+                    this.setVisible(false);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "No existe usuario, por favor revise sus datos");
             }
