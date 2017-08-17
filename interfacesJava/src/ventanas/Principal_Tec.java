@@ -161,7 +161,7 @@ public class Principal_Tec extends javax.swing.JFrame {
 
     private void btnFormatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormatosActionPerformed
 
-        Formatos_Admin obj = new Formatos_Admin();
+        Tecnico obj = new Tecnico();
         obj.setVisible(true);
         dispose();
         
