@@ -143,7 +143,7 @@ public class Principal_Tec extends javax.swing.JFrame {
 
     private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
 
-        Nuevo_Cliente obj = new Nuevo_Cliente();
+        Contratos obj = new Contratos();
         obj.setVisible(true);
         dispose();
 
@@ -152,7 +152,7 @@ public class Principal_Tec extends javax.swing.JFrame {
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
 
-        Tabla_Clientes_Admin obj = new Tabla_Clientes_Admin();
+        Garantias_Tec obj = new Garantias_Tec();
         obj.setVisible(true);
         dispose();
         

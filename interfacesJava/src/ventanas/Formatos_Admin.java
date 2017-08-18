@@ -236,6 +236,9 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
     private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
 
+        Contratos_Admin obj = new Contratos_Admin();
+        obj.setVisible(true);
+        dispose();
        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida1ActionPerformed

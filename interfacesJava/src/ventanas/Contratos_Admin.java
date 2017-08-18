@@ -9,12 +9,12 @@ package ventanas;
  *
  * @author JR
  */
-public class Contratos extends javax.swing.JFrame {
+public class Contratos_Admin extends javax.swing.JFrame {
 
     /**
      * Creates new form Tecnico
      */
-    public Contratos() {
+    public Contratos_Admin() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("CPU System Service S.A.S - CONTRATOS");
@@ -49,6 +49,8 @@ public class Contratos extends javax.swing.JFrame {
         btnSalir5 = new javax.swing.JButton();
         btnVolver4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        btnSalir4 = new javax.swing.JButton();
+        btnVolver3 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -208,15 +210,45 @@ public class Contratos extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
+        btnSalir4.setBackground(new java.awt.Color(51, 153, 255));
+        btnSalir4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalir4.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir4.setText("Salir");
+        btnSalir4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir4ActionPerformed(evt);
+            }
+        });
+
+        btnVolver3.setBackground(new java.awt.Color(51, 153, 255));
+        btnVolver3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnVolver3.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver3.setText("Volver");
+        btnVolver3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolver3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(689, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVolver3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSalir4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnSalir4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
+                .addComponent(btnVolver3)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("REGISTROS", jPanel3);
@@ -235,16 +267,29 @@ public class Contratos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalir4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir4ActionPerformed
+
+    private void btnVolver3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver3ActionPerformed
+
+        Principal_Tec obj = new Principal_Tec();
+        obj.setVisible(true);
+        dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolver3ActionPerformed
+
     private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnVolver4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver4ActionPerformed
 
-        Principal_Tec obj = new Principal_Tec();
+        Formatos_Admin obj = new Formatos_Admin();
         obj.setVisible(true);
         dispose();
-
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver4ActionPerformed
 
@@ -265,27 +310,31 @@ public class Contratos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Contratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Contratos_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Contratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Contratos_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Contratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Contratos_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Contratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Contratos_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Contratos().setVisible(true);
+                new Contratos_Admin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalir4;
     private javax.swing.JButton btnSalir5;
+    private javax.swing.JButton btnVolver3;
     private javax.swing.JButton btnVolver4;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
