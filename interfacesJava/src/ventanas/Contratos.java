@@ -6,13 +6,16 @@
 package ventanas;
 
 import clasesPrincipales.clientes;
+import clasesPrincipales.contratos;
 import com.mxrck.autocompleter.TextAutoCompleter;
+import conMySql.contratoMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +24,10 @@ import javax.swing.table.DefaultTableModel;
  * @author JR
  */
 public class Contratos extends javax.swing.JFrame {
+    
+    ArrayList<contratos> contrato;
+    //clienteDB db = new clienteDB();
+    contratoMySql db = new contratoMySql();
 
     /**
      * Creates new form Tecnico
@@ -29,6 +36,17 @@ public class Contratos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("CPU System Service S.A.S - CONTRATOS");
+    }
+    
+    public void limpiar(){
+        txtId.setText("");
+        txtNumeroCont.setText("");
+        txtFechaInicial.setText("");
+        txtFechaFin.setText("");
+        txtCliente.setText("");
+        txtNitCed.setText("");
+        txtResponsable.setText("");
+        txtNumeroCont.requestFocus();
     }
     
     public void autoComplete(){
@@ -76,15 +94,15 @@ public class Contratos extends javax.swing.JFrame {
             System.out.println("error: "+e);
         }
     }
-    /*
+   
     public void ListarDatos() {
-        cliente = db.ListClientes();
+        contrato = db.ListContrato();
         DefaultTableModel tb = (DefaultTableModel) tabla_contrato.getModel();
-        for (clientes cl : cliente) {
-            tb.addRow(new Object[]{cl.getNit_cliente(), cl.getNombre_cliente(), cl.getTelefono_cliente(), cl.getDireccion_cliente(), cl.getCiudad_cliente(), cl.getCorreo_cliente(), cl.getNombre_contacto()});
+        for (contratos con : contrato) {
+            tb.addRow(new Object[]{con.getId_contrato(), con.getNumero(), con.getFecha_inicio(), con.getFecha_fin(), con.getCliente(), con.getNit_ced(), con.getResponsable()});
         }
     }
-    */
+    
     
     public void LimpiarTabla() {
         DefaultTableModel tb = (DefaultTableModel) tabla_contrato.getModel();
@@ -129,16 +147,16 @@ public class Contratos extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         txtNumeroCont = new javax.swing.JTextField();
-        txtFechaIni = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        txtFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel18 = new javax.swing.JLabel();
         txtCliente = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         txtNitCed = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         txtResponsable = new javax.swing.JTextField();
+        txtFechaInicial = new javax.swing.JTextField();
+        txtFechaFin = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         btnSalir6 = new javax.swing.JButton();
         btnVolver5 = new javax.swing.JButton();
@@ -334,13 +352,13 @@ public class Contratos extends javax.swing.JFrame {
 
         tabla_contrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "NO. CONTRATO", "FECHA INICIO", "FECHA FINAL", "CLIENTE", "NIT O CEDULA", "RESPONSABLE"
+                "ID", "NO. CONTRATO", "FECHA INICIO", "FECHA FINAL", "CLIENTE", "NIT O CEDULA", "RESPONSABLE"
             }
         ));
         tabla_contrato.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -357,17 +375,13 @@ public class Contratos extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("NO. CONTRATO");
 
-        txtFechaIni.setDateFormatString("yyyy/MM/dd");
-
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("FECHA INICIO");
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel17.setText("FECHA INICIO");
-
-        txtFechaFin.setDateFormatString("yyyy/MM/dd");
+        jLabel17.setText("FECHA FINAL");
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -380,6 +394,12 @@ public class Contratos extends javax.swing.JFrame {
         jLabel20.setBackground(new java.awt.Color(255, 255, 255));
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText("RESPONSABLE");
+
+        txtFechaInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaInicialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -398,13 +418,13 @@ public class Contratos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
-                    .addComponent(txtFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNitCed, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
@@ -416,16 +436,16 @@ public class Contratos extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel17)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(jLabel16))
                         .addGap(6, 6, 6)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNumeroCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -672,33 +692,34 @@ public class Contratos extends javax.swing.JFrame {
 
     private void btnBusca3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca3ActionPerformed
 
+        String guardar = auto.getText();
+        String tipo = cmbHistorial.getSelectedItem().toString();
+       
         try {
-            String guardar = auto.getText();
+      
+            if("NUMERO".equals(tipo)){
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = cn.createStatement();
-            PreparedStatement pst = cn.prepareStatement("Select * from clientes where nombre_cli = ?");
+            PreparedStatement pst = cn.prepareStatement("Select * from contratos where numero = ?");
             pst.setString(1, guardar);
-            //pst.setString(1, CMBID.getName());
             ResultSet rs = pst.executeQuery();
             LimpiarTabla();
             if (rs.next()) {
-              /*  
-                clientes cl = new clientes();
-                cl.setNit_cliente(rs.getString("nit_cli"));
-                cl.setNombre_cliente(rs.getString("nombre_cli"));
-                cl.setTelefono_cliente(rs.getString("telefono_cli"));
-                cl.setDireccion_cliente(rs.getString("direccion_cli"));
-                cl.setCiudad_cliente(rs.getString("ciudad_cli"));
-                cl.setCorreo_cliente(rs.getString("correo_cli"));
-                cl.setNombre_contacto(rs.getString("contacto_cli"));
-                cliente.add(cl);
+                contratos con = new contratos();
+                con.setId_contrato(rs.getInt("id_contrato"));
+                con.setNumero(rs.getString("numero"));
+                con.setFecha_inicio(rs.getString("fecha_inicio"));
+                con.setFecha_fin(rs.getString("fecha_fin"));
+                con.setCliente(rs.getString("cliente"));
+                con.setNit_ced(rs.getString("nit_ced"));
+                con.setResponsable(rs.getString("responsable"));
+                contrato.add(con);
                 DefaultTableModel tb = (DefaultTableModel) tabla_contrato.getModel();
-                tb.addRow(new Object[]{cl.getNit_cliente(), cl.getNombre_cliente(), cl.getTelefono_cliente(), cl.getDireccion_cliente(), cl.getCiudad_cliente(), cl.getCorreo_cliente(), cl.getNombre_contacto()});
-*/
+                tb.addRow(new Object[]{con.getId_contrato(), con.getNumero(), con.getFecha_inicio(), con.getFecha_fin(), con.getCliente(), con.getNit_ced(), con.getResponsable()});
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el usuario");
+                JOptionPane.showMessageDialog(null, "No existe");
             }
             cn.close();
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -712,14 +733,18 @@ public class Contratos extends javax.swing.JFrame {
 
         txtId.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 0)));
         txtNumeroCont.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 1)));
-        txtFechaIni.setDateFormatString(String.valueOf(tabla_contrato.getValueAt(seleccion, 2)));
-        txtFechaFin.setDateFormatString(String.valueOf(tabla_contrato.getValueAt(seleccion, 3)));
+        txtFechaInicial.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 2)));
+        txtFechaFin.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 3)));
         txtCliente.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 4)));
         txtNitCed.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 5)));
         txtResponsable.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 6)));
         
         // TODO add your handling code here:
     }//GEN-LAST:event_tabla_contratoMouseClicked
+
+    private void txtFechaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaInicialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -796,8 +821,8 @@ public class Contratos extends javax.swing.JFrame {
     private javax.swing.JTextField txtCliente;
     private com.toedter.calendar.JDateChooser txtFecha;
     private com.toedter.calendar.JDateChooser txtFecha1;
-    private com.toedter.calendar.JDateChooser txtFechaFin;
-    private com.toedter.calendar.JDateChooser txtFechaIni;
+    private javax.swing.JTextField txtFechaFin;
+    private javax.swing.JTextField txtFechaInicial;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNitCed;
     private javax.swing.JTextField txtNitCliente;
