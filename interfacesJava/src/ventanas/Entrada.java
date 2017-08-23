@@ -447,7 +447,6 @@ public class Entrada extends javax.swing.JFrame {
         btnBusca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBusca.setForeground(new java.awt.Color(255, 255, 255));
         btnBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
-        btnBusca.setBorder(null);
         btnBusca.setBorderPainted(false);
         btnBusca.setContentAreaFilled(false);
         btnBusca.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -466,7 +465,6 @@ public class Entrada extends javax.swing.JFrame {
         btnGuarda.setForeground(new java.awt.Color(255, 255, 255));
         btnGuarda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar_1.png"))); // NOI18N
         btnGuarda.setText("Guardar");
-        btnGuarda.setBorder(null);
         btnGuarda.setBorderPainted(false);
         btnGuarda.setContentAreaFilled(false);
         btnGuarda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -478,7 +476,7 @@ public class Entrada extends javax.swing.JFrame {
                 btnGuardaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, 50, -1));
+        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 80, -1));
         getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 150, 10));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -492,7 +490,6 @@ public class Entrada extends javax.swing.JFrame {
         btnGuarda1.setForeground(new java.awt.Color(255, 255, 255));
         btnGuarda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/generarr.png"))); // NOI18N
         btnGuarda1.setText("Go");
-        btnGuarda1.setBorder(null);
         btnGuarda1.setBorderPainted(false);
         btnGuarda1.setContentAreaFilled(false);
         btnGuarda1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -504,7 +501,7 @@ public class Entrada extends javax.swing.JFrame {
                 btnGuarda1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuarda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, 50, 70));
+        getContentPane().add(btnGuarda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 50, 70));
         getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
