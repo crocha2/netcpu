@@ -34,6 +34,17 @@
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Contratos_Admin.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Principal_Admin.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Garantias_Tec.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Bienvenida.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/conector.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/envioMySql.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/GenerarNumeros.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/clienteMySql.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/clasesPrincipales/contratos.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/clasesPrincipales/clientes.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/clasesPrincipales/Salidas.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/clasesPrincipales/Envios.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/contratoMySql.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Entrada_Oper.java</file>
         </group>
     </open-files>
 </project-private>

@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  * @author JR
  */
 public class Contratos extends javax.swing.JFrame {
-    
+
     ArrayList<contratos> contrato;
     //clienteDB db = new clienteDB();
     contratoMySql db = new contratoMySql();
@@ -42,10 +42,10 @@ public class Contratos extends javax.swing.JFrame {
         ListarDatos();
         ListarDatos2();
         autoCompleteCli();
-        //autoComplete();
+        autoComplete();
     }
-    
-    public void limpiar(){
+
+    public void limpiar() {
         txtId.setText("");
         txtNumeroCont.setText("");
         txtFechaInicial.setText("");
@@ -55,81 +55,105 @@ public class Contratos extends javax.swing.JFrame {
         txtResponsable.setText("");
         txtNumeroCont.requestFocus();
     }
-    
-    public void limpiar2(){
+
+    public void limpiar2() {
         txtId.setText("");
         txtNumeroContrato.setText("");
-        txtFechaIn.setDateFormatString("");
-        txtFechaFi.setDateFormatString("");
         txtCli.setText("");
         txtNitCe.setText("");
         txtResp.setText("");
         txtNumeroContrato.requestFocus();
     }
-    
-    public void autoCompleteCli(){
+
+    public void autoCompleteCli() {
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(txtCli);
-        String guar = txtCli.getText();
+        //String guar = txtCli.getText();
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
+            Statement st = (Statement) cn.createStatement();
             //ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE nombre_cli like"+'"'+guar+'"'+"_%");
             ResultSet rs = st.executeQuery("SELECT nombre_cli, nit_cli FROM clientes");
             while (rs.next()) {
                 TextAutoCompleter.addItem(rs.getString("nombre_cli"));
-            }  
+            }
             cn.close();
         } catch (Exception e) {
-            System.out.println("error: "+e);
+            System.out.println("error: " + e);
         }
     }
-    
-    public void autoComplete(){
-        TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
+
+    public void autoComplete() {
+        
+        //String guardar = cmbHistorial.getSelectedItem().toString();
+        
         try {
-            String guardar = cmbHistorial.getSelectedItem().toString();
-            if("NUMERO".equals(guardar)){
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT numero FROM contratos");
-            while (rs.next()) {
-                TextAutoCompleter.addItem(rs.getString("numero"));
+            TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
+            /*
+            if(cmbHistorial.getSelectedIndex()==0){
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT numero FROM contratos");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("numero"));
+                }
+                cn.close();
+                
             }
-            cn.close();
+            */if(cmbHistorial.getSelectedIndex()==1){
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT cliente FROM contratos");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("cliente"));
+                }
+                cn.close();
             }
-            if("CLIENTE".equals(guardar)){
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT cliente FROM contratos");
-            while (rs.next()) {
-                TextAutoCompleter.addItem(rs.getString("cliente"));
+ 
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
+        /*
+        try {
+            if ("NUMERO".equals(guardar)) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT numero FROM contratos");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("numero"));
+                }
+                cn.close();
+            } if ("CLIENTE".equals(guardar)) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT cliente FROM contratos");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("cliente"));
+                }
+                cn.close();
+            } if ("NIT O CEDULA".equals(guardar)) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT nit_ced FROM contratos");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("nit_ced"));
+                }
+                cn.close();
+            } if ("RESPONSABLE".equals(guardar)) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT responsable FROM contratos");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("responsable"));
+                }
+                cn.close();
             }
-            cn.close();
-            }
-            if("NIT O CEDULA".equals(guardar)){
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nit_ced FROM contratos");
-            while (rs.next()) {
-                TextAutoCompleter.addItem(rs.getString("nit_ced"));
-            }
-            cn.close();
-            }
-            if("RESPONSABLE".equals(guardar)){
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT responsable FROM contratos");
-            while (rs.next()) {
-                TextAutoCompleter.addItem(rs.getString("responsable"));
-            }
-            cn.close();
-            }          
             
         } catch (Exception e) {
-            System.out.println("error: "+e);
+            System.out.println("error: " + e);
         }
+        */
     }
-   
+
     public void ListarDatos() {
         contrato = db.ListContrato();
         DefaultTableModel tb = (DefaultTableModel) tabla_contrato.getModel();
@@ -137,8 +161,7 @@ public class Contratos extends javax.swing.JFrame {
             tb.addRow(new Object[]{con.getId_contrato(), con.getNumero(), con.getFecha_inicio(), con.getFecha_fin(), con.getCliente(), con.getNit_ced(), con.getResponsable()});
         }
     }
-    
-    
+
     public void ListarDatos2() {
         contrato = db.ListContrato();
         DefaultTableModel tb = (DefaultTableModel) tabla_contrato2.getModel();
@@ -146,20 +169,20 @@ public class Contratos extends javax.swing.JFrame {
             tb.addRow(new Object[]{con.getId_contrato(), con.getNumero(), con.getFecha_inicio(), con.getFecha_fin(), con.getCliente(), con.getNit_ced(), con.getResponsable()});
         }
     }
-    
+
     public void LimpiarTabla() {
         DefaultTableModel tb = (DefaultTableModel) tabla_contrato.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
             tb.removeRow(i);
-        }  
-      } 
-    
+        }
+    }
+
     public void LimpiarTabla2() {
         DefaultTableModel tb = (DefaultTableModel) tabla_contrato2.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
             tb.removeRow(i);
-        }  
-      } 
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,7 +213,7 @@ public class Contratos extends javax.swing.JFrame {
         btnSalir5 = new javax.swing.JButton();
         btnVolver4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tabla_contrato2 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -374,46 +397,34 @@ public class Contratos extends javax.swing.JFrame {
 
         tabla_contrato2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "NO. CONTRATO", "FECHA INICIO", "FECHA FINAL", "CLIENTE", "NIT O CEDULA", "RESPONSABLE"
+                "ID", "No. CONTRATO", "FECHA INICIO", "FECHA FINAL", "CLIENTE", "NIT - CEDULA", "RESPONSABLE"
             }
         ));
-        tabla_contrato2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_contrato2MouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(tabla_contrato2);
+        jScrollPane1.setViewportView(tabla_contrato2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
-                        .addGap(290, 290, 290)
-                        .addComponent(btnSalir5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVolver4))
-                        .addGap(0, 14, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(113, 113, 113)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(273, 273, 273)
+                        .addComponent(btnSalir5))
+                    .addComponent(btnVolver4))
+                .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,8 +438,8 @@ public class Contratos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVolver4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -439,10 +450,7 @@ public class Contratos extends javax.swing.JFrame {
 
         tabla_contrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "NO. CONTRATO", "FECHA INICIO", "FECHA FINAL", "CLIENTE", "NIT O CEDULA", "RESPONSABLE"
@@ -677,46 +685,49 @@ public class Contratos extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(748, 748, 748)
-                                .addComponent(btnVolver5))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addGap(269, 269, 269)
-                                .addComponent(btnSalir6)))
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
+                        .addGap(64, 64, 64))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(304, 304, 304)
+                                .addComponent(btnSalir6))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(701, 701, 701)
+                                .addComponent(btnVolver5))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 20, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir6)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnSalir6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
-                .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVolver5))
-                .addGap(214, 214, 214))
+                .addGap(252, 252, 252))
         );
 
         jTabbedPane1.addTab("REGISTROS", jPanel3);
@@ -729,7 +740,7 @@ public class Contratos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, Short.MAX_VALUE)
         );
 
         pack();
@@ -759,22 +770,22 @@ public class Contratos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         /*
-        try {
-            String formato1 = txtFe1.getDateFormatString();
-            Date date1 = txtFe1.getDate();
-            SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-            String dato1 = String.valueOf(sdf1.format(date1));
+         try {
+         String formato1 = txtFe1.getDateFormatString();
+         Date date1 = txtFe1.getDate();
+         SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
+         String dato1 = String.valueOf(sdf1.format(date1));
 
-            String formato2 = txtFe2.getDateFormatString();
-            Date date2 = txtFe2.getDate();
-            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-            String dato2 = String.valueOf(sdf2.format(date2));
+         String formato2 = txtFe2.getDateFormatString();
+         Date date2 = txtFe2.getDate();
+         SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+         String dato2 = String.valueOf(sdf2.format(date2));
 
-            GenerarReportes g = new GenerarReportes();
-            g.reporteGarantia(dato1, dato2);
-        } catch (Exception e) {
-        }
-        */
+         GenerarReportes g = new GenerarReportes();
+         g.reporteGarantia(dato1, dato2);
+         } catch (Exception e) {
+         }
+         */
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -783,6 +794,7 @@ public class Contratos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cmbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHistorialActionPerformed
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbHistorialActionPerformed
 
@@ -790,36 +802,36 @@ public class Contratos extends javax.swing.JFrame {
 
         String guardar = auto.getText();
         String tipo = cmbHistorial.getSelectedItem().toString();
-       
+
         try {
-      
-            if("NUMERO".equals(tipo)){
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = cn.prepareStatement("Select * from contratos where numero = ?");
-            pst.setString(1, guardar);
-            ResultSet rs = pst.executeQuery();
-            LimpiarTabla();
-            if (rs.next()) {
-                contratos con = new contratos();
-                con.setId_contrato(rs.getInt("id_contrato"));
-                con.setNumero(rs.getString("numero"));
-                con.setFecha_inicio(rs.getString("fecha_inicio"));
-                con.setFecha_fin(rs.getString("fecha_fin"));
-                con.setCliente(rs.getString("cliente"));
-                con.setNit_ced(rs.getString("nit_ced"));
-                con.setResponsable(rs.getString("responsable"));
-                contrato.add(con);
-                DefaultTableModel tb = (DefaultTableModel) tabla_contrato.getModel();
-                tb.addRow(new Object[]{con.getId_contrato(), con.getNumero(), con.getFecha_inicio(), con.getFecha_fin(), con.getCliente(), con.getNit_ced(), con.getResponsable()});
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe");
-            }
-            cn.close();
+
+            if ("NUMERO".equals(tipo)) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                PreparedStatement pst = cn.prepareStatement("Select * from contratos where numero = ?");
+                pst.setString(1, guardar);
+                ResultSet rs = pst.executeQuery();
+                LimpiarTabla();
+                if (rs.next()) {
+                    contratos con = new contratos();
+                    con.setId_contrato(rs.getInt("id_contrato"));
+                    con.setNumero(rs.getString("numero"));
+                    con.setFecha_inicio(rs.getString("fecha_inicio"));
+                    con.setFecha_fin(rs.getString("fecha_fin"));
+                    con.setCliente(rs.getString("cliente"));
+                    con.setNit_ced(rs.getString("nit_ced"));
+                    con.setResponsable(rs.getString("responsable"));
+                    contrato.add(con);
+                    DefaultTableModel tb = (DefaultTableModel) tabla_contrato.getModel();
+                    tb.addRow(new Object[]{con.getId_contrato(), con.getNumero(), con.getFecha_inicio(), con.getFecha_fin(), con.getCliente(), con.getNit_ced(), con.getResponsable()});
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe");
+                }
+                cn.close();
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca3ActionPerformed
 
@@ -834,7 +846,7 @@ public class Contratos extends javax.swing.JFrame {
         txtCliente.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 4)));
         txtNitCed.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 5)));
         txtResponsable.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 6)));
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_tabla_contratoMouseClicked
 
@@ -843,50 +855,46 @@ public class Contratos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaInicialActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-   
-        try {
-                contratos con = new contratos();
-                
-                con.setNumero(txtNumeroContrato.getText().toUpperCase());
-                         
-                String formato = txtFechaIn.getDateFormatString();
-                Date date = txtFechaIn.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String dato = String.valueOf(sdf.format(date));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                con.setFecha_inicio(dato);
-                
-                String formato2 = txtFechaFi.getDateFormatString();
-                Date date2 = txtFechaFi.getDate();
-                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                String dato2 = String.valueOf(sdf2.format(date2));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                con.setFecha_inicio(dato2);
-                
-                con.setCliente(txtCli.getText().toUpperCase());
-                con.setNit_ced(txtNitCe.getText().toUpperCase());
-                con.setResponsable(txtResp.getText().toUpperCase());
-               
-                db.InsertarContrato(con);
-                JOptionPane.showMessageDialog(this, "Contrato guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
 
-                limpiar2();
-                LimpiarTabla2();
-                ListarDatos2();
-                
-            } catch (Exception e) {
-                System.err.println("error" + e);
-            }
-        
+        try {
+            contratos con = new contratos();
+
+            con.setNumero(txtNumeroContrato.getText().toUpperCase());
+
+            String formato = txtFechaIn.getDateFormatString();
+            Date date = txtFechaIn.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String dato = String.valueOf(sdf.format(date));
+            //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+            con.setFecha_inicio(dato);
+
+            String formato2 = txtFechaFi.getDateFormatString();
+            Date date2 = txtFechaFi.getDate();
+            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+            String dato2 = String.valueOf(sdf2.format(date2));
+            //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+            con.setFecha_fin(dato2);
+
+            con.setCliente(txtCli.getText().toUpperCase());
+            con.setNit_ced(txtNitCe.getText().toUpperCase());
+            con.setResponsable(txtResp.getText().toUpperCase());
+
+            db.InsertarContrato(con);
+            JOptionPane.showMessageDialog(this, "Contrato guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+
+            limpiar2();
+            LimpiarTabla2();
+            ListarDatos2();
+
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void tabla_contrato2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_contrato2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabla_contrato2MouseClicked
-
     private void txtCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliMouseClicked
-       // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtCliMouseClicked
 
     private void txtCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliActionPerformed
@@ -894,9 +902,7 @@ public class Contratos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCliActionPerformed
 
     private void txtCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCliKeyReleased
-           
-       
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_txtCliKeyReleased
 
@@ -973,8 +979,8 @@ public class Contratos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabla_contrato;
     private javax.swing.JTable tabla_contrato2;

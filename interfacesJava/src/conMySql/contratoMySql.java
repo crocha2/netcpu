@@ -60,7 +60,7 @@ public class contratoMySql {
     public void InsertarContrato(contratos contrato) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst =  cn.prepareStatement("INSERT INTO contratos(numero, fecha_inicio, fecha_fin, clientes, nit_ced, responsable) VALUES (?,?,?,?,?,?)");
+            PreparedStatement pst =  cn.prepareStatement("INSERT INTO contratos(numero, fecha_inicio, fecha_fin, cliente, nit_ced, responsable) VALUES (?,?,?,?,?,?)");
             //pst.setInt(1, cliente.getId_cliente());
             pst.setString(1, contrato.getNumero());
             pst.setString(2, contrato.getFecha_inicio());
