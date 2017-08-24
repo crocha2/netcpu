@@ -643,6 +643,11 @@ public class Contratos extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cmbHistorial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NUMERO", "CLIENTE", "NIT O CEDULA", "RESPONSABLE" }));
+        cmbHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbHistorialMouseClicked(evt);
+            }
+        });
         cmbHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbHistorialActionPerformed(evt);
@@ -873,7 +878,7 @@ public class Contratos extends javax.swing.JFrame {
 
     private void cmbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHistorialActionPerformed
 
-        autoComplete();
+        //autoComplete();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbHistorialActionPerformed
@@ -998,6 +1003,13 @@ public class Contratos extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void cmbHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbHistorialMouseClicked
+
+        autoComplete();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbHistorialMouseClicked
 
     /**
      * @param args the command line arguments
