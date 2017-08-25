@@ -46,6 +46,12 @@ public class Contratos extends javax.swing.JFrame {
         ListarDatos2();
         autoCompleteCli();
         autoComplete();
+        //autoCompletar();
+        cargarComboContratos();
+    }
+
+    public void limpiarCombo() {
+        this.cmbHistorial.removeAllItems();
         //cargarComboContratos();
     }
 
@@ -86,14 +92,78 @@ public class Contratos extends javax.swing.JFrame {
         }
     }
 
-    /*
+   
      public final void cargarComboContratos(){
      String [] con = {"NUMERO","CLIENTE","NIT O CEDULA","RESPONSABLE"};
      modeloContrato = new DefaultComboBoxModel(con);
      cmbHistorial.setModel(modeloContrato);
      }
-     */
      
+   
+     
+    public void autoCompletar() {
+        TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
+        String guardar = cmbHistorial.getSelectedItem().toString();
+        switch (guardar) {
+            case "NUMERO":
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM contratos");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("numero"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR EN NUMERO: " + e);
+                }
+                break;
+            case "CLIENTE":
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM contratos");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("cliente"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR EN CLIENTE: " + e);
+                }
+                break;
+            case "NIT O CEDULA":
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM contratos");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("nit_ced"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR EN NIT-CEDULA: " + e);
+                }
+                break;
+            case "RESPONSABLE":
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT * FROM contratos");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("responsable"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR EN RESPONSABLE: " + e);
+                }
+                break;
+            default:
+                System.out.println("error");
+                break;
+        }
+
+    }
+
     public void autoComplete() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
@@ -108,7 +178,8 @@ public class Contratos extends javax.swing.JFrame {
                     TextAutoCompleter.addItem(rs.getString("numero"));
                 }
                 cn.close();
-            } else if (guardar.equals("CLIENTE")) {
+            } 
+            if (guardar.equals("CLIENTE")) {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 Statement st = (Statement) cn.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM contratos");
@@ -116,7 +187,8 @@ public class Contratos extends javax.swing.JFrame {
                     TextAutoCompleter.addItem(rs.getString("cliente"));
                 }
                 cn.close();
-            } else if ("NIT O CEDULA".equals(guardar)) {
+            } 
+            if ("NIT O CEDULA".equals(guardar)) {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 Statement st = (Statement) cn.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM contratos");
@@ -124,7 +196,8 @@ public class Contratos extends javax.swing.JFrame {
                     TextAutoCompleter.addItem(rs.getString("nit_ced"));
                 }
                 cn.close();
-            } else if ("RESPONSABLE".equals(guardar)) {
+            }
+            if ("RESPONSABLE".equals(guardar)) {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 Statement st = (Statement) cn.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM contratos");
@@ -136,76 +209,7 @@ public class Contratos extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("error: " + e);
         }
-        /*
-         // String guardar = cmbHistorial.getSelectedItem().toString();
-        
-         try {
-         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
-            
-         if(cmbHistorial.getSelectedIndex()==0){
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         Statement st = (Statement) cn.createStatement();
-         ResultSet rs = st.executeQuery("SELECT numero FROM contratos");
-         while (rs.next()) {
-         TextAutoCompleter.addItem(rs.getString("numero"));
-         }
-         cn.close();
-                
-         }
-         if(cmbHistorial.getSelectedIndex()==1){
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         Statement st = (Statement) cn.createStatement();
-         ResultSet rs = st.executeQuery("SELECT cliente FROM contratos");
-         while (rs.next()) {
-         TextAutoCompleter.addItem(rs.getString("cliente"));
-         }
-         cn.close();
-         }
- 
-         } catch (Exception e) {
-         System.out.println("error: " + e);
-         }
-         */
-        /*
-         try {
-         if ("NUMERO".equals(guardar)) {
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         Statement st = (Statement) cn.createStatement();
-         ResultSet rs = st.executeQuery("SELECT numero FROM contratos");
-         while (rs.next()) {
-         TextAutoCompleter.addItem(rs.getString("numero"));
-         }
-         cn.close();
-         } if ("CLIENTE".equals(guardar)) {
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         Statement st = (Statement) cn.createStatement();
-         ResultSet rs = st.executeQuery("SELECT cliente FROM contratos");
-         while (rs.next()) {
-         TextAutoCompleter.addItem(rs.getString("cliente"));
-         }
-         cn.close();
-         } if ("NIT O CEDULA".equals(guardar)) {
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         Statement st = (Statement) cn.createStatement();
-         ResultSet rs = st.executeQuery("SELECT nit_ced FROM contratos");
-         while (rs.next()) {
-         TextAutoCompleter.addItem(rs.getString("nit_ced"));
-         }
-         cn.close();
-         } if ("RESPONSABLE".equals(guardar)) {
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         Statement st = (Statement) cn.createStatement();
-         ResultSet rs = st.executeQuery("SELECT responsable FROM contratos");
-         while (rs.next()) {
-         TextAutoCompleter.addItem(rs.getString("responsable"));
-         }
-         cn.close();
-         }
-            
-         } catch (Exception e) {
-         System.out.println("error: " + e);
-         }
-         */
+
     }
 
     public void ListarDatos() {
@@ -291,13 +295,13 @@ public class Contratos extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        cmbHistorial = new javax.swing.JComboBox();
         auto = new javax.swing.JTextField();
         btnBusca3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         btnBusca1 = new javax.swing.JButton();
+        cmbHistorial = new javax.swing.JComboBox();
 
         jButton1.setText("jButton1");
 
@@ -642,18 +646,6 @@ public class Contratos extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        cmbHistorial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NUMERO", "CLIENTE", "NIT O CEDULA", "RESPONSABLE" }));
-        cmbHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbHistorialMouseClicked(evt);
-            }
-        });
-        cmbHistorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbHistorialActionPerformed(evt);
-            }
-        });
-
         btnBusca3.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBusca3.setForeground(new java.awt.Color(255, 255, 255));
@@ -718,18 +710,18 @@ public class Contratos extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(auto, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(auto, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(cmbHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBusca3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel23)
+                                    .addComponent(cmbHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel23))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBusca3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -741,23 +733,24 @@ public class Contratos extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBusca3))
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cmbHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(11, 11, 11)
                         .addComponent(auto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -876,13 +869,6 @@ public class Contratos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void cmbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHistorialActionPerformed
-
-        //autoComplete();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbHistorialActionPerformed
-
     private void btnBusca3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca3ActionPerformed
 
         String guardar = auto.getText();
@@ -999,17 +985,10 @@ public class Contratos extends javax.swing.JFrame {
 
     private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
 
-       // autoComplete();
-
+        autoCompletar();
+          
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
-
-    private void cmbHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbHistorialMouseClicked
-
-        autoComplete();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbHistorialMouseClicked
 
     /**
      * @param args the command line arguments
