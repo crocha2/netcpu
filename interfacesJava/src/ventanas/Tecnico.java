@@ -6,8 +6,10 @@
 package ventanas;
 
 import clasesPrincipales.Entradas;
+import clasesPrincipales.Salidas;
 import clasesPrincipales.contratos;
 import conMySql.entradaMySql;
+import conMySql.salidaMySql;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,8 +20,10 @@ import javax.swing.table.DefaultTableModel;
 public class Tecnico extends javax.swing.JFrame {
     
     ArrayList<Entradas> entrada;
-    //entradaDB db = new entradaDB();
-    entradaMySql db = new entradaMySql();
+    entradaMySql dbEntrada = new entradaMySql();
+    
+    //ArrayList<Salidas> salida;
+    //salidaMySql dbSalida = new salidaMySql();
 
     /**
      * Creates new form Tecnico
@@ -29,23 +33,43 @@ public class Tecnico extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("CPU System Service S.A.S - PANEL");
         ListarEntradas();
+        //ListarSalidas();
     }
     
     public void ListarEntradas() {
-        entrada = db.ListEntradas();
+        entrada = dbEntrada.ListEntradas();
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
         for (Entradas en : entrada) {
             tb.addRow(new Object[]{en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
         }
     }
     
-    public void LimpiarTabla() {
+    public void LimpiarEntradas() {
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
             tb.removeRow(i);
         }
     }
 
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    /*
+    public void ListarSalidas() {
+        salida = dbSalida.ListSalidas();
+        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+        for (Salidas sal : salida) {
+            tb.addRow(new Object[]{sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+        }
+    }
+    
+    public void LimpiarSalidas() {
+        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
+    }
+    */
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +86,7 @@ public class Tecnico extends javax.swing.JFrame {
         tbEntradas = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        areaObserva = new javax.swing.JTextArea();
+        areaEntrada = new javax.swing.JTextArea();
         btnVolver = new javax.swing.JButton();
         btnSalir1 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -71,16 +95,20 @@ public class Tecnico extends javax.swing.JFrame {
         txtNitCliente = new javax.swing.JTextField();
         btnBusca = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        txtNitCliente1 = new javax.swing.JTextField();
-        btnBusca1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        cmbSalidas = new javax.swing.JComboBox();
+        tbSalidas = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         areaSalida = new javax.swing.JTextArea();
         btnSalir2 = new javax.swing.JButton();
         btnVolver1 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        cmbSalidas = new javax.swing.JComboBox();
+        txtNitCliente1 = new javax.swing.JTextField();
+        btnBusca1 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        btnSalir5 = new javax.swing.JButton();
+        btnVolver4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         txtNitCliente2 = new javax.swing.JTextField();
@@ -109,7 +137,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
-        tbEntradas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tbEntradas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -127,18 +154,23 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         tbEntradas.setToolTipText("");
+        tbEntradas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tbEntradas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbEntradas.setGridColor(new java.awt.Color(0, 153, 153));
-        tbEntradas.setRowSelectionAllowed(false);
+        tbEntradas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEntradasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbEntradas);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Observaciones");
 
-        areaObserva.setColumns(20);
-        areaObserva.setRows(5);
-        jScrollPane4.setViewportView(areaObserva);
+        areaEntrada.setColumns(20);
+        areaEntrada.setRows(5);
+        jScrollPane4.setViewportView(areaEntrada);
 
         btnVolver.setBackground(new java.awt.Color(51, 153, 255));
         btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -241,11 +273,15 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir1)
-                    .addComponent(jLabel13))
-                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(btnSalir1)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -263,34 +299,10 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("REGISTRO DE SALIDAS");
-
-        btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
-        btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnBusca1.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
-        btnBusca1.setBorder(null);
-        btnBusca1.setBorderPainted(false);
-        btnBusca1.setContentAreaFilled(false);
-        btnBusca1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBusca1.setIconTextGap(-1);
-        btnBusca1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBusca1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusca1ActionPerformed(evt);
-            }
-        });
-
-        jTable2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbSalidas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbSalidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha", "No.Rem", "Cliente", "Telefono", "Correo", "Equipo", "Modelo", "Serie", "Observacion"
@@ -304,21 +316,10 @@ public class Tecnico extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setToolTipText("");
-        jTable2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable2.setGridColor(new java.awt.Color(0, 153, 153));
-        jTable2.setRowSelectionAllowed(false);
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(8).setHeaderValue("Observacion");
-        }
-
-        cmbSalidas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SERIE", "CLIENTE", "REM" }));
-        cmbSalidas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbSalidasActionPerformed(evt);
-            }
-        });
+        tbSalidas.setToolTipText("");
+        tbSalidas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbSalidas.setGridColor(new java.awt.Color(0, 153, 153));
+        jScrollPane2.setViewportView(tbSalidas);
 
         areaSalida.setColumns(20);
         areaSalida.setRows(5);
@@ -344,58 +345,142 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
 
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        cmbSalidas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SERIE", "CLIENTE", "REM" }));
+        cmbSalidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSalidasActionPerformed(evt);
+            }
+        });
+
+        btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca1.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
+        btnBusca1.setBorder(null);
+        btnBusca1.setBorderPainted(false);
+        btnBusca1.setContentAreaFilled(false);
+        btnBusca1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca1.setIconTextGap(-1);
+        btnBusca1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNitCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnBusca1)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(cmbSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNitCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("REGISTRO DE SALIDAS");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Observaciones");
+
+        btnSalir5.setBackground(new java.awt.Color(51, 153, 255));
+        btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalir5.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir5.setText("Salir");
+        btnSalir5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir5ActionPerformed(evt);
+            }
+        });
+
+        btnVolver4.setBackground(new java.awt.Color(51, 153, 255));
+        btnVolver4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnVolver4.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver4.setText("Volver");
+        btnVolver4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolver4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(btnSalir2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNitCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnVolver4)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(31, 31, 31)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel15)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSalir5, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGap(23, 23, 23)
                         .addComponent(btnVolver1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(275, 275, 275)
+                    .addComponent(jLabel14)
+                    .addContainerGap(425, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel10))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSalir2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(cmbSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNitCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(5, 5, 5))
-                        .addComponent(btnBusca1)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2)
+                    .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVolver1)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver1)
+                    .addComponent(btnVolver4))
                 .addGap(9, 9, 9))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(jLabel14)
+                    .addContainerGap(409, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("SALIDAS", jPanel2);
@@ -446,7 +531,6 @@ public class Tecnico extends javax.swing.JFrame {
         jTable3.setToolTipText("");
         jTable3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable3.setGridColor(new java.awt.Color(0, 153, 153));
-        jTable3.setRowSelectionAllowed(false);
         jScrollPane3.setViewportView(jTable3);
 
         cmbEnvios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REM", "DESTINATARIO" }));
@@ -484,12 +568,6 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(329, 329, 329)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir3)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,13 +581,16 @@ public class Tecnico extends javax.swing.JFrame {
                 .addGap(74, 74, 74))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnVolver2)
-                        .addContainerGap())))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnVolver2)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(317, 317, 317)
+                            .addComponent(jLabel12)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalir3))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -535,9 +616,9 @@ public class Tecnico extends javax.swing.JFrame {
                             .addGap(8, 8, 8))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVolver2)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ENVIOS", jPanel3);
@@ -597,7 +678,6 @@ public class Tecnico extends javax.swing.JFrame {
         jTable4.setToolTipText("");
         jTable4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable4.setGridColor(new java.awt.Color(0, 153, 153));
-        jTable4.setRowSelectionAllowed(false);
         jScrollPane8.setViewportView(jTable4);
 
         btnSalir4.setBackground(new java.awt.Color(51, 153, 255));
@@ -794,7 +874,12 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolver1ActionPerformed
 
     private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
-        // TODO add your handling code here:
+
+        Bienvenida obj = new Bienvenida();
+        obj.setVisible(true);
+        dispose();
+        
+// TODO add your handling code here:
     }//GEN-LAST:event_btnSalir3ActionPerformed
 
     private void btnVolver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver2ActionPerformed
@@ -807,6 +892,11 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolver2ActionPerformed
 
     private void btnSalir4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir4ActionPerformed
+
+        Bienvenida obj = new Bienvenida();
+        obj.setVisible(true);
+        dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir4ActionPerformed
 
@@ -818,6 +908,34 @@ public class Tecnico extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver3ActionPerformed
+
+    private void tbEntradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntradasMouseClicked
+
+        
+        int seleccion = tbEntradas.getSelectedRow();
+        areaEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 10)));
+             
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_tbEntradasMouseClicked
+
+    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
+
+        Bienvenida obj = new Bienvenida();
+        obj.setVisible(true);
+        dispose();
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir5ActionPerformed
+
+    private void btnVolver4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver4ActionPerformed
+
+        Principal_Tec obj = new Principal_Tec();
+        obj.setVisible(true);
+        dispose();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolver4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -855,9 +973,9 @@ public class Tecnico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaEntrada;
     private javax.swing.JTextArea areaEnvio;
     private javax.swing.JTextArea areaGarantia;
-    private javax.swing.JTextArea areaObserva;
     private javax.swing.JTextArea areaSalida;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBusca1;
@@ -867,24 +985,28 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton btnSalir3;
     private javax.swing.JButton btnSalir4;
+    private javax.swing.JButton btnSalir5;
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton btnVolver1;
     private javax.swing.JButton btnVolver2;
     private javax.swing.JButton btnVolver3;
+    private javax.swing.JButton btnVolver4;
     private javax.swing.JComboBox cmbEntradas;
     private javax.swing.JComboBox cmbEnvios;
     private javax.swing.JComboBox cmbHistorial;
     private javax.swing.JComboBox cmbSalidas;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -896,10 +1018,10 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable tbEntradas;
+    private javax.swing.JTable tbSalidas;
     private javax.swing.JTextField txtNitCliente;
     private javax.swing.JTextField txtNitCliente1;
     private javax.swing.JTextField txtNitCliente2;

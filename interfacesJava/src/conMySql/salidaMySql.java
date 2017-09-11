@@ -27,7 +27,7 @@ public class salidaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_salida, numero, fecha, empresa, ciudad, direccion, contacto, telefono, correo, equipo, modelo, serie, comentario FROM salidas ORDER BY 2");
+            ResultSet rs = st.executeQuery("SELECT id_salida, numero, fecha, empresa, ciudad, direccion, contacto, telefono, correo, equipo, modelo, serie, comentario FROM salidas ORDER fecha DESC");
             while (rs.next()) {
                 Salidas sal = new Salidas();
                 sal.setId_salida(rs.getInt("id_salida"));

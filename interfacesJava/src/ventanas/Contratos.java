@@ -813,6 +813,11 @@ public class Contratos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
+
+        Bienvenida obj = new Bienvenida();
+        obj.setVisible(true);
+        dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
@@ -826,10 +831,20 @@ public class Contratos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolver4ActionPerformed
 
     private void btnSalir6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir6ActionPerformed
+
+        Bienvenida obj = new Bienvenida();
+        obj.setVisible(true);
+        dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir6ActionPerformed
 
     private void btnVolver5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver5ActionPerformed
+
+        Principal_Tec obj = new Principal_Tec();
+        obj.setVisible(true);
+        dispose();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver5ActionPerformed
 
