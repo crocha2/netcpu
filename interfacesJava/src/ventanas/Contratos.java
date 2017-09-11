@@ -48,6 +48,7 @@ public class Contratos extends javax.swing.JFrame {
         autoComplete();
         //autoCompletar();
         //cargarComboContratos();
+        txtId.setEnabled(false);
     }
 
     public void limpiarCombo() {

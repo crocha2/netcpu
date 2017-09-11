@@ -37,7 +37,7 @@ public class contratoMySql {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             //Connection cn = DataBaseConexion.getConnection();
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_contrato, numero, fecha_inicio, fecha_fin, cliente, nit_ced, responsable FROM contratos ORDER BY fecha_inicio ASC");
+            ResultSet rs = st.executeQuery("SELECT id_contrato, numero, fecha_inicio, fecha_fin, cliente, nit_ced, responsable FROM contratos ORDER BY fecha_inicio DESC");
             while (rs.next()) {
                 contratos con = new contratos();
                 con.setId_contrato(rs.getInt("id_contrato"));
