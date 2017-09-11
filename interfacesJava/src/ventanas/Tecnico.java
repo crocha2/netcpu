@@ -28,6 +28,7 @@ public class Tecnico extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("CPU System Service S.A.S - PANEL");
+        ListarEntradas();
     }
     
     public void ListarEntradas() {
@@ -35,6 +36,13 @@ public class Tecnico extends javax.swing.JFrame {
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
         for (Entradas en : entrada) {
             tb.addRow(new Object[]{en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+        }
+    }
+    
+    public void LimpiarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
         }
     }
 
@@ -104,10 +112,7 @@ public class Tecnico extends javax.swing.JFrame {
         tbEntradas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tbEntradas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Telefono", "Correo", "Elemento", "Marca", "Modelo", "Serie", "Observacion"
