@@ -13,9 +13,9 @@
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Entrada.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Entrada.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Tabla_Clientes_Admin.java</file>
-            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/salidaMySql.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/conector.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/clienteMySql.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/envioMySql.java</file>
         </group>
     </open-files>
 </project-private>
