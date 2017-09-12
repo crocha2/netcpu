@@ -644,6 +644,12 @@ public class Contratos extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        auto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoActionPerformed(evt);
+            }
+        });
+
         btnBusca3.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBusca3.setForeground(new java.awt.Color(255, 255, 255));
@@ -1233,6 +1239,10 @@ public class Contratos extends javax.swing.JFrame {
         //autoComplete();
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbHistorialMouseEntered
+
+    private void autoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoActionPerformed
 
     /**
      * @param args the command line arguments

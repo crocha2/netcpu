@@ -38,7 +38,7 @@ public class envioMySql {
                 env.setFecha(rs.getString("fecha"));
                 env.setDestinatario(rs.getString("destinatario"));
                 env.setATN(rs.getString("atn"));
-                env.setDireccion(rs.getString("direcion"));
+                env.setDireccion(rs.getString("direccion"));
                 env.setTelefono(rs.getString("telefono"));
                 env.setCiudad(rs.getString("ciudad"));
                 env.setComentario(rs.getString("comentario"));
