@@ -42,10 +42,10 @@ public class Entrada extends javax.swing.JFrame {
         this.setTitle("CPU System Service S.A.S - ENTRADA");
         //CargarCmbCliente();
         autoComplete();
-        numeroForaneo();
+        //numeroForaneo();
         numeros();
         txtSec.setEnabled(false);
-        txtForanea.setEnabled(false);
+        //txtForanea.setEnabled(false);
         //CargarCmbFacturas();
     }
     
@@ -76,7 +76,9 @@ public class Entrada extends javax.swing.JFrame {
         }
     }
     */
-   
+   //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
+    /*
     public void numeroForaneo(){
         int c = 0;
         int aux = 0;
@@ -100,6 +102,9 @@ public class Entrada extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
+    */
+    
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
     void numeros() {
         int j;
@@ -231,7 +236,6 @@ public class Entrada extends javax.swing.JFrame {
         txtSec = new javax.swing.JTextField();
         btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
-        txtForanea = new javax.swing.JTextField();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -305,7 +309,7 @@ public class Entrada extends javax.swing.JFrame {
         jLabel17.setText("Garantia");
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 90, 20));
 
-        cmbTarjetaDeRed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO", " " }));
+        cmbTarjetaDeRed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
         getContentPane().add(cmbTarjetaDeRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 60, 20));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 750, 10));
         getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 310, 10));
@@ -401,7 +405,7 @@ public class Entrada extends javax.swing.JFrame {
         jLabel29.setText("Parrilla");
         getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, 20));
 
-        cmbParrilla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO", " " }));
+        cmbParrilla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
         getContentPane().add(cmbParrilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 60, 20));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -409,7 +413,7 @@ public class Entrada extends javax.swing.JFrame {
         jLabel30.setText("Bases Plasticas");
         getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 90, 20));
 
-        cmbBasesPlasticas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO", " " }));
+        cmbBasesPlasticas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
         getContentPane().add(cmbBasesPlasticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 60, 20));
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -417,7 +421,7 @@ public class Entrada extends javax.swing.JFrame {
         jLabel31.setText("Conector original");
         getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, 20));
 
-        cmbEstadoCarcasa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buen Estado", "Mal Estado", " ", " " }));
+        cmbEstadoCarcasa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buen Estado", "Mal Estado" }));
         getContentPane().add(cmbEstadoCarcasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 110, -1));
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -425,7 +429,7 @@ public class Entrada extends javax.swing.JFrame {
         jLabel32.setText("Tarjeta de red");
         getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, 20));
 
-        cmbConectorOriginal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO", " " }));
+        cmbConectorOriginal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
         getContentPane().add(cmbConectorOriginal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 60, 20));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -530,13 +534,6 @@ public class Entrada extends javax.swing.JFrame {
         });
         getContentPane().add(btnGuarda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 50, 70));
         getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, -1));
-
-        txtForanea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtForaneaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtForanea, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 100, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
@@ -668,14 +665,15 @@ public class Entrada extends javax.swing.JFrame {
                 en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
                 en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
                 en.setObservaciones(areaObservaciones.getText().toUpperCase());
-                en.setId_garantia(Integer.parseInt(txtForanea.getText()));
+                en.setEstado("REVISION");
+                //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
                 en.setNumero(txtSec.getText());
 
                 db.insertarEntrada(en);
                 JOptionPane.showMessageDialog(this, "Factura guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
 
                 numeros();
-                numeroForaneo();
+                //numeroForaneo();
                 txtNitCliente.setText("");
                 txtEmpresa.setText("");
                 txtTelefonoCliente.setText("");
@@ -711,10 +709,6 @@ public class Entrada extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuarda1ActionPerformed
-
-    private void txtForaneaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtForaneaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtForaneaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -813,7 +807,6 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JTextField txtElemento;
     private javax.swing.JTextField txtEmpresa;
     private com.toedter.calendar.JDateChooser txtFecha;
-    private javax.swing.JTextField txtForanea;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtMotivo;
