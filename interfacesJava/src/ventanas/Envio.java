@@ -75,7 +75,6 @@ public class Envio extends javax.swing.JFrame {
     */
     
     public void limpiar(){
-        txtFecha.setDateFormatString("");
         txtDestinatario.setText("");
         txtATN.setText("");
         txtDireccion.setText("");

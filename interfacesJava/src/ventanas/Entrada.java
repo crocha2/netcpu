@@ -42,8 +42,10 @@ public class Entrada extends javax.swing.JFrame {
         this.setTitle("CPU System Service S.A.S - ENTRADA");
         //CargarCmbCliente();
         autoComplete();
+        numeroForaneo();
         numeros();
         txtSec.setEnabled(false);
+        txtForanea.setEnabled(false);
         //CargarCmbFacturas();
     }
     
@@ -74,6 +76,30 @@ public class Entrada extends javax.swing.JFrame {
         }
     }
     */
+   
+    public void numeroForaneo(){
+        int c = 0;
+        int aux = 0;
+        String SQL = "SELECT MAX(id_garantia) AS id_garantia FROM entradas";
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            if (rs.next()){
+                c = rs.getInt("id_garantia");
+            }
+            if (c == 0) {
+                aux = c+1;
+                txtForanea.setText(""+aux);
+                System.out.println(c);
+            }else{
+                aux = c+1;
+                txtForanea.setText(""+aux);
+                System.out.println(c);
+            }
+        } catch (Exception e) {
+        }
+    }
 
     void numeros() {
         int j;
@@ -205,6 +231,7 @@ public class Entrada extends javax.swing.JFrame {
         txtSec = new javax.swing.JTextField();
         btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
+        txtForanea = new javax.swing.JTextField();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -273,10 +300,10 @@ public class Entrada extends javax.swing.JFrame {
         jLabel16.setText("DATOS DEL CONTACTO");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 150, -1));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 0));
         jLabel17.setText("Garantia");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, 50, 20));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 90, 20));
 
         cmbTarjetaDeRed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO", " " }));
         getContentPane().add(cmbTarjetaDeRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 60, 20));
@@ -367,7 +394,7 @@ public class Entrada extends javax.swing.JFrame {
                 cmbGarantiaActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 390, 60, -1));
+        getContentPane().add(cmbGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 80, 20));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
@@ -504,6 +531,13 @@ public class Entrada extends javax.swing.JFrame {
         getContentPane().add(btnGuarda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 50, 70));
         getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, -1));
 
+        txtForanea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtForaneaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtForanea, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 100, -1));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
@@ -596,7 +630,7 @@ public class Entrada extends javax.swing.JFrame {
         txtMotivo.setText("");
         areaObservaciones.setText("");
         txtPersonaRemitente.setText("");
-        txtFecha.setDateFormatString("");
+        //txtFecha.setDateFormatString("");
         txtElemento.requestFocus();
 
         // TODO add your handling code here:
@@ -634,12 +668,14 @@ public class Entrada extends javax.swing.JFrame {
                 en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
                 en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
                 en.setObservaciones(areaObservaciones.getText().toUpperCase());
+                en.setId_garantia(Integer.parseInt(txtForanea.getText()));
                 en.setNumero(txtSec.getText());
 
                 db.insertarEntrada(en);
                 JOptionPane.showMessageDialog(this, "Factura guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
 
                 numeros();
+                numeroForaneo();
                 txtNitCliente.setText("");
                 txtEmpresa.setText("");
                 txtTelefonoCliente.setText("");
@@ -655,7 +691,6 @@ public class Entrada extends javax.swing.JFrame {
                 txtMotivo.setText("");
                 areaObservaciones.setText("");
                 txtPersonaRemitente.setText("");
-                txtFecha.setDateFormatString("");
                 //this.cmbClientes.removeAllItems();
                 //this.cmbFacturas.removeAllItems();
                 //CargarCmbCliente();
@@ -676,6 +711,10 @@ public class Entrada extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuarda1ActionPerformed
+
+    private void txtForaneaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtForaneaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtForaneaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -774,6 +813,7 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JTextField txtElemento;
     private javax.swing.JTextField txtEmpresa;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private javax.swing.JTextField txtForanea;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtMotivo;

@@ -98,7 +98,7 @@ public class Salidass extends javax.swing.JFrame {
         txtEquipo.setText("");
         txtModel.setText("");
         txtSerie.setText("");
-        txtFecha.setDateFormatString("");
+        //txtFecha.setDateFormatString("");
         //this.cmbClientes.removeAllItems();
         //CargarCmbCliente();
         txtEmpresa.requestFocus();

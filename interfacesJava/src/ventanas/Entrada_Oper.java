@@ -272,10 +272,10 @@ public class Entrada_Oper extends javax.swing.JFrame {
         jLabel16.setText("DATOS DEL CONTACTO");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 150, -1));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 0));
         jLabel17.setText("Garantia");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, 50, 20));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 70, 20));
 
         cmbTarjetaDeRed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO", " " }));
         getContentPane().add(cmbTarjetaDeRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 60, 20));
@@ -366,7 +366,7 @@ public class Entrada_Oper extends javax.swing.JFrame {
                 cmbGarantiaActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 390, 60, -1));
+        getContentPane().add(cmbGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 80, -1));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
@@ -563,7 +563,7 @@ public class Entrada_Oper extends javax.swing.JFrame {
         txtMotivo.setText("");
         areaObservaciones.setText("");
         txtPersonaRemitente.setText("");
-        txtFecha.setDateFormatString("");
+        //txtFecha.setDateFormatString("");
         txtElemento.requestFocus();
 
         // TODO add your handling code here:
@@ -622,7 +622,6 @@ public class Entrada_Oper extends javax.swing.JFrame {
                 txtMotivo.setText("");
                 areaObservaciones.setText("");
                 txtPersonaRemitente.setText("");
-                txtFecha.setDateFormatString("");
                 //this.cmbClientes.removeAllItems();
                 //this.cmbFacturas.removeAllItems();
                 //CargarCmbCliente();

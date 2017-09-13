@@ -59,8 +59,8 @@ public class Contratos extends javax.swing.JFrame {
     public void limpiar() {
         txtId.setText("");
         txtNumeroCont.setText("");
-        txtFechaInicial.setText("");
-        txtFechaFin.setText("");
+        //txtFechaInicial.setText("");
+        //txtFechaFin.setText("");
         txtCliente.setText("");
         txtNitCed.setText("");
         txtResponsable.setText("");
@@ -808,11 +808,11 @@ public class Contratos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

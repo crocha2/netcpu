@@ -68,7 +68,7 @@ public class entradaMySql {
     public void insertarEntrada(Entradas entrada) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst =  cn.prepareStatement("INSERT INTO entradas(numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones, tarjeta) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst =  cn.prepareStatement("INSERT INTO entradas(numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones, tarjeta, id_garantia) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, entrada.getNumero());
             pst.setString(2, entrada.getFecha());
             pst.setString(3, entrada.getElemento());
@@ -92,6 +92,7 @@ public class entradaMySql {
             pst.setString(21, entrada.getEstado_carcasa());
             pst.setString(22, entrada.getObservaciones());
             pst.setString(23, entrada.getTarjeta_red());
+            pst.setInt(24, entrada.getId_garantia());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
