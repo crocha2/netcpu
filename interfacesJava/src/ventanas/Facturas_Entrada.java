@@ -178,7 +178,6 @@ public class Facturas_Entrada extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         txtMotivo = new javax.swing.JTextField();
         txtTarjetaDeRed = new javax.swing.JTextField();
-        txtFechaSel = new com.toedter.calendar.JDateChooser();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -513,9 +512,6 @@ public class Facturas_Entrada extends javax.swing.JFrame {
         getContentPane().add(txtMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 700, -1));
         getContentPane().add(txtTarjetaDeRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 110, -1));
 
-        txtFechaSel.setDateFormatString("yyyy/MM/dd");
-        getContentPane().add(txtFechaSel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 190, -1));
-
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
@@ -570,22 +566,8 @@ public class Facturas_Entrada extends javax.swing.JFrame {
             //pst.setString(1, CMBID.getName());
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-
-                //String formato = txtFechaSel.getDateFormatString();
-                //Date date = txtFechaSel.getDate();
-                //SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                //String dato = String.valueOf(sdf.format(date));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                //txtFechaSel.setText(dato);
                 
-                String formato = rs.getString("fecha").trim();
-                //SimpleDateFormat sdf2 = new SimpleDateFormat(formato);
-                Date date = txtFechaSel.getDate();
-                txtFechaSel.setDate(date);
-                //String dato = String.valueOf(sdf2.format(formato));
-                //txtFechaSel.setText(dato);
-                
-                //txtFecha.setText(rs.getString("fecha").trim());
+                txtFecha.setText(rs.getString("fecha").trim());
                 txtElemento.setText(rs.getString("elemento").trim());
                 txtPotencia.setText(rs.getString("potencia").trim());
                 txtMarca.setText(rs.getString("marca").trim());
@@ -955,7 +937,6 @@ public class Facturas_Entrada extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtEstadoCarcasa;
     private javax.swing.JTextField txtFecha;
-    private com.toedter.calendar.JDateChooser txtFechaSel;
     private javax.swing.JTextField txtGarantia;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;

@@ -6,6 +6,7 @@
 package conMySql;
 
 import clasesPrincipales.Entradas;
+import clasesPrincipales.Garantias;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,9 +21,10 @@ import java.util.logging.Logger;
  *
  * @author CPU_SYS
  */
-public class entradaMySql {
+public class garantiaMySql {
 
-    public ArrayList<Entradas> ListEntradas() {
+    /*
+    public ArrayList<Garantias> ListGarantias() {
         ArrayList<Entradas> entrada = new ArrayList();
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -64,66 +66,32 @@ public class entradaMySql {
         }
         return entrada;
     }
+*/
     
-    public ArrayList<Entradas> ListEntradas_garantias() {
-        ArrayList<Entradas> entrada = new ArrayList();
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_entra, fecha, numero, empresa, nit, elemento, marca, modelo, serie, garantia, estado FROM entradas WHERE garantia = 'SI' ORDER BY fecha ASC");
-            while (rs.next()) {
-                Entradas en = new Entradas();
-                en.setId_entrada(rs.getInt("id_entra"));
-                en.setFecha(rs.getString("fecha"));
-                en.setNumero(rs.getString("numero"));
-                en.setEmpresa(rs.getString("empresa"));
-                en.setNit(rs.getString("nit"));
-                en.setElemento(rs.getString("elemento"));
-                en.setMarca(rs.getString("marca"));
-                en.setModelo(rs.getString("modelo"));
-                en.setSerie(rs.getString("serie"));
-                en.setGarantia(rs.getString("garantia"));
-                en.setEstado(rs.getString("estado"));
-                entrada.add(en);
-            }
-            cn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error en listado");
-        }
-        return entrada;
-    }
 
     //Codigo para INSERTAR DATOS.........................................................
-    public void insertarEntrada(Entradas entrada) {
+    public void insertarEntrada_Garantia(Garantias garantia) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst =  cn.prepareStatement("INSERT INTO entradas(numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones, tarjeta, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, entrada.getNumero());
-            pst.setString(2, entrada.getFecha());
-            pst.setString(3, entrada.getElemento());
-            pst.setString(4, entrada.getPotencia());
-            pst.setString(5, entrada.getMarca());
-            pst.setString(6, entrada.getModelo());
-            pst.setString(7, entrada.getSerie());
-            pst.setString(8, entrada.getEmpresa());
-            pst.setString(9, entrada.getNit());
-            pst.setString(10, entrada.getPersona_remite());
-            pst.setString(11, entrada.getCiudad());
-            pst.setString(12, entrada.getDireccion());
-            pst.setString(13, entrada.getNombre_contacto());
-            pst.setString(14, entrada.getTelefono_contacto());
-            pst.setString(15, entrada.getCorreo());
-            pst.setString(16, entrada.getMotivo());   
-            pst.setString(17, entrada.getParrilla());
-            pst.setString(18, entrada.getBases_plasticas());
-            pst.setString(19, entrada.getConector_origi());
-            pst.setString(20, entrada.getGarantia());
-            pst.setString(21, entrada.getEstado_carcasa());
-            pst.setString(22, entrada.getObservaciones());
-            pst.setString(23, entrada.getTarjeta_red());
-            pst.setString(24, entrada.getEstado());
-            //pst.setInt(24, entrada.getId_garantia());
+            PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
+            
+            /*
+            gar.setId_garantia(Integer.parseInt(""+tbEntrada_garantia.getValueAt(seleccion, 0)));
+            gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
+            gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
+            gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
+            gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
+            gar.setPrimera_serie(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
+            gar.setEstado("PROCESO");
+            */
+               
+            pst.setString(1, garantia.getFecha_entrada());
+            pst.setString(2, garantia.getCliente());
+            pst.setString(3, garantia.getNit());
+            pst.setString(4, garantia.getSerie_vieja());
+            pst.setString(5, garantia.getPrimera_serie());
+            pst.setString(6, garantia.getEstado());
+            pst.setInt(7, garantia.getId_entra());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
@@ -163,7 +131,7 @@ public class entradaMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -176,7 +144,7 @@ public class entradaMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

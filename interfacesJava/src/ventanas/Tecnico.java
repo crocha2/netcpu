@@ -7,18 +7,23 @@ package ventanas;
 
 import clasesPrincipales.Entradas;
 import clasesPrincipales.Envios;
+import clasesPrincipales.Garantias;
 import clasesPrincipales.Salidas;
 import clasesPrincipales.contratos;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import conMySql.entradaMySql;
 import conMySql.envioMySql;
+import conMySql.garantiaMySql;
 import conMySql.salidaMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,15 +31,18 @@ import javax.swing.table.DefaultTableModel;
  * @author JR
  */
 public class Tecnico extends javax.swing.JFrame {
-    
+
     ArrayList<Entradas> entrada;
     entradaMySql dbEntrada = new entradaMySql();
-    
+
     ArrayList<Salidas> salida;
     salidaMySql dbSalida = new salidaMySql();
-    
+
     ArrayList<Envios> envio;
     envioMySql dbEnvio = new envioMySql();
+
+    ArrayList<Garantias> garantia;
+    garantiaMySql dbGarantia = new garantiaMySql();
 
     /**
      * Creates new form Tecnico
@@ -46,11 +54,12 @@ public class Tecnico extends javax.swing.JFrame {
         ListarEntradas();
         ListarSalidas();
         ListarEnvios();
+        ListarEntradas_Garantias();
         autoCompleteEntradas();
         autoCompleteSalidas();
         autoCompleteEnvios();
     }
-    
+
     public void ListarEntradas() {
         entrada = dbEntrada.ListEntradas();
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
@@ -58,7 +67,7 @@ public class Tecnico extends javax.swing.JFrame {
             tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
         }
     }
-    
+
     public void LimpiarEntradas() {
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
@@ -67,7 +76,6 @@ public class Tecnico extends javax.swing.JFrame {
     }
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void ListarSalidas() {
         salida = dbSalida.ListSalidas();
         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
@@ -75,16 +83,15 @@ public class Tecnico extends javax.swing.JFrame {
             tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
         }
     }
-    
+
     public void LimpiarSalidas() {
         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
             tb.removeRow(i);
         }
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void ListarEnvios() {
         envio = dbEnvio.ListEnvios();
         DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
@@ -92,16 +99,15 @@ public class Tecnico extends javax.swing.JFrame {
             tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario()});
         }
     }
-    
+
     public void LimpiarEnvios() {
         DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
             tb.removeRow(i);
         }
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void autoCompleteEntradas() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
@@ -149,9 +155,8 @@ public class Tecnico extends javax.swing.JFrame {
         }
 
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void autoCompleteSalidas() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoSal);
@@ -190,9 +195,8 @@ public class Tecnico extends javax.swing.JFrame {
         }
 
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void autoCompleteEnvios() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEnvio);
@@ -222,14 +226,24 @@ public class Tecnico extends javax.swing.JFrame {
         }
 
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
-    
-    
-    
-    
-    
+    public void ListarEntradas_Garantias() {
+        entrada = dbEntrada.ListEntradas_garantias();
+        DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
+        for (Entradas en : entrada) {
+            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+        }
+    }
+
+    public void LimpiarEntradas_Garantias() {
+        DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
+    }
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -310,7 +324,7 @@ public class Tecnico extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane11 = new javax.swing.JScrollPane();
-        tbGarantias2 = new javax.swing.JTable();
+        tbEntrada_garantia = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel28 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -963,7 +977,7 @@ public class Tecnico extends javax.swing.JFrame {
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -995,7 +1009,7 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel20)
@@ -1037,13 +1051,13 @@ public class Tecnico extends javax.swing.JFrame {
 
         jScrollPane11.setAutoscrolls(true);
 
-        tbGarantias2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tbGarantias2.setModel(new javax.swing.table.DefaultTableModel(
+        tbEntrada_garantia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tbEntrada_garantia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Elemento", "Marca", "Modelo", "Serie", "Garantia", "Estado"
+                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Marca", "Elemento", "Modelo", "Serie", "Garantia", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1054,11 +1068,11 @@ public class Tecnico extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbGarantias2.setToolTipText("");
-        tbGarantias2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tbGarantias2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tbGarantias2.setGridColor(new java.awt.Color(0, 153, 153));
-        jScrollPane11.setViewportView(tbGarantias2);
+        tbEntrada_garantia.setToolTipText("");
+        tbEntrada_garantia.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbEntrada_garantia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbEntrada_garantia.setGridColor(new java.awt.Color(0, 153, 153));
+        jScrollPane11.setViewportView(tbEntrada_garantia);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REVISION", "PROCESO", "LISTO" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -1134,6 +1148,12 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
 
+        txtIdForanea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdForaneaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1141,10 +1161,6 @@ public class Tecnico extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(txtIdForanea, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVolver5))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1153,49 +1169,55 @@ public class Tecnico extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
+                                .addGap(46, 46, 46)
                                 .addComponent(jButton1)
-                                .addGap(208, 208, 208)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator1)
-                                .addComponent(jScrollPane11)))
-                        .addGap(23, 23, 23)))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13))
+                            .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(txtIdForanea, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVolver5)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir6)
-                    .addComponent(jLabel16))
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel28)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSalir6)
+                            .addComponent(jLabel16))
+                        .addGap(1, 1, 1)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVolver5)
-                    .addComponent(txtIdForanea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(23, 23, 23))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdForanea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolver5))
+                .addGap(23, 23, 23))
         );
 
         jTabbedPane3.addTab("REVISION", jPanel9);
@@ -1542,7 +1564,7 @@ public class Tecnico extends javax.swing.JFrame {
         switch (tipo) {
             case 0:
                 try {
- // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
                     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                     Statement st = cn.createStatement();
                     PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ?");
@@ -1619,7 +1641,7 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setEmpresa(rs.getString("empresa"));
                         en.setNit(rs.getString("nit"));
                         en.setTelefono_contacto(rs.getString("telefono"));
-                        en.setCorreo(rs.getString("correo"));     
+                        en.setCorreo(rs.getString("correo"));
                         en.setElemento(rs.getString("elemento"));
                         en.setMarca(rs.getString("marca"));
                         en.setModelo(rs.getString("modelo"));
@@ -1684,14 +1706,14 @@ public class Tecnico extends javax.swing.JFrame {
     private void cmbSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSalidasActionPerformed
 
         autoCompleteSalidas();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSalidasActionPerformed
 
     private void cmbEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEnviosActionPerformed
 
         autoCompleteEnvios();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbEnviosActionPerformed
 
@@ -1726,7 +1748,7 @@ public class Tecnico extends javax.swing.JFrame {
         Bienvenida obj = new Bienvenida();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir3ActionPerformed
 
@@ -1735,7 +1757,7 @@ public class Tecnico extends javax.swing.JFrame {
         Principal_Tec obj = new Principal_Tec();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver2ActionPerformed
 
@@ -1744,7 +1766,7 @@ public class Tecnico extends javax.swing.JFrame {
         Bienvenida obj = new Bienvenida();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir4ActionPerformed
 
@@ -1753,17 +1775,15 @@ public class Tecnico extends javax.swing.JFrame {
         Principal_Tec obj = new Principal_Tec();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver3ActionPerformed
 
     private void tbEntradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntradasMouseClicked
 
-        
         int seleccion = tbEntradas.getSelectedRow();
         txtIdEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 0)));
         areaEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 11)));
-             
 
 // TODO add your handling code here:
     }//GEN-LAST:event_tbEntradasMouseClicked
@@ -1773,7 +1793,7 @@ public class Tecnico extends javax.swing.JFrame {
         Bienvenida obj = new Bienvenida();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
@@ -1782,7 +1802,7 @@ public class Tecnico extends javax.swing.JFrame {
         Principal_Tec obj = new Principal_Tec();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver4ActionPerformed
 
@@ -1791,7 +1811,7 @@ public class Tecnico extends javax.swing.JFrame {
         int seleccion = tbSalidas.getSelectedRow();
         txtIdSalida.setText(String.valueOf(tbSalidas.getValueAt(seleccion, 0)));
         areaSalida.setText(String.valueOf(tbSalidas.getValueAt(seleccion, 9)));
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_tbSalidasMouseClicked
 
@@ -1800,14 +1820,14 @@ public class Tecnico extends javax.swing.JFrame {
         int seleccion = tbEnvios.getSelectedRow();
         txtIdEnvio.setText(String.valueOf(tbEnvios.getValueAt(seleccion, 0)));
         areaEnvio.setText(String.valueOf(tbEnvios.getValueAt(seleccion, 8)));
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_tbEnviosMouseClicked
 
     private void cmbEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEntradasActionPerformed
 
         autoCompleteEntradas();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_cmbEntradasActionPerformed
 
@@ -1849,28 +1869,93 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        /*
-        
         try {
-            String formato1 = txtFe1.getDateFormatString();
-            Date date1 = txtFe1.getDate();
-            SimpleDateFormat sdf1 = new SimpleDateFormat(formato1);
-            String dato1 = String.valueOf(sdf1.format(date1));
+            Garantias gar = new Garantias();
 
-            String formato2 = txtFe2.getDateFormatString();
-            Date date2 = txtFe2.getDate();
-            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-            String dato2 = String.valueOf(sdf2.format(date2));
+            int seleccion = tbEntrada_garantia.getSelectedRow();
+            /////////////////////PENDIENTE FECHA///////////////////////////
+            /*
+            String fecha = tbEntrada_garantia.getValueAt(seleccion, 1).toString();
 
-            GenerarReportes g = new GenerarReportes();
-            g.reporteGarantia(dato1, dato2);
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+            String strFecha = fecha;
+            Date fechaDate = null;
+            try {
+                fechaDate = formatoDelTexto.parse(strFecha);
+                System.out.println(fechaDate.toString());
+                return fechaDate;
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+                return fechaDate;
+            }
+            */
+            /////////////////////PENDIENTE FECHA///////////////////////////
+            
+            gar.setId_garantia(Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0)));
+            gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
+            gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
+            gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
+            gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
+            gar.setPrimera_serie(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
+            gar.setEstado("PROCESO");
+
+            /*
+            
+             gar.setId_garantia(Integer.parseInt(tbEntrada_garantia.getValueAt(seleccion, 0)));
+             gar.setId_garantia(Integer.parseInt(tbEntrada_garantia.getValueAt(seleccion, 0)));
+             gar.setId_garantia(Integer.parseInt(tbEntrada_garantia.getValueAt(seleccion, 0)));
+             gar.setId_garantia(Integer.parseInt(tbEntrada_garantia.getValueAt(seleccion, 0)));
+             gar.setId_garantia(Integer.parseInt(tbEntrada_garantia.getValueAt(seleccion, 0)));
+             gar.setId_garantia(Integer.parseInt(tbEntrada_garantia.getValueAt(seleccion, 0)));
+             gar.setId_garantia(Integer.parseInt(""+tbEntrada_garantia.getValueAt(seleccion, 0)));
+
+             txtID.setText(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 0)));
+             txtNitCliente.setText(String.valueOf(tabla_clientes.getValueAt(seleccion, 1)));
+             txtNombreCliente.setText(String.valueOf(tabla_clientes.getValueAt(seleccion, 2)));
+             txtTelefonoCliente.setText(String.valueOf(tabla_clientes.getValueAt(seleccion, 3)));
+             txtDireccionCliente.setText(String.valueOf(tabla_clientes.getValueAt(seleccion, 4)));
+             txtCiudadCliente.setText(String.valueOf(tabla_clientes.getValueAt(seleccion, 5)));
+             txtCorreoCliente.setText(String.valueOf(tabla_clientes.getValueAt(seleccion, 6)));
+             txtContactoCliente.setText(String.valueOf(tabla_clientes.getValueAt(seleccion, 7)));
+
+             en.setElemento(txtElemento.getText().toUpperCase());
+             en.setPotencia(txtPotencia.getText().toUpperCase());
+             en.setMarca(txtMarca.getText().toUpperCase());
+             en.setModelo(txtModelo.getText().toUpperCase());
+             en.setSerie(txtSerie.getText().toUpperCase());
+             en.setEmpresa(txtEmpresa.getText().toUpperCase());
+             en.setNit(txtNitCliente.getText().toUpperCase());
+             en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
+             en.setCiudad(txtCiudadCliente.getText().toUpperCase());
+             en.setDireccion(txtDireccionCliente.getText().toUpperCase());
+             en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+             en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
+             en.setCorreo(txtCorreoCliente.getText().toUpperCase());
+             en.setMotivo(txtMotivo.getText().toUpperCase());
+             en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
+             en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
+             en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
+             en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
+             en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
+             en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
+             en.setObservaciones(areaObservaciones.getText().toUpperCase());
+             en.setEstado("REVISION");
+             //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
+             en.setNumero(txtSec.getText());
+             */
+            dbGarantia.insertarEntrada_Garantia(gar);
+            JOptionPane.showMessageDialog(this, "Garantia en proceso", "", JOptionPane.INFORMATION_MESSAGE);
+
         } catch (Exception e) {
+            System.err.println("error" + e);
         }
-        
-        */
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtIdForaneaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdForaneaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdForaneaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1999,11 +2084,11 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tbEntrada_garantia;
     private javax.swing.JTable tbEntradas;
     private javax.swing.JTable tbEnvios;
     private javax.swing.JTable tbGarantias;
     private javax.swing.JTable tbGarantias1;
-    private javax.swing.JTable tbGarantias2;
     private javax.swing.JTable tbSalidas;
     private javax.swing.JTextField txtIdEntrada;
     private javax.swing.JTextField txtIdEnvio;
