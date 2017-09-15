@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,7 +66,7 @@ public class Tecnico extends javax.swing.JFrame {
         entrada = dbEntrada.ListEntradas();
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
         for (Entradas en : entrada) {
-            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones(), en.getEstado()});
         }
     }
 
@@ -127,18 +128,18 @@ public class Tecnico extends javax.swing.JFrame {
             if (guardar.equals("CLIENTE")) {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM clientes");
+                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
                 while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("nombre_cli"));
+                    TextAutoCompleter.addItem(rs.getString("empresa"));
                 }
                 cn.close();
             }
             if ("NIT O CEDULA".equals(guardar)) {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM clientes");
+                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
                 while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("nit_cli"));
+                    TextAutoCompleter.addItem(rs.getString("nit"));
                 }
                 cn.close();
             }
@@ -176,9 +177,9 @@ public class Tecnico extends javax.swing.JFrame {
             if (guardar.equals("CLIENTE")) {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM clientes");
+                ResultSet rs = st.executeQuery("SELECT * FROM salidas");
                 while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("nombre_cli"));
+                    TextAutoCompleter.addItem(rs.getString("empresa"));
                 }
                 cn.close();
             }
@@ -368,11 +369,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Telefono", "Correo", "Elemento", "Marca", "Modelo", "Serie", "Observacion"
+                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Telefono", "Correo", "Elemento", "Marca", "Modelo", "Serie", "Observacion", "estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -428,6 +429,12 @@ public class Tecnico extends javax.swing.JFrame {
         cmbEntradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEntradasActionPerformed(evt);
+            }
+        });
+
+        autoEntra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoEntraActionPerformed(evt);
             }
         });
 
@@ -663,17 +670,14 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnVolver4))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -683,11 +687,14 @@ public class Tecnico extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15)
                                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(732, 732, 732)
-                        .addComponent(btnSalir5)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                                .addGap(0, 55, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIdSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVolver4)))))
+                .addGap(24, 24, 24))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(275, 275, 275)
@@ -707,13 +714,12 @@ public class Tecnico extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel23)
-                        .addComponent(txtIdSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(txtIdSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVolver4))
-                .addGap(9, 9, 9))
+                .addGap(10, 10, 10))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
@@ -1596,35 +1602,36 @@ public class Tecnico extends javax.swing.JFrame {
                 }
                 break;
             case 1:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas();
-                    if (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setTelefono_contacto(rs.getString("telefono"));
-                        en.setCorreo(rs.getString("correo"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setObservaciones(rs.getString("observaciones"));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
-                    }
-                    cn.close();
-                } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
-                }
+                 try {  
+                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                 Statement st = cn.createStatement();
+                 PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
+                 pst.setString(1, guardar);
+                 ResultSet rs = pst.executeQuery();
+                 LimpiarEntradas();
+                 while (rs.next()) {
+                 Entradas en = new Entradas();
+                 en.setId_entrada(rs.getInt("id_entra"));
+                 en.setFecha(rs.getString("fecha"));
+                 en.setNumero(rs.getString("numero"));
+                 en.setEmpresa(rs.getString("empresa"));
+                 en.setNit(rs.getString("nit"));
+                 en.setTelefono_contacto(rs.getString("telefono"));
+                 en.setCorreo(rs.getString("correo"));
+                 en.setElemento(rs.getString("elemento"));
+                 en.setMarca(rs.getString("marca"));
+                 en.setModelo(rs.getString("modelo"));
+                 en.setSerie(rs.getString("serie"));
+                 en.setObservaciones(rs.getString("observaciones"));
+                 entrada.add(en);
+                 DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                 tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+                 }
+                 cn.close();
+                 } catch (Exception e) {
+                 System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                 }
+                 
                 break;
             case 2:
                 try {
@@ -1634,7 +1641,7 @@ public class Tecnico extends javax.swing.JFrame {
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarEntradas();
-                    if (rs.next()) {
+                    while (rs.next()) {
                         Entradas en = new Entradas();
                         en.setId_entrada(rs.getInt("id_entra"));
                         en.setFecha(rs.getString("fecha"));
@@ -1697,7 +1704,106 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscaActionPerformed
 
     private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
-        // TODO add your handling code here:
+
+        String guardar = autoSal.getText();
+        int tipo = cmbSalidas.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarSalidas();
+                    if (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                }
+                break;
+            case 1:
+                 try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarSalidas();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                }
+                break; 
+            case 2:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarSalidas();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR SERIE: " + e);
+                }
+                break;
+            default:
+                System.out.println("error");
+                break;
+        }
+        
+// TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
 
     private void btnBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca2ActionPerformed
@@ -1873,7 +1979,6 @@ public class Tecnico extends javax.swing.JFrame {
         try {
             Garantias gar = new Garantias();
 
-            
             /////////////////////PENDIENTE FECHA///////////////////////////
             /*
              String formato = tbEntrada_garantia.getValueAt(seleccion, 1).toString();
@@ -1885,7 +1990,6 @@ public class Tecnico extends javax.swing.JFrame {
              gar.setFecha_entrada(strFecha);
              */
             ///////////////////////////////////////777777
-            
             /*
              try {
              fechaDate = formato.parse(strFecha);
@@ -1905,15 +2009,15 @@ public class Tecnico extends javax.swing.JFrame {
              en.setFecha(dato);
              */
             int seleccion = tbEntrada_garantia.getSelectedRow();
-            
+
             gar.setId_garantia(Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0)));
-          
+
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             String strFecha = tbEntrada_garantia.getValueAt(seleccion, 1).toString();;
             Date fechaDate = null;
             try {
                 fechaDate = formato.parse(strFecha);
-   
+
             } catch (ParseException ex) {
                 ex.printStackTrace();
                 //return fechaDate;
@@ -1982,6 +2086,10 @@ public class Tecnico extends javax.swing.JFrame {
     private void txtIdForaneaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdForaneaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdForaneaActionPerformed
+
+    private void autoEntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoEntraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoEntraActionPerformed
 
     /**
      * @param args the command line arguments
