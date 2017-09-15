@@ -20,6 +20,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -1872,27 +1873,52 @@ public class Tecnico extends javax.swing.JFrame {
         try {
             Garantias gar = new Garantias();
 
-            int seleccion = tbEntrada_garantia.getSelectedRow();
+            
             /////////////////////PENDIENTE FECHA///////////////////////////
             /*
-            String fecha = tbEntrada_garantia.getValueAt(seleccion, 1).toString();
+             String formato = tbEntrada_garantia.getValueAt(seleccion, 1).toString();
 
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-            String strFecha = fecha;
-            Date fechaDate = null;
-            try {
-                fechaDate = formatoDelTexto.parse(strFecha);
-                System.out.println(fechaDate.toString());
-                return fechaDate;
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-                return fechaDate;
-            }
-            */
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+             //String strFecha = fecha;
+             String strFecha = String.valueOf(sdf.format(formato));
+             //Date fechaDate = null;
+             gar.setFecha_entrada(strFecha);
+             */
+            ///////////////////////////////////////777777
+            
+            /*
+             try {
+             fechaDate = formato.parse(strFecha);
+             //System.out.println(fechaDate.toString());
+             gar.setFecha_entrada(String.valueOf(fechaDate));
+             } catch (ParseException ex) {
+             ex.printStackTrace();
+             }
+             */
             /////////////////////PENDIENTE FECHA///////////////////////////
+            /*
+             String formato = txtFecha.getDateFormatString();
+             Date date = txtFecha.getDate();
+             SimpleDateFormat sdf = new SimpleDateFormat(formato);
+             String dato = String.valueOf(sdf.format(date));
+             //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+             en.setFecha(dato);
+             */
+            int seleccion = tbEntrada_garantia.getSelectedRow();
             
             gar.setId_garantia(Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0)));
-            gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
+          
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            String strFecha = tbEntrada_garantia.getValueAt(seleccion, 1).toString();;
+            Date fechaDate = null;
+            try {
+                fechaDate = formato.parse(strFecha);
+   
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+                //return fechaDate;
+            }
+            //gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
             gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
             gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
             gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
@@ -1947,7 +1973,7 @@ public class Tecnico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Garantia en proceso", "", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            System.err.println("error" + e);
+            System.err.println("error::" + e);
         }
 
         // TODO add your handling code here:

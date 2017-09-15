@@ -74,24 +74,15 @@ public class garantiaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
+
+            pst.setInt(1, garantia.getId_entra());
+            pst.setString(2, garantia.getFecha_entrada());
+            pst.setString(3, garantia.getCliente());
+            pst.setString(4, garantia.getNit());
+            pst.setString(5, garantia.getSerie_vieja());
+            pst.setString(6, garantia.getPrimera_serie());
+            pst.setString(7, garantia.getEstado());
             
-            /*
-            gar.setId_garantia(Integer.parseInt(""+tbEntrada_garantia.getValueAt(seleccion, 0)));
-            gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
-            gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
-            gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
-            gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
-            gar.setPrimera_serie(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
-            gar.setEstado("PROCESO");
-            */
-               
-            pst.setString(1, garantia.getFecha_entrada());
-            pst.setString(2, garantia.getCliente());
-            pst.setString(3, garantia.getNit());
-            pst.setString(4, garantia.getSerie_vieja());
-            pst.setString(5, garantia.getPrimera_serie());
-            pst.setString(6, garantia.getEstado());
-            pst.setInt(7, garantia.getId_entra());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
