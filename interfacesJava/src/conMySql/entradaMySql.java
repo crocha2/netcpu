@@ -70,7 +70,7 @@ public class entradaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_entra, fecha, numero, empresa, nit, elemento, marca, modelo, serie, garantia, estado FROM entradas WHERE garantia = 'SI' ORDER BY fecha ASC");
+            ResultSet rs = st.executeQuery("SELECT id_entra, fecha, numero, empresa, nit, elemento, marca, modelo, serie, garantia, estado FROM entradas WHERE garantia = 'SI' AND estado = 'REVISION' ORDER BY fecha ASC");
             while (rs.next()) {
                 Entradas en = new Entradas();
                 en.setId_entrada(rs.getInt("id_entra"));

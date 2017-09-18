@@ -14,6 +14,7 @@ public class Garantias {
     int id_garantia;
     String fecha_entrada;
     String fecha_garantia;
+    String numero;
     String rma;
     String numero_caso;
     String cliente;
@@ -27,16 +28,28 @@ public class Garantias {
     public Garantias() {
     }
 
-    public Garantias(int id_garantia, String fecha_entrada, String fecha_garantia, String rma, String numero_caso, String cliente, String nit, String serie_vieja, String serie_nueva, String primera_serie, String estado, int id_entra) {
+    public Garantias(int id_garantia, String fecha_entrada, String fecha_garantia, String numero, String rma, String numero_caso, String cliente, String nit, String serie_vieja, String serie_nueva, String primera_serie, String estado, int id_entra) {
         this.id_garantia = id_garantia;
         this.fecha_entrada = fecha_entrada;
         this.fecha_garantia = fecha_garantia;
+        this.numero = numero;
         this.rma = rma;
         this.numero_caso = numero_caso;
         this.cliente = cliente;
         this.nit = nit;
         this.serie_vieja = serie_vieja;
         this.serie_nueva = serie_nueva;
+        this.primera_serie = primera_serie;
+        this.estado = estado;
+        this.id_entra = id_entra;
+    }
+    
+    public Garantias(int id_garantia, String fecha_entrada, String cliente, String nit, String serie_vieja, String primera_serie, String estado, int id_entra) {
+        this.id_garantia = id_garantia;
+        this.fecha_entrada = fecha_entrada;
+        this.cliente = cliente;
+        this.nit = nit;
+        this.serie_vieja = serie_vieja;
         this.primera_serie = primera_serie;
         this.estado = estado;
         this.id_entra = id_entra;
@@ -64,6 +77,14 @@ public class Garantias {
 
     public void setFecha_garantia(String fecha_garantia) {
         this.fecha_garantia = fecha_garantia;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getRma() {

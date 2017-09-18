@@ -23,71 +23,65 @@ import java.util.logging.Logger;
  */
 public class garantiaMySql {
 
-    /*
+    
     public ArrayList<Garantias> ListGarantias() {
-        ArrayList<Entradas> entrada = new ArrayList();
+        ArrayList<Garantias> garantia = new ArrayList();
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones, tarjeta, estado FROM entradas ORDER BY fecha DESC");
+            ResultSet rs = st.executeQuery("SELECT id_garantia, fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra FROM garantias WHERE garantia = 'SI' AND estado = 'PROCESO' ORDER BY fecha ASC");
             while (rs.next()) {
-                Entradas en = new Entradas();
-                en.setId_entrada(rs.getInt("id_entra"));
-                en.setNumero(rs.getString("numero"));
-                en.setFecha(rs.getString("fecha"));
-                en.setElemento(rs.getString("elemento"));
-                en.setPotencia(rs.getString("potencia"));
-                en.setMarca(rs.getString("marca"));
-                en.setModelo(rs.getString("modelo"));
-                en.setSerie(rs.getString("serie"));
-                en.setEmpresa(rs.getString("empresa"));
-                en.setNit(rs.getString("nit"));
-                en.setPersona_remite(rs.getString("persona_remite"));
-                en.setCiudad(rs.getString("ciudad"));
-                en.setDireccion(rs.getString("direccion"));
-                en.setNombre_contacto(rs.getString("contacto"));
-                en.setTelefono_contacto(rs.getString("telefono"));
-                en.setCorreo(rs.getString("correo"));
-                en.setMotivo(rs.getString("motivo"));
-                en.setParrilla(rs.getString("parrilla"));
-                en.setBases_plasticas(rs.getString("bases_plas"));
-                en.setConector_origi(rs.getString("conector_ori"));
-                en.setGarantia(rs.getString("garantia"));
-                en.setEstado_carcasa(rs.getString("estado_car"));
-                en.setObservaciones(rs.getString("observaciones"));
-                en.setTarjeta_red(rs.getString("tarjeta"));
-                en.setEstado(rs.getString("estado"));
-                entrada.add(en);
+                Garantias gar = new Garantias();
+                gar.setId_garantia(rs.getInt("id_garantia"));
+                gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                gar.setNumero(rs.getString("numero"));
+                gar.setRma(rs.getString("rma"));
+                gar.setCliente(rs.getString("cliente"));
+                gar.setNit(rs.getString("nit"));
+                gar.setSerie_vieja(rs.getString("serie_vieja"));
+                gar.setSerie_nueva(rs.getString("serie_nueva"));
+                gar.setPrimera_serie(rs.getString("primera_serie"));
+                gar.setEstado(rs.getString("estado"));
+                gar.setId_entra(rs.getInt("id_entra"));
+
+                garantia.add(gar);
             }
             cn.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Error en listado");
+            System.out.println("Error en listar");
         }
-        return entrada;
+        return garantia;
     }
-*/
+
     
 
     //Codigo para INSERTAR DATOS.........................................................
     public void insertarEntrada_Garantia(Garantias garantia) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
-
+            //PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                              
             pst.setString(1, garantia.getFecha_entrada());
-            pst.setString(2, garantia.getCliente());
-            pst.setString(3, garantia.getNit());
-            pst.setString(4, garantia.getSerie_vieja());
-            pst.setString(5, garantia.getPrimera_serie());
-            pst.setString(6, garantia.getEstado());
-            pst.setInt(7, garantia.getId_entra());
+            pst.setString(2, garantia.getFecha_garantia());
+            pst.setString(3, garantia.getNumero());
+            pst.setString(4, garantia.getRma());
+            pst.setString(5, garantia.getNumero_caso());
+            pst.setString(6, garantia.getCliente());
+            pst.setString(7, garantia.getNit());
+            pst.setString(8, garantia.getSerie_vieja());
+            pst.setString(9, garantia.getSerie_nueva());
+            pst.setString(10, garantia.getPrimera_serie());
+            pst.setString(11, garantia.getEstado());
+            pst.setInt(12, garantia.getId_entra());
             
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Error al insertar");
+            System.out.println("Error al insertar registro");
         }
     }
     
