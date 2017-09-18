@@ -75,13 +75,13 @@ public class garantiaMySql {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
 
-            pst.setInt(1, garantia.getId_entra());
-            pst.setString(2, garantia.getFecha_entrada());
-            pst.setString(3, garantia.getCliente());
-            pst.setString(4, garantia.getNit());
-            pst.setString(5, garantia.getSerie_vieja());
-            pst.setString(6, garantia.getPrimera_serie());
-            pst.setString(7, garantia.getEstado());
+            pst.setString(1, garantia.getFecha_entrada());
+            pst.setString(2, garantia.getCliente());
+            pst.setString(3, garantia.getNit());
+            pst.setString(4, garantia.getSerie_vieja());
+            pst.setString(5, garantia.getPrimera_serie());
+            pst.setString(6, garantia.getEstado());
+            pst.setInt(7, garantia.getId_entra());
             
             pst.executeUpdate();
             cn.close();

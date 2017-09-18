@@ -60,6 +60,8 @@ public class Tecnico extends javax.swing.JFrame {
         autoCompleteEntradas();
         autoCompleteSalidas();
         autoCompleteEnvios();
+        txtIdForanea.setEnabled(false);
+        txtFechaEntrad.setEnabled(false);
     }
 
     public void ListarEntradas() {
@@ -335,6 +337,7 @@ public class Tecnico extends javax.swing.JFrame {
         cmbHistorial2 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         txtIdForanea = new javax.swing.JTextField();
+        txtFechaEntrad = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -1079,6 +1082,11 @@ public class Tecnico extends javax.swing.JFrame {
         tbEntrada_garantia.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tbEntrada_garantia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbEntrada_garantia.setGridColor(new java.awt.Color(0, 153, 153));
+        tbEntrada_garantia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEntrada_garantiaMouseClicked(evt);
+            }
+        });
         jScrollPane11.setViewportView(tbEntrada_garantia);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REVISION", "PROCESO", "LISTO" }));
@@ -1161,6 +1169,12 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
 
+        txtFechaEntrad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaEntradActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1187,13 +1201,17 @@ public class Tecnico extends javax.swing.JFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(txtIdForanea, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnVolver5)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(txtIdForanea, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(txtFechaEntrad, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(59, 59, 59))
         );
         jPanel9Layout.setVerticalGroup(
@@ -1223,7 +1241,8 @@ public class Tecnico extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdForanea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVolver5))
+                    .addComponent(btnVolver5)
+                    .addComponent(txtFechaEntrad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
@@ -2010,19 +2029,23 @@ public class Tecnico extends javax.swing.JFrame {
              */
             int seleccion = tbEntrada_garantia.getSelectedRow();
 
-            gar.setId_garantia(Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0)));
-
+            //gar.setId_garantia(Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0)));
+            /*
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            String strFecha = tbEntrada_garantia.getValueAt(seleccion, 1).toString();;
+            String strFecha = tbEntrada_garantia.getValueAt(seleccion, 1).toString();
             Date fechaDate = null;
             try {
                 fechaDate = formato.parse(strFecha);
+                gar.setFecha_entrada(strFecha);
 
             } catch (ParseException ex) {
                 ex.printStackTrace();
                 //return fechaDate;
             }
-            //gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
+            */
+      
+            //gar.setFecha_entrada(txtFechaEntrad.getText());
+            gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
             gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
             gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
             gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
@@ -2090,6 +2113,19 @@ public class Tecnico extends javax.swing.JFrame {
     private void autoEntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoEntraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_autoEntraActionPerformed
+
+    private void tbEntrada_garantiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntrada_garantiaMouseClicked
+
+        int seleccion = tbEntrada_garantia.getSelectedRow();
+        txtIdForanea.setText(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 0)));
+        txtFechaEntrad.setText(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_tbEntrada_garantiaMouseClicked
+
+    private void txtFechaEntradActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaEntradActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaEntradActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2224,6 +2260,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTable tbGarantias;
     private javax.swing.JTable tbGarantias1;
     private javax.swing.JTable tbSalidas;
+    private javax.swing.JTextField txtFechaEntrad;
     private javax.swing.JTextField txtIdEntrada;
     private javax.swing.JTextField txtIdEnvio;
     private javax.swing.JTextField txtIdForanea;
