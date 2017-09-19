@@ -29,7 +29,7 @@ public class garantiaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_garantia, fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra FROM garantias WHERE garantia = 'SI' AND estado = 'PROCESO' ORDER BY fecha ASC");
+            ResultSet rs = st.executeQuery("SELECT id_garantia, fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra FROM garantias WHERE estado = 'PROCESO' ORDER BY fecha_entrada ASC");
             while (rs.next()) {
                 Garantias gar = new Garantias();
                 gar.setId_garantia(rs.getInt("id_garantia"));
@@ -62,7 +62,7 @@ public class garantiaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             //PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
-            PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
                               
             pst.setString(1, garantia.getFecha_entrada());
             pst.setString(2, garantia.getFecha_garantia());
@@ -119,6 +119,40 @@ public class garantiaMySql {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
+    public void RevisionAProcesoEntrada(Entradas entrada) {
+        try {
+            //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET estado=? WHERE id_entra = ?");
+            pst.setString(1, entrada.getEstado());
+            pst.setInt(2, entrada.getId_entrada());
+            
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void RevisionAProcesoGarantia(Garantias garantia) {
+        try {
+            //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET estado=? WHERE id_entra = ?");
+            pst.setString(1, garantia.getEstado());
+            pst.setInt(2, garantia.getId_entra());
+            
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     
     public void EliminarEntrada(Entradas en) {
         try {

@@ -1871,30 +1871,22 @@ public class Tecnico extends javax.swing.JFrame {
 
         try {
             Garantias gar = new Garantias();
+            Entradas en = new Entradas();
+            
+            int seleccion = tbEntrada_garantia.getSelectedRow();
+            
+            int idEn = Integer.parseInt(""+tbEntrada_garantia.getValueAt(seleccion, 0));
+            en.setId_entrada(idEn);
+            en.setEstado("PROCESO");
 
             /////////////////////PENDIENTE FECHA///////////////////////////
             
-            int seleccion = tbEntrada_garantia.getSelectedRow();
-
-            //gar.setId_garantia(Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0)));
-            /*
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            String strFecha = tbEntrada_garantia.getValueAt(seleccion, 1).toString();
-            Date fechaDate = null;
-            try {
-                fechaDate = formato.parse(strFecha);
-                gar.setFecha_entrada(strFecha);
-
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-                //return fechaDate;
-            }
-            */
+            
       
             int id = Integer.parseInt(""+tbEntrada_garantia.getValueAt(seleccion, 0));
             gar.setId_entra(id);
             gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
-            gar.setFecha_garantia("0000-00-00");
+            gar.setFecha_garantia(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
             gar.setNumero(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 2)));
             gar.setRma("");
             gar.setNumero_caso("");
@@ -1907,6 +1899,15 @@ public class Tecnico extends javax.swing.JFrame {
 
             dbGarantia.insertarEntrada_Garantia(gar);
             JOptionPane.showMessageDialog(this, "Garantia en proceso", "", JOptionPane.INFORMATION_MESSAGE);
+            
+            dbGarantia.RevisionAProcesoGarantia(gar);
+            dbGarantia.RevisionAProcesoEntrada(en);
+            LimpiarEntradas_Garantias();
+            ListarEntradas_Garantias();
+            LimpiarGarantiasProceso();
+            ListarGarantiasProceso();
+            LimpiarEntradas();
+            ListarEntradas();
 
         } catch (Exception e) {
             System.err.println("error::" + e);

@@ -847,7 +847,7 @@ public class Contratos_Admin extends javax.swing.JFrame {
 
     private void btnVolver5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver5ActionPerformed
 
-        Principal_Tec obj = new Principal_Tec();
+        Formatos_Admin obj = new Formatos_Admin();
         obj.setVisible(true);
         dispose();
         
