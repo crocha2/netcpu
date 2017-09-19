@@ -27,6 +27,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
     public Nuevo_Usuario() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - NUEVO USUARIO");
         //CargarCmbUsuarios();
 

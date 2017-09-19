@@ -31,6 +31,7 @@ public class Usuario extends javax.swing.JFrame {
         ListarDatos();
         LimpirTabla();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - USUARIOS");
         //CargarCmbUsuarios();
         txtID.setEnabled(false);

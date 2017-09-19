@@ -17,6 +17,7 @@ public class Principal_Admin extends javax.swing.JFrame {
     public Principal_Admin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - PRINCIPAL");
         /*
         this.jLabel1.add(this.lblonline);

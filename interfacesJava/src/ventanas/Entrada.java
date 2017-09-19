@@ -39,6 +39,7 @@ public class Entrada extends javax.swing.JFrame {
     public Entrada() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - ENTRADA");
         //CargarCmbCliente();
         autoComplete();
@@ -392,7 +393,7 @@ public class Entrada extends javax.swing.JFrame {
         jLabel28.setText("Motivo");
         getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 20));
 
-        cmbGarantia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO", " " }));
+        cmbGarantia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
         cmbGarantia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbGarantiaActionPerformed(evt);

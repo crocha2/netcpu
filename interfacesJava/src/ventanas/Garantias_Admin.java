@@ -23,6 +23,7 @@ public class Garantias_Admin extends javax.swing.JFrame {
     public Garantias_Admin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("GARANTIAS");
         
     }

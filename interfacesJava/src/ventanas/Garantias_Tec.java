@@ -23,6 +23,7 @@ public class Garantias_Tec extends javax.swing.JFrame {
     public Garantias_Tec() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("GARANTIAS");
         
     }

@@ -36,6 +36,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
     public Facturas_Entrada() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - FACTURAS DE ENTRADA");
         //CargarCmbCliente();
         CargarCmbFacturas();

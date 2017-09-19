@@ -21,6 +21,7 @@ public class Bienvenida extends javax.swing.JFrame {
     public Bienvenida() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         //this.setResizable(false);
         this.setTitle("CPU System Service S.A.S");
     }

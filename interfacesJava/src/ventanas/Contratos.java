@@ -41,6 +41,7 @@ public class Contratos extends javax.swing.JFrame {
     public Contratos() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - CONTRATOS");
         ListarDatos();
         ListarDatos2();

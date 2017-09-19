@@ -38,6 +38,7 @@ public class Envio extends javax.swing.JFrame {
     public Envio() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - ENVIOS");
         //CargarCmbCliente();
         autoComplete();

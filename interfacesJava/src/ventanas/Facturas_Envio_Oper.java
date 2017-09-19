@@ -33,6 +33,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
     public Facturas_Envio_Oper() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - ENVIOS");
         CargarCmbEnvios();
         txtSec.setEnabled(false);

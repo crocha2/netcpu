@@ -39,6 +39,7 @@ public class Entrada_Oper extends javax.swing.JFrame {
     public Entrada_Oper() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - ENTRADA");
         //CargarCmbCliente();
         autoComplete();

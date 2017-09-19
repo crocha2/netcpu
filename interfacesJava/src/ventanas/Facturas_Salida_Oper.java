@@ -33,6 +33,7 @@ public class Facturas_Salida_Oper extends javax.swing.JFrame {
     public Facturas_Salida_Oper() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - FACTURAS DE SALIDA");
         CargarCmbSalidas();
         //numeros();

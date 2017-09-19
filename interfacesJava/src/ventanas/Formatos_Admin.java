@@ -20,6 +20,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
     public Formatos_Admin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("FORMATOS");
         
     }
@@ -135,7 +136,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnEnviosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnvios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 90, 90));
+        getContentPane().add(btnEnvios, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 90, 90));
 
         btnCotizacion.setBackground(new java.awt.Color(255, 255, 255));
         btnCotizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -173,7 +174,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
                 btnSalida1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 90, 90));
+        getContentPane().add(btnSalida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 90, 90));
 
         btnFormatos.setBackground(new java.awt.Color(255, 255, 255));
         btnFormatos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -265,9 +266,11 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
     private void btnFormatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormatosActionPerformed
 
+        /*
         Tecnico_Admin obj = new Tecnico_Admin();
         obj.setVisible(true);
         dispose();
+        */
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFormatosActionPerformed

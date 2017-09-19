@@ -26,6 +26,7 @@ public class Nuevo_Cliente_Oper extends javax.swing.JFrame {
     public Nuevo_Cliente_Oper() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - NUEVO CLIENTE");      
         
         

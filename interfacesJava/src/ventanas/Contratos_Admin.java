@@ -41,6 +41,7 @@ public class Contratos_Admin extends javax.swing.JFrame {
     public Contratos_Admin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - CONTRATOS");
         ListarDatos();
         ListarDatos2();

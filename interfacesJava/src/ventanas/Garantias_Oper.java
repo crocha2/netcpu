@@ -23,6 +23,7 @@ public class Garantias_Oper extends javax.swing.JFrame {
     public Garantias_Oper() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("GARANTIAS");
         
     }
