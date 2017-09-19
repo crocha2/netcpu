@@ -22,8 +22,8 @@ public class Formatos_Admin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("FORMATOS");
-        
     }
+    
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/CPU_new_2.png"));
         return retValue;

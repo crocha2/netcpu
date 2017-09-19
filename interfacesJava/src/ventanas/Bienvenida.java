@@ -25,10 +25,9 @@ public class Bienvenida extends javax.swing.JFrame {
         //this.setResizable(false);
         this.setTitle("CPU System Service S.A.S");
     }
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/CPU_new_2.png"));
-        return retValue;
-    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

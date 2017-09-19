@@ -32,6 +32,7 @@ public class Interfaz_Admin extends javax.swing.JFrame {
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/CPU_new_2.png"));
+        //Image retValue = this.getClass().getResourceAsStream("/imagenes/cpu.png");
         return retValue;
     }
 

@@ -120,6 +120,24 @@ public class garantiaMySql {
         }
     }
     
+    public void Asignar(Garantias garantia) {
+        try {
+            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET fecha_garantia=?, rma=?, numero_caso=?, nueva_serie=? WHERE id_entra = ?");
+            pst.setString(1, garantia.getFecha_garantia());
+            pst.setString(2, garantia.getRma());
+            pst.setString(3, garantia.getNumero_caso());
+            pst.setString(4, garantia.getSerie_nueva());
+            pst.setInt(5, garantia.getId_entra());
+            
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     
     public void RevisionAProcesoEntrada(Entradas entrada) {
