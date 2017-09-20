@@ -6,9 +6,9 @@
 package ventanas;
 
 import clasesPrincipales.clientes;
-import conMySql.clienteMySql;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import conMySql.clienteMySql;
 
 /**
  *
@@ -19,7 +19,7 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
     ArrayList<clientes> cliente;
     //clienteDB db = new clienteDB();
     clienteMySql db = new clienteMySql();
-    
+
     /**
      * Creates new form Registro_Clientes
      */
@@ -27,9 +27,8 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setTitle("CPU System Service S.A.S - NUEVO CLIENTE");      
-        
-        
+        this.setTitle("CPU System Service S.A.S - NUEVO CLIENTE");
+
     }
 
     /**
@@ -43,7 +42,6 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btnSalir2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -63,6 +61,10 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         btnGuarda = new javax.swing.JButton();
         btnDescartar = new javax.swing.JButton();
+        btnSalir3 = new javax.swing.JButton();
+        btnSalida = new javax.swing.JButton();
+        btnSalida1 = new javax.swing.JButton();
+        btnSalida2 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,17 +75,6 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
         jLabel2.setText("Nuevo Cliente");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 350, 10));
-
-        btnSalir2.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir2.setText("Salir");
-        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,7 +131,7 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
 
         btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -171,20 +162,77 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
         });
         getContentPane().add(btnDescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 40, 40));
 
+        btnSalir3.setBackground(new java.awt.Color(51, 153, 255));
+        btnSalir3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalir3.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir3.setText("Salir");
+        btnSalir3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalir3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+
+        btnSalida.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/entrada_mini.png"))); // NOI18N
+        btnSalida.setBorder(null);
+        btnSalida.setBorderPainted(false);
+        btnSalida.setContentAreaFilled(false);
+        btnSalida.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida.setIconTextGap(-1);
+        btnSalida.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalidaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 40, 40));
+
+        btnSalida1.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida1.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/envio_mini.png"))); // NOI18N
+        btnSalida1.setBorder(null);
+        btnSalida1.setBorderPainted(false);
+        btnSalida1.setContentAreaFilled(false);
+        btnSalida1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida1.setIconTextGap(-1);
+        btnSalida1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 40, 40));
+
+        btnSalida2.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida2.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida_mini.png"))); // NOI18N
+        btnSalida2.setBorder(null);
+        btnSalida2.setBorderPainted(false);
+        btnSalida2.setContentAreaFilled(false);
+        btnSalida2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida2.setIconTextGap(-1);
+        btnSalida2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 40, 40));
+
+        jLabelFondo.setBackground(new java.awt.Color(0, 102, 204));
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2.png"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 330));
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
 
@@ -197,32 +245,34 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
-         if (txtNitCliente.getText().equals("") || txtNombreCliente.getText().equals("") || txtTelefonoCliente.getText().equals("") || txtDireccionCliente.getText().equals("") || txtCiudadCliente.getText().equals("") || txtCorreoCliente.getText().equals("") || txtContactoCliente.getText().equals("")) {
+        if (txtNitCliente.getText().equals("") || txtNombreCliente.getText().equals("") || txtTelefonoCliente.getText().equals("") || txtDireccionCliente.getText().equals("") || txtCiudadCliente.getText().equals("") || txtCorreoCliente.getText().equals("") || txtContactoCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos", "", JOptionPane.INFORMATION_MESSAGE);
         } else {
-
-            clientes cl = new clientes();
-            cl.setNit_cliente(txtNitCliente.getText().toUpperCase());
-            cl.setNombre_cliente(txtNombreCliente.getText().toUpperCase());
-            cl.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
-            cl.setDireccion_cliente(txtDireccionCliente.getText().toUpperCase());
-            cl.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
-            cl.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
-            cl.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
-
-            db.insertarCliente(cl);
-            JOptionPane.showMessageDialog(this, "Datos ingresados exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-            txtNitCliente.setText("");
-            txtNombreCliente.setText("");
-            txtTelefonoCliente.setText("");
-            txtDireccionCliente.setText("");
-            txtCiudadCliente.setText("");
-            txtCorreoCliente.setText("");
-            txtContactoCliente.setText("");
-            txtNitCliente.requestFocus();
+            try {
+                clientes cl = new clientes();
+                cl.setNit_cliente(txtNitCliente.getText().toUpperCase());
+                cl.setNombre_cliente(txtNombreCliente.getText().toUpperCase());
+                cl.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
+                cl.setDireccion_cliente(txtDireccionCliente.getText().toUpperCase());
+                cl.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
+                cl.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
+                cl.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+                db.insertarCliente(cl);
+                JOptionPane.showMessageDialog(this, "Datos ingresados exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                txtNitCliente.setText("");
+                txtNombreCliente.setText("");
+                txtTelefonoCliente.setText("");
+                txtDireccionCliente.setText("");
+                txtCiudadCliente.setText("");
+                txtCorreoCliente.setText("");
+                txtContactoCliente.setText("");
+                txtNitCliente.requestFocus();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
 
         }
-         
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed
 
@@ -239,6 +289,37 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDescartarActionPerformed
+
+    private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir3ActionPerformed
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+
+        Entrada_Tec obj = new Entrada_Tec();
+        obj.setVisible(true);
+        dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalidaActionPerformed
+
+    private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
+
+        Envio_Tec obj = new Envio_Tec();
+        obj.setVisible(true);
+        dispose();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida1ActionPerformed
+
+    private void btnSalida2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida2ActionPerformed
+
+        Salidass_Tec obj = new Salidass_Tec();
+        obj.setVisible(true);
+        dispose();
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,134 +474,6 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -533,7 +486,10 @@ public class Nuevo_Cliente_Tec extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnGuarda;
-    private javax.swing.JButton btnSalir2;
+    private javax.swing.JButton btnSalida;
+    private javax.swing.JButton btnSalida1;
+    private javax.swing.JButton btnSalida2;
+    private javax.swing.JButton btnSalir3;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

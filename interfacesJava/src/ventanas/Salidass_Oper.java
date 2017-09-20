@@ -225,6 +225,7 @@ public class Salidass_Oper extends javax.swing.JFrame {
         btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
         btnBusca = new javax.swing.JButton();
+        btnBusca1 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -468,6 +469,23 @@ public class Salidass_Oper extends javax.swing.JFrame {
         });
         getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 40, -1));
 
+        btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca1.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo_usu_mini.png"))); // NOI18N
+        btnBusca1.setBorderPainted(false);
+        btnBusca1.setContentAreaFilled(false);
+        btnBusca1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca1.setIconTextGap(-1);
+        btnBusca1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 50, -1));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
 
@@ -635,6 +653,15 @@ public class Salidass_Oper extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscaActionPerformed
 
+    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+
+        Nuevo_Cliente_Oper obj = new Nuevo_Cliente_Oper();
+        obj.setVisible(true);
+        dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -737,6 +764,7 @@ public class Salidass_Oper extends javax.swing.JFrame {
     private javax.swing.JTextArea areaComentario;
     private javax.swing.JTextField auto;
     private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnBusca3;
     private javax.swing.JButton btnDescartar1;
     private javax.swing.JButton btnGuarda;
