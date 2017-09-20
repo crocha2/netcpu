@@ -31,10 +31,24 @@
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Entrada_Oper.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/garantiaMySql.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/salidaMySql.java</file>
-            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Tecnico_Admin.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/clasesPrincipales/usuarios.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Nuevo_Usuario.java</file>
             <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/conMySql/usuarioMySQLDB.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Principal_Admin.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Interfaz_Admin.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Usuario.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Tabla_Clientes_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Principal_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Nuevo_Cliente_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Nuevo_Cliente.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Garantias_Tec.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Garantias_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Formatos_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Salida_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Salida.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Envio_Oper.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Facturas_Envio.java</file>
+            <file>file:/C:/Users/JR/Desktop/CARLOS/DB_sqlDeveloper_Netbeans/interfacesJava/src/ventanas/Bienvenida.java</file>
         </group>
     </open-files>
 </project-private>

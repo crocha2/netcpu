@@ -41,9 +41,9 @@ public class Principal_Tec extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         lblonline = new javax.swing.JLabel();
-        btnNuevoCliente = new javax.swing.JButton();
-        btnClientes = new javax.swing.JButton();
-        btnFormatos = new javax.swing.JButton();
+        btnNuevoCliente1 = new javax.swing.JButton();
+        btnClientes1 = new javax.swing.JButton();
+        btnFormatos1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +58,7 @@ public class Principal_Tec extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,65 +70,65 @@ public class Principal_Tec extends javax.swing.JFrame {
         lblonline.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(lblonline, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 130, 20));
 
-        btnNuevoCliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnNuevoCliente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnNuevoCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contrato.png"))); // NOI18N
-        btnNuevoCliente.setText("CONTRATOS");
-        btnNuevoCliente.setBorder(null);
-        btnNuevoCliente.setBorderPainted(false);
-        btnNuevoCliente.setContentAreaFilled(false);
-        btnNuevoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNuevoCliente.setIconTextGap(-1);
-        btnNuevoCliente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnNuevoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevoCliente1.setBackground(new java.awt.Color(255, 255, 255));
+        btnNuevoCliente1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnNuevoCliente1.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoCliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/newCli.png"))); // NOI18N
+        btnNuevoCliente1.setText("NUEVO CLIENTE");
+        btnNuevoCliente1.setBorder(null);
+        btnNuevoCliente1.setBorderPainted(false);
+        btnNuevoCliente1.setContentAreaFilled(false);
+        btnNuevoCliente1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNuevoCliente1.setIconTextGap(-1);
+        btnNuevoCliente1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnNuevoCliente1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevoCliente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoClienteActionPerformed(evt);
+                btnNuevoCliente1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 90, 90));
+        getContentPane().add(btnNuevoCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 90, 90));
 
-        btnClientes.setBackground(new java.awt.Color(255, 255, 255));
-        btnClientes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/coti.png"))); // NOI18N
-        btnClientes.setText("GARANTIAS");
-        btnClientes.setBorder(null);
-        btnClientes.setBorderPainted(false);
-        btnClientes.setContentAreaFilled(false);
-        btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnClientes.setIconTextGap(-1);
-        btnClientes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+        btnClientes1.setBackground(new java.awt.Color(255, 255, 255));
+        btnClientes1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnClientes1.setForeground(new java.awt.Color(255, 255, 255));
+        btnClientes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clientes.png"))); // NOI18N
+        btnClientes1.setText("CLIENTES");
+        btnClientes1.setBorder(null);
+        btnClientes1.setBorderPainted(false);
+        btnClientes1.setContentAreaFilled(false);
+        btnClientes1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClientes1.setIconTextGap(-1);
+        btnClientes1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnClientes1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnClientes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
+                btnClientes1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 100, 90));
+        getContentPane().add(btnClientes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 90, 90));
 
-        btnFormatos.setBackground(new java.awt.Color(255, 255, 255));
-        btnFormatos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnFormatos.setForeground(new java.awt.Color(255, 255, 255));
-        btnFormatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tecnico.png"))); // NOI18N
-        btnFormatos.setText("PANEL");
-        btnFormatos.setBorder(null);
-        btnFormatos.setBorderPainted(false);
-        btnFormatos.setContentAreaFilled(false);
-        btnFormatos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnFormatos.setIconTextGap(-1);
-        btnFormatos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnFormatos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnFormatos.addActionListener(new java.awt.event.ActionListener() {
+        btnFormatos1.setBackground(new java.awt.Color(255, 255, 255));
+        btnFormatos1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnFormatos1.setForeground(new java.awt.Color(255, 255, 255));
+        btnFormatos1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/formatos.png"))); // NOI18N
+        btnFormatos1.setText("FORMATOS");
+        btnFormatos1.setBorder(null);
+        btnFormatos1.setBorderPainted(false);
+        btnFormatos1.setContentAreaFilled(false);
+        btnFormatos1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnFormatos1.setIconTextGap(-1);
+        btnFormatos1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnFormatos1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnFormatos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFormatosActionPerformed(evt);
+                btnFormatos1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFormatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 90));
+        getContentPane().add(btnFormatos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 90, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima_2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 220));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 220));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,32 +142,32 @@ public class Principal_Tec extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
+    private void btnNuevoCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoCliente1ActionPerformed
 
-        Contratos obj = new Contratos();
+        Nuevo_Cliente_Tec obj = new Nuevo_Cliente_Tec();
         obj.setVisible(true);
         dispose();
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoClienteActionPerformed
+    }//GEN-LAST:event_btnNuevoCliente1ActionPerformed
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+    private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
 
-        Garantias_Tec obj = new Garantias_Tec();
+        Tabla_Clientes_Tec obj = new Tabla_Clientes_Tec();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnClientesActionPerformed
+    }//GEN-LAST:event_btnClientes1ActionPerformed
 
-    private void btnFormatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormatosActionPerformed
+    private void btnFormatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormatos1ActionPerformed
 
-        Tecnico obj = new Tecnico();
+        Formatos_Tec obj = new Formatos_Tec();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnFormatosActionPerformed
+    }//GEN-LAST:event_btnFormatos1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,9 +208,9 @@ public class Principal_Tec extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnFormatos;
-    private javax.swing.JButton btnNuevoCliente;
+    private javax.swing.JButton btnClientes1;
+    private javax.swing.JButton btnFormatos1;
+    private javax.swing.JButton btnNuevoCliente1;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -66,7 +66,7 @@ public class Tecnico extends javax.swing.JFrame {
         txtIdEntrada.setEnabled(false);
         txtIdSalida.setEnabled(false);
         txtIdEnvio.setEnabled(false);
-        
+
         //txtFechaEntrad.setEnabled(false);
     }
 
@@ -116,9 +116,8 @@ public class Tecnico extends javax.swing.JFrame {
             tb.removeRow(i);
         }
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void ListarGarantiasProceso() {
         garantia = dbGarantia.ListGarantias();
         DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
@@ -1687,36 +1686,36 @@ public class Tecnico extends javax.swing.JFrame {
                 }
                 break;
             case 1:
-                 try {  
-                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                 Statement st = cn.createStatement();
-                 PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
-                 pst.setString(1, guardar);
-                 ResultSet rs = pst.executeQuery();
-                 LimpiarEntradas();
-                 while (rs.next()) {
-                 Entradas en = new Entradas();
-                 en.setId_entrada(rs.getInt("id_entra"));
-                 en.setFecha(rs.getString("fecha"));
-                 en.setNumero(rs.getString("numero"));
-                 en.setEmpresa(rs.getString("empresa"));
-                 en.setNit(rs.getString("nit"));
-                 en.setTelefono_contacto(rs.getString("telefono"));
-                 en.setCorreo(rs.getString("correo"));
-                 en.setElemento(rs.getString("elemento"));
-                 en.setMarca(rs.getString("marca"));
-                 en.setModelo(rs.getString("modelo"));
-                 en.setSerie(rs.getString("serie"));
-                 en.setObservaciones(rs.getString("observaciones"));
-                 entrada.add(en);
-                 DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                 tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
-                 }
-                 cn.close();
-                 } catch (Exception e) {
-                 System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
-                 }
-                 
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEntradas();
+                    while (rs.next()) {
+                        Entradas en = new Entradas();
+                        en.setId_entrada(rs.getInt("id_entra"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setEmpresa(rs.getString("empresa"));
+                        en.setNit(rs.getString("nit"));
+                        en.setTelefono_contacto(rs.getString("telefono"));
+                        en.setCorreo(rs.getString("correo"));
+                        en.setElemento(rs.getString("elemento"));
+                        en.setMarca(rs.getString("marca"));
+                        en.setModelo(rs.getString("modelo"));
+                        en.setSerie(rs.getString("serie"));
+                        en.setObservaciones(rs.getString("observaciones"));
+                        entrada.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                }
+
                 break;
             case 2:
                 try {
@@ -1824,7 +1823,7 @@ public class Tecnico extends javax.swing.JFrame {
                 }
                 break;
             case 1:
-                 try {
+                try {
                     // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
                     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                     Statement st = cn.createStatement();
@@ -1852,7 +1851,7 @@ public class Tecnico extends javax.swing.JFrame {
                 } catch (Exception e) {
                     System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
                 }
-                break; 
+                break;
             case 2:
                 try {
                     // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
@@ -1887,7 +1886,7 @@ public class Tecnico extends javax.swing.JFrame {
                 System.out.println("error");
                 break;
         }
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
 
@@ -2028,6 +2027,11 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir6ActionPerformed
 
     private void btnVolver5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver5ActionPerformed
+
+        Principal_Tec obj = new Principal_Tec();
+        obj.setVisible(true);
+        dispose();
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver5ActionPerformed
 
@@ -2036,7 +2040,9 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir7ActionPerformed
 
     private void btnVolver6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver6ActionPerformed
-        // TODO add your handling code here:
+        Principal_Tec obj = new Principal_Tec();
+        obj.setVisible(true);
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVolver6ActionPerformed
 
     private void btnBusca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca4ActionPerformed
@@ -2060,18 +2066,15 @@ public class Tecnico extends javax.swing.JFrame {
         try {
             Garantias gar = new Garantias();
             Entradas en = new Entradas();
-            
+
             int seleccion = tbEntrada_garantia.getSelectedRow();
-            
-            int idEn = Integer.parseInt(""+tbEntrada_garantia.getValueAt(seleccion, 0));
+
+            int idEn = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
             en.setId_entrada(idEn);
             en.setEstado("PROCESO");
 
             /////////////////////PENDIENTE FECHA///////////////////////////
-            
-            
-      
-            int id = Integer.parseInt(""+tbEntrada_garantia.getValueAt(seleccion, 0));
+            int id = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
             gar.setId_entra(id);
             gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
             gar.setFecha_garantia(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
@@ -2084,10 +2087,10 @@ public class Tecnico extends javax.swing.JFrame {
             gar.setSerie_nueva("");
             gar.setPrimera_serie(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
             gar.setEstado("PROCESO");
-            
+
             dbGarantia.insertarEntrada_Garantia(gar);
             JOptionPane.showMessageDialog(this, "Garantia en proceso", "", JOptionPane.INFORMATION_MESSAGE);
-            
+
             dbGarantia.RevisionAProcesoGarantia(gar);
             dbGarantia.RevisionAProcesoEntrada(en);
             LimpiarEntradas_Garantias();
@@ -2116,7 +2119,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         int seleccion = tbEntrada_garantia.getSelectedRow();
         txtIdForanea.setText(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 0)));
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_tbEntrada_garantiaMouseClicked
 
@@ -2124,7 +2127,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         LimpiarEntradas_Garantias();
         ListarEntradas_Garantias();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_actualizar1ActionPerformed
 
@@ -2136,7 +2139,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         LimpiarEntradas();
         ListarEntradas();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -2144,7 +2147,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         LimpiarGarantiasProceso();
         ListarGarantiasProceso();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_actualizarActionPerformed
 
@@ -2152,7 +2155,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         LimpiarSalidas();
         ListarSalidas();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -2160,7 +2163,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         LimpiarEnvios();
         ListarEnvios();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -2177,8 +2180,8 @@ public class Tecnico extends javax.swing.JFrame {
         try {
             Garantias gar = new Garantias();
             int seleccion = tbProceso.getSelectedRow();
-            
-            int idForanea = Integer.parseInt(""+tbProceso.getValueAt(seleccion, 0));
+
+            int idForanea = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
             gar.setId_entra(idForanea);
             gar.setNumero_caso(txtCaso.getText().toUpperCase());
             gar.setSerie_nueva(txtNuevaSerie.getText().toUpperCase());
@@ -2187,12 +2190,10 @@ public class Tecnico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Registros asignados");
             LimpiarGarantiasProceso();
             ListarGarantiasProceso();
-            
+
         } catch (Exception e) {
         }
-        
-        
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -2201,10 +2202,10 @@ public class Tecnico extends javax.swing.JFrame {
         int seleccion = tbProceso.getSelectedRow();
         txtIdProceso.setText(String.valueOf(tbProceso.getValueAt(seleccion, 0)));
         txtFechaGarantia.setText(String.valueOf(tbProceso.getValueAt(seleccion, 7)));
-        txtRmaGar.setText(String.valueOf(tbProceso.getValueAt(seleccion, 8))); 
+        txtRmaGar.setText(String.valueOf(tbProceso.getValueAt(seleccion, 8)));
         txtCaso.setText(String.valueOf(tbProceso.getValueAt(seleccion, 9)));
         txtNuevaSerie.setText(String.valueOf(tbProceso.getValueAt(seleccion, 10)));
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_tbProcesoMouseClicked
 

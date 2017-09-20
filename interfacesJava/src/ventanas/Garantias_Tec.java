@@ -127,7 +127,7 @@ public class Garantias_Tec extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
 
-        Principal_Tec obj = new Principal_Tec();
+        Formatos_Tec obj = new Formatos_Tec();
         obj.setVisible(true);
         dispose();
 
