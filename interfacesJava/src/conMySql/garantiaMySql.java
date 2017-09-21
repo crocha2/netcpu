@@ -206,6 +206,39 @@ public class garantiaMySql {
     
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     
+    public void RechazarEntrada(Entradas entrada) {
+        try {
+            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET estado=? WHERE id_entra = ?");
+            pst.setString(1, entrada.getEstado());
+            pst.setInt(2, entrada.getId_entrada());
+            
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void RechazarGarantia(Garantias garantia) {
+        try {
+            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET estado=? WHERE id_entra = ?");
+            pst.setString(1, garantia.getEstado());
+            pst.setInt(2, garantia.getId_entra());
+            
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
     public void EliminarEntrada(Entradas en) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");

@@ -9,6 +9,7 @@ import clasesPrincipales.Entradas;
 import clasesPrincipales.clientes;
 import clasesPrincipales.contratos;
 import com.mxrck.autocompleter.TextAutoCompleter;
+import conMySql.clienteMySql;
 import conMySql.contratoMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,6 +33,10 @@ public class Contratos extends javax.swing.JFrame {
     ArrayList<contratos> contrato;
     //clienteDB db = new clienteDB();
     contratoMySql db = new contratoMySql();
+    
+    ArrayList<clientes> cliente;
+    //clienteDB db = new clienteDB();
+    clienteMySql dbcli = new clienteMySql();
 
     DefaultComboBoxModel modeloContrato;
 
@@ -263,11 +268,12 @@ public class Contratos extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txtFechaFi = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
-        txtCli = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtNitCe = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtResp = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        txtCli = new javax.swing.JTextField();
         btnSalir5 = new javax.swing.JButton();
         btnVolver4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -335,25 +341,6 @@ public class Contratos extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("CLIENTE");
 
-        txtCli.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCliMouseClicked(evt);
-            }
-        });
-        txtCli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCliActionPerformed(evt);
-            }
-        });
-        txtCli.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCliKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCliKeyReleased(evt);
-            }
-        });
-
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("NIT O CEDULA");
@@ -362,6 +349,14 @@ public class Contratos extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setText("RESPONSABLE");
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButton3.setText("BUSCAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -369,13 +364,16 @@ public class Contratos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCli, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                     .addComponent(txtNumeroContrato)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)))
+                        .addGap(0, 110, Short.MAX_VALUE))
+                    .addComponent(txtCli))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
@@ -409,19 +407,20 @@ public class Contratos extends javax.swing.JFrame {
                             .addComponent(txtFechaIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(6, 6, 6)
-                        .addComponent(txtNitCe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNitCe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(6, 6, 6)
                         .addComponent(txtResp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         btnSalir5.setBackground(new java.awt.Color(51, 153, 255));
@@ -499,7 +498,7 @@ public class Contratos extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVolver4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("CONTRATO", jPanel2);
@@ -920,7 +919,7 @@ public class Contratos extends javax.swing.JFrame {
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarTabla();
-                    if (rs.next()) {
+                    while (rs.next()) {
                         contratos con = new contratos();
                         con.setId_contrato(rs.getInt("id_contrato"));
                         con.setNumero(rs.getString("numero"));
@@ -946,7 +945,7 @@ public class Contratos extends javax.swing.JFrame {
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarTabla();
-                    if (rs.next()) {
+                    while (rs.next()) {
                         contratos con = new contratos();
                         con.setId_contrato(rs.getInt("id_contrato"));
                         con.setNumero(rs.getString("numero"));
@@ -972,7 +971,7 @@ public class Contratos extends javax.swing.JFrame {
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarTabla();
-                    if (rs.next()) {
+                    while (rs.next()) {
                         contratos con = new contratos();
                         con.setId_contrato(rs.getInt("id_contrato"));
                         con.setNumero(rs.getString("numero"));
@@ -1205,23 +1204,6 @@ public class Contratos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void txtCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCliMouseClicked
-
-    private void txtCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCliActionPerformed
-
-    private void txtCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCliKeyReleased
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_txtCliKeyReleased
-
-    private void txtCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCliKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCliKeyPressed
-
     private void cmbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHistorialActionPerformed
 
         autoComplete();
@@ -1244,6 +1226,30 @@ public class Contratos extends javax.swing.JFrame {
     private void autoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_autoActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        String guardar = txtCli.getText();
+        try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * FROM clientes where nombre_cli = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarTabla();
+                    if (rs.next()) {
+                        clientes cli = new clientes();
+                        txtNitCe.setText(rs.getString("nit_cli").trim());
+                        autoCompleteCli();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR Cliente " + e);
+                }
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1291,6 +1297,7 @@ public class Contratos extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbHistorial;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;

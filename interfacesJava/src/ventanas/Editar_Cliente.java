@@ -42,6 +42,17 @@ public class Editar_Cliente extends javax.swing.JFrame {
         this.setTitle("CPU System Service S.A.S - TABLA DE CLIENTES");
         //CargarCmbCliente();
         autoComplete();
+        disable();
+    }
+
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/CPU_new_2.png"));
+        return retValue;
+    }
+
+    // METODOS::::::::::::::::::::
+    
+    public void disable(){
         txtID.setEnabled(false);
         txtNitCliente.setEnabled(false);
         txtNombreCliente.setEnabled(false);
@@ -51,13 +62,18 @@ public class Editar_Cliente extends javax.swing.JFrame {
         txtCorreoCliente.setEnabled(false);
         txtContactoCliente.setEnabled(false);
     }
-
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/CPU_new_2.png"));
-        return retValue;
+    
+    public void enable(){
+        txtID.setEnabled(true);
+        txtNitCliente.setEnabled(true);
+        txtNombreCliente.setEnabled(true);
+        txtTelefonoCliente.setEnabled(true);
+        txtDireccionCliente.setEnabled(true);
+        txtCiudadCliente.setEnabled(true);
+        txtCorreoCliente.setEnabled(true);
+        txtContactoCliente.setEnabled(true);
     }
-
-    // METODOS::::::::::::::::::::
+    
     public void ListarDatos() {
         cliente = db.ListClientes();
         DefaultTableModel tb = (DefaultTableModel) tabla_clientes.getModel();
@@ -329,13 +345,7 @@ public class Editar_Cliente extends javax.swing.JFrame {
 
     private void brnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnListarActionPerformed
 
-        txtNitCliente.setEnabled(true);
-        txtNombreCliente.setEnabled(true);
-        txtTelefonoCliente.setEnabled(true);
-        txtDireccionCliente.setEnabled(true);
-        txtCiudadCliente.setEnabled(true);
-        txtCorreoCliente.setEnabled(true);
-        txtContactoCliente.setEnabled(true);
+        disable();
         LimpirTabla();
         ListarDatos();
 
@@ -418,6 +428,7 @@ public class Editar_Cliente extends javax.swing.JFrame {
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
 
+        enable();
         try {
             String guardar = auto.getText();
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
