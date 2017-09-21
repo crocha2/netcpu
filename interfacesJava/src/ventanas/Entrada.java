@@ -46,6 +46,7 @@ public class Entrada extends javax.swing.JFrame {
         //numeroForaneo();
         numeros();
         txtSec.setEnabled(false);
+        txtIdCli.setEnabled(false);
         //txtForanea.setEnabled(false);
         //CargarCmbFacturas();
     }
@@ -238,6 +239,8 @@ public class Entrada extends javax.swing.JFrame {
         btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
         btnBusca1 = new javax.swing.JButton();
+        txtIdCli = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -554,6 +557,18 @@ public class Entrada extends javax.swing.JFrame {
         });
         getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 33, 50, -1));
 
+        txtIdCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 80, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("ID");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 20, 20));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
@@ -615,6 +630,7 @@ public class Entrada extends javax.swing.JFrame {
                 txtCorreoCliente.setText(rs.getString("correo_cli").trim());
                 txtContactoCliente.setText(rs.getString("contacto_cli").trim());
                 txtPersonaRemitente.setText(rs.getString("contacto_cli").trim());
+                txtIdCli.setText(rs.getString("id_cli").trim());
                 autoComplete();
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
@@ -684,6 +700,7 @@ public class Entrada extends javax.swing.JFrame {
                 en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
                 en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
                 en.setObservaciones(areaObservaciones.getText().toUpperCase());
+                en.setId_cli(Integer.parseInt(txtIdCli.getText()));
                 en.setEstado("REVISION");
                 //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
                 en.setNumero(txtSec.getText());
@@ -738,6 +755,10 @@ public class Entrada extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -811,6 +832,7 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
@@ -837,6 +859,7 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JTextField txtElemento;
     private javax.swing.JTextField txtEmpresa;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtMotivo;

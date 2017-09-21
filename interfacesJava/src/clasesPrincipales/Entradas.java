@@ -36,11 +36,12 @@ public class Entradas {
     String estado_carcasa;
     String observaciones;
     String estado;
+    int id_cli;
 
     public Entradas() {
     }
 
-    public Entradas(int id_entrada, String numero, String fecha, String elemento, String potencia, String marca, String modelo, String serie, String empresa, String nit, String persona_remite, String ciudad, String direccion, String nombre_contacto, String telefono_contacto, String correo, String motivo, String tarjeta_red, String parrilla, String bases_plasticas, String conector_origi, String garantia, String estado_carcasa, String observaciones, String estado) {
+    public Entradas(int id_entrada, String numero, String fecha, String elemento, String potencia, String marca, String modelo, String serie, String empresa, String nit, String persona_remite, String ciudad, String direccion, String nombre_contacto, String telefono_contacto, String correo, String motivo, String tarjeta_red, String parrilla, String bases_plasticas, String conector_origi, String garantia, String estado_carcasa, String observaciones, String estado, int id_cli) {
         this.id_entrada = id_entrada;
         this.numero = numero;
         this.fecha = fecha;
@@ -66,6 +67,7 @@ public class Entradas {
         this.estado_carcasa = estado_carcasa;
         this.observaciones = observaciones;
         this.estado = estado;
+        this.id_cli = id_cli;
     }
 
 
@@ -268,5 +270,15 @@ public class Entradas {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public int getId_cli() {
+        return id_cli;
+    }
+
+    public void setId_cli(int id_cli) {
+        this.id_cli = id_cli;
+    }
+    
+    
        
 }

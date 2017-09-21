@@ -37,6 +37,7 @@ public class garantiaMySql {
                 gar.setFecha_garantia(rs.getString("fecha_garantia"));
                 gar.setNumero(rs.getString("numero"));
                 gar.setRma(rs.getString("rma"));
+                gar.setNumero_caso(rs.getString("numero_caso"));
                 gar.setCliente(rs.getString("cliente"));
                 gar.setNit(rs.getString("nit"));
                 gar.setSerie_vieja(rs.getString("serie_vieja"));
