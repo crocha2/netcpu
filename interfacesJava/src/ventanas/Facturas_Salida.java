@@ -6,6 +6,8 @@
 package ventanas;
 
 import clasesPrincipales.Salidas;
+import clasesPrincipales.clientes;
+import conMySql.clienteMySql;
 import conMySql.salidaMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,6 +28,10 @@ public class Facturas_Salida extends javax.swing.JFrame {
     ArrayList<Salidass> salida;
     //salidaDB db = new salidaDB();
     salidaMySql db = new salidaMySql();
+    
+    ArrayList<clientes> cliente;
+    //salidaDB db = new salidaDB();
+    clienteMySql dbCli = new clienteMySql();
 
     /**
      * Creates new form Entrada
@@ -40,21 +46,25 @@ public class Facturas_Salida extends javax.swing.JFrame {
         txtSec.setEnabled(false);
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
+        txtIdCli.setEnabled(false);
     }
 
-    /*
-     public void CargarCmbCliente(){
-     try {
-     Connection cnx = DataBaseConexion.getConnection();
-     Statement st = cnx.createStatement();
-     ResultSet rs = st.executeQuery("SELECT NOMBRECLIENTE FROM CLIENTES ORDER BY NOMBRECLIENTE ASC");
-     while (rs.next()) {
-     this.cmbClientes.addItem(rs.getString("nombrecliente"));
-     }
-     } catch (Exception e) {
-     }
-     }
-     */
+    public void limpiar() {
+        txtSec.setText("");
+        txtFechaFact.setText("");
+        txtEmpresa.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtCiudad.setText("");
+        txtCorreo.setText("");
+        txtContacto.setText("");
+        txtEquipo.setText("");
+        areaComentario.setText("");
+        txtModelo.setText("");
+        txtSerie.setText("");
+        txtEmpresa.requestFocus();
+    }
+
     public void CargarCmbSalidas() {
         try {
             Connection cnx = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -165,10 +175,11 @@ public class Facturas_Salida extends javax.swing.JFrame {
         cmbSalidas = new javax.swing.JComboBox();
         txtFechaFact = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        btnGuarda = new javax.swing.JButton();
         txtSec = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         btnPdf1 = new javax.swing.JButton();
+        txtIdCli = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -316,7 +327,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
                 btnPdfActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 50, -1));
+        getContentPane().add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 50, -1));
 
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -429,25 +440,6 @@ public class Facturas_Salida extends javax.swing.JFrame {
         jLabel13.setText("FECHA");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 20));
 
-        btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
-        btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnGuarda.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuarda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar_1.png"))); // NOI18N
-        btnGuarda.setText("Guardar");
-        btnGuarda.setBorder(null);
-        btnGuarda.setBorderPainted(false);
-        btnGuarda.setContentAreaFilled(false);
-        btnGuarda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuarda.setIconTextGap(-1);
-        btnGuarda.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 50, -1));
-
         txtSec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSecActionPerformed(evt);
@@ -477,7 +469,19 @@ public class Facturas_Salida extends javax.swing.JFrame {
                 btnPdf1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPdf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 60, -1));
+        getContentPane().add(btnPdf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 60, -1));
+
+        txtIdCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 80, -1));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("ID");
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 20, 20));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
@@ -536,7 +540,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
                 txtModelo.setText(rs.getString("modelo"));
                 txtSerie.setText(rs.getString("serie").trim());
                 areaComentario.setText(rs.getString("comentario").trim());
-
+                txtIdCli.setText(rs.getString("id_cli").trim());
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
             } else {
@@ -576,6 +580,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
         } else {
 
             Salidas sal = new Salidas();
+            sal.setId_cli(Integer.parseInt(txtIdCli.getText()));
             sal.setNumero(cmbSalidas.getSelectedItem().toString());
             sal.setFecha(txtFechaFact.getText().toUpperCase());
             sal.setEmpresa(txtEmpresa.getText().toUpperCase());
@@ -644,6 +649,8 @@ public class Facturas_Salida extends javax.swing.JFrame {
         } else {
 
             Salidas sal = new Salidas();
+            clientes cli = new clientes();
+
             sal.setNumero(cmbSalidas.getSelectedItem().toString());
             sal.setFecha(txtFechaFact.getText().toUpperCase());
             sal.setEmpresa(txtEmpresa.getText().toUpperCase());
@@ -656,6 +663,15 @@ public class Facturas_Salida extends javax.swing.JFrame {
             sal.setModelo(txtModelo.getText().toUpperCase());
             sal.setSerie(txtSerie.getText().toUpperCase());
             sal.setComentario(areaComentario.getText().toUpperCase());
+            sal.setId_cli(Integer.parseInt(txtIdCli.getText()));
+
+            cli.setId_cliente(Integer.parseInt(txtIdCli.getText()));
+            cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
+            cli.setCiudad_cliente(txtCiudad.getText().toUpperCase());
+            cli.setDireccion_cliente(txtDireccion.getText().toUpperCase());
+            cli.setNombre_contacto(txtContacto.getText().toUpperCase());
+            cli.setTelefono_cliente(txtTelefono.getText().toUpperCase());
+            cli.setCorreo_cliente(txtCorreo.getText().toUpperCase());
 
             Object[] opciones = {"Aceptar", "Cancelar"};
             int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR este registro?", "Mensaje de Confirmacion",
@@ -665,40 +681,15 @@ public class Facturas_Salida extends javax.swing.JFrame {
                 db.EditarSalida(sal);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
 
-                //this.cmbClientes.removeAllItems();
-                //CargarCmbCliente();
                 this.cmbSalidas.removeAllItems();
                 CargarCmbSalidas();
 
-                txtSec.setText("");
-                txtFechaFact.setText("");
-                txtEmpresa.setText("");
-                txtTelefono.setText("");
-                txtDireccion.setText("");
-                txtCiudad.setText("");
-                txtCorreo.setText("");
-                txtContacto.setText("");
-                txtEquipo.setText("");
-                areaComentario.setText("");
-                txtModelo.setText("");
-                txtSerie.setText("");
-                txtEmpresa.requestFocus();
+                limpiar();
 
             } else {
-                txtSec.setText("");
-                txtFechaFact.setText("");
-                txtEmpresa.setText("");
-                txtTelefono.setText("");
-                txtDireccion.setText("");
-                txtCiudad.setText("");
-                txtCorreo.setText("");
-                txtContacto.setText("");
-                txtEquipo.setText("");
-                areaComentario.setText("");
-                txtModelo.setText("");
-                txtSerie.setText("");
-                txtEmpresa.requestFocus();
-            }
+                limpiar();
+            }        
+                db.EditarCliente(cli);
         }
 
         // TODO add your handling code here:
@@ -719,55 +710,6 @@ public class Facturas_Salida extends javax.swing.JFrame {
     private void txtFechaFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaFactActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaFactActionPerformed
-
-    private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
-
-        if (txtEmpresa.getText().equals("") || txtCiudad.getText().equals("") || txtDireccion.getText().equals("") || txtContacto.getText().equals("") || txtTelefono.getText().equals("") || txtCorreo.getText().equals("")
-                || txtEquipo.getText().equals("") || txtModelo.getText().equals("") || txtSerie.getText().equals("") || areaComentario.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos", "", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-
-            Salidas sal = new Salidas();
-
-            sal.setFecha(txtFechaFact.getText().toUpperCase());
-            sal.setEmpresa(txtEmpresa.getText().toUpperCase());
-            sal.setCiudad(txtCiudad.getText().toUpperCase());
-            sal.setDireccion(txtDireccion.getText().toUpperCase());
-            sal.setContacto(txtContacto.getText().toUpperCase());
-            sal.setTelefono(txtTelefono.getText().toUpperCase());
-            sal.setCorreo(txtCorreo.getText().toUpperCase());
-            sal.setEquipo(txtEquipo.getText().toUpperCase());
-            sal.setModelo(txtModelo.getText().toUpperCase());
-            sal.setSerie(txtSerie.getText().toUpperCase());
-            sal.setComentario(areaComentario.getText().toUpperCase());
-
-            try {
-                db.insertarSalida(sal);
-                JOptionPane.showMessageDialog(this, "Factura guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-
-                txtEmpresa.setText("");
-                txtEmpresa.setText("");
-                txtCiudad.setText("");
-                txtDireccion.setText("");
-                txtContacto.setText("");
-                txtTelefono.setText("");
-                txtCorreo.setText("");
-                txtEquipo.setText("");
-                txtModelo.setText("");
-                txtSerie.setText("");
-                txtFechaFact.setText("");
-                areaComentario.setText("");
-                this.cmbSalidas.removeAllItems();
-                CargarCmbSalidas();
-                txtEmpresa.requestFocus();
-            } catch (Exception e) {
-                System.err.println("error" + e);
-            }
-
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardaActionPerformed
 
     private void txtSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSecActionPerformed
         // TODO add your handling code here:
@@ -795,9 +737,13 @@ public class Facturas_Salida extends javax.swing.JFrame {
             GenerarReportes g = new GenerarReportes();
             g.reportePrestamo(nume);
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPdf1ActionPerformed
+
+    private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -856,7 +802,6 @@ public class Facturas_Salida extends javax.swing.JFrame {
     private javax.swing.JButton btnDescartar1;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnPdf;
     private javax.swing.JButton btnPdf1;
     private javax.swing.JButton btnSalir1;
@@ -874,6 +819,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -897,6 +843,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtEquipo;
     private javax.swing.JTextField txtFechaFact;
+    private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtSec;
     private javax.swing.JTextField txtSerie;

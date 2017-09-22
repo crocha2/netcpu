@@ -272,7 +272,6 @@ public class Entrada_Tec extends javax.swing.JFrame {
         btnBusca1 = new javax.swing.JButton();
         txtIdCli = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        btnPrueba = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -601,9 +600,6 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel27.setText("ID");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 20, 20));
 
-        btnPrueba.setText("prueba");
-        getContentPane().add(btnPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, -1, 40));
-
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
@@ -861,7 +857,6 @@ public class Entrada_Tec extends javax.swing.JFrame {
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnGuarda1;
-    private javax.swing.JButton btnPrueba;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbBasesPlasticas;

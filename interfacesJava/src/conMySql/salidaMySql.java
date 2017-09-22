@@ -6,6 +6,7 @@
 package conMySql;
 
 import clasesPrincipales.Salidas;
+import clasesPrincipales.clientes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -100,6 +101,26 @@ public class salidaMySql {
         } catch (SQLException ex) {
             Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void EditarCliente(clientes cli) {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE clientes SET nombre_cli = ?, telefono_cli = ?, direccion_cli = ?, ciudad_cli = ?, correo_cli = ?, contacto_cli = ? WHERE id_cli = ?");
+    
+            pst.setString(1, cli.getNombre_cliente());//
+            pst.setString(2, cli.getTelefono_cliente());//
+            pst.setString(3, cli.getDireccion_cliente());//
+            pst.setString(4, cli.getCiudad_cliente());//
+            pst.setString(5, cli.getCorreo_cliente());//
+            pst.setString(6, cli.getNombre_contacto());//
+            pst.setInt(7, cli.getId_cliente());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
     public void EliminarSalida(Salidas sal) {

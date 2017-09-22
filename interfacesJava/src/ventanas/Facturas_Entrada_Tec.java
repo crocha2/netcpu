@@ -690,21 +690,9 @@ public class Facturas_Entrada_Tec extends javax.swing.JFrame {
             } else {
                 limpiar();
             }
-            Object[] opcionesCli = {"Aceptar", "Cancelar"};
-            int eleccionCli = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR registroS del cliente?", "Mensaje de Confirmacion",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-            if (eleccion == JOptionPane.YES_OPTION) {
+            
                 dbcli.EditarCliente(cli);
-                JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                //this.cmbClientes.removeAllItems();
-                //CargarCmbCliente();
-                this.cmbFacturas.removeAllItems();
-                CargarCmbFacturas();
-                limpiar();
-            } else {
-                limpiar();
-            }
+                
         }
 
 // TODO add your handling code here:

@@ -5,7 +5,9 @@
  */
 package ventanas;
 
+import clasesPrincipales.Entradas;
 import clasesPrincipales.Salidas;
+import clasesPrincipales.clientes;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import conMySql.GenerarNumeros;
 import conMySql.salidaMySql;
@@ -45,37 +47,40 @@ public class Salidass extends javax.swing.JFrame {
         CargarCmbEntadas();
         numeros();
         txtSec.setEnabled(false);
+        txtIdCli.setEnabled(false);
+        txtIdCli.setText(""+0);
         //CargarCmbFacturas();
     }
-    
-    public void autoComplete(){
+
+    public void autoComplete() {
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
+            Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes");
             while (rs.next()) {
                 TextAutoCompleter.addItem(rs.getString("nombre_cli"));
             }
             cn.close();
         } catch (Exception e) {
-            System.out.println("error: "+e);
+            System.out.println("error: " + e);
         }
     }
-/*
-    public void CargarCmbCliente() {
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
-            while (rs.next()) {
-                this.cmbClientes.addItem(rs.getString("nombre_cli"));
-            }
-            cn.close();
-        } catch (Exception e) {
-        }
-    }
-    */
+    /*
+     public void CargarCmbCliente() {
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
+     Statement st = cn.createStatement();
+     ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
+     while (rs.next()) {
+     this.cmbClientes.addItem(rs.getString("nombre_cli"));
+     }
+     cn.close();
+     } catch (Exception e) {
+     }
+     }
+     */
+
     public void CargarCmbEntadas() {
         try {
             Connection cnx = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -104,6 +109,7 @@ public class Salidass extends javax.swing.JFrame {
         //CargarCmbCliente();
         txtEmpresa.requestFocus();
     }
+
     public void limpiar2() {
         areaComentario.setText("");
         txtEquipo.setText("");
@@ -226,6 +232,8 @@ public class Salidass extends javax.swing.JFrame {
         btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
         btnBusca1 = new javax.swing.JButton();
+        txtIdCli = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -486,6 +494,18 @@ public class Salidass extends javax.swing.JFrame {
         });
         getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 50, -1));
 
+        txtIdCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 80, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("ID");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 20, 20));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
 
@@ -534,6 +554,7 @@ public class Salidass extends javax.swing.JFrame {
                 txtContacto.setText(rs.getString("contacto_cli").trim());
                 txtTelefono.setText(rs.getString("telefono_cli").trim());
                 txtCorreo.setText(rs.getString("correo_cli").trim());
+                txtIdCli.setText(rs.getString("id_cli").trim());
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
                 limpiar2();
@@ -545,39 +566,72 @@ public class Salidass extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscaActionPerformed
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
- 
-            try {
-                Salidas sal = new Salidas();
-                String formato = txtFecha.getDateFormatString();
-                Date date = txtFecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String dato = String.valueOf(sdf.format(date));
-                sal.setFecha(dato);
-                sal.setNumero(txtSec.getText());
-                sal.setEmpresa(txtEmpresa.getText().toUpperCase());
-                sal.setCiudad(txtCiudad.getText().toUpperCase());
-                sal.setDireccion(txtDireccion.getText().toUpperCase());
-                sal.setContacto(txtContacto.getText().toUpperCase());
-                sal.setTelefono(txtTelefono.getText().toUpperCase());
-                sal.setCorreo(txtCorreo.getText().toUpperCase());
-                sal.setEquipo(txtEquipo.getText().toUpperCase());
-                sal.setModelo(txtModel.getText().toUpperCase());
-                sal.setSerie(txtSerie.getText().toUpperCase());
-                sal.setComentario(areaComentario.getText().toUpperCase());
-                db.insertarSalida(sal);
-                JOptionPane.showMessageDialog(this, "Factura guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                numeros();
-                limpiar();
-            } catch (Exception e) {
-                System.err.println("error" + e);
-            }
 
+        int id = Integer.parseInt(txtIdCli.getText());
+
+        try {
+            clientes cli = new clientes();
+            cli.setNombre_cliente(this.txtEmpresa.getText());
+
+            Salidas sal = new Salidas();
+            String formato = txtFecha.getDateFormatString();
+            Date date = txtFecha.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String dato = String.valueOf(sdf.format(date));
+            sal.setFecha(dato);
+            sal.setNumero(txtSec.getText());
+            sal.setEmpresa(txtEmpresa.getText().toUpperCase());
+            sal.setCiudad(txtCiudad.getText().toUpperCase());
+            sal.setDireccion(txtDireccion.getText().toUpperCase());
+            sal.setContacto(txtContacto.getText().toUpperCase());
+            sal.setTelefono(txtTelefono.getText().toUpperCase());
+            sal.setCorreo(txtCorreo.getText().toUpperCase());
+            sal.setEquipo(txtEquipo.getText().toUpperCase());
+            sal.setModelo(txtModel.getText().toUpperCase());
+            sal.setSerie(txtSerie.getText().toUpperCase());
+            sal.setComentario(areaComentario.getText().toUpperCase());
+            sal.setId_cli(Integer.parseInt(txtIdCli.getText()));
+
+            cli.setId_cliente(id);
+            cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
+            cli.setCiudad_cliente(txtCiudad.getText().toUpperCase());
+            cli.setDireccion_cliente(txtDireccion.getText().toUpperCase());
+            cli.setNombre_contacto(txtContacto.getText().toUpperCase());
+            cli.setTelefono_cliente(txtTelefono.getText().toUpperCase());
+            cli.setCorreo_cliente(txtCorreo.getText().toUpperCase());
+            
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
+                pst.setString(1, cli.getNombre_cliente());
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
+                    db.insertarSalida(sal);
+                    JOptionPane.showMessageDialog(this, "Salida guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                    numeros();
+                    limpiar();
+                }else {
+                    if (id == 0) {
+                        JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
+                        Nuevo_Cliente obj = new Nuevo_Cliente();
+                        obj.setVisible(true);
+                        dispose();
+                    }
+                }
+            } catch (Exception e) {
+            }
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
+
+        
+        
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed
@@ -650,7 +704,7 @@ public class Salidass extends javax.swing.JFrame {
         Facturas_Salida obj = new Facturas_Salida();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuarda1ActionPerformed
 
@@ -662,6 +716,10 @@ public class Salidass extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -752,6 +810,7 @@ public class Salidass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -775,6 +834,7 @@ public class Salidass extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtEquipo;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtSec;
     private javax.swing.JTextField txtSerie;
