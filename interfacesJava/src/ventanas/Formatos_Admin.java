@@ -286,11 +286,11 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
     private void btnFormatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormatosActionPerformed
 
-        /*
-        Tecnico_Admin obj = new Tecnico_Admin();
+        
+        Tecnico obj = new Tecnico();
         obj.setVisible(true);
         dispose();
-        */
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFormatosActionPerformed

@@ -7,6 +7,7 @@ package ventanas;
 
 import clasesPrincipales.Entradas;
 import clasesPrincipales.clientes;
+import conMySql.clienteMySql;
 import conMySql.entradaMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,6 +30,10 @@ public class Facturas_Entrada extends javax.swing.JFrame {
     ArrayList<Entradas> entrada;
     //entradaDB db = new entradaDB();
     entradaMySql db = new entradaMySql();
+    
+    ArrayList<clientes> cliente;
+    //entradaDB dbcli = new entradaDB();
+    clienteMySql dbcli = new clienteMySql();
 
     //excel obj = new excel();
     /**
@@ -98,6 +103,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
         txtEstadoCarcasa.setText("");
         areaObservaciones.setText("");
         txtElemento.requestFocus();
+        txtIdCli.setText("");
     }
 
     /**
@@ -577,7 +583,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
             //pst.setString(1, CMBID.getName());
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                
+
                 txtFecha.setText(rs.getString("fecha").trim());
                 txtElemento.setText(rs.getString("elemento").trim());
                 txtPotencia.setText(rs.getString("potencia").trim());
@@ -635,7 +641,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
 
             Entradas en = new Entradas();
             clientes cli = new clientes();
-                        
+
             en.setNumero(cmbFacturas.getSelectedItem().toString());
             en.setFecha(txtFecha.getText().toUpperCase());
             en.setElemento(txtElemento.getText().toUpperCase());
@@ -660,7 +666,8 @@ public class Facturas_Entrada extends javax.swing.JFrame {
             en.setEstado_carcasa(txtEstadoCarcasa.getText().toUpperCase());
             en.setObservaciones(areaObservaciones.getText().toUpperCase());
             en.setId_cli(Integer.parseInt(txtIdCli.getText()));
-            
+
+            cli.setId_cliente(Integer.parseInt(txtIdCli.getText()));
             cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
             cli.setNit_cliente(txtNitCliente.getText().toUpperCase());
             cli.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
@@ -680,16 +687,15 @@ public class Facturas_Entrada extends javax.swing.JFrame {
                 //CargarCmbCliente();
                 this.cmbFacturas.removeAllItems();
                 CargarCmbFacturas();
-                limpiar();
             } else {
                 limpiar();
             }
             Object[] opcionesCli = {"Aceptar", "Cancelar"};
-            int eleccionCli = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR registro del cliente?", "Mensaje de Confirmacion",
+            int eleccionCli = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR registroS del cliente?", "Mensaje de Confirmacion",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
-                db.EditarClienteEnEntrada(cli);
+                dbcli.EditarCliente(cli);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 //this.cmbClientes.removeAllItems();
                 //CargarCmbCliente();
@@ -706,24 +712,28 @@ public class Facturas_Entrada extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-        Entradas en = new Entradas();
-        en.setId_cli(Integer.parseInt(txtIdCli.getText()));
-        Object[] opciones = {"Aceptar", "Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR este registro?", "Mensaje de Confirmacion",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-        if (eleccion == JOptionPane.YES_OPTION) {
-            db.EliminarEntrada(en);
-            JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Entradas en = new Entradas();
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+            Object[] opciones = {"Aceptar", "Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION) {
+                db.EliminarEntrada(en);
+                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
 
                 //this.cmbClientes.removeAllItems();
-            //CargarCmbCliente();
-            this.cmbFacturas.removeAllItems();
-            CargarCmbFacturas();
-            limpiar();
-        } else {
-            limpiar();
+                //CargarCmbCliente();
+                this.cmbFacturas.removeAllItems();
+                CargarCmbFacturas();
+                limpiar();
+            } else {
+                limpiar();
+            }
+        } catch (Exception e) {
         }
+
         /*
          if (txtFecha.getText().equals("") || txtElemento.getText().equals("") || txtPotencia.getText().equals("") || txtMarca.getText().equals("") || txtModelo.getText().equals("") || txtSerie.getText().equals("") || txtEmpresa.getText().equals("")
          || txtNitCliente.getText().equals("") || txtPersonaRemitente.getText().equals("") || txtCiudadCliente.getText().equals("") || txtDireccionCliente.getText().equals("") || txtContactoCliente.getText().equals("") || txtTelefonoCliente.getText().equals("") || txtCorreoCliente.getText().equals("") || txtMotivo.getText().equals("") || areaObservaciones.getText().equals("")) {
@@ -823,7 +833,6 @@ public class Facturas_Entrada extends javax.swing.JFrame {
          }
          }
          */
-
 // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 

@@ -194,7 +194,7 @@ public class entradaMySql {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM entradas "
                     + " WHERE id_cli=?");
-            pst.setString(1, en.getNumero());
+            pst.setInt(1, en.getId_cli());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {

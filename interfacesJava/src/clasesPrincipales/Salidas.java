@@ -24,12 +24,13 @@ public class Salidas {
     String modelo;
     String serie;
     String comentario;
+    int id_cli;
     
 
     public Salidas() {
     }
 
-    public Salidas(int id_salida, String numero, String fecha, String empresa, String ciudad, String direccion, String contacto, String telefono, String correo, String equipo, String modelo, String serie, String comentario) {
+    public Salidas(int id_salida, String numero, String fecha, String empresa, String ciudad, String direccion, String contacto, String telefono, String correo, String equipo, String modelo, String serie, String comentario, int id_cli) {
         this.id_salida = id_salida;
         this.fecha = fecha;
         this.empresa = empresa;
@@ -43,6 +44,7 @@ public class Salidas {
         this.serie = serie;
         this.comentario = comentario;
         this.numero = numero;
+        this.id_cli = id_cli;
     }
 
     public int getId_salida() {
@@ -147,6 +149,14 @@ public class Salidas {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public int getId_cli() {
+        return id_cli;
+    }
+
+    public void setId_cli(int id_cli) {
+        this.id_cli = id_cli;
     }
     
     

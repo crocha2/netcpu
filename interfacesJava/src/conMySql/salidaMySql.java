@@ -27,7 +27,7 @@ public class salidaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_salida, numero, fecha, empresa, ciudad, direccion, contacto, telefono, correo, equipo, modelo, serie, comentario FROM salidas ORDER BY fecha DESC");
+            ResultSet rs = st.executeQuery("SELECT id_salida, numero, fecha, empresa, ciudad, direccion, contacto, telefono, correo, equipo, modelo, serie, comentario, id_cli FROM salidas ORDER BY fecha DESC");
             while (rs.next()) {
                 Salidas sal = new Salidas();
                 sal.setId_salida(rs.getInt("id_salida"));
@@ -42,7 +42,8 @@ public class salidaMySql {
                 sal.setEquipo(rs.getString("equipo"));
                 sal.setModelo(rs.getString("modelo"));
                 sal.setSerie(rs.getString("serie"));
-                sal.setComentario(rs.getString("comentario"));             
+                sal.setComentario(rs.getString("comentario")); 
+                sal.setId_cli(rs.getInt("id_cli"));
                 salida.add(sal);
             }
             cn.close();
@@ -56,7 +57,7 @@ public class salidaMySql {
     public void insertarSalida(Salidas salida) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst =  cn.prepareStatement("INSERT INTO salidas(numero, fecha, empresa, ciudad, direccion, contacto, telefono, correo, equipo, modelo, serie, comentario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst =  cn.prepareStatement("INSERT INTO salidas(numero, fecha, empresa, ciudad, direccion, contacto, telefono, correo, equipo, modelo, serie, comentario, id_cli) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, salida.getNumero());
             pst.setString(2, salida.getFecha());
             pst.setString(3, salida.getEmpresa());
@@ -68,7 +69,8 @@ public class salidaMySql {
             pst.setString(9, salida.getEquipo());
             pst.setString(10, salida.getModelo());
             pst.setString(11, salida.getSerie());
-            pst.setString(12, salida.getComentario()); 
+            pst.setString(12, salida.getComentario());
+            pst.setInt(13, salida.getId_cli());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
@@ -80,7 +82,7 @@ public class salidaMySql {
     public void EditarSalida(Salidas salida) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE salidas SET fecha=?,empresa=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,equipo=?,modelo=?,serie=?,comentario=? WHERE numero = ?");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE salidas SET fecha=?,empresa=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,equipo=?,modelo=?,serie=?,comentario=? WHERE id_cli = ?");
             pst.setString(1, salida.getFecha());
             pst.setString(2, salida.getEmpresa());
             pst.setString(3, salida.getCiudad());
@@ -92,7 +94,7 @@ public class salidaMySql {
             pst.setString(9, salida.getModelo());
             pst.setString(10, salida.getSerie());
             pst.setString(11, salida.getComentario());
-            pst.setString(12, salida.getNumero());
+            pst.setInt(12, salida.getId_cli());
          pst.executeUpdate();
          cn.close();
         } catch (SQLException ex) {
@@ -103,8 +105,8 @@ public class salidaMySql {
     public void EliminarSalida(Salidas sal) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM salidas WHERE numero = ?");
-            pst.setString(1, sal.getNumero());
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM salidas WHERE id_cli = ?");
+            pst.setInt(1, sal.getId_cli());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {

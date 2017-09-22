@@ -6,8 +6,11 @@
 package ventanas;
 
 import clasesPrincipales.Entradas;
+import clasesPrincipales.clientes;
+import clasesPrincipales.usuarios;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import conMySql.GenerarNumeros;
+import conMySql.clienteMySql;
 import conMySql.entradaMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,6 +35,10 @@ public class Entrada extends javax.swing.JFrame {
     //entradaDB db = new entradaDB();
     entradaMySql db = new entradaMySql();
 
+    ArrayList<clientes> cliente;
+    //entradaDB db = new entradaDB();
+    clienteMySql dbcli = new clienteMySql();
+
     //excel obj = new excel();
     /**
      * Creates new form Entrada
@@ -47,67 +54,91 @@ public class Entrada extends javax.swing.JFrame {
         numeros();
         txtSec.setEnabled(false);
         txtIdCli.setEnabled(false);
+        txtIdCli.setText(""+0);
         //txtForanea.setEnabled(false);
         //CargarCmbFacturas();
     }
-    
-    public void autoComplete(){
+
+    public void autoComplete() {
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
+            Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes");
             while (rs.next()) {
                 TextAutoCompleter.addItem(rs.getString("nombre_cli"));
             }
             cn.close();
         } catch (Exception e) {
-            System.out.println("error: "+e);
+            System.out.println("error: " + e);
         }
     }
-/*
-    public void CargarCmbCliente() {
-        try {
-            Connection cnx = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
-            while (rs.next()) {
-                this.cmbClientes.addItem(rs.getString("nombre_cli"));
-            }
-        } catch (Exception e) {
-        }
-    }
-    */
-   //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     /*
-    public void numeroForaneo(){
-        int c = 0;
-        int aux = 0;
-        String SQL = "SELECT MAX(id_garantia) AS id_garantia FROM entradas";
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            if (rs.next()){
-                c = rs.getInt("id_garantia");
-            }
-            if (c == 0) {
-                aux = c+1;
-                txtForanea.setText(""+aux);
-                System.out.println(c);
-            }else{
-                aux = c+1;
-                txtForanea.setText(""+aux);
-                System.out.println(c);
-            }
-        } catch (Exception e) {
-        }
-    }
-    */
-    
+     public void CargarCmbCliente() {
+     try {
+     Connection cnx = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
+     Statement st = cnx.createStatement();
+     ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
+     while (rs.next()) {
+     this.cmbClientes.addItem(rs.getString("nombre_cli"));
+     }
+     } catch (Exception e) {
+     }
+     }
+     */
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+    /*
+     public void numeroForaneo(){
+     int c = 0;
+     int aux = 0;
+     String SQL = "SELECT MAX(id_garantia) AS id_garantia FROM entradas";
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+     Statement st = cn.createStatement();
+     ResultSet rs = st.executeQuery(SQL);
+     if (rs.next()){
+     c = rs.getInt("id_garantia");
+     }
+     if (c == 0) {
+     aux = c+1;
+     txtForanea.setText(""+aux);
+     System.out.println(c);
+     }else{
+     aux = c+1;
+     txtForanea.setText(""+aux);
+     System.out.println(c);
+     }
+     } catch (Exception e) {
+     }
+     }
+     */
+    public void limpiar() {
+        numeros();
+        //numeroForaneo();
+        txtNitCliente.setText("");
+        txtEmpresa.setText("");
+        txtTelefonoCliente.setText("");
+        txtDireccionCliente.setText("");
+        txtCiudadCliente.setText("");
+        txtCorreoCliente.setText("");
+        txtContactoCliente.setText("");
+        txtElemento.setText("");
+        txtPotencia.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+        txtSerie.setText("");
+        txtMotivo.setText("");
+        areaObservaciones.setText("");
+        txtPersonaRemitente.setText("");
+        //this.cmbClientes.removeAllItems();
+        //this.cmbFacturas.removeAllItems();
+        //CargarCmbCliente();
+        //CargarCmbFacturas();
+        txtElemento.requestFocus();
+    }
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     void numeros() {
         int j;
         String c = "";
@@ -241,6 +272,7 @@ public class Entrada extends javax.swing.JFrame {
         btnBusca1 = new javax.swing.JButton();
         txtIdCli = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
+        btnPrueba = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -569,6 +601,9 @@ public class Entrada extends javax.swing.JFrame {
         jLabel27.setText("ID");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 20, 20));
 
+        btnPrueba.setText("prueba");
+        getContentPane().add(btnPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, -1, 40));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
@@ -670,69 +705,78 @@ public class Entrada extends javax.swing.JFrame {
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
+        int id = Integer.parseInt(txtIdCli.getText());
+        try {
+            clientes cli = new clientes();
+            cli.setNombre_cliente(this.txtEmpresa.getText());
+
+            Entradas en = new Entradas();
+
+            String formato = txtFecha.getDateFormatString();
+            Date date = txtFecha.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String dato = String.valueOf(sdf.format(date));
+            //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+            en.setFecha(dato);
+            en.setElemento(txtElemento.getText().toUpperCase());
+            en.setPotencia(txtPotencia.getText().toUpperCase());
+            en.setMarca(txtMarca.getText().toUpperCase());
+            en.setModelo(txtModelo.getText().toUpperCase());
+            en.setSerie(txtSerie.getText().toUpperCase());
+            en.setEmpresa(txtEmpresa.getText().toUpperCase());
+            en.setNit(txtNitCliente.getText().toUpperCase());
+            en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
+            en.setCiudad(txtCiudadCliente.getText().toUpperCase());
+            en.setDireccion(txtDireccionCliente.getText().toUpperCase());
+            en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+            en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
+            en.setCorreo(txtCorreoCliente.getText().toUpperCase());
+            en.setMotivo(txtMotivo.getText().toUpperCase());
+            en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
+            en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
+            en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
+            en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
+            en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
+            en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
+            en.setObservaciones(areaObservaciones.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+            en.setEstado("REVISION");
+            //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
+            en.setNumero(txtSec.getText());
+
+            cli.setId_cliente(id);
+            cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
+            cli.setNit_cliente(txtNitCliente.getText().toUpperCase());
+            cli.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
+            cli.setDireccion_cliente(txtDireccionCliente.getText().toUpperCase());
+            cli.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+            cli.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
+            cli.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
             try {
-                Entradas en = new Entradas();
-
-                String formato = txtFecha.getDateFormatString();
-                Date date = txtFecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String dato = String.valueOf(sdf.format(date));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                en.setFecha(dato);
-                en.setElemento(txtElemento.getText().toUpperCase());
-                en.setPotencia(txtPotencia.getText().toUpperCase());
-                en.setMarca(txtMarca.getText().toUpperCase());
-                en.setModelo(txtModelo.getText().toUpperCase());
-                en.setSerie(txtSerie.getText().toUpperCase());
-                en.setEmpresa(txtEmpresa.getText().toUpperCase());
-                en.setNit(txtNitCliente.getText().toUpperCase());
-                en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
-                en.setCiudad(txtCiudadCliente.getText().toUpperCase());
-                en.setDireccion(txtDireccionCliente.getText().toUpperCase());
-                en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
-                en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
-                en.setCorreo(txtCorreoCliente.getText().toUpperCase());
-                en.setMotivo(txtMotivo.getText().toUpperCase());
-                en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
-                en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
-                en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
-                en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
-                en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
-                en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
-                en.setObservaciones(areaObservaciones.getText().toUpperCase());
-                en.setId_cli(Integer.parseInt(txtIdCli.getText()));
-                en.setEstado("REVISION");
-                //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
-                en.setNumero(txtSec.getText());
-
-                db.insertarEntrada(en);
-                JOptionPane.showMessageDialog(this, "Factura guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-
-                numeros();
-                //numeroForaneo();
-                txtNitCliente.setText("");
-                txtEmpresa.setText("");
-                txtTelefonoCliente.setText("");
-                txtDireccionCliente.setText("");
-                txtCiudadCliente.setText("");
-                txtCorreoCliente.setText("");
-                txtContactoCliente.setText("");
-                txtElemento.setText("");
-                txtPotencia.setText("");
-                txtMarca.setText("");
-                txtModelo.setText("");
-                txtSerie.setText("");
-                txtMotivo.setText("");
-                areaObservaciones.setText("");
-                txtPersonaRemitente.setText("");
-                //this.cmbClientes.removeAllItems();
-                //this.cmbFacturas.removeAllItems();
-                //CargarCmbCliente();
-                //CargarCmbFacturas();
-                txtElemento.requestFocus();
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
+                pst.setString(1, cli.getNombre_cliente());
+                ResultSet rs = pst.executeQuery();
+                
+                if (rs.next()) {
+                    db.insertarEntrada(en);
+                    JOptionPane.showMessageDialog(this, "Entrada guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                } else {
+                    if(id == 0){
+                       JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
+                       Nuevo_Cliente obj = new Nuevo_Cliente();
+                       obj.setVisible(true);
+                       dispose();
+                    } 
+                    }     
+                cn.close();
             } catch (Exception e) {
-                System.err.println("error" + e);
             }
+
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed
@@ -748,11 +792,10 @@ public class Entrada extends javax.swing.JFrame {
 
     private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
 
-        
-       Nuevo_Cliente obj = new Nuevo_Cliente();
+        Nuevo_Cliente obj = new Nuevo_Cliente();
         obj.setVisible(true);
         dispose();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
 
@@ -806,6 +849,7 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnGuarda1;
+    private javax.swing.JButton btnPrueba;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbBasesPlasticas;

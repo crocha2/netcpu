@@ -6,8 +6,11 @@
 package ventanas;
 
 import clasesPrincipales.Entradas;
+import clasesPrincipales.clientes;
+import clasesPrincipales.usuarios;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import conMySql.GenerarNumeros;
+import conMySql.clienteMySql;
 import conMySql.entradaMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,6 +35,10 @@ public class Entrada_Tec extends javax.swing.JFrame {
     //entradaDB db = new entradaDB();
     entradaMySql db = new entradaMySql();
 
+    ArrayList<clientes> cliente;
+    //entradaDB db = new entradaDB();
+    clienteMySql dbcli = new clienteMySql();
+
     //excel obj = new excel();
     /**
      * Creates new form Entrada
@@ -46,67 +53,92 @@ public class Entrada_Tec extends javax.swing.JFrame {
         //numeroForaneo();
         numeros();
         txtSec.setEnabled(false);
+        txtIdCli.setEnabled(false);
+        txtIdCli.setText(""+0);
         //txtForanea.setEnabled(false);
         //CargarCmbFacturas();
     }
-    
-    public void autoComplete(){
+
+    public void autoComplete() {
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
+            Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes");
             while (rs.next()) {
                 TextAutoCompleter.addItem(rs.getString("nombre_cli"));
             }
             cn.close();
         } catch (Exception e) {
-            System.out.println("error: "+e);
+            System.out.println("error: " + e);
         }
     }
-/*
-    public void CargarCmbCliente() {
-        try {
-            Connection cnx = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
-            while (rs.next()) {
-                this.cmbClientes.addItem(rs.getString("nombre_cli"));
-            }
-        } catch (Exception e) {
-        }
-    }
-    */
-   //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     /*
-    public void numeroForaneo(){
-        int c = 0;
-        int aux = 0;
-        String SQL = "SELECT MAX(id_garantia) AS id_garantia FROM entradas";
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            if (rs.next()){
-                c = rs.getInt("id_garantia");
-            }
-            if (c == 0) {
-                aux = c+1;
-                txtForanea.setText(""+aux);
-                System.out.println(c);
-            }else{
-                aux = c+1;
-                txtForanea.setText(""+aux);
-                System.out.println(c);
-            }
-        } catch (Exception e) {
-        }
-    }
-    */
-    
+     public void CargarCmbCliente() {
+     try {
+     Connection cnx = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
+     Statement st = cnx.createStatement();
+     ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
+     while (rs.next()) {
+     this.cmbClientes.addItem(rs.getString("nombre_cli"));
+     }
+     } catch (Exception e) {
+     }
+     }
+     */
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+    /*
+     public void numeroForaneo(){
+     int c = 0;
+     int aux = 0;
+     String SQL = "SELECT MAX(id_garantia) AS id_garantia FROM entradas";
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+     Statement st = cn.createStatement();
+     ResultSet rs = st.executeQuery(SQL);
+     if (rs.next()){
+     c = rs.getInt("id_garantia");
+     }
+     if (c == 0) {
+     aux = c+1;
+     txtForanea.setText(""+aux);
+     System.out.println(c);
+     }else{
+     aux = c+1;
+     txtForanea.setText(""+aux);
+     System.out.println(c);
+     }
+     } catch (Exception e) {
+     }
+     }
+     */
+    public void limpiar() {
+        numeros();
+        //numeroForaneo();
+        txtNitCliente.setText("");
+        txtEmpresa.setText("");
+        txtTelefonoCliente.setText("");
+        txtDireccionCliente.setText("");
+        txtCiudadCliente.setText("");
+        txtCorreoCliente.setText("");
+        txtContactoCliente.setText("");
+        txtElemento.setText("");
+        txtPotencia.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+        txtSerie.setText("");
+        txtMotivo.setText("");
+        areaObservaciones.setText("");
+        txtPersonaRemitente.setText("");
+        //this.cmbClientes.removeAllItems();
+        //this.cmbFacturas.removeAllItems();
+        //CargarCmbCliente();
+        //CargarCmbFacturas();
+        txtElemento.requestFocus();
+    }
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     void numeros() {
         int j;
         String c = "";
@@ -238,6 +270,9 @@ public class Entrada_Tec extends javax.swing.JFrame {
         btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
         btnBusca1 = new javax.swing.JButton();
+        txtIdCli = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        btnPrueba = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -259,7 +294,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel2.setText("Formato De Entrada");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 270, 10));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 120, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 120, 10));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -387,7 +422,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(153, 255, 153));
         jLabel25.setText("No. REM");
-        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 60, 20));
+        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 60, 20));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
@@ -459,7 +494,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
         getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, -1, -1));
 
         txtFecha.setDateFormatString("yyyy/MM/dd");
-        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, 150, -1));
+        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 160, -1));
 
         btnDescartar.setBackground(new java.awt.Color(255, 255, 255));
         btnDescartar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -491,7 +526,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
                 btnBuscaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 40, -1));
+        getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 40, -1));
 
         btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -510,13 +545,13 @@ public class Entrada_Tec extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 80, -1));
-        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 110, 10));
+        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 120, 10));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(153, 255, 153));
         jLabel26.setText("FECHA");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 40, 20));
-        getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 170, -1));
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 40, 20));
+        getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 170, -1));
 
         btnGuarda1.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -553,6 +588,21 @@ public class Entrada_Tec extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 33, 50, -1));
+
+        txtIdCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 80, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("ID");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 20, 20));
+
+        btnPrueba.setText("prueba");
+        getContentPane().add(btnPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, -1, 40));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
@@ -615,6 +665,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
                 txtCorreoCliente.setText(rs.getString("correo_cli").trim());
                 txtContactoCliente.setText(rs.getString("contacto_cli").trim());
                 txtPersonaRemitente.setText(rs.getString("contacto_cli").trim());
+                txtIdCli.setText(rs.getString("id_cli").trim());
                 autoComplete();
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
@@ -654,68 +705,78 @@ public class Entrada_Tec extends javax.swing.JFrame {
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
+        int id = Integer.parseInt(txtIdCli.getText());
+        try {
+            clientes cli = new clientes();
+            cli.setNombre_cliente(this.txtEmpresa.getText());
+
+            Entradas en = new Entradas();
+
+            String formato = txtFecha.getDateFormatString();
+            Date date = txtFecha.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String dato = String.valueOf(sdf.format(date));
+            //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+            en.setFecha(dato);
+            en.setElemento(txtElemento.getText().toUpperCase());
+            en.setPotencia(txtPotencia.getText().toUpperCase());
+            en.setMarca(txtMarca.getText().toUpperCase());
+            en.setModelo(txtModelo.getText().toUpperCase());
+            en.setSerie(txtSerie.getText().toUpperCase());
+            en.setEmpresa(txtEmpresa.getText().toUpperCase());
+            en.setNit(txtNitCliente.getText().toUpperCase());
+            en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
+            en.setCiudad(txtCiudadCliente.getText().toUpperCase());
+            en.setDireccion(txtDireccionCliente.getText().toUpperCase());
+            en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+            en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
+            en.setCorreo(txtCorreoCliente.getText().toUpperCase());
+            en.setMotivo(txtMotivo.getText().toUpperCase());
+            en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
+            en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
+            en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
+            en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
+            en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
+            en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
+            en.setObservaciones(areaObservaciones.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+            en.setEstado("REVISION");
+            //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
+            en.setNumero(txtSec.getText());
+
+            cli.setId_cliente(id);
+            cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
+            cli.setNit_cliente(txtNitCliente.getText().toUpperCase());
+            cli.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
+            cli.setDireccion_cliente(txtDireccionCliente.getText().toUpperCase());
+            cli.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+            cli.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
+            cli.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
             try {
-                Entradas en = new Entradas();
-
-                String formato = txtFecha.getDateFormatString();
-                Date date = txtFecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String dato = String.valueOf(sdf.format(date));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                en.setFecha(dato);
-                en.setElemento(txtElemento.getText().toUpperCase());
-                en.setPotencia(txtPotencia.getText().toUpperCase());
-                en.setMarca(txtMarca.getText().toUpperCase());
-                en.setModelo(txtModelo.getText().toUpperCase());
-                en.setSerie(txtSerie.getText().toUpperCase());
-                en.setEmpresa(txtEmpresa.getText().toUpperCase());
-                en.setNit(txtNitCliente.getText().toUpperCase());
-                en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
-                en.setCiudad(txtCiudadCliente.getText().toUpperCase());
-                en.setDireccion(txtDireccionCliente.getText().toUpperCase());
-                en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
-                en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
-                en.setCorreo(txtCorreoCliente.getText().toUpperCase());
-                en.setMotivo(txtMotivo.getText().toUpperCase());
-                en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
-                en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
-                en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
-                en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
-                en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
-                en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
-                en.setObservaciones(areaObservaciones.getText().toUpperCase());
-                en.setEstado("REVISION");
-                //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
-                en.setNumero(txtSec.getText());
-
-                db.insertarEntrada(en);
-                JOptionPane.showMessageDialog(this, "Factura guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-
-                numeros();
-                //numeroForaneo();
-                txtNitCliente.setText("");
-                txtEmpresa.setText("");
-                txtTelefonoCliente.setText("");
-                txtDireccionCliente.setText("");
-                txtCiudadCliente.setText("");
-                txtCorreoCliente.setText("");
-                txtContactoCliente.setText("");
-                txtElemento.setText("");
-                txtPotencia.setText("");
-                txtMarca.setText("");
-                txtModelo.setText("");
-                txtSerie.setText("");
-                txtMotivo.setText("");
-                areaObservaciones.setText("");
-                txtPersonaRemitente.setText("");
-                //this.cmbClientes.removeAllItems();
-                //this.cmbFacturas.removeAllItems();
-                //CargarCmbCliente();
-                //CargarCmbFacturas();
-                txtElemento.requestFocus();
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
+                pst.setString(1, cli.getNombre_cliente());
+                ResultSet rs = pst.executeQuery();
+                
+                if (rs.next()) {
+                    db.insertarEntrada(en);
+                    JOptionPane.showMessageDialog(this, "Entrada guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                } else {
+                    if(id == 0){
+                       JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
+                       Nuevo_Cliente_Tec obj = new Nuevo_Cliente_Tec();
+                       obj.setVisible(true);
+                       dispose();
+                    } 
+                    }     
+                cn.close();
             } catch (Exception e) {
-                System.err.println("error" + e);
             }
+
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed
@@ -737,6 +798,10 @@ public class Entrada_Tec extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -771,6 +836,14 @@ public class Entrada_Tec extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -788,6 +861,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnGuarda1;
+    private javax.swing.JButton btnPrueba;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbBasesPlasticas;
@@ -814,6 +888,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
@@ -840,6 +915,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
     private javax.swing.JTextField txtElemento;
     private javax.swing.JTextField txtEmpresa;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtMotivo;
