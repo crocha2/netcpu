@@ -37,6 +37,9 @@ public class Facturas_Envio extends javax.swing.JFrame {
         this.setTitle("CPU System Service S.A.S - ENVIOS");
         CargarCmbEnvios();
         txtSec.setEnabled(false);
+        txtIdCli.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnEliminar.setEnabled(false);
     }
 
     public void CargarCmbEnvios() {
@@ -156,6 +159,8 @@ public class Facturas_Envio extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
         btnBusca2 = new javax.swing.JButton();
+        txtIdCli = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -382,6 +387,18 @@ public class Facturas_Envio extends javax.swing.JFrame {
         });
         getContentPane().add(btnBusca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 30, 30));
 
+        txtIdCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 80, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("ID");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 20, 20));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 460));
 
@@ -438,6 +455,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
                 txtTelefono.setText(rs.getString("telefono"));
                 txtCiudad.setText(rs.getString("ciudad").trim());
                 areaComentario.setText(rs.getString("comentario"));
+                txtIdCli.setText(rs.getString("id_cli"));
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
             } else {
@@ -453,14 +471,14 @@ public class Facturas_Envio extends javax.swing.JFrame {
 
     private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
 
-            if (txtSec.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
-            } else {
-                String nume = txtSec.getText();
-                GenerarReportes g = new GenerarReportes();
-                g.reporteEnvio(nume);
-            }
-        
+        if (txtSec.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
+        } else {
+            String nume = txtSec.getText();
+            GenerarReportes g = new GenerarReportes();
+            g.reporteEnvio(nume);
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPdfActionPerformed
 
@@ -476,8 +494,11 @@ public class Facturas_Envio extends javax.swing.JFrame {
             en.setTelefono(txtTelefono.getText().toUpperCase());
             en.setCiudad(txtCiudad.getText().toUpperCase());
             en.setComentario(areaComentario.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
             db.EditarEnvio(en);
             JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+            this.cmbEnvios.removeAllItems();
+            CargarCmbEnvios();
             limpiar();
         } catch (Exception e) {
             System.err.println("error" + e);
@@ -489,6 +510,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         try {
+            
             Envios en = new Envios();
             en.setFecha(txtFecha.getText());
             en.setNumero(txtSec.getText());
@@ -498,11 +520,14 @@ public class Facturas_Envio extends javax.swing.JFrame {
             en.setTelefono(txtTelefono.getText().toUpperCase());
             en.setCiudad(txtCiudad.getText().toUpperCase());
             en.setComentario(areaComentario.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
             db.EliminarEnvio(en);
             JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+            this.cmbEnvios.removeAllItems();
+            CargarCmbEnvios();
             limpiar();
             CargarCmbEnvios();
-
+            
         } catch (Exception e) {
             System.err.println("error" + e);
         }
@@ -517,6 +542,10 @@ public class Facturas_Envio extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca2ActionPerformed
+
+    private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -637,6 +666,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelFondo;
@@ -657,6 +687,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
     private javax.swing.JTextField txtDestinatario;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtSec;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables

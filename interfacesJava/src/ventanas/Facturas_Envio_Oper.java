@@ -26,7 +26,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
 
     ArrayList<Entradas> entrada;
     envioMySql db = new envioMySql();
-    
+
     /**
      * Creates new form Entrada
      */
@@ -37,9 +37,12 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
         this.setTitle("CPU System Service S.A.S - ENVIOS");
         CargarCmbEnvios();
         txtSec.setEnabled(false);
+        txtIdCli.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnEliminar.setEnabled(false);
     }
 
-    public void CargarCmbEnvios(){
+    public void CargarCmbEnvios() {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
@@ -51,8 +54,8 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    
-    public void limpiar(){
+
+    public void limpiar() {
         txtSec.setText("");
         txtDestinatario.setText("");
         txtATN.setText("");
@@ -62,50 +65,50 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
         areaComentario.setText("");
         txtDestinatario.requestFocus();
     }
-  /*  
-    void numerosEnvios() {
-        int j;
-        String c = "";
-        String SQL = "SELECT MAX(numero) AS numero FROM envios";
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            if (rs.next()) {
-                c = rs.getString("numero");
-            }
-            System.out.println(c);
-            if (c == null) {
-                txtSec.setText("EN000000001");
-                System.out.println(c);
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                char r5 = c.charAt(6);
-                char r6 = c.charAt(7);
-                char r7 = c.charAt(8);
-                char r8 = c.charAt(9);
-                char r9 = c.charAt(10);
+    /*  
+     void numerosEnvios() {
+     int j;
+     String c = "";
+     String SQL = "SELECT MAX(numero) AS numero FROM envios";
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
+     Statement st = cn.createStatement();
+     ResultSet rs = st.executeQuery(SQL);
+     if (rs.next()) {
+     c = rs.getString("numero");
+     }
+     System.out.println(c);
+     if (c == null) {
+     txtSec.setText("EN000000001");
+     System.out.println(c);
+     } else {
+     char r1 = c.charAt(2);
+     char r2 = c.charAt(3);
+     char r3 = c.charAt(4);
+     char r4 = c.charAt(5);
+     char r5 = c.charAt(6);
+     char r6 = c.charAt(7);
+     char r7 = c.charAt(8);
+     char r8 = c.charAt(9);
+     char r9 = c.charAt(10);
 
-                System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9);
-                String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9;
-                int var = Integer.parseInt(juntar);
+     System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9);
+     String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9;
+     int var = Integer.parseInt(juntar);
 
-                System.out.println("\n lo que vale: " + var);
-                GenerarNumeros gen = new GenerarNumeros();
-                gen.generarEnvios(var);
+     System.out.println("\n lo que vale: " + var);
+     GenerarNumeros gen = new GenerarNumeros();
+     gen.generarEnvios(var);
 
-                txtSec.setDisabledTextColor(java.awt.Color.BLUE);
-                txtSec.setText(gen.serie());
-            }
-        } catch (SQLException | NumberFormatException ex) {
-            Logger.getLogger(Facturas_Envio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    */
-    
+     txtSec.setDisabledTextColor(java.awt.Color.BLUE);
+     txtSec.setText(gen.serie());
+     }
+     } catch (SQLException | NumberFormatException ex) {
+     Logger.getLogger(Facturas_Envio.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     }
+     */
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,18 +148,19 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         btnBusca = new javax.swing.JButton();
         btnPdf = new javax.swing.JButton();
-        btnGuarda = new javax.swing.JButton();
         txtSec = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel26 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
-        btnBusca2 = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jSeparator6 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
-        jSeparator10 = new javax.swing.JSeparator();
         jSeparator11 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        btnBusca2 = new javax.swing.JButton();
+        txtIdCli = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -309,26 +313,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
                 btnPdfActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 60, 70));
-
-        btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
-        btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnGuarda.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuarda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar_1.png"))); // NOI18N
-        btnGuarda.setText("Guardar");
-        btnGuarda.setBorder(null);
-        btnGuarda.setBorderPainted(false);
-        btnGuarda.setContentAreaFilled(false);
-        btnGuarda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuarda.setIconTextGap(-1);
-        btnGuarda.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 60, -1));
+        getContentPane().add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 60, 70));
         getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 200, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 150, 10));
 
@@ -337,24 +322,6 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
         jLabel26.setText("No. REM");
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 60, 20));
         getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 140, -1));
-
-        btnBusca2.setBackground(new java.awt.Color(255, 255, 255));
-        btnBusca2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnBusca2.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/juega.png"))); // NOI18N
-        btnBusca2.setBorder(null);
-        btnBusca2.setBorderPainted(false);
-        btnBusca2.setContentAreaFilled(false);
-        btnBusca2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBusca2.setIconTextGap(-1);
-        btnBusca2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBusca2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBusca2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusca2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBusca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 30, 30));
 
         btnEditar.setBackground(new java.awt.Color(255, 255, 255));
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -393,14 +360,44 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 50, 50));
+        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 150, 10));
+        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 150, 10));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, 10, 70));
-        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 150, 10));
 
         jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 10, 70));
-        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 150, 10));
+
+        btnBusca2.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca2.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/juega.png"))); // NOI18N
+        btnBusca2.setBorder(null);
+        btnBusca2.setBorderPainted(false);
+        btnBusca2.setContentAreaFilled(false);
+        btnBusca2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca2.setIconTextGap(-1);
+        btnBusca2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBusca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 30, 30));
+
+        txtIdCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 80, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("ID");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 20, 20));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 460));
@@ -428,7 +425,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
 
     private void btnDescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescartarActionPerformed
 
-      limpiar();
+        limpiar();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDescartarActionPerformed
@@ -439,7 +436,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
 
-       try {
+        try {
 
             String guardar = cmbEnvios.getSelectedItem().toString();
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -458,6 +455,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
                 txtTelefono.setText(rs.getString("telefono"));
                 txtCiudad.setText(rs.getString("ciudad").trim());
                 areaComentario.setText(rs.getString("comentario"));
+                txtIdCli.setText(rs.getString("id_cli"));
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
             } else {
@@ -472,47 +470,17 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscaActionPerformed
 
     private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
- 
+
         if (txtSec.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
-            } else {
-                String nume = txtSec.getText();
-                GenerarReportes g = new GenerarReportes();
-                g.reporteEnvio(nume);
-            }
-        
-// TODO add your handling code here:
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el registro");
+        } else {
+            String nume = txtSec.getText();
+            GenerarReportes g = new GenerarReportes();
+            g.reporteEnvio(nume);
+        }
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnPdfActionPerformed
-
-    private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
-
-        try {
-                Envios en = new Envios();
-                en.setFecha(txtFecha.getText());
-                en.setNumero(txtSec.getText());
-                en.setDestinatario(txtDestinatario.getText().toUpperCase());
-                en.setATN(txtATN.getText().toUpperCase());
-                en.setDireccion(txtDireccion.getText().toUpperCase());
-                en.setTelefono(txtTelefono.getText().toUpperCase());
-                en.setCiudad(txtCiudad.getText().toUpperCase());
-                en.setComentario(areaComentario.getText().toUpperCase());
-                db.EditarEnvio(en);
-                JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                limpiar();
-            } catch (Exception e) {
-                System.err.println("error" + e);
-            }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardaActionPerformed
-
-    private void btnBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca2ActionPerformed
-
-        btnEditar.setEnabled(true);
-        btnEliminar.setEnabled(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBusca2ActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
@@ -526,8 +494,11 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
             en.setTelefono(txtTelefono.getText().toUpperCase());
             en.setCiudad(txtCiudad.getText().toUpperCase());
             en.setComentario(areaComentario.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
             db.EditarEnvio(en);
             JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+            this.cmbEnvios.removeAllItems();
+            CargarCmbEnvios();
             limpiar();
         } catch (Exception e) {
             System.err.println("error" + e);
@@ -539,6 +510,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         try {
+            
             Envios en = new Envios();
             en.setFecha(txtFecha.getText());
             en.setNumero(txtSec.getText());
@@ -548,16 +520,32 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
             en.setTelefono(txtTelefono.getText().toUpperCase());
             en.setCiudad(txtCiudad.getText().toUpperCase());
             en.setComentario(areaComentario.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
             db.EliminarEnvio(en);
             JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+            this.cmbEnvios.removeAllItems();
+            CargarCmbEnvios();
             limpiar();
             CargarCmbEnvios();
+            
         } catch (Exception e) {
             System.err.println("error" + e);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca2ActionPerformed
+
+        btnEditar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca2ActionPerformed
+
+    private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -728,7 +716,6 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnPdf;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver;
@@ -743,6 +730,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelFondo;
@@ -763,6 +751,7 @@ public class Facturas_Envio_Oper extends javax.swing.JFrame {
     private javax.swing.JTextField txtDestinatario;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtSec;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables

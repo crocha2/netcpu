@@ -19,8 +19,9 @@ public class Envios {
     String ciudad;
     String comentario;
     String numero;
+    int id_cli;
     
-public Envios(int id_envio, String numero, String fecha, String destinatario, String ATN, String direccion, String telefono, String ciudad, String comentario) {
+public Envios(int id_envio, String numero, String fecha, String destinatario, String ATN, String direccion, String telefono, String ciudad, String comentario, int id_cli) {
         this.id_envio = id_envio;
         this.fecha = fecha;
         this.destinatario = destinatario;
@@ -30,6 +31,7 @@ public Envios(int id_envio, String numero, String fecha, String destinatario, St
         this.ciudad = ciudad;
         this.comentario = comentario;
         this.numero = numero;
+        this.id_cli = id_cli;
     }
 
     public Envios() {
@@ -106,5 +108,15 @@ public Envios(int id_envio, String numero, String fecha, String destinatario, St
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    public int getId_cli() {
+        return id_cli;
+    }
+
+    public void setId_cli(int id_cli) {
+        this.id_cli = id_cli;
+    }
+    
+    
 
 }

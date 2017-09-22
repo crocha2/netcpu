@@ -7,9 +7,12 @@ package ventanas;
 
 import clasesPrincipales.Entradas;
 import clasesPrincipales.Envios;
+import clasesPrincipales.clientes;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import conMySql.GenerarNumeros;
+import conMySql.clienteMySql;
 import conMySql.envioMySql;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,7 +34,10 @@ public class Envio_Oper extends javax.swing.JFrame {
 
     ArrayList<Entradas> entrada;
     envioMySql db = new envioMySql();
-    
+
+    ArrayList<clientes> cliente;
+    clienteMySql dbCli = new clienteMySql();
+
     /**
      * Creates new form Entrada
      */
@@ -44,39 +50,40 @@ public class Envio_Oper extends javax.swing.JFrame {
         autoComplete();
         numerosEnvios();
         txtSec.setEnabled(false);
+        txtIdCli.setEnabled(false);
+        txtIdCli.setText("" + 0);
     }
-    
-    public void autoComplete(){
+
+    public void autoComplete() {
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = (Statement)cn.createStatement();
+            Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes");
             while (rs.next()) {
                 TextAutoCompleter.addItem(rs.getString("nombre_cli"));
             }
             cn.close();
         } catch (Exception e) {
-            System.out.println("error: "+e);
+            System.out.println("error: " + e);
         }
     }
-/*
-    public void CargarCmbCliente(){
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
-            while (rs.next()) {
-                this.cmbClientes.addItem(rs.getString("nombre_cli"));
-            }
-            cn.close();
-        } catch (Exception e) {
-        }
-    }
-    */
-    
-    public void limpiar(){
-        //txtFecha.setDateFormatString("");
+    /*
+     public void CargarCmbCliente(){
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/basecpu", "root", "8020123496");
+     Statement st = cn.createStatement();
+     ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes ORDER BY nombre_cli ASC");
+     while (rs.next()) {
+     this.cmbClientes.addItem(rs.getString("nombre_cli"));
+     }
+     cn.close();
+     } catch (Exception e) {
+     }
+     }
+     */
+
+    public void limpiar() {
         txtDestinatario.setText("");
         txtATN.setText("");
         txtDireccion.setText("");
@@ -85,7 +92,7 @@ public class Envio_Oper extends javax.swing.JFrame {
         areaComentario.setText("");
         txtDestinatario.requestFocus();
     }
-    
+
     void numerosEnvios() {
         int j;
         String c = "";
@@ -127,7 +134,7 @@ public class Envio_Oper extends javax.swing.JFrame {
             Logger.getLogger(Envio_Oper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,14 +172,16 @@ public class Envio_Oper extends javax.swing.JFrame {
         txtFecha = new com.toedter.calendar.JDateChooser();
         jLabel25 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        btnBusca = new javax.swing.JButton();
         btnPdf = new javax.swing.JButton();
         btnGuarda = new javax.swing.JButton();
         txtSec = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        jLabel26 = new javax.swing.JLabel();
         auto = new javax.swing.JTextField();
-        btnBusca = new javax.swing.JButton();
         btnBusca1 = new javax.swing.JButton();
+        txtIdCli = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -291,6 +300,24 @@ public class Envio_Oper extends javax.swing.JFrame {
         getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 40, 20));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 110, 10));
 
+        btnBusca.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
+        btnBusca.setBorder(null);
+        btnBusca.setBorderPainted(false);
+        btnBusca.setContentAreaFilled(false);
+        btnBusca.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca.setIconTextGap(-1);
+        btnBusca.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 40, -1));
+
         btnPdf.setBackground(new java.awt.Color(255, 255, 255));
         btnPdf.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnPdf.setForeground(new java.awt.Color(255, 255, 255));
@@ -328,32 +355,14 @@ public class Envio_Oper extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 60, -1));
-        getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 170, -1));
+        getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 180, -1));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 120, 10));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(153, 255, 153));
         jLabel26.setText("No. REM");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 60, 20));
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 120, 10));
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 60, 20));
         getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 240, -1));
-
-        btnBusca.setBackground(new java.awt.Color(255, 255, 255));
-        btnBusca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
-        btnBusca.setBorder(null);
-        btnBusca.setBorderPainted(false);
-        btnBusca.setContentAreaFilled(false);
-        btnBusca.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBusca.setIconTextGap(-1);
-        btnBusca.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBusca.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 40, -1));
 
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -371,6 +380,18 @@ public class Envio_Oper extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 50, -1));
+
+        txtIdCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 80, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("ID");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 20, 20));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 460));
@@ -398,7 +419,7 @@ public class Envio_Oper extends javax.swing.JFrame {
 
     private void btnDescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescartarActionPerformed
 
-      limpiar();
+        limpiar();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDescartarActionPerformed
@@ -406,45 +427,6 @@ public class Envio_Oper extends javax.swing.JFrame {
     private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCiudadActionPerformed
-
-    private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
-
-        Facturas_Envio_Oper obj = new Facturas_Envio_Oper();
-        obj.setVisible(true);
-        dispose();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPdfActionPerformed
-
-    private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
-
-        try {
-                Envios en = new Envios();
-                
-                String formato = txtFecha.getDateFormatString();
-                Date date = txtFecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String dato = String.valueOf(sdf.format(date));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                en.setFecha(dato);
-                
-                en.setNumero(txtSec.getText());
-                en.setDestinatario(txtDestinatario.getText().toUpperCase());
-                en.setATN(txtATN.getText().toUpperCase());
-                en.setDireccion(txtDireccion.getText().toUpperCase());
-                en.setTelefono(txtTelefono.getText().toUpperCase());
-                en.setCiudad(txtCiudad.getText().toUpperCase());
-                en.setComentario(areaComentario.getText().toUpperCase());
-                db.insertarEnvio(en);
-                JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                numerosEnvios();
-                limpiar();
-            } catch (Exception e) {
-                System.err.println("error" + e);
-            }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardaActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
 
@@ -464,6 +446,7 @@ public class Envio_Oper extends javax.swing.JFrame {
                 txtDireccion.setText(rs.getString("direccion_cli").trim());
                 txtATN.setText(rs.getString("contacto_cli").trim());
                 txtCiudad.setText(rs.getString("ciudad_cli").trim());
+                txtIdCli.setText(rs.getString("id_cli"));
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
             } else {
@@ -477,6 +460,151 @@ public class Envio_Oper extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscaActionPerformed
 
+    private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
+
+        Facturas_Envio_Oper obj = new Facturas_Envio_Oper();
+        obj.setVisible(true);
+        dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPdfActionPerformed
+
+    private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
+
+        int id = Integer.parseInt(txtIdCli.getText());
+        try {
+            Envios en = new Envios();
+            clientes cli = new clientes();
+            cli.setNombre_cliente(this.txtDestinatario.getText());
+            
+            String formato = txtFecha.getDateFormatString();
+            Date date = txtFecha.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String dato = String.valueOf(sdf.format(date));
+            en.setFecha(dato);
+
+            en.setNumero(txtSec.getText());
+            en.setDestinatario(txtDestinatario.getText().toUpperCase());
+            en.setATN(txtATN.getText().toUpperCase());
+            en.setDireccion(txtDireccion.getText().toUpperCase());
+            en.setTelefono(txtTelefono.getText().toUpperCase());
+            en.setCiudad(txtCiudad.getText().toUpperCase());
+            en.setComentario(areaComentario.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+
+            cli.setId_cliente(id);
+
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
+                pst.setString(1, cli.getNombre_cliente());
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    db.insertarEnvio(en);
+                    JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                    numerosEnvios();
+                    limpiar();
+                } else {
+                    if (id == 0) {
+                        JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
+                        Nuevo_Cliente_Oper obj = new Nuevo_Cliente_Oper();
+                        obj.setVisible(true);
+                        dispose();
+                    }
+                }
+                cn.close();
+            } catch (SQLException | HeadlessException e) {
+                System.err.println("error" + e);
+            }
+
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
+        
+        
+        
+       
+        /*
+        
+
+        int id = Integer.parseInt(txtIdCli.getText());
+        try {
+            clientes cli = new clientes();
+            cli.setNombre_cliente(this.txtEmpresa.getText());
+
+            Entradas en = new Entradas();
+
+            String formato = txtFecha.getDateFormatString();
+            Date date = txtFecha.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String dato = String.valueOf(sdf.format(date));
+            //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+            en.setFecha(dato);
+            en.setElemento(txtElemento.getText().toUpperCase());
+            en.setPotencia(txtPotencia.getText().toUpperCase());
+            en.setMarca(txtMarca.getText().toUpperCase());
+            en.setModelo(txtModelo.getText().toUpperCase());
+            en.setSerie(txtSerie.getText().toUpperCase());
+            en.setEmpresa(txtEmpresa.getText().toUpperCase());
+            en.setNit(txtNitCliente.getText().toUpperCase());
+            en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
+            en.setCiudad(txtCiudadCliente.getText().toUpperCase());
+            en.setDireccion(txtDireccionCliente.getText().toUpperCase());
+            en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+            en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
+            en.setCorreo(txtCorreoCliente.getText().toUpperCase());
+            en.setMotivo(txtMotivo.getText().toUpperCase());
+            en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
+            en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
+            en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
+            en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
+            en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
+            en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
+            en.setObservaciones(areaObservaciones.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+            en.setEstado("REVISION");
+            //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
+            en.setNumero(txtSec.getText());
+
+            cli.setId_cliente(id);
+            cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
+            cli.setNit_cliente(txtNitCliente.getText().toUpperCase());
+            cli.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
+            cli.setDireccion_cliente(txtDireccionCliente.getText().toUpperCase());
+            cli.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+            cli.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
+            cli.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
+                pst.setString(1, cli.getNombre_cliente());
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    db.insertarEntrada(en);
+                    JOptionPane.showMessageDialog(this, "Entrada guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                } else {
+                    if (id == 0) {
+                        JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
+                        Nuevo_Cliente obj = new Nuevo_Cliente();
+                        obj.setVisible(true);
+                        dispose();
+                    }
+                }
+                cn.close();
+            } catch (Exception e) {
+            }
+
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
+        */
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardaActionPerformed
+
     private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
 
         Nuevo_Cliente_Oper obj = new Nuevo_Cliente_Oper();
@@ -485,6 +613,10 @@ public class Envio_Oper extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -604,6 +736,7 @@ public class Envio_Oper extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelFondo;
@@ -620,6 +753,7 @@ public class Envio_Oper extends javax.swing.JFrame {
     private javax.swing.JTextField txtDestinatario;
     private javax.swing.JTextField txtDireccion;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtSec;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
