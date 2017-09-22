@@ -2356,6 +2356,7 @@ public class Tecnico_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir7ActionPerformed
 
     private void btnVolver6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver6ActionPerformed
+        
         Principal_Admin obj = new Principal_Admin();
         obj.setVisible(true);
         dispose();
