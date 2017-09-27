@@ -84,7 +84,7 @@ public class Tecnico extends javax.swing.JFrame {
         entrada = dbEntrada.ListEntradas();
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
         for (Entradas en : entrada) {
-            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones(), en.getEstado()});
+            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado()});
         }
     }
 
@@ -191,7 +191,56 @@ public class Tecnico extends javax.swing.JFrame {
         }
 
     }
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
+    public void autoCompleteRevision() {
 
+        TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
+
+        try {
+            String guardar = cmbEntradas.getSelectedItem().toString();
+            if (guardar.equals("NUMERO")) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("numero"));
+                }
+                cn.close();
+            }
+            if (guardar.equals("CLIENTE")) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("empresa"));
+                }
+                cn.close();
+            }
+            if ("NIT O CEDULA".equals(guardar)) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("nit"));
+                }
+                cn.close();
+            }
+            if ("SERIE".equals(guardar)) {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                Statement st = (Statement) cn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
+                while (rs.next()) {
+                    TextAutoCompleter.addItem(rs.getString("serie"));
+                }
+                cn.close();
+            }
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
+
+    }
+    
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteSalidas() {
 
@@ -398,7 +447,7 @@ public class Tecnico extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         tbEntrada_garantia = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
-        txtNitCliente5 = new javax.swing.JTextField();
+        autoRevision = new javax.swing.JTextField();
         btnBusca5 = new javax.swing.JButton();
         cmbHistorial2 = new javax.swing.JComboBox();
         txtIdForanea = new javax.swing.JTextField();
@@ -457,11 +506,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Telefono", "Correo", "Elemento", "Marca", "Modelo", "Serie", "Observacion", "estado"
+                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Telefono", "Correo", "Elemento", "Marca", "Modelo", "Serie", "Garantia", "Observacion", "estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1117,25 +1166,25 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbHistorial2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNitCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                    .addComponent(autoRevision, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBusca5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(49, 49, 49))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBusca5)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(cmbHistorial2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNitCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(autoRevision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         txtIdForanea.addActionListener(new java.awt.event.ActionListener() {
@@ -1204,8 +1253,8 @@ public class Tecnico extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
                                 .addComponent(actualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2278,7 +2327,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         int seleccion = tbEntradas.getSelectedRow();
         txtIdEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 0)));
-        areaEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 11)));
+        areaEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 12)));
 
 // TODO add your handling code here:
     }//GEN-LAST:event_tbEntradasMouseClicked
@@ -2664,6 +2713,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField autoEntra;
     private javax.swing.JTextField autoEnvio;
     private javax.swing.JTextField autoProceso;
+    private javax.swing.JTextField autoRevision;
     private javax.swing.JTextField autoSal;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBusca1;
@@ -2760,7 +2810,6 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdProceso;
     private javax.swing.JTextField txtIdSalida;
     private javax.swing.JTextField txtNitCliente4;
-    private javax.swing.JTextField txtNitCliente5;
     private javax.swing.JTextField txtNuevaSerie;
     private javax.swing.JTextField txtRmaGar;
     // End of variables declaration//GEN-END:variables
