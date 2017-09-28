@@ -1484,7 +1484,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cmbHistorial2" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Component id="cmbRevision" min="-2" pref="162" max="-2" attributes="0"/>
                                   <Component id="autoRevision" min="-2" pref="201" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1500,7 +1500,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnBusca5" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="cmbHistorial2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmbRevision" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="autoRevision" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1541,20 +1541,19 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBusca5ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="cmbHistorial2">
+                    <Component class="javax.swing.JComboBox" name="cmbRevision">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="5">
-                            <StringItem index="0" value="RMA"/>
-                            <StringItem index="1" value="SERIE"/>
-                            <StringItem index="2" value="NIT"/>
-                            <StringItem index="3" value="CEDULA"/>
-                            <StringItem index="4" value="CLIENTE"/>
+                          <StringArray count="4">
+                            <StringItem index="0" value="NUMERO"/>
+                            <StringItem index="1" value="CLIENTE"/>
+                            <StringItem index="2" value="NIT O CEDULA"/>
+                            <StringItem index="3" value="SERIE"/>
                           </StringArray>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbHistorial2ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRevisionActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
