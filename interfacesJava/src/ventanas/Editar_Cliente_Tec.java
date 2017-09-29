@@ -156,6 +156,9 @@ public class Editar_Cliente_Tec extends javax.swing.JFrame {
         btnBusca = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        btnSalida6 = new javax.swing.JButton();
+        btnSalida7 = new javax.swing.JButton();
+        btnSalida8 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -207,7 +210,7 @@ public class Editar_Cliente_Tec extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabla_clientes);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 820, 260));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 820, 250));
 
         brnListar.setBackground(new java.awt.Color(255, 255, 255));
         brnListar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -318,6 +321,60 @@ public class Editar_Cliente_Tec extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Direccion");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
+
+        btnSalida6.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida6.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/entrada_mini.png"))); // NOI18N
+        btnSalida6.setBorder(null);
+        btnSalida6.setBorderPainted(false);
+        btnSalida6.setContentAreaFilled(false);
+        btnSalida6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida6.setIconTextGap(-1);
+        btnSalida6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalida6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 40, 40));
+
+        btnSalida7.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida7.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida_mini.png"))); // NOI18N
+        btnSalida7.setBorder(null);
+        btnSalida7.setBorderPainted(false);
+        btnSalida7.setContentAreaFilled(false);
+        btnSalida7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida7.setIconTextGap(-1);
+        btnSalida7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalida7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 40, 40));
+
+        btnSalida8.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida8.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/envio_mini.png"))); // NOI18N
+        btnSalida8.setBorder(null);
+        btnSalida8.setBorderPainted(false);
+        btnSalida8.setContentAreaFilled(false);
+        btnSalida8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida8.setIconTextGap(-1);
+        btnSalida8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalida8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 40, 40));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 520));
@@ -466,6 +523,33 @@ public class Editar_Cliente_Tec extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscaActionPerformed
 
+    private void btnSalida6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida6ActionPerformed
+
+        Entrada_Tec obj = new Entrada_Tec();
+        obj.setVisible(true);
+        dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida6ActionPerformed
+
+    private void btnSalida7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida7ActionPerformed
+
+        Salidass_Tec obj = new Salidass_Tec();
+        obj.setVisible(true);
+        dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida7ActionPerformed
+
+    private void btnSalida8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida8ActionPerformed
+
+        Envio_Tec obj = new Envio_Tec();
+        obj.setVisible(true);
+        dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -537,6 +621,9 @@ public class Editar_Cliente_Tec extends javax.swing.JFrame {
     private javax.swing.JButton brnListar;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnSalida6;
+    private javax.swing.JButton btnSalida7;
+    private javax.swing.JButton btnSalida8;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver1;
     private javax.swing.JLabel jLabel1;

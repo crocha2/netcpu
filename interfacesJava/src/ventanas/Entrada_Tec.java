@@ -54,7 +54,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
         numeros();
         txtSec.setEnabled(false);
         txtIdCli.setEnabled(false);
-        txtIdCli.setText(""+0);
+        txtIdCli.setText("" + 0);
         //txtForanea.setEnabled(false);
         //CargarCmbFacturas();
     }
@@ -263,15 +263,17 @@ public class Entrada_Tec extends javax.swing.JFrame {
         btnDescartar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btnBusca = new javax.swing.JButton();
-        btnGuarda = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel26 = new javax.swing.JLabel();
         txtSec = new javax.swing.JTextField();
-        btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
         btnBusca1 = new javax.swing.JButton();
         txtIdCli = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnGuarda = new javax.swing.JButton();
+        btnSalida6 = new javax.swing.JButton();
+        btnGuarda1 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -292,7 +294,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Formato De Entrada");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 270, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 270, 10));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 120, 10));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -323,42 +325,48 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("NIT");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 30, 20));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 30, 20));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Ciudad");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, -1, 20));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, 20));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Nombre");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 20));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, 20));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(153, 255, 153));
         jLabel16.setText("DATOS DEL CONTACTO");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 150, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 150, -1));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel17.setText("Garantia");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 90, 20));
+        jLabel17.setText("Garantía");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 90, 20));
 
         cmbTarjetaDeRed.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
-        getContentPane().add(cmbTarjetaDeRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 60, 20));
+        getContentPane().add(cmbTarjetaDeRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 50, 20));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 750, 10));
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 310, 10));
-        getContentPane().add(txtCiudadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 150, -1));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 310, 10));
+        getContentPane().add(txtCiudadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 150, -1));
         getContentPane().add(txtElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 150, -1));
         getContentPane().add(txtPotencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 150, -1));
         getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 180, -1));
         getContentPane().add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 150, -1));
         getContentPane().add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 150, -1));
-        getContentPane().add(txtNitCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 150, -1));
+        getContentPane().add(txtNitCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 150, -1));
         getContentPane().add(txtPersonaRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 170, -1));
         getContentPane().add(txtEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 170, -1));
-        getContentPane().add(txtDireccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 170, -1));
+
+        txtDireccionCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionClienteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtDireccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 170, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -368,50 +376,50 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Dirección");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 20));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, 20));
 
         txtContactoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContactoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(txtContactoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 190, -1));
+        getContentPane().add(txtContactoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 190, -1));
 
         txtTelefonoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(txtTelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 150, -1));
+        getContentPane().add(txtTelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 150, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Correo");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 40, 20));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 40, 20));
 
         txtCorreoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCorreoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 200, -1));
+        getContentPane().add(txtCorreoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 200, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Telefono");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 50, 20));
-        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 310, 10));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 50, 20));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 310, 10));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(153, 255, 153));
         jLabel22.setText("REVISIÓN DE LA MAQUINA");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("Estado Carcasa");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, 20));
-        getContentPane().add(txtMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 700, -1));
+        jLabel23.setText("Carcasa");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 50, 20));
+        getContentPane().add(txtMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 700, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
@@ -426,7 +434,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Motivo");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 20));
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 20));
 
         cmbGarantia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
         cmbGarantia.addActionListener(new java.awt.event.ActionListener() {
@@ -434,52 +442,52 @@ public class Entrada_Tec extends javax.swing.JFrame {
                 cmbGarantiaActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 80, 20));
+        getContentPane().add(cmbGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 80, 20));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setText("Parrilla");
-        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, 20));
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, 20));
 
         cmbParrilla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
-        getContentPane().add(cmbParrilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 60, 20));
+        getContentPane().add(cmbParrilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 50, 20));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Bases Plasticas");
-        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 90, 20));
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 90, 20));
 
         cmbBasesPlasticas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
-        getContentPane().add(cmbBasesPlasticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 60, 20));
+        getContentPane().add(cmbBasesPlasticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 50, 20));
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Conector original");
-        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, 20));
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, -1, 20));
 
         cmbEstadoCarcasa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buen Estado", "Mal Estado" }));
-        getContentPane().add(cmbEstadoCarcasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 110, -1));
+        getContentPane().add(cmbEstadoCarcasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, 110, -1));
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
         jLabel32.setText("Tarjeta de red");
-        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, 20));
+        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 20));
 
         cmbConectorOriginal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
-        getContentPane().add(cmbConectorOriginal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 60, 20));
+        getContentPane().add(cmbConectorOriginal, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 50, 20));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("Observaciones");
-        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, 20));
+        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, 20));
         getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 240, 10));
 
         areaObservaciones.setColumns(20);
         areaObservaciones.setRows(5);
         jScrollPane1.setViewportView(areaObservaciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 500, 100));
-        getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 260, 10));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 590, 80));
+        getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 260, 10));
 
         btnVolver.setBackground(new java.awt.Color(51, 153, 255));
         btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -526,24 +534,6 @@ public class Entrada_Tec extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 40, -1));
-
-        btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
-        btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnGuarda.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuarda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar_1.png"))); // NOI18N
-        btnGuarda.setText("Guardar");
-        btnGuarda.setBorderPainted(false);
-        btnGuarda.setContentAreaFilled(false);
-        btnGuarda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuarda.setIconTextGap(-1);
-        btnGuarda.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 80, -1));
         getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 120, 10));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -551,24 +541,6 @@ public class Entrada_Tec extends javax.swing.JFrame {
         jLabel26.setText("FECHA");
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 40, 20));
         getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 170, -1));
-
-        btnGuarda1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGuarda1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnGuarda1.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuarda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/generarr.png"))); // NOI18N
-        btnGuarda1.setText("Go");
-        btnGuarda1.setBorderPainted(false);
-        btnGuarda1.setContentAreaFilled(false);
-        btnGuarda1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuarda1.setIconTextGap(-1);
-        btnGuarda1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuarda1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGuarda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 50, 70));
         getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, -1));
 
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
@@ -586,19 +558,75 @@ public class Entrada_Tec extends javax.swing.JFrame {
                 btnBusca1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 33, 50, -1));
+        getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 50, -1));
 
         txtIdCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdCliActionPerformed(evt);
             }
         });
-        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 80, -1));
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 60, -1));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("ID");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 20, 20));
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 20, 20));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnGuarda.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuarda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar_1.png"))); // NOI18N
+        btnGuarda.setBorderPainted(false);
+        btnGuarda.setContentAreaFilled(false);
+        btnGuarda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuarda.setIconTextGap(-1);
+        btnGuarda.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnGuarda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuarda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuarda);
+
+        btnSalida6.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida6.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/panel_mini.png"))); // NOI18N
+        btnSalida6.setBorder(null);
+        btnSalida6.setBorderPainted(false);
+        btnSalida6.setContentAreaFilled(false);
+        btnSalida6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida6.setIconTextGap(-1);
+        btnSalida6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalida6);
+
+        btnGuarda1.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuarda1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnGuarda1.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuarda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/generarr.png"))); // NOI18N
+        btnGuarda1.setBorderPainted(false);
+        btnGuarda1.setContentAreaFilled(false);
+        btnGuarda1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuarda1.setIconTextGap(-1);
+        btnGuarda1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnGuarda1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuarda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuarda1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuarda1);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 250, 70));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
@@ -753,19 +781,19 @@ public class Entrada_Tec extends javax.swing.JFrame {
                 PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
                 pst.setString(1, cli.getNombre_cliente());
                 ResultSet rs = pst.executeQuery();
-                
+
                 if (rs.next()) {
                     db.insertarEntrada(en);
                     JOptionPane.showMessageDialog(this, "Entrada guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                     limpiar();
                 } else {
-                    if(id == 0){
-                       JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
-                       Nuevo_Cliente_Tec obj = new Nuevo_Cliente_Tec();
-                       obj.setVisible(true);
-                       dispose();
-                    } 
-                    }     
+                    if (id == 0) {
+                        JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
+                        Nuevo_Cliente_Tec obj = new Nuevo_Cliente_Tec();
+                        obj.setVisible(true);
+                        dispose();
+                    }
+                }
                 cn.close();
             } catch (Exception e) {
             }
@@ -798,6 +826,37 @@ public class Entrada_Tec extends javax.swing.JFrame {
     private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdCliActionPerformed
+
+    private void btnSalida6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida6ActionPerformed
+
+        try {
+            if (!txtIdCli.getText().equals("0")) {
+                Object[] opciones = {"Aceptar", "Cancelar"};
+                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea abandonar?", "Mensaje de Confirmacion",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+                if (eleccion == JOptionPane.YES_OPTION) {
+                    Tecnico obj = new Tecnico();
+                    obj.setVisible(true);
+                    dispose();
+                } else {
+                    txtElemento.requestFocus();
+                }
+            } else {
+                Tecnico obj = new Tecnico();
+                obj.setVisible(true);
+                dispose();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error: " + e);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida6ActionPerformed
+
+    private void txtDireccionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -857,6 +916,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnGuarda1;
+    private javax.swing.JButton btnSalida6;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbBasesPlasticas;
@@ -894,6 +954,7 @@ public class Entrada_Tec extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
