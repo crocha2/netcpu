@@ -118,7 +118,6 @@ public class Facturas_Envio_Tec extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSalir1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
@@ -140,7 +139,6 @@ public class Facturas_Envio_Tec extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         areaComentario = new javax.swing.JTextArea();
         jSeparator9 = new javax.swing.JSeparator();
-        btnVolver = new javax.swing.JButton();
         btnDescartar = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         txtCiudad = new javax.swing.JTextField();
@@ -163,19 +161,8 @@ public class Facturas_Envio_Tec extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnSalir1.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir1.setText("Salir");
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,17 +225,6 @@ public class Facturas_Envio_Tec extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 380, 90));
         getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 190, 10));
-
-        btnVolver.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
 
         btnDescartar.setBackground(new java.awt.Color(255, 255, 255));
         btnDescartar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -404,24 +380,6 @@ public class Facturas_Envio_Tec extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir1ActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
-        Envio_Tec obj = new Envio_Tec();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnDescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescartarActionPerformed
 
@@ -845,8 +803,6 @@ public class Facturas_Envio_Tec extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnPdf;
-    private javax.swing.JButton btnSalir1;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbEnvios;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;

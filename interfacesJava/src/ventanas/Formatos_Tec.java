@@ -141,7 +141,7 @@ public class Formatos_Tec extends javax.swing.JFrame {
         btnCotizacion.setBackground(new java.awt.Color(255, 255, 255));
         btnCotizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCotizacion.setForeground(new java.awt.Color(255, 255, 255));
-        btnCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/coti.png"))); // NOI18N
+        btnCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calendar_mini.png"))); // NOI18N
         btnCotizacion.setText("GARANTIAS MES");
         btnCotizacion.setBorder(null);
         btnCotizacion.setBorderPainted(false);
@@ -204,8 +204,7 @@ public class Formatos_Tec extends javax.swing.JFrame {
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
  
         Entrada_Tec obj = new Entrada_Tec();
-        obj.setVisible(true);
-        dispose(); 
+        obj.setVisible(true); 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEntradaActionPerformed
@@ -214,7 +213,6 @@ public class Formatos_Tec extends javax.swing.JFrame {
 
         Salidass_Tec obj = new Salidass_Tec();
         obj.setVisible(true);
-        dispose();
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalidaActionPerformed
@@ -223,7 +221,6 @@ public class Formatos_Tec extends javax.swing.JFrame {
 
         Envio_Tec obj = new Envio_Tec();
         obj.setVisible(true);
-        dispose();
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnEnviosActionPerformed
@@ -232,19 +229,15 @@ public class Formatos_Tec extends javax.swing.JFrame {
 
         Garantias_Tec obj = new Garantias_Tec();
         obj.setVisible(true);
-        dispose();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCotizacionActionPerformed
 
     private void btnFormatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormatosActionPerformed
-
-        
+      
         Tecnico obj = new Tecnico();
         obj.setVisible(true);
-        dispose();
         
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFormatosActionPerformed
 

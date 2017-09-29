@@ -50,6 +50,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
         btnSalida1 = new javax.swing.JButton();
         btnEnvios1 = new javax.swing.JButton();
         btnCotizacion = new javax.swing.JButton();
+        btnCotizacion1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,7 +71,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
                 btnSalir2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
+        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         btnVolver.setBackground(new java.awt.Color(51, 153, 255));
         btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -81,7 +82,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 70, -1));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 70, -1));
 
         btnEntrada1.setBackground(new java.awt.Color(255, 255, 255));
         btnEntrada1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -138,12 +139,12 @@ public class Formatos_Oper extends javax.swing.JFrame {
                 btnEnvios1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnvios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 90, 90));
+        getContentPane().add(btnEnvios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 90, 90));
 
         btnCotizacion.setBackground(new java.awt.Color(255, 255, 255));
         btnCotizacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCotizacion.setForeground(new java.awt.Color(255, 255, 255));
-        btnCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/coti.png"))); // NOI18N
+        btnCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calendar_mini.png"))); // NOI18N
         btnCotizacion.setText("GARANTIAS");
         btnCotizacion.setBorder(null);
         btnCotizacion.setBorderPainted(false);
@@ -157,10 +158,29 @@ public class Formatos_Oper extends javax.swing.JFrame {
                 btnCotizacionActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 90));
+        getContentPane().add(btnCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 90, 90));
+
+        btnCotizacion1.setBackground(new java.awt.Color(255, 255, 255));
+        btnCotizacion1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnCotizacion1.setForeground(new java.awt.Color(255, 255, 255));
+        btnCotizacion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tecnico.png"))); // NOI18N
+        btnCotizacion1.setText("PANEL");
+        btnCotizacion1.setBorder(null);
+        btnCotizacion1.setBorderPainted(false);
+        btnCotizacion1.setContentAreaFilled(false);
+        btnCotizacion1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCotizacion1.setIconTextGap(-1);
+        btnCotizacion1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCotizacion1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCotizacion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCotizacion1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCotizacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 300));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -187,7 +207,6 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
         Entrada_Oper obj = new Entrada_Oper();
         obj.setVisible(true);
-        dispose(); 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEntrada1ActionPerformed
@@ -196,7 +215,6 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
         Salidass_Oper obj = new Salidass_Oper();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida1ActionPerformed
@@ -205,7 +223,6 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
         Envio_Oper obj = new Envio_Oper();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEnvios1ActionPerformed
@@ -214,10 +231,17 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
         Garantias_Oper obj = new Garantias_Oper();
         obj.setVisible(true);
-        dispose();
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnCotizacionActionPerformed
+
+    private void btnCotizacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacion1ActionPerformed
+
+        Tecnico_Oper obj = new Tecnico_Oper();
+        obj.setVisible(true);
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnCotizacion1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +283,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCotizacion;
+    private javax.swing.JButton btnCotizacion1;
     private javax.swing.JButton btnEntrada1;
     private javax.swing.JButton btnEnvios1;
     private javax.swing.JButton btnSalida1;

@@ -206,7 +206,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/coti.png"/>
+          <Image iconType="3" name="/imagenes/calendar_mini.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="GARANTIAS MES"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

@@ -513,7 +513,7 @@ public class Tecnico extends javax.swing.JFrame {
         btnBusca4 = new javax.swing.JButton();
         cmbHistorial1 = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);

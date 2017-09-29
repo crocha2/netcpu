@@ -242,8 +242,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
  
         Entrada obj = new Entrada();
-        obj.setVisible(true);
-        dispose(); 
+        obj.setVisible(true); 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEntradaActionPerformed
@@ -252,7 +251,6 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
         Salidass obj = new Salidass();
         obj.setVisible(true);
-        dispose();
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalidaActionPerformed
@@ -261,7 +259,6 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
         Envio obj = new Envio();
         obj.setVisible(true);
-        dispose();
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnEnviosActionPerformed
@@ -270,7 +267,6 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
         Garantias_Admin obj = new Garantias_Admin();
         obj.setVisible(true);
-        dispose();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCotizacionActionPerformed
@@ -279,23 +275,23 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
         Contratos_Admin obj = new Contratos_Admin();
         obj.setVisible(true);
-        dispose();
        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida1ActionPerformed
 
     private void btnFormatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormatosActionPerformed
-
-        
+      
         Tecnico obj = new Tecnico();
         obj.setVisible(true);
-        dispose();
         
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFormatosActionPerformed
 
     private void btnCotizacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacion1ActionPerformed
+
+        Tecnico_Admin obj = new Tecnico_Admin();
+        obj.setVisible(true);
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCotizacion1ActionPerformed
 

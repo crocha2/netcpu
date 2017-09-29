@@ -275,7 +275,7 @@ public class Entrada extends javax.swing.JFrame {
         btnPrueba = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnSalir1.setBackground(new java.awt.Color(51, 153, 255));
