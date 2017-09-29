@@ -58,16 +58,14 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
         txtCiudadCliente = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        btnVolver = new javax.swing.JButton();
         btnGuarda = new javax.swing.JButton();
         btnDescartar = new javax.swing.JButton();
-        btnSalir3 = new javax.swing.JButton();
         btnSalida = new javax.swing.JButton();
         btnSalida1 = new javax.swing.JButton();
         btnSalida2 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -122,17 +120,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 10, 190));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 350, 10));
 
-        btnVolver.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-
         btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnGuarda.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,17 +148,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDescartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 40, 40));
-
-        btnSalir3.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir3.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir3.setText("Salir");
-        btnSalir3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
 
         btnSalida.setBackground(new java.awt.Color(255, 255, 255));
         btnSalida.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -234,15 +210,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
-        Principal_Admin obj = new Principal_Admin();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
-
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
         if (txtNitCliente.getText().equals("") || txtNombreCliente.getText().equals("") || txtTelefonoCliente.getText().equals("") || txtDireccionCliente.getText().equals("") || txtCiudadCliente.getText().equals("") || txtCorreoCliente.getText().equals("") || txtContactoCliente.getText().equals("")) {
@@ -289,10 +256,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDescartarActionPerformed
-
-    private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir3ActionPerformed
 
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
 
@@ -425,8 +388,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
     private javax.swing.JButton btnSalida;
     private javax.swing.JButton btnSalida1;
     private javax.swing.JButton btnSalida2;
-    private javax.swing.JButton btnSalir3;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

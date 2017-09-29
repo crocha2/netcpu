@@ -51,7 +51,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
         btnCotizacion1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 170, 10));
 
@@ -216,7 +216,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
         getContentPane().add(btnCotizacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 100, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -6, 350, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,7 +273,7 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
     private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
 
-        Contratos_Admin obj = new Contratos_Admin();
+        Contratos obj = new Contratos();
         obj.setVisible(true);
        
         // TODO add your handling code here:
@@ -289,9 +289,6 @@ public class Formatos_Admin extends javax.swing.JFrame {
 
     private void btnCotizacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacion1ActionPerformed
 
-        Tecnico_Admin obj = new Tecnico_Admin();
-        obj.setVisible(true);
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCotizacion1ActionPerformed
 

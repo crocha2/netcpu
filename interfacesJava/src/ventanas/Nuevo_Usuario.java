@@ -56,12 +56,10 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        btnSalir2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        btnVolver = new javax.swing.JButton();
         cmbUsuarios = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -71,24 +69,13 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         btnDescartar1 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nuevo Usuario");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
-
-        btnSalir2.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir2.setText("Salir");
-        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,17 +88,6 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 90, -1));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 140, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 350, 10));
-
-        btnVolver.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
         cmbUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ADMINISTRADOR", "OPERARIO", "TECNICO" }));
         getContentPane().add(cmbUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 150, 20));
@@ -130,7 +106,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("- Inicial de la persona, primer apellido, ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 220, 20));
-        getContentPane().add(txtPasswordUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 150, -1));
+        getContentPane().add(txtPasswordUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 140, -1));
 
         btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -166,24 +142,6 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir2ActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
-        Usuario obj = new Usuario();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
@@ -271,8 +229,6 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDescartar1;
     private javax.swing.JButton btnGuarda;
-    private javax.swing.JButton btnSalir2;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

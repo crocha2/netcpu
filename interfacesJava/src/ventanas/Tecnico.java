@@ -73,6 +73,35 @@ public class Tecnico extends javax.swing.JFrame {
         //txtFechaEntrad.setEnabled(false);
     }
     
+     //variables de tabla salida para editar o eliminar... 
+    public static String id_entrada;
+    public static String fecha_entrada;
+    public static String numero_entrada;
+    public static String cliente_entrada;
+    public static String nit_entrada;
+    public static String telefono_entrada;
+    public static String correo_entrada;
+    public static String elemento_entrada;
+    public static String marca_entrada;
+    public static String modelo_entrada;
+    public static String serie_entrada;
+    public static String garantia_entrada;
+    public static String observacion_entrada;
+    public static String estado_entrada;
+    
+    //variables de tabla salida para editar o eliminar... 
+    public static String id_salida;
+    public static String fecha_salida;
+    public static String numero_salida;
+    public static String cliente_salida;
+    public static String telefono_salida;
+    public static String correo_salida;
+    public static String equipo_salida;
+    public static String modelo_salida;
+    public static String serie_salida;
+    public static String observacion_salida;
+    
+    
     public void limpiarTextFiealdProceso(){
         txtCaso.setText("");
         txtNuevaSerie.setText("");
@@ -2844,7 +2873,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
 
-        Entrada_Tec obj = new Entrada_Tec();
+        Entrada obj = new Entrada();
         obj.setVisible(true);
         dispose();
 
@@ -2853,7 +2882,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida2ActionPerformed
 
-        Salidass_Tec obj = new Salidass_Tec();
+        Salidass obj = new Salidass();
         obj.setVisible(true);
         dispose();
 
@@ -2862,7 +2891,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
 
-        Envio_Tec obj = new Envio_Tec();
+        Envio obj = new Envio();
         obj.setVisible(true);
         dispose();
 
@@ -2871,7 +2900,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida3ActionPerformed
 
-        Entrada_Tec obj = new Entrada_Tec();
+        Entrada obj = new Entrada();
         obj.setVisible(true);
         dispose();
         
@@ -2880,7 +2909,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida4ActionPerformed
 
-        Salidass_Tec obj = new Salidass_Tec();
+        Salidass obj = new Salidass();
         obj.setVisible(true);
         dispose();
         
@@ -2889,7 +2918,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida5ActionPerformed
 
-        Envio_Tec obj = new Envio_Tec();
+        Envio obj = new Envio();
         obj.setVisible(true);
         dispose();
         
@@ -2898,7 +2927,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida6ActionPerformed
 
-        Entrada_Tec obj = new Entrada_Tec();
+        Entrada obj = new Entrada();
         obj.setVisible(true);
         dispose();
         
@@ -2907,7 +2936,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida7ActionPerformed
 
-        Salidass_Tec obj = new Salidass_Tec();
+        Salidass obj = new Salidass();
         obj.setVisible(true);
         dispose();
         
@@ -2916,7 +2945,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnSalida8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida8ActionPerformed
 
-        Envio_Tec obj = new Envio_Tec();
+        Envio obj = new Envio();
         obj.setVisible(true);
         dispose();
         
@@ -2925,7 +2954,11 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
-        Facturas_Entrada_Tec obj = new Facturas_Entrada_Tec();
+        int seleccion = tbEntradas.getSelectedRow();
+        //id_entrada = txtIdEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 0)));
+        
+        
+        Facturas_Entrada obj = new Facturas_Entrada();
         obj.setVisible(true);
         
 // TODO add your handling code here:

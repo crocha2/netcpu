@@ -274,8 +274,6 @@ public class Contratos extends javax.swing.JFrame {
         txtResp = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         txtCli = new javax.swing.JTextField();
-        btnSalir5 = new javax.swing.JButton();
-        btnVolver4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_contrato2 = new javax.swing.JTable();
@@ -296,8 +294,6 @@ public class Contratos extends javax.swing.JFrame {
         txtFechaInicial = new javax.swing.JTextField();
         txtFechaFin = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        btnSalir6 = new javax.swing.JButton();
-        btnVolver5 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
@@ -423,26 +419,6 @@ public class Contratos extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        btnSalir5.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir5.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir5.setText("Salir");
-        btnSalir5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir5ActionPerformed(evt);
-            }
-        });
-
-        btnVolver4.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver4.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver4.setText("Volver");
-        btnVolver4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver4ActionPerformed(evt);
-            }
-        });
-
         jButton5.setBackground(new java.awt.Color(153, 153, 153));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setText("GUARDAR");
@@ -478,27 +454,21 @@ public class Contratos extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(273, 273, 273)
-                        .addComponent(btnSalir5))
-                    .addComponent(btnVolver4))
+                        .addGap(330, 330, 330)))
                 .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(btnSalir5))
+                .addComponent(jLabel9)
                 .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVolver4)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("CONTRATO", jPanel2);
@@ -615,26 +585,6 @@ public class Contratos extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("CONTRATOS");
-
-        btnSalir6.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir6.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir6.setText("Salir");
-        btnSalir6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir6ActionPerformed(evt);
-            }
-        });
-
-        btnVolver5.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver5.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver5.setText("Volver");
-        btnVolver5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver5ActionPerformed(evt);
-            }
-        });
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -766,29 +716,21 @@ public class Contratos extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
-                                .addGap(304, 304, 304)
-                                .addComponent(btnSalir6))
+                                .addGap(361, 361, 361))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(701, 701, 701)
-                                .addComponent(btnVolver5))
+                                .addGap(770, 770, 770))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 20, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSalir6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -797,9 +739,8 @@ public class Contratos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVolver5))
-                .addGap(252, 252, 252))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(254, 254, 254))
         );
 
         jTabbedPane1.addTab("REGISTROS", jPanel3);
@@ -817,42 +758,6 @@ public class Contratos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir5ActionPerformed
-
-    private void btnVolver4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver4ActionPerformed
-
-        Principal_Tec obj = new Principal_Tec();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver4ActionPerformed
-
-    private void btnSalir6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir6ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir6ActionPerformed
-
-    private void btnVolver5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver5ActionPerformed
-
-        Principal_Tec obj = new Principal_Tec();
-        obj.setVisible(true);
-        dispose();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
@@ -1290,10 +1195,6 @@ public class Contratos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField auto;
     private javax.swing.JButton btnBusca3;
-    private javax.swing.JButton btnSalir5;
-    private javax.swing.JButton btnSalir6;
-    private javax.swing.JButton btnVolver4;
-    private javax.swing.JButton btnVolver5;
     private javax.swing.JComboBox cmbHistorial;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

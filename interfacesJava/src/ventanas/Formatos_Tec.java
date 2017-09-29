@@ -50,7 +50,7 @@ public class Formatos_Tec extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 170, 10));
 
@@ -203,7 +203,7 @@ public class Formatos_Tec extends javax.swing.JFrame {
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
  
-        Entrada_Tec obj = new Entrada_Tec();
+        Entrada obj = new Entrada();
         obj.setVisible(true); 
 
         // TODO add your handling code here:
@@ -211,7 +211,7 @@ public class Formatos_Tec extends javax.swing.JFrame {
 
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
 
-        Salidass_Tec obj = new Salidass_Tec();
+        Salidass obj = new Salidass();
         obj.setVisible(true);
         
 // TODO add your handling code here:
@@ -219,7 +219,7 @@ public class Formatos_Tec extends javax.swing.JFrame {
 
     private void btnEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviosActionPerformed
 
-        Envio_Tec obj = new Envio_Tec();
+        Envio obj = new Envio();
         obj.setVisible(true);
         
 // TODO add your handling code here:
@@ -227,7 +227,7 @@ public class Formatos_Tec extends javax.swing.JFrame {
 
     private void btnCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacionActionPerformed
 
-        Garantias_Tec obj = new Garantias_Tec();
+        Garantias_Admin obj = new Garantias_Admin();
         obj.setVisible(true);
         
         // TODO add your handling code here:

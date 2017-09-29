@@ -54,7 +54,7 @@ public class Entrada extends javax.swing.JFrame {
         numeros();
         txtSec.setEnabled(false);
         txtIdCli.setEnabled(false);
-        txtIdCli.setText(""+0);
+        txtIdCli.setText("" + 0);
         //txtForanea.setEnabled(false);
         //CargarCmbFacturas();
     }
@@ -203,7 +203,6 @@ public class Entrada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSalir1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -258,7 +257,6 @@ public class Entrada extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         areaObservaciones = new javax.swing.JTextArea();
         jSeparator9 = new javax.swing.JSeparator();
-        btnVolver = new javax.swing.JButton();
         txtFecha = new com.toedter.calendar.JDateChooser();
         btnDescartar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -277,17 +275,6 @@ public class Entrada extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnSalir1.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir1.setText("Salir");
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -482,17 +469,6 @@ public class Entrada extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 500, 100));
         getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 260, 10));
 
-        btnVolver.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, -1, -1));
-
         txtFecha.setDateFormatString("yyyy/MM/dd");
         getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 160, -1));
 
@@ -605,19 +581,10 @@ public class Entrada extends javax.swing.JFrame {
         getContentPane().add(btnPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, -1, 40));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 800, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir1ActionPerformed
 
     private void txtCorreoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoClienteActionPerformed
         // TODO add your handling code here:
@@ -626,15 +593,6 @@ public class Entrada extends javax.swing.JFrame {
     private void cmbGarantiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGarantiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbGarantiaActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
-        Formatos_Admin obj = new Formatos_Admin();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void txtContactoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactoClienteActionPerformed
         // TODO add your handling code here:
@@ -705,77 +663,83 @@ public class Entrada extends javax.swing.JFrame {
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
-        int id = Integer.parseInt(txtIdCli.getText());
-        try {
-            clientes cli = new clientes();
-            cli.setNombre_cliente(this.txtEmpresa.getText());
-
-            Entradas en = new Entradas();
-
-            String formato = txtFecha.getDateFormatString();
-            Date date = txtFecha.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String dato = String.valueOf(sdf.format(date));
-            //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-            en.setFecha(dato);
-            en.setElemento(txtElemento.getText().toUpperCase());
-            en.setPotencia(txtPotencia.getText().toUpperCase());
-            en.setMarca(txtMarca.getText().toUpperCase());
-            en.setModelo(txtModelo.getText().toUpperCase());
-            en.setSerie(txtSerie.getText().toUpperCase());
-            en.setEmpresa(txtEmpresa.getText().toUpperCase());
-            en.setNit(txtNitCliente.getText().toUpperCase());
-            en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
-            en.setCiudad(txtCiudadCliente.getText().toUpperCase());
-            en.setDireccion(txtDireccionCliente.getText().toUpperCase());
-            en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
-            en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
-            en.setCorreo(txtCorreoCliente.getText().toUpperCase());
-            en.setMotivo(txtMotivo.getText().toUpperCase());
-            en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
-            en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
-            en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
-            en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
-            en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
-            en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
-            en.setObservaciones(areaObservaciones.getText().toUpperCase());
-            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
-            en.setEstado("REVISION");
-            //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
-            en.setNumero(txtSec.getText());
-
-            cli.setId_cliente(id);
-            cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
-            cli.setNit_cliente(txtNitCliente.getText().toUpperCase());
-            cli.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
-            cli.setDireccion_cliente(txtDireccionCliente.getText().toUpperCase());
-            cli.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
-            cli.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
-            cli.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
+        if (txtEmpresa.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "DEBE DILIGENCIAR EL FORMULARIO");
+        }if (txtFecha.getDateFormatString().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "DEBE DILIGENCIAR LA FECHA");
+        } else {
+            int id = Integer.parseInt(txtIdCli.getText());
             try {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
-                pst.setString(1, cli.getNombre_cliente());
-                ResultSet rs = pst.executeQuery();
-                
-                if (rs.next()) {
-                    db.insertarEntrada(en);
-                    JOptionPane.showMessageDialog(this, "Entrada guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                    limpiar();
-                } else {
-                    if(id == 0){
-                       JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
-                       Nuevo_Cliente obj = new Nuevo_Cliente();
-                       obj.setVisible(true);
-                       dispose();
-                    } 
-                    }     
-                cn.close();
-            } catch (Exception e) {
-            }
+                clientes cli = new clientes();
+                cli.setNombre_cliente(this.txtEmpresa.getText());
 
-        } catch (Exception e) {
-            System.err.println("error" + e);
+                Entradas en = new Entradas();
+
+                String formato = txtFecha.getDateFormatString();
+                Date date = txtFecha.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String dato = String.valueOf(sdf.format(date));
+                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+                en.setFecha(dato);
+                en.setElemento(txtElemento.getText().toUpperCase());
+                en.setPotencia(txtPotencia.getText().toUpperCase());
+                en.setMarca(txtMarca.getText().toUpperCase());
+                en.setModelo(txtModelo.getText().toUpperCase());
+                en.setSerie(txtSerie.getText().toUpperCase());
+                en.setEmpresa(txtEmpresa.getText().toUpperCase());
+                en.setNit(txtNitCliente.getText().toUpperCase());
+                en.setPersona_remite(txtPersonaRemitente.getText().toUpperCase());
+                en.setCiudad(txtCiudadCliente.getText().toUpperCase());
+                en.setDireccion(txtDireccionCliente.getText().toUpperCase());
+                en.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+                en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
+                en.setCorreo(txtCorreoCliente.getText().toUpperCase());
+                en.setMotivo(txtMotivo.getText().toUpperCase());
+                en.setTarjeta_red(cmbTarjetaDeRed.getSelectedItem().toString().toUpperCase());
+                en.setParrilla(cmbParrilla.getSelectedItem().toString().toUpperCase());
+                en.setBases_plasticas(cmbBasesPlasticas.getSelectedItem().toString().toUpperCase());
+                en.setConector_origi(cmbConectorOriginal.getSelectedItem().toString().toUpperCase());
+                en.setGarantia(cmbGarantia.getSelectedItem().toString().toUpperCase());
+                en.setEstado_carcasa(cmbEstadoCarcasa.getSelectedItem().toString().toUpperCase());
+                en.setObservaciones(areaObservaciones.getText().toUpperCase());
+                en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+                en.setEstado("REVISION");
+                //en.setId_garantia(Integer.parseInt(txtForanea.getText()));
+                en.setNumero(txtSec.getText());
+
+                cli.setId_cliente(id);
+                cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
+                cli.setNit_cliente(txtNitCliente.getText().toUpperCase());
+                cli.setCiudad_cliente(txtCiudadCliente.getText().toUpperCase());
+                cli.setDireccion_cliente(txtDireccionCliente.getText().toUpperCase());
+                cli.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
+                cli.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
+                cli.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
+                    pst.setString(1, cli.getNombre_cliente());
+                    ResultSet rs = pst.executeQuery();
+
+                    if (rs.next()) {
+                        db.insertarEntrada(en);
+                        JOptionPane.showMessageDialog(this, "Entrada guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                        limpiar();
+                    } else {
+                        if (id == 0) {
+                            JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
+                            Nuevo_Cliente obj = new Nuevo_Cliente();
+                            obj.setVisible(true);
+                        }
+                    }
+                    cn.close();
+
+                } catch (Exception e) {
+                }
+
+            } catch (Exception e) {
+                System.err.println("error" + e);
+            }
         }
 
 // TODO add your handling code here:
@@ -785,7 +749,6 @@ public class Entrada extends javax.swing.JFrame {
 
         Facturas_Entrada obj = new Facturas_Entrada();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuarda1ActionPerformed
@@ -794,7 +757,6 @@ public class Entrada extends javax.swing.JFrame {
 
         Nuevo_Cliente obj = new Nuevo_Cliente();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed
@@ -850,8 +812,6 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnGuarda1;
     private javax.swing.JButton btnPrueba;
-    private javax.swing.JButton btnSalir1;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbBasesPlasticas;
     private javax.swing.JComboBox cmbConectorOriginal;
     private javax.swing.JComboBox cmbEstadoCarcasa;

@@ -43,8 +43,6 @@ public class Garantias_Admin extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        btnSalir2 = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         txtFe1 = new com.toedter.calendar.JDateChooser();
         txtFe2 = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
@@ -60,28 +58,6 @@ public class Garantias_Admin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("GARANTIAS");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
-
-        btnSalir2.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir2.setText("Salir");
-        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
-
-        btnVolver.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 70, 20));
 
         txtFe1.setDateFormatString("yyyy/MM/dd");
         getContentPane().add(txtFe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 140, -1));
@@ -115,24 +91,6 @@ public class Garantias_Admin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-       
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir2ActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
-        Formatos_Admin obj = new Formatos_Admin();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -199,8 +157,6 @@ public class Garantias_Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalir2;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

@@ -455,7 +455,7 @@ public class Salidass extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(153, 255, 153));
         jLabel8.setText("ENTRADAS");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 70, 20));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 70, 20));
 
         btnGuarda1.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -620,7 +620,6 @@ public class Salidass extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
                         Nuevo_Cliente obj = new Nuevo_Cliente();
                         obj.setVisible(true);
-                        dispose();
                     }
                 }
             } catch (Exception e) {
@@ -685,6 +684,7 @@ public class Salidass extends javax.swing.JFrame {
                 txtModel.setText(rs.getString("modelo"));
                 txtSerie.setText(rs.getString("serie").trim());
                 areaComentario.setText(rs.getString("observaciones").trim());
+                txtIdCli.setText(rs.getString("id_cli"));
 
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
@@ -703,8 +703,7 @@ public class Salidass extends javax.swing.JFrame {
 
         Facturas_Salida obj = new Facturas_Salida();
         obj.setVisible(true);
-        dispose();
-
+    
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuarda1ActionPerformed
 
@@ -712,7 +711,6 @@ public class Salidass extends javax.swing.JFrame {
 
         Nuevo_Cliente obj = new Nuevo_Cliente();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed

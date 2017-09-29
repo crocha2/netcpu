@@ -150,18 +150,16 @@ public class Principal_Oper extends javax.swing.JFrame {
 
     private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
 
-        Nuevo_Cliente_Oper obj = new Nuevo_Cliente_Oper();
+        Nuevo_Cliente obj = new Nuevo_Cliente();
         obj.setVisible(true);
-        dispose();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoClienteActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
 
-        Tabla_Clientes_Oper obj = new Tabla_Clientes_Oper();
+        Tabla_Clientes_Admin obj = new Tabla_Clientes_Admin();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClientes1ActionPerformed
@@ -170,7 +168,6 @@ public class Principal_Oper extends javax.swing.JFrame {
 
         Formatos_Oper obj = new Formatos_Oper();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFormatosActionPerformed

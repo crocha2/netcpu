@@ -85,8 +85,6 @@ public class Usuario extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btnSalir1 = new javax.swing.JButton();
-        btnVolver1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_usuarios = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -107,7 +105,7 @@ public class Usuario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -115,28 +113,6 @@ public class Usuario extends javax.swing.JFrame {
         jLabel1.setText("Usuarios");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 170, 10));
-
-        btnSalir1.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir1.setText("Salir");
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
-
-        btnVolver1.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver1.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver1.setText("Volver");
-        btnVolver1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 70, -1));
 
         tabla_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -293,24 +269,6 @@ public class Usuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir1ActionPerformed
-
-    private void btnVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver1ActionPerformed
-
-        Principal_Admin obj = new Principal_Admin();
-        obj.setVisible(true);
-        dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver1ActionPerformed
-
     private void tabla_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_usuariosMouseClicked
 
         int seleccion = tabla_usuarios.getSelectedRow();
@@ -328,7 +286,6 @@ public class Usuario extends javax.swing.JFrame {
 
         Nuevo_Usuario obj = new Nuevo_Usuario();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
@@ -503,8 +460,6 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnNuevoUsuario;
-    private javax.swing.JButton btnSalir1;
-    private javax.swing.JButton btnVolver1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

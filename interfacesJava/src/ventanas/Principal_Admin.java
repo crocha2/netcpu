@@ -166,7 +166,6 @@ public class Principal_Admin extends javax.swing.JFrame {
 
         Nuevo_Cliente obj = new Nuevo_Cliente();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoClienteActionPerformed
@@ -175,7 +174,6 @@ public class Principal_Admin extends javax.swing.JFrame {
 
         Tabla_Clientes_Admin obj = new Tabla_Clientes_Admin();
         obj.setVisible(true);
-        dispose();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClientesActionPerformed
@@ -184,7 +182,6 @@ public class Principal_Admin extends javax.swing.JFrame {
 
         Usuario obj = new Usuario();
         obj.setVisible(true);
-        dispose();
         
 // TODO add your handling code here:
     }//GEN-LAST:event_btnUsuariosActionPerformed
@@ -193,7 +190,6 @@ public class Principal_Admin extends javax.swing.JFrame {
 
         Formatos_Admin obj = new Formatos_Admin();
         obj.setVisible(true);
-        dispose();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFormatosActionPerformed

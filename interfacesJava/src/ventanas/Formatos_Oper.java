@@ -53,7 +53,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
         btnCotizacion1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 170, 10));
 
@@ -205,7 +205,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
     private void btnEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrada1ActionPerformed
 
-        Entrada_Oper obj = new Entrada_Oper();
+        Entrada obj = new Entrada();
         obj.setVisible(true);
 
         // TODO add your handling code here:
@@ -213,7 +213,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
     private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
 
-        Salidass_Oper obj = new Salidass_Oper();
+        Salidass obj = new Salidass();
         obj.setVisible(true);
 
         // TODO add your handling code here:
@@ -221,7 +221,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
     private void btnEnvios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnvios1ActionPerformed
 
-        Envio_Oper obj = new Envio_Oper();
+        Envio obj = new Envio();
         obj.setVisible(true);
 
         // TODO add your handling code here:
@@ -229,7 +229,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
     private void btnCotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacionActionPerformed
 
-        Garantias_Oper obj = new Garantias_Oper();
+        Garantias_Admin obj = new Garantias_Admin();
         obj.setVisible(true);
         
 // TODO add your handling code here:
@@ -237,7 +237,7 @@ public class Formatos_Oper extends javax.swing.JFrame {
 
     private void btnCotizacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizacion1ActionPerformed
 
-        Tecnico_Oper obj = new Tecnico_Oper();
+        Tecnico obj = new Tecnico();
         obj.setVisible(true);
         
 // TODO add your handling code here:
