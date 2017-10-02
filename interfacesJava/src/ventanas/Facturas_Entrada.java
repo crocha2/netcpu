@@ -640,6 +640,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarEntrada(en);
+                dbcli.EditarCliente(cli);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 this.cmbFacturas.removeAllItems();
                 CargarCmbFacturas();
@@ -647,7 +648,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
                 limpiar();
             }
            
-                dbcli.EditarCliente(cli);
+                
                 
         }
 
@@ -658,7 +659,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
 
         try {
             Entradas en = new Entradas();
-            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+            en.setNumero(txtSec.getText());
             Object[] opciones = {"Aceptar", "Cancelar"};
             int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
                     JOptionPane.YES_NO_OPTION,

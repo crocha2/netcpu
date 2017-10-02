@@ -101,6 +101,7 @@ public class Tecnico extends javax.swing.JFrame {
     public static String modelo_salida;
     public static String serie_salida;
     public static String observacion_salida;
+    public static String id_cli_salida;
 
     public void limpiarTextFiealdProceso() {
         txtCaso.setText("");
@@ -130,7 +131,7 @@ public class Tecnico extends javax.swing.JFrame {
         salida = dbSalida.ListSalidas();
         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
         for (Salidas sal : salida) {
-            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
         }
     }
 
@@ -777,11 +778,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Fecha", "No.Rem", "Cliente", "Telefono", "Correo", "Equipo", "Modelo", "Serie", "Observacion"
+                "ID", "Fecha", "No.Rem", "Cliente", "Telefono", "Correo", "Equipo", "Modelo", "Serie", "Observacion", "id_cli"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2940,28 +2941,31 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
+        if (txtIdEntrada.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+            int seleccion = tbEntradas.getSelectedRow();
 
-    int seleccion = tbEntradas.getSelectedRow();
+            id_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 0));
+            fecha_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 1));
+            numero_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 2));
+            cliente_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 3));
+            nit_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 4));
+            telefono_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 5));
+            correo_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 6));
+            elemento_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 7));
+            marca_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 8));
+            modelo_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 9));
+            serie_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 10));
+            garantia_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 11));
+            observacion_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 12));
+            estado_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 13));
+            id_cli_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 14));
 
-    id_entrada  = String.valueOf(tbEntradas.getValueAt(seleccion, 0));
-    fecha_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 1));
-    numero_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 2));
-    cliente_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 3));
-    nit_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 4));
-    telefono_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 5));
-    correo_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 6));
-    elemento_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 7));
-    marca_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 8));
-    modelo_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 9));
-    serie_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 10));
-    garantia_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 11));
-    observacion_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 12));
-    estado_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 13));
-    id_cli_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 14));
-            
-    Editar_Entrada obj = new Editar_Entrada();
-    obj.setVisible (true);   
-        
+            Editar_Entrada obj = new Editar_Entrada();
+            obj.setVisible(true);
+        }
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -2970,6 +2974,24 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+       
+        int seleccion = tbEntradas.getSelectedRow();
+
+        id_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 0));
+        fecha_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 1));
+        numero_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 2));
+        cliente_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 3));
+        telefono_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 4));
+        correo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 5));
+        equipo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 6));
+        modelo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 7));
+        serie_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 8));
+        observacion_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 9));
+        id_cli_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 10));
+
+        Editar_Salida obj = new Editar_Salida();
+        obj.setVisible(true);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -2995,32 +3017,21 @@ public class Tecnico extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tecnico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Tecnico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Tecnico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Tecnico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

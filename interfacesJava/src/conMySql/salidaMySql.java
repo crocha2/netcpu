@@ -83,7 +83,7 @@ public class salidaMySql {
     public void EditarSalida(Salidas salida) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE salidas SET fecha=?,empresa=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,equipo=?,modelo=?,serie=?,comentario=? WHERE id_cli = ?");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE salidas SET fecha=?,empresa=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,equipo=?,modelo=?,serie=?,comentario=? WHERE numero = ?");
             pst.setString(1, salida.getFecha());
             pst.setString(2, salida.getEmpresa());
             pst.setString(3, salida.getCiudad());
@@ -95,7 +95,7 @@ public class salidaMySql {
             pst.setString(9, salida.getModelo());
             pst.setString(10, salida.getSerie());
             pst.setString(11, salida.getComentario());
-            pst.setInt(12, salida.getId_cli());
+            pst.setString(12, salida.getNumero());
          pst.executeUpdate();
          cn.close();
         } catch (SQLException ex) {
@@ -126,8 +126,8 @@ public class salidaMySql {
     public void EliminarSalida(Salidas sal) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM salidas WHERE id_cli = ?");
-            pst.setInt(1, sal.getId_cli());
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM salidas WHERE numero = ?");
+            pst.setString(1, sal.getNumero());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {

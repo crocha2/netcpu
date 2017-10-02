@@ -116,9 +116,24 @@ public class clienteMySql {
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
+    public void EditarClienteEntrada(clientes cli) {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE clientes SET nit_cli = ?, nombre_cli = ?, telefono_cli = ?, correo_cli = ? WHERE id_cli = ?");
+            pst.setString(1, cli.getNit_cliente());
+            pst.setString(2, cli.getNombre_cliente());
+            pst.setString(3, cli.getTelefono_cliente());
+            pst.setString(4, cli.getCorreo_cliente());
+            pst.setInt(5, cli.getId_cliente());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     //ELIMINAR DATOS DE CLIENTES
     public void EliminarCliente(clientes cli) {
         try {

@@ -637,6 +637,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarSalida(sal);
+                db.EditarCliente(cli);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
 
                 this.cmbSalidas.removeAllItems();
@@ -647,7 +648,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
             } else {
                 limpiar();
             }        
-                db.EditarCliente(cli);
+                
         }
 
         // TODO add your handling code here:

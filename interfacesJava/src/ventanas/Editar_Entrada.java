@@ -34,6 +34,8 @@ public class Editar_Entrada extends javax.swing.JFrame {
     ArrayList<clientes> cliente;
     //entradaDB dbcli = new entradaDB();
     clienteMySql dbcli = new clienteMySql();
+    
+    Tecnico tec = new Tecnico();
 
     //excel obj = new excel();
     /**
@@ -100,8 +102,10 @@ public void limpiar() {
         txtFecha.setText("");
         txtGarantia.setText("");
         areaObservaciones.setText("");
-        txtElemento.requestFocus();
         txtIdCli.setText("");
+        txtEstado.setText("");
+        txtElemento.requestFocus();
+        
     }
 
     /**
@@ -193,7 +197,7 @@ public void limpiar() {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Garantia");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 50, 20));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 50, 20));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 750, 10));
         getContentPane().add(txtElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 270, -1));
         getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 180, -1));
@@ -234,8 +238,8 @@ public void limpiar() {
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(153, 255, 153));
-        jLabel24.setText("ID");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 20, 20));
+        jLabel24.setText("ID_CLI");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 50, 20));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(153, 255, 153));
@@ -254,8 +258,8 @@ public void limpiar() {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 570, 110));
         getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 260, 10));
-        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 190, -1));
-        getContentPane().add(txtGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 60, -1));
+        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 150, -1));
+        getContentPane().add(txtGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 90, -1));
 
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -331,7 +335,7 @@ public void limpiar() {
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Marca");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 40, 20));
-        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 80, -1));
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 80, -1));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
@@ -366,6 +370,7 @@ public void limpiar() {
             Entradas en = new Entradas();
             clientes cli = new clientes();
 
+            en.setNumero(txtSec.getText().toUpperCase());
             en.setFecha(txtFecha.getText().toUpperCase());
             en.setElemento(txtElemento.getText().toUpperCase());
             en.setMarca(txtMarca.getText().toUpperCase());
@@ -377,6 +382,7 @@ public void limpiar() {
             en.setCorreo(txtCorreoCliente.getText().toUpperCase());
             en.setGarantia(txtGarantia.getText().toUpperCase());
             en.setObservaciones(areaObservaciones.getText().toUpperCase());
+            en.setEstado(txtEstado.getText().toUpperCase());
             en.setId_cli(Integer.parseInt(txtIdCli.getText()));
 
             cli.setId_cliente(Integer.parseInt(txtIdCli.getText()));
@@ -391,13 +397,18 @@ public void limpiar() {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarTablaEntrada(en);
+                dbcli.EditarClienteEntrada(cli);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                limpiar();
+                tec.ListarEntradas();
+                tec.ListarEntradas_Garantias();
+                tec.ListarGarantiasProceso();
+                this.setVisible(false);
+                
             } else {
                 limpiar();
-            }
-           
-                dbcli.EditarCliente(cli);
-               
+                this.setVisible(false);
+            }           
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -406,7 +417,7 @@ public void limpiar() {
 
         try {
             Entradas en = new Entradas();
-            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+            en.setNumero(txtSec.getText());
             Object[] opciones = {"Aceptar", "Cancelar"};
             int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
                     JOptionPane.YES_NO_OPTION,
@@ -414,12 +425,14 @@ public void limpiar() {
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EliminarEntrada(en);
                 JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-
-                //this.cmbClientes.removeAllItems();
-                //CargarCmbCliente();
                 limpiar();
+                tec.ListarEntradas();
+                tec.ListarEntradas_Garantias();
+                tec.ListarGarantiasProceso();
+                this.setVisible(false);          
             } else {
                 limpiar();
+                this.setVisible(false);
             }
         } catch (Exception e) {
         }

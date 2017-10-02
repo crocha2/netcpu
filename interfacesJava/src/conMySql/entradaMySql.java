@@ -153,7 +153,7 @@ public class entradaMySql {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET fecha=?,elemento=?,marca=?,modelo=?,serie=?,empresa=?,nit=?,telefono=?,correo=?,garantia=?,observaciones=?,estado=? WHERE id_cli = ?");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET fecha=?,elemento=?,marca=?,modelo=?,serie=?,empresa=?,nit=?,telefono=?,correo=?,garantia=?,observaciones=?,estado=? WHERE numero = ?");
             pst.setString(1, entrada.getFecha());
             pst.setString(2, entrada.getElemento());
             pst.setString(3, entrada.getMarca());
@@ -166,7 +166,7 @@ public class entradaMySql {
             pst.setString(10, entrada.getGarantia());
             pst.setString(11, entrada.getObservaciones());
             pst.setString(12, entrada.getEstado());
-            pst.setInt(13, entrada.getId_cli());
+            pst.setString(13, entrada.getNumero());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
@@ -178,7 +178,7 @@ public class entradaMySql {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET fecha=?,elemento=?,potencia=?,marca=?,modelo=?,serie=?,empresa=?,nit=?,persona_remite=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,motivo=?,parrilla=?,bases_plas=?,conector_ori=?,garantia=?,estado_car=?,observaciones=?,tarjeta=? WHERE id_cli = ?");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET fecha=?,elemento=?,potencia=?,marca=?,modelo=?,serie=?,empresa=?,nit=?,persona_remite=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,motivo=?,parrilla=?,bases_plas=?,conector_ori=?,garantia=?,estado_car=?,observaciones=?,tarjeta=? WHERE numero = ?");
             pst.setString(1, entrada.getFecha());
             pst.setString(2, entrada.getElemento());
             pst.setString(3, entrada.getPotencia());
@@ -201,7 +201,7 @@ public class entradaMySql {
             pst.setString(20, entrada.getEstado_carcasa());
             pst.setString(21, entrada.getObservaciones());
             pst.setString(22, entrada.getTarjeta_red());
-            pst.setInt(23, entrada.getId_cli());
+            pst.setString(23, entrada.getNumero());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
@@ -233,8 +233,8 @@ public class entradaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM entradas "
-                    + " WHERE id_cli=?");
-            pst.setInt(1, en.getId_cli());
+                    + " WHERE numero=?");
+            pst.setString(1, en.getNumero());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
