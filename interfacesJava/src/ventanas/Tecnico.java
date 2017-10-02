@@ -2974,23 +2974,27 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-       
-        int seleccion = tbEntradas.getSelectedRow();
 
-        id_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 0));
-        fecha_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 1));
-        numero_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 2));
-        cliente_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 3));
-        telefono_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 4));
-        correo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 5));
-        equipo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 6));
-        modelo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 7));
-        serie_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 8));
-        observacion_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 9));
-        id_cli_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 10));
+        if (txtIdSalida.getText().equals("")) {
+            JOptionPane.showConfirmDialog(this, "Debe seleccionar un registro");
+        } else {
+            int seleccion = tbEntradas.getSelectedRow();
 
-        Editar_Salida obj = new Editar_Salida();
-        obj.setVisible(true);
+            id_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 0));
+            fecha_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 1));
+            numero_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 2));
+            cliente_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 3));
+            telefono_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 4));
+            correo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 5));
+            equipo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 6));
+            modelo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 7));
+            serie_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 8));
+            observacion_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 9));
+            id_cli_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 10));
+
+            Editar_Salida obj = new Editar_Salida();
+            obj.setVisible(true);
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
