@@ -103,6 +103,26 @@ public class salidaMySql {
         }
     }
     
+    public void EditarTablaSalida(Salidas salida) {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE salidas SET fecha=?,empresa=?,telefono=?,correo=?,equipo=?,modelo=?,serie=?,comentario=? WHERE numero = ?");
+            pst.setString(1, salida.getFecha());
+            pst.setString(2, salida.getEmpresa());
+            pst.setString(3, salida.getTelefono());
+            pst.setString(4, salida.getCorreo());
+            pst.setString(5, salida.getEquipo());
+            pst.setString(6, salida.getModelo());
+            pst.setString(7, salida.getSerie());
+            pst.setString(8, salida.getComentario());
+            pst.setString(9, salida.getNumero());
+         pst.executeUpdate();
+         cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void EditarCliente(clientes cli) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -115,6 +135,23 @@ public class salidaMySql {
             pst.setString(5, cli.getCorreo_cliente());//
             pst.setString(6, cli.getNombre_contacto());//
             pst.setInt(7, cli.getId_cliente());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public void EditarClienteSalida(clientes cli) {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE clientes SET nombre_cli = ?, telefono_cli = ?, correo_cli = ? WHERE id_cli = ?");
+    
+            pst.setString(1, cli.getNombre_cliente());//
+            pst.setString(2, cli.getTelefono_cliente());//
+            pst.setString(3, cli.getCorreo_cliente());//
+            pst.setInt(4, cli.getId_cliente());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {

@@ -102,6 +102,18 @@ public class Tecnico extends javax.swing.JFrame {
     public static String serie_salida;
     public static String observacion_salida;
     public static String id_cli_salida;
+    
+    //variables de tabla ENVIOS para editar o eliminar...
+    public static String id_envio;
+    public static String fecha_envio;
+    public static String numero_envio;
+    public static String destinatario_envio;
+    public static String atn_envio;
+    public static String direccion_envio;
+    public static String telefono_envio;
+    public static String ciudad_envio;
+    public static String comentario_envio;
+    public static String id_cli_envio;
 
     public void limpiarTextFiealdProceso() {
         txtCaso.setText("");
@@ -147,7 +159,7 @@ public class Tecnico extends javax.swing.JFrame {
         envio = dbEnvio.ListEnvios();
         DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
         for (Envios en : envio) {
-            tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario()});
+            tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
         }
     }
 
@@ -440,6 +452,7 @@ public class Tecnico extends javax.swing.JFrame {
         btnSalida2 = new javax.swing.JButton();
         btnSalida1 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSalidas = new javax.swing.JTable();
@@ -523,8 +536,6 @@ public class Tecnico extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         txtIdProceso = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
-        jPanel14 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         btnBusca6 = new javax.swing.JButton();
@@ -715,7 +726,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSalida);
-        btnSalida.setBounds(160, 370, 40, 40);
+        btnSalida.setBounds(180, 360, 40, 40);
 
         btnSalida2.setBackground(new java.awt.Color(255, 255, 255));
         btnSalida2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -734,7 +745,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSalida2);
-        btnSalida2.setBounds(200, 370, 40, 40);
+        btnSalida2.setBounds(220, 360, 40, 40);
 
         btnSalida1.setBackground(new java.awt.Color(255, 255, 255));
         btnSalida1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -753,19 +764,31 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSalida1);
-        btnSalida1.setBounds(240, 370, 40, 40);
+        btnSalida1.setBounds(260, 360, 40, 40);
 
         jButton10.setBackground(new java.awt.Color(0, 153, 153));
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("EDITAR O ELIMINAR");
+        jButton10.setText("EDITAR");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton10);
-        jButton10.setBounds(360, 387, 260, 40);
+        jButton10.setBounds(360, 370, 100, 40);
+
+        jButton17.setBackground(new java.awt.Color(0, 153, 153));
+        jButton17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton17.setForeground(new java.awt.Color(255, 255, 255));
+        jButton17.setText("ELIMINAR");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton17);
+        jButton17.setBounds(470, 370, 100, 40);
 
         jTabbedPane1.addTab("ENTRADAS", jPanel1);
 
@@ -1017,11 +1040,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Fecha", "No.Rem", "Destinatario", "ATN", "Direccion", "Telefono", "Ciudad", "Comentario"
+                "ID", "Fecha", "No.Rem", "Destinatario", "ATN", "Direccion", "Telefono", "Ciudad", "Comentario", "id_cli"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1653,38 +1676,6 @@ public class Tecnico extends javax.swing.JFrame {
         });
         jPanel4.add(jButton8);
         jButton8.setBounds(39, 199, 396, 29);
-
-        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jButton7.setBackground(new java.awt.Color(0, 153, 153));
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("ELIMINAR");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel4.add(jPanel14);
-        jPanel14.setBounds(577, 172, 144, 56);
 
         jButton2.setBackground(new java.awt.Color(204, 0, 0));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -2750,10 +2741,6 @@ public class Tecnico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
         try {
@@ -2862,8 +2849,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Entrada obj = new Entrada();
         obj.setVisible(true);
-        dispose();
-
+     
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalidaActionPerformed
 
@@ -2871,7 +2857,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         Salidass obj = new Salidass();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida2ActionPerformed
@@ -2880,8 +2865,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Envio obj = new Envio();
         obj.setVisible(true);
-        dispose();
-
+     
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida1ActionPerformed
 
@@ -2889,8 +2873,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Entrada obj = new Entrada();
         obj.setVisible(true);
-        dispose();
-
+       
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida3ActionPerformed
 
@@ -2898,8 +2881,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Salidass obj = new Salidass();
         obj.setVisible(true);
-        dispose();
-
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida4ActionPerformed
 
@@ -2907,7 +2889,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         Envio obj = new Envio();
         obj.setVisible(true);
-        dispose();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida5ActionPerformed
@@ -2916,7 +2897,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         Entrada obj = new Entrada();
         obj.setVisible(true);
-        dispose();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida6ActionPerformed
@@ -2925,7 +2905,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         Salidass obj = new Salidass();
         obj.setVisible(true);
-        dispose();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida7ActionPerformed
@@ -2934,7 +2913,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         Envio obj = new Envio();
         obj.setVisible(true);
-        dispose();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida8ActionPerformed
@@ -2970,17 +2948,42 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+
+        if (txtIdSalida.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+            
+            int seleccion = tbSalidas.getSelectedRow();
+            Salidas sal = new Salidas();
+            sal.setNumero(String.valueOf(tbSalidas.getValueAt(seleccion, 2)));
+
+            Object[] opciones = {"Aceptar", "Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION) {
+                dbSalida.EliminarSalida(sal);
+                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                LimpiarSalidas();
+                ListarSalidas();
+                txtIdSalida.setText("");
+                areaSalida.setText("");
+            } else {
+                txtIdSalida.setText("");
+                areaSalida.setText("");
+            }
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
 
         if (txtIdSalida.getText().equals("")) {
-            JOptionPane.showConfirmDialog(this, "Debe seleccionar un registro");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
         } else {
-            int seleccion = tbEntradas.getSelectedRow();
+            int seleccion = tbSalidas.getSelectedRow();
 
-            id_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 0));
             fecha_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 1));
             numero_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 2));
             cliente_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 3));
@@ -3000,12 +3003,99 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+
+        try {
+
+            if(txtIdEnvio.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+            }else{
+                int seleccion = tbEnvios.getSelectedRow();
+                Envios en = new Envios();
+                en.setNumero(String.valueOf(tbEnvios.getValueAt(seleccion, 2)));
+                
+                Object[] opciones = {"Aceptar", "Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION) {
+                dbEnvio.EliminarEnvio(en);
+                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                LimpiarSalidas();
+                ListarSalidas();
+                txtIdEnvio.setText("");
+                areaEnvio.setText("");
+            } else {
+                txtIdSalida.setText("");
+                areaSalida.setText("");
+            }
+        }
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+
+        if (txtIdEnvio.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+            int seleccion = tbEnvios.getSelectedRow();
+
+            id_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 0));
+            fecha_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 1));
+            numero_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 2));
+            destinatario_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            atn_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            direccion_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            telefono_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            ciudad_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            comentario_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            id_cli_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+
+            Editar_Envio obj = new Editar_Envio();
+            obj.setVisible(true);
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+
+        try {
+            if (txtIdEntrada.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        }else{
+              Entradas en = new Entradas();
+              int seleccion = tbEntradas.getSelectedRow();
+            en.setNumero(String.valueOf(tbEntradas.getValueAt(seleccion, 2)));
+            Object[] opciones = {"Aceptar", "Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION) {
+                dbEntrada.EliminarEntrada(en);
+                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                LimpiarEntradas();
+                ListarEntradas();
+                ListarEntradas_Garantias();
+                ListarGarantiasProceso(); 
+                txtIdEntrada.setText("");
+                areaEntrada.setText("");
+            } else {
+                LimpiarEntradas();
+                ListarEntradas();
+            }  
+            }   
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error:"+e);
+        }
+        
+
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3099,11 +3189,11 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
@@ -3128,7 +3218,6 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;

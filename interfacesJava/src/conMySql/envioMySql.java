@@ -77,7 +77,7 @@ public class envioMySql {
     public void EditarEnvio(Envios envio) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE envios SET fecha=?,destinatario=?,atn=?,direccion=?,telefono=?,ciudad=?,comentario=? WHERE id_cli = ?");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE envios SET fecha=?,destinatario=?,atn=?,direccion=?,telefono=?,ciudad=?,comentario=? WHERE numero = ?");
             pst.setString(1, envio.getFecha());
             pst.setString(2, envio.getDestinatario());
             pst.setString(3, envio.getATN());
@@ -85,7 +85,7 @@ public class envioMySql {
             pst.setString(5, envio.getTelefono());
             pst.setString(6, envio.getCiudad());
             pst.setString(7, envio.getComentario());
-            pst.setInt(8, envio.getId_cli());
+            pst.setString(8, envio.getNumero());
          pst.executeUpdate();
          cn.close();
         } catch (SQLException ex) {
@@ -96,8 +96,8 @@ public class envioMySql {
     public void EliminarEnvio(Envios envio) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM envios WHERE id_cli = ?");
-            pst.setInt(1, envio.getId_cli());
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM envios WHERE numero = ?");
+            pst.setString(1, envio.getNumero());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {

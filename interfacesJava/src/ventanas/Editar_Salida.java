@@ -32,6 +32,8 @@ public class Editar_Salida extends javax.swing.JFrame {
     ArrayList<clientes> cliente;
     //salidaDB db = new salidaDB();
     clienteMySql dbCli = new clienteMySql();
+    
+    Tecnico tec = new Tecnico();
 
     /**
      * Creates new form Entrada
@@ -46,17 +48,31 @@ public class Editar_Salida extends javax.swing.JFrame {
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
         txtIdCli.setEnabled(false);
+        traerDatos();
     }
+    
+    public void traerDatos() {
+
+        Tecnico obj = new Tecnico();
+        txtIdCli.setText(obj.id_cli_salida);
+        txtSec.setText(obj.numero_salida);
+        txtFechaFact.setText(obj.fecha_salida);
+        txtEquipo.setText(obj.equipo_salida);
+        txtModelo.setText(obj.modelo_salida);
+        txtSerie.setText(obj.serie_salida);
+        txtEmpresa.setText(obj.cliente_salida);
+        txtTelefono.setText(obj.telefono_salida);
+        txtCorreo.setText(obj.correo_salida);
+        areaComentario.setText(obj.observacion_salida);
+    
+}
 
     public void limpiar() {
         txtSec.setText("");
         txtFechaFact.setText("");
         txtEmpresa.setText("");
         txtTelefono.setText("");
-        txtDireccion.setText("");
-        txtCiudad.setText("");
         txtCorreo.setText("");
-        txtContacto.setText("");
         txtEquipo.setText("");
         areaComentario.setText("");
         txtModelo.setText("");
@@ -119,18 +135,9 @@ public class Editar_Salida extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        txtCiudad = new javax.swing.JTextField();
         txtEmpresa = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        txtContacto = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
@@ -170,102 +177,77 @@ public class Editar_Salida extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(153, 255, 153));
         jLabel2.setText("Editar Salida");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 240, 10));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Empresa");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Ciudad");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, 20));
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Nombre");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 20));
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(153, 255, 153));
-        jLabel16.setText("DATOS DEL CONTACTO");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 150, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 660, 10));
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 260, 10));
-        getContentPane().add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 210, -1));
         getContentPane().add(txtEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 290, -1));
-        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 290, -1));
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Dirección");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 140, 20));
-        getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 140, -1));
-        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 140, -1));
+        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 180, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Correo");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 50, 20));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 50, 20));
 
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 200, -1));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 200, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Telefono");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 50, 20));
-        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 270, 10));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 50, 20));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 270, 10));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(153, 255, 153));
         jLabel22.setText("DATOS DEL EQUIPO");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
-        getContentPane().add(txtEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 170, -1));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
+        getContentPane().add(txtEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 170, -1));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Equipo");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 40, 20));
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 40, 20));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("Comentario");
-        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 20));
+        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 20));
         getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 210, 10));
 
         areaComentario.setColumns(20);
         areaComentario.setRows(5);
         jScrollPane1.setViewportView(areaComentario);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 470, 110));
-        getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 250, 10));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 470, 110));
+        getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 250, 10));
 
         txtModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModeloActionPerformed(evt);
             }
         });
-        getContentPane().add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 170, -1));
+        getContentPane().add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 170, -1));
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Modelo");
-        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 50, 20));
+        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 50, 20));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Serie");
-        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 40, 20));
-        getContentPane().add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 150, -1));
+        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 40, 20));
+        getContentPane().add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 150, -1));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 10, 70));
+        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 10, 70));
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -284,7 +266,7 @@ public class Editar_Salida extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, 50, 50));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 50, 50));
 
         btnEditar.setBackground(new java.awt.Color(255, 255, 255));
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -303,11 +285,11 @@ public class Editar_Salida extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 40, 50));
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 40, 50));
 
         jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 10, 70));
-        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, 150, 10));
+        getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 10, 70));
+        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 150, 10));
 
         btnBusca2.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -325,8 +307,8 @@ public class Editar_Salida extends javax.swing.JFrame {
                 btnBusca2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBusca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 30, 30));
-        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 150, 10));
+        getContentPane().add(btnBusca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 30, 30));
+        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 150, 10));
 
         txtFechaFact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,7 +347,7 @@ public class Editar_Salida extends javax.swing.JFrame {
         getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 50, 20));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 450));
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -380,7 +362,7 @@ public class Editar_Salida extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-        if (txtEmpresa.getText().equals("") || txtCiudad.getText().equals("") || txtDireccion.getText().equals("") || txtContacto.getText().equals("") || txtTelefono.getText().equals("") || txtCorreo.getText().equals("")
+        if (txtEmpresa.getText().equals("") || txtTelefono.getText().equals("") || txtCorreo.getText().equals("")
                 || txtEquipo.getText().equals("") || txtModelo.getText().equals("") || txtSerie.getText().equals("") || areaComentario.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos", "", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -390,9 +372,6 @@ public class Editar_Salida extends javax.swing.JFrame {
             sal.setNumero(txtSec.getText());
             sal.setFecha(txtFechaFact.getText().toUpperCase());
             sal.setEmpresa(txtEmpresa.getText().toUpperCase());
-            sal.setCiudad(txtCiudad.getText().toUpperCase());
-            sal.setDireccion(txtDireccion.getText().toUpperCase());
-            sal.setContacto(txtContacto.getText().toUpperCase());
             sal.setTelefono(txtTelefono.getText().toUpperCase());
             sal.setCorreo(txtCorreo.getText().toUpperCase());
             sal.setEquipo(txtEquipo.getText().toUpperCase());
@@ -407,6 +386,8 @@ public class Editar_Salida extends javax.swing.JFrame {
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EliminarSalida(sal);
                 JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                tec.LimpiarSalidas();
+                tec.ListarSalidas();
                 limpiar();
                 this.setVisible(false);
             } else {
@@ -420,7 +401,7 @@ public class Editar_Salida extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-        if (txtEmpresa.getText().equals("") || txtCiudad.getText().equals("") || txtDireccion.getText().equals("") || txtContacto.getText().equals("") || txtTelefono.getText().equals("") || txtCorreo.getText().equals("")
+        if (txtEmpresa.getText().equals("") || txtTelefono.getText().equals("") || txtCorreo.getText().equals("")
                 || txtEquipo.getText().equals("") || txtModelo.getText().equals("") || txtSerie.getText().equals("") || areaComentario.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos", "", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -431,9 +412,6 @@ public class Editar_Salida extends javax.swing.JFrame {
             sal.setNumero(txtSec.getText());
             sal.setFecha(txtFechaFact.getText().toUpperCase());
             sal.setEmpresa(txtEmpresa.getText().toUpperCase());
-            sal.setCiudad(txtCiudad.getText().toUpperCase());
-            sal.setDireccion(txtDireccion.getText().toUpperCase());
-            sal.setContacto(txtContacto.getText().toUpperCase());
             sal.setTelefono(txtTelefono.getText().toUpperCase());
             sal.setCorreo(txtCorreo.getText().toUpperCase());
             sal.setEquipo(txtEquipo.getText().toUpperCase());
@@ -444,9 +422,6 @@ public class Editar_Salida extends javax.swing.JFrame {
 
             cli.setId_cliente(Integer.parseInt(txtIdCli.getText()));
             cli.setNombre_cliente(txtEmpresa.getText().toUpperCase());
-            cli.setCiudad_cliente(txtCiudad.getText().toUpperCase());
-            cli.setDireccion_cliente(txtDireccion.getText().toUpperCase());
-            cli.setNombre_contacto(txtContacto.getText().toUpperCase());
             cli.setTelefono_cliente(txtTelefono.getText().toUpperCase());
             cli.setCorreo_cliente(txtCorreo.getText().toUpperCase());
 
@@ -455,16 +430,17 @@ public class Editar_Salida extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
-                db.EditarSalida(sal);
-                db.EditarCliente(cli);
+                db.EditarTablaSalida(sal);
+                db.EditarClienteSalida(cli);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                tec.LimpiarSalidas();
+                tec.ListarSalidas();
                 limpiar();
                 this.setVisible(false);
             } else {
                 limpiar();
                 this.setVisible(false);
-            }        
-               
+            }          
         }
 
         // TODO add your handling code here:
@@ -563,10 +539,6 @@ public class Editar_Salida extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -579,20 +551,15 @@ public class Editar_Salida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField txtCiudad;
-    private javax.swing.JTextField txtContacto;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtEquipo;
     private javax.swing.JTextField txtFechaFact;
