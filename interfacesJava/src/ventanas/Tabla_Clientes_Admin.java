@@ -244,7 +244,6 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
 
         Editar_Cliente obj = new Editar_Cliente();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditActionPerformed
@@ -253,7 +252,6 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
 
         Eliminar_Cliente obj = new Eliminar_Cliente();
         obj.setVisible(true);
-        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed

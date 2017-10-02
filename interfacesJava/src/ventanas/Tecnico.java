@@ -72,8 +72,8 @@ public class Tecnico extends javax.swing.JFrame {
 
         //txtFechaEntrad.setEnabled(false);
     }
-    
-     //variables de tabla salida para editar o eliminar... 
+
+    //variables de tabla ENTRADAS para editar o eliminar... 
     public static String id_entrada;
     public static String fecha_entrada;
     public static String numero_entrada;
@@ -88,8 +88,9 @@ public class Tecnico extends javax.swing.JFrame {
     public static String garantia_entrada;
     public static String observacion_entrada;
     public static String estado_entrada;
-    
-    //variables de tabla salida para editar o eliminar... 
+    public static String id_cli_entrada;
+
+    //variables de tabla SALIDAS para editar o eliminar... 
     public static String id_salida;
     public static String fecha_salida;
     public static String numero_salida;
@@ -100,9 +101,8 @@ public class Tecnico extends javax.swing.JFrame {
     public static String modelo_salida;
     public static String serie_salida;
     public static String observacion_salida;
-    
-    
-    public void limpiarTextFiealdProceso(){
+
+    public void limpiarTextFiealdProceso() {
         txtCaso.setText("");
         txtNuevaSerie.setText("");
         txtFechaGarantia.setText("");
@@ -114,7 +114,7 @@ public class Tecnico extends javax.swing.JFrame {
         entrada = dbEntrada.ListEntradas();
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
         for (Entradas en : entrada) {
-            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado()});
+            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
         }
     }
 
@@ -222,7 +222,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     }
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
+
     public void autoCompleteRevision() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoRevision);
@@ -270,7 +270,7 @@ public class Tecnico extends javax.swing.JFrame {
         }
 
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteSalidas() {
 
@@ -341,9 +341,8 @@ public class Tecnico extends javax.swing.JFrame {
         }
 
     }
-    
+
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void autoCompleteProceso() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
@@ -440,7 +439,6 @@ public class Tecnico extends javax.swing.JFrame {
         btnSalida2 = new javax.swing.JButton();
         btnSalida1 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSalidas = new javax.swing.JTable();
@@ -552,11 +550,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Telefono", "Correo", "Elemento", "Marca", "Modelo", "Serie", "Garantia", "Observacion", "estado"
+                "ID", "Fecha", "No.Rem", "Cliente", "Nit o Cedula", "Telefono", "Correo", "Elemento", "Marca", "Modelo", "Serie", "Garantia", "Observacion", "estado", "Id_cli"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -759,26 +757,14 @@ public class Tecnico extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(0, 153, 153));
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("EDITAR");
+        jButton10.setText("EDITAR O ELIMINAR");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton10);
-        jButton10.setBounds(360, 387, 95, 40);
-
-        jButton12.setBackground(new java.awt.Color(0, 153, 153));
-        jButton12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("ELIMINAR");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton12);
-        jButton12.setBounds(460, 387, 95, 40);
+        jButton10.setBounds(360, 387, 260, 40);
 
         jTabbedPane1.addTab("ENTRADAS", jPanel1);
 
@@ -2164,7 +2150,7 @@ public class Tecnico extends javax.swing.JFrame {
     private void cmbProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProcesoActionPerformed
 
         autoCompleteProceso();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProcesoActionPerformed
 
@@ -2299,7 +2285,7 @@ public class Tecnico extends javax.swing.JFrame {
                     System.out.print("ERROR AL BUSCAR REGISTRO: " + e);
                 }
                 break;
-                case 4:
+            case 4:
                 try {
                     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                     Statement st = cn.createStatement();
@@ -2334,7 +2320,7 @@ public class Tecnico extends javax.swing.JFrame {
                 System.out.println("error");
                 break;
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca3ActionPerformed
 
@@ -2515,7 +2501,7 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setEstado(rs.getString("estado"));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(),  en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2545,7 +2531,7 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setEstado(rs.getString("estado"));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(),  en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2575,7 +2561,7 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setEstado(rs.getString("estado"));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(),  en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2605,7 +2591,7 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setEstado(rs.getString("estado"));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(),  en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2616,14 +2602,14 @@ public class Tecnico extends javax.swing.JFrame {
                 System.out.println("error");
                 break;
         }
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca5ActionPerformed
 
     private void cmbRevisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRevisionActionPerformed
 
         autoCompleteRevision();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRevisionActionPerformed
 
@@ -2712,11 +2698,11 @@ public class Tecnico extends javax.swing.JFrame {
             int id = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
             gar.setId_entra(id);
             gar.setEstado("RECHAZADO");
-            
+
             dbGarantia.RechazarGarantia(gar);
             dbGarantia.RechazarEntrada(en);
             JOptionPane.showMessageDialog(this, "REGISTRO RECHAZADO", "", JOptionPane.INFORMATION_MESSAGE);
-            
+
             LimpiarEntradas_Garantias();
             ListarEntradas_Garantias();
             LimpiarGarantiasProceso();
@@ -2727,7 +2713,7 @@ public class Tecnico extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println("error::" + e);
         }
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -2818,11 +2804,11 @@ public class Tecnico extends javax.swing.JFrame {
             int id = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
             gar.setId_entra(id);
             gar.setEstado("RECHAZADO");
-            
+
             dbGarantia.RechazarGarantia(gar);
             dbGarantia.RechazarEntrada(en);
             JOptionPane.showMessageDialog(this, "REGISTRO RECHAZADO", "", JOptionPane.INFORMATION_MESSAGE);
-            
+
             LimpiarEntradas_Garantias();
             ListarEntradas_Garantias();
             LimpiarGarantiasProceso();
@@ -2833,7 +2819,7 @@ public class Tecnico extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println("error::" + e);
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -2852,11 +2838,11 @@ public class Tecnico extends javax.swing.JFrame {
             int id = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
             gar.setId_entra(id);
             gar.setEstado("LISTO");
-            
+
             dbGarantia.ListoGarantia(gar);
             dbGarantia.ListoEntrada(en);
             JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
-            
+
             LimpiarEntradas_Garantias();
             ListarEntradas_Garantias();
             LimpiarGarantiasProceso();
@@ -2867,7 +2853,7 @@ public class Tecnico extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println("error::" + e);
         }
-   
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca6ActionPerformed
 
@@ -2903,7 +2889,7 @@ public class Tecnico extends javax.swing.JFrame {
         Entrada obj = new Entrada();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida3ActionPerformed
 
@@ -2912,7 +2898,7 @@ public class Tecnico extends javax.swing.JFrame {
         Salidass obj = new Salidass();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida4ActionPerformed
 
@@ -2921,7 +2907,7 @@ public class Tecnico extends javax.swing.JFrame {
         Envio obj = new Envio();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida5ActionPerformed
 
@@ -2930,7 +2916,7 @@ public class Tecnico extends javax.swing.JFrame {
         Entrada obj = new Entrada();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida6ActionPerformed
 
@@ -2939,7 +2925,7 @@ public class Tecnico extends javax.swing.JFrame {
         Salidass obj = new Salidass();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida7ActionPerformed
 
@@ -2948,25 +2934,36 @@ public class Tecnico extends javax.swing.JFrame {
         Envio obj = new Envio();
         obj.setVisible(true);
         dispose();
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
-        int seleccion = tbEntradas.getSelectedRow();
-        //id_entrada = txtIdEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 0)));
-        
-        
-        Facturas_Entrada obj = new Facturas_Entrada();
-        obj.setVisible(true);
+
+    int seleccion = tbEntradas.getSelectedRow();
+
+    id_entrada  = String.valueOf(tbEntradas.getValueAt(seleccion, 0));
+    fecha_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 1));
+    numero_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 2));
+    cliente_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 3));
+    nit_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 4));
+    telefono_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 5));
+    correo_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 6));
+    elemento_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 7));
+    marca_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 8));
+    modelo_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 9));
+    serie_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 10));
+    garantia_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 11));
+    observacion_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 12));
+    estado_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 13));
+    id_cli_entrada = String.valueOf(tbEntradas.getValueAt(seleccion, 14));
+            
+    Editar_Entrada obj = new Editar_Entrada();
+    obj.setVisible (true);   
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
@@ -2998,16 +2995,32 @@ public class Tecnico extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tecnico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tecnico.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Tecnico.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Tecnico.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Tecnico.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -3067,7 +3080,6 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbSalidas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;

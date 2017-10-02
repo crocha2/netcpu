@@ -134,6 +134,46 @@ public class entradaMySql {
         }
     }
     
+    /*
+    en.setFecha(txtFecha.getText().toUpperCase());
+            en.setElemento(txtElemento.getText().toUpperCase());
+            en.setMarca(txtMarca.getText().toUpperCase());
+            en.setModelo(txtModelo.getText().toUpperCase());
+            en.setSerie(txtSerie.getText().toUpperCase());
+            en.setEmpresa(txtEmpresa.getText().toUpperCase());
+            en.setNit(txtNitCliente.getText().toUpperCase());
+            en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
+            en.setCorreo(txtCorreoCliente.getText().toUpperCase());
+            en.setGarantia(txtGarantia.getText().toUpperCase());
+            en.setObservaciones(areaObservaciones.getText().toUpperCase());
+            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
+            */
+    
+    public void EditarTablaEntrada(Entradas entrada) {
+        try {
+            //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET fecha=?,elemento=?,marca=?,modelo=?,serie=?,empresa=?,nit=?,telefono=?,correo=?,garantia=?,observaciones=?,estado=? WHERE id_cli = ?");
+            pst.setString(1, entrada.getFecha());
+            pst.setString(2, entrada.getElemento());
+            pst.setString(3, entrada.getMarca());
+            pst.setString(4, entrada.getModelo());
+            pst.setString(5, entrada.getSerie());
+            pst.setString(6, entrada.getEmpresa());
+            pst.setString(7, entrada.getNit());
+            pst.setString(8, entrada.getTelefono_contacto());
+            pst.setString(9, entrada.getCorreo());
+            pst.setString(10, entrada.getGarantia());
+            pst.setString(11, entrada.getObservaciones());
+            pst.setString(12, entrada.getEstado());
+            pst.setInt(13, entrada.getId_cli());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void EditarEntrada(Entradas entrada) {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
