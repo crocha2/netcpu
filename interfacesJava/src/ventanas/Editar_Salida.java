@@ -433,9 +433,9 @@ public class Editar_Salida extends javax.swing.JFrame {
                 db.EditarTablaSalida(sal);
                 db.EditarClienteSalida(cli);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                limpiar();
                 tec.LimpiarSalidas();
                 tec.ListarSalidas();
-                limpiar();
                 this.setVisible(false);
             } else {
                 limpiar();

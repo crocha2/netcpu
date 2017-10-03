@@ -224,6 +224,12 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tabla_clientes);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 1020, 310));
+
+        auto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoActionPerformed(evt);
+            }
+        });
         getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 310, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/amp-mas.png"))); // NOI18N
@@ -299,6 +305,10 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_tabla_clientesMouseClicked
+
+    private void autoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoActionPerformed
 
     /**
      * @param args the command line arguments

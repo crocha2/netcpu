@@ -400,6 +400,9 @@ public void limpiar() {
                 dbcli.EditarClienteEntrada(cli);
                 JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
+                tec.LimpiarEntradas();
+                tec.LimpiarEntradas_Garantias();
+                tec.LimpiarGarantiasProceso();
                 tec.ListarEntradas();
                 tec.ListarEntradas_Garantias();
                 tec.ListarGarantiasProceso();
@@ -426,10 +429,13 @@ public void limpiar() {
                 db.EliminarEntrada(en);
                 JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
+                tec.LimpiarEntradas();
+                tec.LimpiarEntradas_Garantias();
+                tec.LimpiarGarantiasProceso();
                 tec.ListarEntradas();
                 tec.ListarEntradas_Garantias();
                 tec.ListarGarantiasProceso();
-                this.setVisible(false);          
+                this.setVisible(false);         
             } else {
                 limpiar();
                 this.setVisible(false);

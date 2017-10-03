@@ -30,7 +30,7 @@ public class envioMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_envio, numero, fecha, destinatario, atn, direccion, telefono, ciudad, comentario, id_cli FROM envios ORDER BY 2");
+            ResultSet rs = st.executeQuery("SELECT id_envio, numero, fecha, destinatario, atn, direccion, telefono, ciudad, comentario, id_cli FROM envios ORDER BY fecha DESC");
             while (rs.next()) {
                 Envios env = new Envios();
                 env.setId_envio(rs.getInt("id_envio"));

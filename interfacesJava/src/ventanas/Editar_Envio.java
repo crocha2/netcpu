@@ -26,6 +26,8 @@ public class Editar_Envio extends javax.swing.JFrame {
 
     ArrayList<Entradas> entrada;
     envioMySql db = new envioMySql();
+    
+    Tecnico tec = new Tecnico();
 
     /**
      * Creates new form Entrada
@@ -296,7 +298,8 @@ public class Editar_Envio extends javax.swing.JFrame {
                 db.EditarEnvio(en);
                 JOptionPane.showMessageDialog(this, "Envio EDITADO exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
-                limpiar();
+                tec.LimpiarEnvios();
+                tec.ListarEnvios();
                 this.setVisible(false);
             } else {
                 limpiar();
@@ -313,7 +316,6 @@ public class Editar_Envio extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         try {
-
             Envios en = new Envios();
             en.setFecha(txtFecha.getText());
             en.setNumero(txtSec.getText());
@@ -327,6 +329,9 @@ public class Editar_Envio extends javax.swing.JFrame {
             db.EliminarEnvio(en);
             JOptionPane.showMessageDialog(this, "Registro ELIMINADO exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
             limpiar();
+            tec.LimpiarEnvios();
+            tec.ListarEnvios();
+            this.setVisible(false);
         } catch (Exception e) {
             System.err.println("error" + e);
         }

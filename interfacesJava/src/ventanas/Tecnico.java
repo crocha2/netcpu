@@ -59,11 +59,11 @@ public class Tecnico extends javax.swing.JFrame {
         ListarEnvios();
         ListarEntradas_Garantias();
         ListarGarantiasProceso();
-        autoCompleteEntradas();
-        autoCompleteSalidas();
-        autoCompleteEnvios();
-        autoCompleteProceso();
-        autoCompleteRevision();
+        //autoCompleteEntradas();
+        //autoCompleteSalidas();
+        //autoCompleteEnvios();
+        //autoCompleteProceso();
+        //autoCompleteRevision();
         txtIdForanea.setEnabled(false);
         txtIdEntrada.setEnabled(false);
         txtIdSalida.setEnabled(false);
@@ -102,7 +102,7 @@ public class Tecnico extends javax.swing.JFrame {
     public static String serie_salida;
     public static String observacion_salida;
     public static String id_cli_salida;
-    
+
     //variables de tabla ENVIOS para editar o eliminar...
     public static String id_envio;
     public static String fecha_envio;
@@ -189,59 +189,136 @@ public class Tecnico extends javax.swing.JFrame {
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteEntradas() {
 
-        TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
-
-        try {
-            String guardar = cmbEntradas.getSelectedItem().toString();
-            if (guardar.equals("NUMERO")) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("numero"));
+        int tipo = cmbEntradas.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT numero FROM entradas");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("numero"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
                 }
-                cn.close();
-            }
-            if (guardar.equals("CLIENTE")) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("empresa"));
+                break;
+            case 1:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT empresa FROM entradas");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("empresa"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
                 }
-                cn.close();
-            }
-            if ("NIT O CEDULA".equals(guardar)) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("nit"));
+                break;
+            case 2:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT nit FROM entradas");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("nit"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
                 }
-                cn.close();
-            }
-            if ("SERIE".equals(guardar)) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM entradas");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("serie"));
+                break;
+            case 3:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT serie FROM entradas");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("serie"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
                 }
-                cn.close();
-            }
-        } catch (Exception e) {
-            System.out.println("error: " + e);
+                break;
         }
 
+        /*
+         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
+         String guardar = cmbEntradas.getSelectedItem().toString();
+         try {
+         //String guardar = cmbEntradas.getSelectedItem().toString();
+         if (guardar.equals("NUMERO")) {
+         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+         Statement st = (Statement) cn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT numero FROM entradas");
+         while (rs.next()) {
+         TextAutoCompleter.addItem(rs.getString("numero"));
+         }
+         cn.close();
+         }
+         if (guardar.equals("CLIENTE")) {
+         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+         Statement st = (Statement) cn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT empresa FROM entradas");
+         while (rs.next()) {
+         TextAutoCompleter.addItem(rs.getString("empresa"));
+         }
+         cn.close();
+         }
+         if ("NIT O CEDULA".equals(guardar)) {
+         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+         Statement st = (Statement) cn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT nit FROM entradas");
+         while (rs.next()) {
+         TextAutoCompleter.addItem(rs.getString("nit"));
+         }
+         cn.close();
+         }
+         if ("SERIE".equals(guardar)) {
+         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+         Statement st = (Statement) cn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT serie FROM entradas");
+         while (rs.next()) {
+         TextAutoCompleter.addItem(rs.getString("serie"));
+         }
+         cn.close();
+         }
+         } catch (Exception e) {
+         System.out.println("error: " + e);
+         }
+         */
     }
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    /*
+     public void autoComplete(){
+     TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(auto);
+     try {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+     Statement st = (Statement)cn.createStatement();
+     ResultSet rs = st.executeQuery("SELECT nombre_cli FROM clientes");
+     while (rs.next()) {
+     TextAutoCompleter.addItem(rs.getString("nombre_cli"));
+     }
+     cn.close();
+     } catch (Exception e) {
+     System.out.println("error: "+e);
+     }
+     }
+     */
 
     public void autoCompleteRevision() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoRevision);
-
+        String guardar = cmbRevision.getSelectedItem().toString();
         try {
-            String guardar = cmbRevision.getSelectedItem().toString();
+            //String guardar = cmbRevision.getSelectedItem().toString();
             if (guardar.equals("NUMERO")) {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 Statement st = (Statement) cn.createStatement();
@@ -287,75 +364,150 @@ public class Tecnico extends javax.swing.JFrame {
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteSalidas() {
 
-        TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoSal);
-
-        try {
-            String guardar = cmbSalidas.getSelectedItem().toString();
-            if (guardar.equals("NUMERO")) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM salidas");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("numero"));
+        int tipo = cmbSalidas.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoSal);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT numero FROM salidas");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("numero"));
+                    }
+                } catch (Exception e) {
+                    System.out.println("error" + e);
                 }
-                cn.close();
-            }
-            if (guardar.equals("CLIENTE")) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM salidas");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("empresa"));
+                break;
+            case 1:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoSal);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT empresa FROM salidas");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("empresa"));
+                    }
+                } catch (Exception e) {
+                    System.out.println("error" + e);
                 }
-                cn.close();
-            }
-            if ("SERIE".equals(guardar)) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM salidas");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("serie"));
+                break;
+            case 2:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoSal);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT serie FROM salidas");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("serie"));
+                    }
+                } catch (Exception e) {
+                    System.out.println("error" + e);
                 }
-                cn.close();
-            }
-        } catch (Exception e) {
-            System.out.println("error: " + e);
         }
 
+
+        /*
+         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoSal);
+
+         try {
+         String guardar = cmbSalidas.getSelectedItem().toString();
+         if (guardar.equals("NUMERO")) {
+         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+         Statement st = (Statement) cn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT numero FROM salidas");
+         while (rs.next()) {
+         TextAutoCompleter.addItem(rs.getString("numero"));
+         }
+         cn.close();
+         }
+         if (guardar.equals("CLIENTE")) {
+         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+         Statement st = (Statement) cn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT empresa FROM salidas");
+         while (rs.next()) {
+         TextAutoCompleter.addItem(rs.getString("empresa"));
+         }
+         cn.close();
+         }
+         if ("SERIE".equals(guardar)) {
+         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+         Statement st = (Statement) cn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT serie FROM salidas");
+         while (rs.next()) {
+         TextAutoCompleter.addItem(rs.getString("serie"));
+         }
+         cn.close();
+         }
+         } catch (Exception e) {
+         System.out.println("error: " + e);
+         }
+         */
     }
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteEnvios() {
 
-        TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEnvio);
+        int tipo = cmbEnvios.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEnvio);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT numero FROM envios");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("numero"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+            case 1:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEnvio);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT destinatario FROM envios");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("destinatario"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
 
-        try {
-            String guardar = cmbEnvios.getSelectedItem().toString();
-            if (guardar.equals("NUMERO")) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM envios");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("numero"));
-                }
-                cn.close();
-            }
-            if ("DESTINATARIO".equals(guardar)) {
-                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                Statement st = (Statement) cn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM envios");
-                while (rs.next()) {
-                    TextAutoCompleter.addItem(rs.getString("destinatario"));
-                }
-                cn.close();
-            }
-        } catch (Exception e) {
-            System.out.println("error: " + e);
+            /*
+             TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEnvio);
+
+             try {
+             String guardar = cmbEnvios.getSelectedItem().toString();
+             if (guardar.equals("NUMERO")) {
+             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+             Statement st = (Statement) cn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT numero FROM envios");
+             while (rs.next()) {
+             TextAutoCompleter.addItem(rs.getString("numero"));
+             }
+             cn.close();
+             }
+             if ("DESTINATARIO".equals(guardar)) {
+             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+             Statement st = (Statement) cn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT destinatario FROM envios");
+             while (rs.next()) {
+             TextAutoCompleter.addItem(rs.getString("destinatario"));
+             }
+             cn.close();
+             }
+             } catch (Exception e) {
+             System.out.println("error: " + e);
+             }
+             */
         }
-
-    }
-
-    //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        }
+        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteProceso() {
 
         TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoEntra);
@@ -443,8 +595,8 @@ public class Tecnico extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         cmbEntradas = new javax.swing.JComboBox();
-        autoEntra = new javax.swing.JTextField();
         btnBusca = new javax.swing.JButton();
+        autoEntra = new javax.swing.JTextField();
         txtIdEntrada = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -639,12 +791,6 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
 
-        autoEntra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autoEntraActionPerformed(evt);
-            }
-        });
-
         btnBusca.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBusca.setForeground(new java.awt.Color(255, 255, 255));
@@ -669,27 +815,27 @@ public class Tecnico extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(autoEntra, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(cmbEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(autoEntra, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(15, 15, 15))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnBusca)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(cmbEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(autoEntra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBusca))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(autoEntra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21))
         );
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(10, 70, 345, 69);
+        jPanel5.setBounds(10, 60, 345, 80);
         jPanel1.add(txtIdEntrada);
         txtIdEntrada.setBounds(50, 370, 76, 20);
 
@@ -842,6 +988,12 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
 
+        autoSal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoSalActionPerformed(evt);
+            }
+        });
+
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBusca1.setForeground(new java.awt.Color(255, 255, 255));
@@ -886,7 +1038,7 @@ public class Tecnico extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel6);
-        jPanel6.setBounds(68, 75, 277, 84);
+        jPanel6.setBounds(68, 75, 277, 90);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -1102,6 +1254,12 @@ public class Tecnico extends javax.swing.JFrame {
         cmbEnvios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEnviosActionPerformed(evt);
+            }
+        });
+
+        autoEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoEnvioActionPerformed(evt);
             }
         });
 
@@ -1910,6 +2068,7 @@ public class Tecnico extends javax.swing.JFrame {
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
                         tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+                        autoCompleteEntradas();
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2047,6 +2206,7 @@ public class Tecnico extends javax.swing.JFrame {
                         salida.add(sal);
                         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
                         tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+                        autoCompleteSalidas();
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2122,11 +2282,77 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBusca1ActionPerformed
 
     private void btnBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca2ActionPerformed
+
+        String guardar = autoEnvio.getText();
+        int tipo = cmbEnvios.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from envios where numero = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEnvios();
+                    if (rs.next()) {
+                        Envios en = new Envios();
+                        en.setId_envio(rs.getInt("id_envio"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setDestinatario(rs.getString("destinatario"));
+                        en.setATN(rs.getString("atn"));
+                        en.setDireccion(rs.getString("direccion"));
+                        en.setTelefono(rs.getString("telefono"));
+                        en.setCiudad(rs.getString("ciudad"));
+                        en.setComentario(rs.getString("comentario"));
+                        envio.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
+                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario()});
+ 
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                }
+                break;
+            case 1:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from envios where destinatario = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEnvios();
+                    while (rs.next()) {
+                        Envios en = new Envios();
+                        en.setId_envio(rs.getInt("id_envio"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setDestinatario(rs.getString("destinatario"));
+                        en.setATN(rs.getString("atn"));
+                        en.setDireccion(rs.getString("direccion"));
+                        en.setTelefono(rs.getString("telefono"));
+                        en.setCiudad(rs.getString("ciudad"));
+                        en.setComentario(rs.getString("comentario"));
+                        envio.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
+                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario()});
+ 
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR DESTINATARIO: " + e);
+                }
+            }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca2ActionPerformed
 
     private void cmbSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSalidasActionPerformed
 
+        autoSal.setText("");
         autoCompleteSalidas();
 
         // TODO add your handling code here:
@@ -2134,6 +2360,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void cmbEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEnviosActionPerformed
 
+        autoEnvio.setText("");
         autoCompleteEnvios();
 
         // TODO add your handling code here:
@@ -2141,6 +2368,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void cmbProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProcesoActionPerformed
 
+        autoProceso.setText("");
         autoCompleteProceso();
 
         // TODO add your handling code here:
@@ -2417,6 +2645,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void cmbEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEntradasActionPerformed
 
+        autoEntra.setText("");
         autoCompleteEntradas();
 
 // TODO add your handling code here:
@@ -2600,6 +2829,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void cmbRevisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRevisionActionPerformed
 
+        autoRevision.setText("");
         autoCompleteRevision();
 
         // TODO add your handling code here:
@@ -2654,10 +2884,6 @@ public class Tecnico extends javax.swing.JFrame {
     private void txtIdForaneaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdForaneaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdForaneaActionPerformed
-
-    private void autoEntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoEntraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_autoEntraActionPerformed
 
     private void tbEntrada_garantiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntrada_garantiaMouseClicked
 
@@ -2849,7 +3075,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Entrada obj = new Entrada();
         obj.setVisible(true);
-     
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalidaActionPerformed
 
@@ -2865,7 +3091,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Envio obj = new Envio();
         obj.setVisible(true);
-     
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida1ActionPerformed
 
@@ -2873,7 +3099,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Entrada obj = new Entrada();
         obj.setVisible(true);
-       
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida3ActionPerformed
 
@@ -2881,7 +3107,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Salidass obj = new Salidass();
         obj.setVisible(true);
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida4ActionPerformed
 
@@ -2952,7 +3178,7 @@ public class Tecnico extends javax.swing.JFrame {
         if (txtIdSalida.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
         } else {
-            
+
             int seleccion = tbSalidas.getSelectedRow();
             Salidas sal = new Salidas();
             sal.setNumero(String.valueOf(tbSalidas.getValueAt(seleccion, 2)));
@@ -2973,7 +3199,7 @@ public class Tecnico extends javax.swing.JFrame {
                 areaSalida.setText("");
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -3006,33 +3232,33 @@ public class Tecnico extends javax.swing.JFrame {
 
         try {
 
-            if(txtIdEnvio.getText().equals("")){
+            if (txtIdEnvio.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-            }else{
+            } else {
                 int seleccion = tbEnvios.getSelectedRow();
                 Envios en = new Envios();
                 en.setNumero(String.valueOf(tbEnvios.getValueAt(seleccion, 2)));
-                
+
                 Object[] opciones = {"Aceptar", "Cancelar"};
-            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-            if (eleccion == JOptionPane.YES_OPTION) {
-                dbEnvio.EliminarEnvio(en);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                LimpiarSalidas();
-                ListarSalidas();
-                txtIdEnvio.setText("");
-                areaEnvio.setText("");
-            } else {
-                txtIdSalida.setText("");
-                areaSalida.setText("");
+                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+                if (eleccion == JOptionPane.YES_OPTION) {
+                    dbEnvio.EliminarEnvio(en);
+                    JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                    LimpiarEnvios();
+                    ListarEnvios();
+                    txtIdEnvio.setText("");
+                    areaEnvio.setText("");
+                } else {
+                    txtIdSalida.setText("");
+                    areaSalida.setText("");
+                }
             }
-        }
         } catch (Exception e) {
             System.err.println("error" + e);
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -3057,7 +3283,7 @@ public class Tecnico extends javax.swing.JFrame {
             Editar_Envio obj = new Editar_Envio();
             obj.setVisible(true);
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -3065,37 +3291,45 @@ public class Tecnico extends javax.swing.JFrame {
 
         try {
             if (txtIdEntrada.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-        }else{
-              Entradas en = new Entradas();
-              int seleccion = tbEntradas.getSelectedRow();
-            en.setNumero(String.valueOf(tbEntradas.getValueAt(seleccion, 2)));
-            Object[] opciones = {"Aceptar", "Cancelar"};
-            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-            if (eleccion == JOptionPane.YES_OPTION) {
-                dbEntrada.EliminarEntrada(en);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                LimpiarEntradas();
-                ListarEntradas();
-                ListarEntradas_Garantias();
-                ListarGarantiasProceso(); 
-                txtIdEntrada.setText("");
-                areaEntrada.setText("");
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
             } else {
-                LimpiarEntradas();
-                ListarEntradas();
-            }  
-            }   
+                Entradas en = new Entradas();
+                int seleccion = tbEntradas.getSelectedRow();
+                en.setNumero(String.valueOf(tbEntradas.getValueAt(seleccion, 2)));
+                Object[] opciones = {"Aceptar", "Cancelar"};
+                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+                if (eleccion == JOptionPane.YES_OPTION) {
+                    dbEntrada.EliminarEntrada(en);
+                    JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                    LimpiarEntradas();
+                    LimpiarEntradas_Garantias();
+                    LimpiarGarantiasProceso();
+                    ListarEntradas();
+                    ListarEntradas_Garantias();
+                    ListarGarantiasProceso();
+                    txtIdEntrada.setText("");
+                    areaEntrada.setText("");
+                } else {
+                    LimpiarEntradas();
+                    ListarEntradas();
+                }
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "error:"+e);
+            JOptionPane.showMessageDialog(this, "error:" + e);
         }
-        
 
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void autoSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoSalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoSalActionPerformed
+
+    private void autoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoEnvioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoEnvioActionPerformed
 
     /**
      * @param args the command line arguments
