@@ -2288,9 +2288,9 @@
                           <StringArray count="5">
                             <StringItem index="0" value="RMA"/>
                             <StringItem index="1" value="CASO"/>
-                            <StringItem index="2" value="SERIE"/>
+                            <StringItem index="2" value="CLIENTE"/>
                             <StringItem index="3" value="NIT O CEDULA"/>
-                            <StringItem index="4" value="CLIENTE"/>
+                            <StringItem index="4" value="SERIE"/>
                           </StringArray>
                         </Property>
                       </Properties>

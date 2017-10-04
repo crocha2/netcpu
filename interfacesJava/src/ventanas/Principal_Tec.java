@@ -5,6 +5,15 @@
  */
 package ventanas;
 
+import clasesPrincipales.Entradas;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author CPU_SYS
@@ -24,6 +33,33 @@ public class Principal_Tec extends javax.swing.JFrame {
         usuarios usu = new usuarios();
         this.lblonline.setText("Conectado: "+usu.getNombre());
         */
+        aviso();
+    }
+    
+    public void aviso() {
+        String str = "";
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT numero, fecha, empresa, elemento, modelo, serie  FROM `entradas` WHERE fecha = DATE_SUB(CURDATE(),INTERVAL 5 DAY) \n"
+                    + "AND garantia = 'SI' \n"
+                    + "AND estado = 'REVISION'");
+            while (rs.next()) {
+                Entradas en = new Entradas();
+                en.setFecha(rs.getString("fecha"));
+                en.setNumero(rs.getString("numero"));
+                en.setEmpresa(rs.getString("empresa"));
+                en.setElemento(rs.getString("elemento"));
+                en.setModelo(rs.getString("modelo"));
+                en.setSerie(rs.getString("serie"));
+                str = "* "+en.getFecha()+"\n"+"* "+en.getNumero()+"\n"+"* "+en.getEmpresa()+"\n"+"* "+en.getElemento()+"\n"+"* "+en.getModelo()+"\n"+"* "+en.getSerie()+
+                        "\n\n"+"_____________________";
+                JOptionPane.showMessageDialog(this, "GARANTIAS PENDIENTES\n\n"+str+"\n");
+            }
+            cn.close();
+        } catch (SQLException | HeadlessException e) {
+            System.out.println("error:" + e);;
+        }
     }
     
     
