@@ -6,9 +6,12 @@
 package ventanas;
 
 import clasesPrincipales.Entradas;
+import clasesPrincipales.Garantias;
 import clasesPrincipales.clientes;
 import conMySql.clienteMySql;
 import conMySql.entradaMySql;
+import conMySql.garantiaMySql;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -35,6 +38,10 @@ public class Editar_Entrada extends javax.swing.JFrame {
     //entradaDB dbcli = new entradaDB();
     clienteMySql dbcli = new clienteMySql();
     
+    ArrayList<Garantias> garantia;
+    //entradaDB dbgar = new entradaDB();
+    garantiaMySql dbgar = new garantiaMySql();
+    
     Tecnico tec = new Tecnico();
 
     //excel obj = new excel();
@@ -47,11 +54,10 @@ public class Editar_Entrada extends javax.swing.JFrame {
         this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - FACTURAS DE ENTRADA");
         //CargarCmbCliente();
-        btnEditar.setEnabled(false);
-        btnEliminar.setEnabled(false);
         txtSec.setEnabled(false);
         txtIdCli.setEnabled(false);
         traerDatos();
+        txtEstado.setEnabled(false);
     }
 
     public void traerDatos() {
@@ -71,9 +77,44 @@ public class Editar_Entrada extends javax.swing.JFrame {
         txtCorreoCliente.setText(obj.correo_entrada);
         areaObservaciones.setText(obj.observacion_entrada);
         txtEstado.setText(obj.estado_entrada);
-  
-    
+        String estado = txtEstado.getText();
+        try {
+            if(estado.equals("REVISION")){
+            cmbEditar_Entrada.setSelectedIndex(0);
+        }
+        if(estado.equals("PROCESO")){
+            cmbEditar_Entrada.setSelectedIndex(1);
+        }
+        if(estado.equals("LISTO")){
+            cmbEditar_Entrada.setSelectedIndex(2);
+        }
+        if(estado.equals("RECHAZADO")){
+            cmbEditar_Entrada.setSelectedIndex(3);
+        }
+        } catch (Exception e) {
+            System.out.println("error:"+e);
+        }    
 }
+    
+    public void combo(){
+        int posicion = cmbEditar_Entrada.getSelectedIndex();
+        try {
+            if(posicion == 0){
+                txtEstado.setText("REVISION");
+            }
+            if(posicion == 1){
+                txtEstado.setText("PROCESO");
+            }
+            if(posicion == 2){
+                txtEstado.setText("LISTO");
+            }
+            if(posicion == 3){
+                txtEstado.setText("RECHAZADO");
+            }
+        } catch (Exception e) {
+            System.out.println("error"+e);
+        }
+    }
 
 /*
  public void CargarCmbCliente() {
@@ -146,19 +187,15 @@ public void limpiar() {
         jSeparator9 = new javax.swing.JSeparator();
         txtFecha = new javax.swing.JTextField();
         txtGarantia = new javax.swing.JTextField();
-        btnBusca1 = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        jSeparator10 = new javax.swing.JSeparator();
-        jSeparator11 = new javax.swing.JSeparator();
-        jSeparator6 = new javax.swing.JSeparator();
-        jSeparator8 = new javax.swing.JSeparator();
         txtSec = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         txtIdCli = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
+        cmbEditar_Entrada = new javax.swing.JComboBox();
+        jLabel29 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -239,7 +276,7 @@ public void limpiar() {
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(153, 255, 153));
         jLabel24.setText("ID_CLI");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 50, 20));
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 50, 20));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(153, 255, 153));
@@ -256,92 +293,52 @@ public void limpiar() {
         areaObservaciones.setRows(5);
         jScrollPane1.setViewportView(areaObservaciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 570, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 610, 110));
         getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 260, 10));
-        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 150, -1));
+        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 150, -1));
         getContentPane().add(txtGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 90, -1));
-
-        btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
-        btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnBusca1.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/juega.png"))); // NOI18N
-        btnBusca1.setBorder(null);
-        btnBusca1.setBorderPainted(false);
-        btnBusca1.setContentAreaFilled(false);
-        btnBusca1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBusca1.setIconTextGap(-1);
-        btnBusca1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBusca1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusca1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBusca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 30, 30));
-
-        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.setBorder(null);
-        btnEditar.setBorderPainted(false);
-        btnEditar.setContentAreaFilled(false);
-        btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEditar.setIconTextGap(-1);
-        btnEditar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 40, 50));
-
-        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setBorder(null);
-        btnEliminar.setBorderPainted(false);
-        btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEliminar.setIconTextGap(-1);
-        btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, 50, 50));
-
-        jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 10, 70));
-        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 150, 10));
-
-        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 310, 10, 70));
-        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 150, 10));
         getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 190, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("FECHA");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 40, 20));
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 40, 20));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Marca");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 40, 20));
-        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 80, -1));
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 80, -1));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Estado");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 40, 20));
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 40, 20));
         getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 120, -1));
+
+        cmbEditar_Entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REVISION", "PROCESO", "LISTO", "RECHAZADO" }));
+        cmbEditar_Entrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbEditar_EntradaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbEditar_Entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 120, -1));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Estado");
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, 40, 20));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("EDITAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 100, 50));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 440));
@@ -357,18 +354,19 @@ public void limpiar() {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoClienteActionPerformed
 
-    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+    private void cmbEditar_EntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEditar_EntradaActionPerformed
 
-        btnEditar.setEnabled(true);
-        btnEliminar.setEnabled(true);
+        combo();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbEditar_EntradaActionPerformed
 
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnBusca1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
-            Entradas en = new Entradas();
+         try {
+             Entradas en = new Entradas();
             clientes cli = new clientes();
+            Garantias gar = new Garantias();
 
             en.setNumero(txtSec.getText().toUpperCase());
             en.setFecha(txtFecha.getText().toUpperCase());
@@ -390,6 +388,17 @@ public void limpiar() {
             cli.setNit_cliente(txtNitCliente.getText().toUpperCase());
             cli.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
             cli.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
+            
+            gar.setFecha_entrada(txtFecha.getText().toUpperCase());
+            gar.setCliente(txtEmpresa.getText().toUpperCase());
+            gar.setNit(txtNitCliente.getText().toUpperCase());
+            gar.setPrimera_serie(txtSerie.getText().toUpperCase());
+            gar.setSerie_vieja(txtSerie.getText().toUpperCase());
+            gar.setEstado(txtEstado.getText().toUpperCase());
+            gar.setNumero(txtSec.getText().toUpperCase());
+            
+            
+            dbgar.EditarProceso(gar);
 
             Object[] opciones = {"Aceptar", "Cancelar"};
             int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR este registro?", "Mensaje de Confirmacion",
@@ -411,40 +420,13 @@ public void limpiar() {
             } else {
                 limpiar();
                 this.setVisible(false);
-            }           
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
-        try {
-            Entradas en = new Entradas();
-            en.setNumero(txtSec.getText());
-            Object[] opciones = {"Aceptar", "Cancelar"};
-            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-            if (eleccion == JOptionPane.YES_OPTION) {
-                db.EliminarEntrada(en);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                limpiar();
-                tec.LimpiarEntradas();
-                tec.LimpiarEntradas_Garantias();
-                tec.LimpiarGarantiasProceso();
-                tec.ListarEntradas();
-                tec.ListarEntradas_Garantias();
-                tec.ListarGarantiasProceso();
-                this.setVisible(false);         
-            } else {
-                limpiar();
-                this.setVisible(false);
-            }
-        } catch (Exception e) {
+            }  
+        } catch (NumberFormatException | HeadlessException e) {
+            System.out.println("error:"+e);
         }
-
+        
 // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -562,9 +544,8 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaObservaciones;
-    private javax.swing.JButton btnBusca1;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JComboBox cmbEditar_Entrada;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -579,17 +560,14 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField txtCorreoCliente;
     private javax.swing.JTextField txtElemento;

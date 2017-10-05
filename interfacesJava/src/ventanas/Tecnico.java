@@ -2202,10 +2202,13 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setMarca(rs.getString("marca"));
                         en.setModelo(rs.getString("modelo"));
                         en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
                         en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
                         autoCompleteEntradas();
                     }
                     cn.close();
@@ -2234,10 +2237,14 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setMarca(rs.getString("marca"));
                         en.setModelo(rs.getString("modelo"));
                         en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
                         en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
+                        autoCompleteEntradas();
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2266,10 +2273,14 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setMarca(rs.getString("marca"));
                         en.setModelo(rs.getString("modelo"));
                         en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
                         en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
+                        autoCompleteEntradas();
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2297,10 +2308,14 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setMarca(rs.getString("marca"));
                         en.setModelo(rs.getString("modelo"));
                         en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
                         en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
                         entrada.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getObservaciones()});
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
+                        autoCompleteEntradas();
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2341,9 +2356,10 @@ public class Tecnico extends javax.swing.JFrame {
                         sal.setModelo(rs.getString("modelo"));
                         sal.setSerie(rs.getString("serie"));
                         sal.setComentario(rs.getString("comentario"));
+                        sal.setId_cli(rs.getInt("id_cli"));
                         salida.add(sal);
                         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
                         autoCompleteSalidas();
                     }
                     cn.close();
@@ -2372,9 +2388,11 @@ public class Tecnico extends javax.swing.JFrame {
                         sal.setModelo(rs.getString("modelo"));
                         sal.setSerie(rs.getString("serie"));
                         sal.setComentario(rs.getString("comentario"));
+                        sal.setId_cli(rs.getInt("id_cli"));
                         salida.add(sal);
                         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
+                        autoCompleteSalidas();
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2402,9 +2420,11 @@ public class Tecnico extends javax.swing.JFrame {
                         sal.setModelo(rs.getString("modelo"));
                         sal.setSerie(rs.getString("serie"));
                         sal.setComentario(rs.getString("comentario"));
+                        sal.setId_cli(rs.getInt("id_cli"));
                         salida.add(sal);
                         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario()});
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
+                        autoCompleteSalidas();
                     }
                     cn.close();
                 } catch (Exception e) {
@@ -2444,9 +2464,10 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setTelefono(rs.getString("telefono"));
                         en.setCiudad(rs.getString("ciudad"));
                         en.setComentario(rs.getString("comentario"));
+                        en.setId_cli(rs.getInt("id_cli"));
                         envio.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
-                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario()});
+                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
 
                     }
                     cn.close();
@@ -2474,9 +2495,10 @@ public class Tecnico extends javax.swing.JFrame {
                         en.setTelefono(rs.getString("telefono"));
                         en.setCiudad(rs.getString("ciudad"));
                         en.setComentario(rs.getString("comentario"));
+                        en.setId_cli(rs.getInt("id_cli"));
                         envio.add(en);
                         DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
-                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario()});
+                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
 
                     }
                     cn.close();
@@ -3432,14 +3454,17 @@ public class Tecnico extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
             } else {
                 Entradas en = new Entradas();
+                Garantias gar = new Garantias();
                 int seleccion = tbEntradas.getSelectedRow();
                 en.setNumero(String.valueOf(tbEntradas.getValueAt(seleccion, 2)));
+                gar.setId_entra(Integer.parseInt(txtIdEntrada.getText()));
                 Object[] opciones = {"Aceptar", "Cancelar"};
                 int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
                 if (eleccion == JOptionPane.YES_OPTION) {
                     dbEntrada.EliminarEntrada(en);
+                    dbGarantia.EliminarGarantia(gar);
                     JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                     LimpiarEntradas();
                     LimpiarEntradas_Garantias();

@@ -121,6 +121,25 @@ public class garantiaMySql {
         }
     }
     
+    public void EditarProceso(Garantias garantia) {
+        try {
+            //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET fecha_entrada=?,cliente=?,nit=?,primera_serie=?,serie_vieja=?,estado=? WHERE numero = ?");
+            pst.setString(1, garantia.getFecha_entrada());
+            pst.setString(2, garantia.getCliente());
+            pst.setString(3, garantia.getNit());
+            pst.setString(4, garantia.getPrimera_serie());
+            pst.setString(5, garantia.getSerie_vieja());
+            pst.setString(6, garantia.getEstado());
+            pst.setString(7, garantia.getNumero());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void Asignar(Garantias garantia) {
         try {
             
@@ -246,6 +265,19 @@ public class garantiaMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM entradas "
                     + " WHERE numero=?");
             pst.setString(1, en.getNumero());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void EliminarGarantia(Garantias gar) {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM entradas "
+                    + " WHERE id_entra=?");
+            pst.setInt(1, gar.getId_entra());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
