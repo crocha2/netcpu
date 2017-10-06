@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="292"/>
+	<property name="ireport.y" value="366"/>
 	<parameter name="nume" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -949,18 +949,18 @@
 				<text><![CDATA[FIRMA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="330" width="451" height="15"/>
+				<reportElement x="31" y="330" width="514" height="15"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Despues de cumplirse sesenta dias (60) y el equipo no ha sido reclamado, la maquina será canibalizada.]]></text>
+				<text><![CDATA[CPU SYSTEM SERVICE. Pasados 60 dias; si el cliente no ha reclamado el equipo, la maquina será canibalizada.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="41" y="728" width="451" height="15"/>
+				<reportElement x="31" y="729" width="514" height="15"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Despues de cumplirse sesenta dias (60) y el equipo no ha sido reclamado, la maquina será canibalizada.]]></text>
+				<text><![CDATA[CPU SYSTEM SERVICE. Pasados 60 dias; si el cliente no ha reclamado el equipo, la maquina será canibalizada.]]></text>
 			</staticText>
 		</band>
 	</detail>
