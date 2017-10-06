@@ -24,13 +24,14 @@ public class Salidas {
     String modelo;
     String serie;
     String comentario;
+    String prestamo;
     int id_cli;
     
 
     public Salidas() {
     }
 
-    public Salidas(int id_salida, String numero, String fecha, String empresa, String ciudad, String direccion, String contacto, String telefono, String correo, String equipo, String modelo, String serie, String comentario, int id_cli) {
+    public Salidas(int id_salida, String numero, String fecha, String empresa, String ciudad, String direccion, String contacto, String telefono, String correo, String equipo, String modelo, String serie, String comentario, String prestamo, int id_cli) {
         this.id_salida = id_salida;
         this.fecha = fecha;
         this.empresa = empresa;
@@ -44,6 +45,7 @@ public class Salidas {
         this.serie = serie;
         this.comentario = comentario;
         this.numero = numero;
+        this.prestamo = prestamo;
         this.id_cli = id_cli;
     }
 
@@ -149,6 +151,14 @@ public class Salidas {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public String getPrestamo() {
+        return prestamo;
+    }
+
+    public void setPrestamo(String prestamo) {
+        this.prestamo = prestamo;
     }
 
     public int getId_cli() {

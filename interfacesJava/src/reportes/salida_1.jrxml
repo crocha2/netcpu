@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="304"/>
 	<parameter name="nume" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -123,11 +123,6 @@ EN CALIDAD DE PRESTAMO
 				<text><![CDATA[No Rem:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="336" y="287" width="218" height="14"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="254" y="94" width="97" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{modelo}]]></textFieldExpression>
@@ -137,9 +132,7 @@ EN CALIDAD DE PRESTAMO
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[CLIENTE
-
-]]></text>
+				<text><![CDATA[NOMBRE DE QUIEN RECIBE]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="76" y="60" width="213" height="14"/>
@@ -411,25 +404,8 @@ TEL: 3686813 – 3689219
 NIT: 802012349-6
 ]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="336" y="671" width="121" height="11"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[CLIENTE
-
-]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="336" y="682" width="218" height="14"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="31" y="671" width="185" height="1"/>
-			</line>
-			<line>
-				<reportElement x="336" y="671" width="185" height="1"/>
 			</line>
 			<staticText>
 				<reportElement x="42" y="8" width="45" height="14"/>
@@ -471,6 +447,50 @@ NIT: 802012349-6
 				<text><![CDATA[SALIDA DE EQUIPOS
 EN CALIDAD DE PRESTAMO
 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="287" width="26" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[C.C:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="298" width="41" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FIRMA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="362" y="309" width="150" height="1"/>
+			</line>
+			<line>
+				<reportElement x="336" y="671" width="185" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="336" y="672" width="121" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DE QUIEN RECIBE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="362" y="705" width="150" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="336" y="694" width="41" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FIRMA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="683" width="26" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[C.C:]]></text>
 			</staticText>
 		</band>
 	</detail>

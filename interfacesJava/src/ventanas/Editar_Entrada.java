@@ -58,6 +58,7 @@ public class Editar_Entrada extends javax.swing.JFrame {
         txtIdCli.setEnabled(false);
         traerDatos();
         txtEstado.setEnabled(false);
+        txtGarantia.setEnabled(false);
     }
 
     public void traerDatos() {
@@ -78,6 +79,7 @@ public class Editar_Entrada extends javax.swing.JFrame {
         areaObservaciones.setText(obj.observacion_entrada);
         txtEstado.setText(obj.estado_entrada);
         String estado = txtEstado.getText();
+        String garan = txtGarantia.getText();
         try {
             if(estado.equals("REVISION")){
             cmbEditar_Entrada.setSelectedIndex(0);
@@ -93,10 +95,19 @@ public class Editar_Entrada extends javax.swing.JFrame {
         }
         } catch (Exception e) {
             System.out.println("error:"+e);
-        }    
+        }
+        try {
+            if(garan.equals("SI")){
+                cmbGaran.setSelectedIndex(0);
+            }
+            if(garan.equals("NO")){
+                cmbGaran.setSelectedIndex(1);
+            }
+        } catch (Exception e) {
+        }
 }
     
-    public void combo(){
+    public void comboEstado(){
         int posicion = cmbEditar_Entrada.getSelectedIndex();
         try {
             if(posicion == 0){
@@ -110,6 +121,20 @@ public class Editar_Entrada extends javax.swing.JFrame {
             }
             if(posicion == 3){
                 txtEstado.setText("RECHAZADO");
+            }
+        } catch (Exception e) {
+            System.out.println("error"+e);
+        }
+    }
+    
+    public void comboGarantia(){
+        int posicion = cmbGaran.getSelectedIndex();
+        try {
+            if(posicion == 0){
+                txtGarantia.setText("SI");
+            }
+            if(posicion == 1){
+                txtGarantia.setText("NO");
             }
         } catch (Exception e) {
             System.out.println("error"+e);
@@ -196,6 +221,8 @@ public void limpiar() {
         cmbEditar_Entrada = new javax.swing.JComboBox();
         jLabel29 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cmbGaran = new javax.swing.JComboBox();
+        jLabel18 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -234,7 +261,7 @@ public void limpiar() {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Garantia");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 50, 20));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 50, 20));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 750, 10));
         getContentPane().add(txtElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 270, -1));
         getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 180, -1));
@@ -313,7 +340,7 @@ public void limpiar() {
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Estado");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 40, 20));
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 40, 20));
         getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 120, -1));
 
         cmbEditar_Entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REVISION", "PROCESO", "LISTO", "RECHAZADO" }));
@@ -322,7 +349,7 @@ public void limpiar() {
                 cmbEditar_EntradaActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbEditar_Entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 120, -1));
+        getContentPane().add(cmbEditar_Entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 100, -1));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
@@ -340,6 +367,19 @@ public void limpiar() {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 100, 50));
 
+        cmbGaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
+        cmbGaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbGaranActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbGaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 90, -1));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Garantia");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 50, 20));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 440));
 
@@ -356,7 +396,7 @@ public void limpiar() {
 
     private void cmbEditar_EntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEditar_EntradaActionPerformed
 
-        combo();
+        comboEstado();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbEditar_EntradaActionPerformed
@@ -364,7 +404,7 @@ public void limpiar() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
          try {
-             Entradas en = new Entradas();
+            Entradas en = new Entradas();
             clientes cli = new clientes();
             Garantias gar = new Garantias();
 
@@ -427,6 +467,13 @@ public void limpiar() {
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cmbGaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGaranActionPerformed
+
+        comboGarantia();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbGaranActionPerformed
 
     /**
      * @param args the command line arguments
@@ -545,12 +592,14 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaObservaciones;
     private javax.swing.JComboBox cmbEditar_Entrada;
+    private javax.swing.JComboBox cmbGaran;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;

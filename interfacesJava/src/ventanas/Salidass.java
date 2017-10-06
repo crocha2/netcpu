@@ -234,6 +234,8 @@ public class Salidass extends javax.swing.JFrame {
         btnBusca1 = new javax.swing.JButton();
         txtIdCli = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
+        cmbPrestamo = new javax.swing.JComboBox();
+        jLabel29 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -314,9 +316,9 @@ public class Salidass extends javax.swing.JFrame {
         getContentPane().add(txtEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 130, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(153, 255, 153));
-        jLabel25.setText("FECHA");
-        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 40, 20));
+        jLabel25.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel25.setText("PRESTAMO");
+        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 90, 20));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
@@ -506,6 +508,14 @@ public class Salidass extends javax.swing.JFrame {
         jLabel27.setText("ID");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 20, 20));
 
+        cmbPrestamo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SI", "NO" }));
+        getContentPane().add(cmbPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 60, -1));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(153, 255, 153));
+        jLabel29.setText("FECHA");
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 40, 20));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
 
@@ -595,6 +605,7 @@ public class Salidass extends javax.swing.JFrame {
             sal.setModelo(txtModel.getText().toUpperCase());
             sal.setSerie(txtSerie.getText().toUpperCase());
             sal.setComentario(areaComentario.getText().toUpperCase());
+            sal.setPrestamo(cmbPrestamo.getSelectedItem().toString());
             sal.setId_cli(Integer.parseInt(txtIdCli.getText()));
 
             cli.setId_cliente(id);
@@ -797,6 +808,7 @@ public class Salidass extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbEntradas;
+    private javax.swing.JComboBox cmbPrestamo;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -810,6 +822,7 @@ public class Salidass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;

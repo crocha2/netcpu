@@ -59,6 +59,7 @@ public class Tecnico extends javax.swing.JFrame {
         ListarEnvios();
         ListarEntradas_Garantias();
         ListarGarantiasProceso();
+        ListarPrestamo();
         //autoCompleteEntradas();
         //autoCompleteSalidas();
         //autoCompleteEnvios();
@@ -69,6 +70,7 @@ public class Tecnico extends javax.swing.JFrame {
         txtIdSalida.setEnabled(false);
         txtIdEnvio.setEnabled(false);
         txtIdProceso.setEnabled(false);
+        txtIdPrestamo.setEnabled(false);
 
         //txtFechaEntrad.setEnabled(false);
     }
@@ -101,6 +103,7 @@ public class Tecnico extends javax.swing.JFrame {
     public static String modelo_salida;
     public static String serie_salida;
     public static String observacion_salida;
+    public static String prestamo_salida;
     public static String id_cli_salida;
 
     //variables de tabla ENVIOS para editar o eliminar...
@@ -143,7 +146,7 @@ public class Tecnico extends javax.swing.JFrame {
         salida = dbSalida.ListSalidas();
         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
         for (Salidas sal : salida) {
-            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
+            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
         }
     }
 
@@ -154,6 +157,20 @@ public class Tecnico extends javax.swing.JFrame {
         }
     }
 
+    public void ListarPrestamo() {
+        salida = dbSalida.ListPrestamo();
+        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+        for (Salidas sal : salida) {
+            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+        }
+    }
+
+    public void LimpiarPrestamo() {
+        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
+    }
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void ListarEnvios() {
         envio = dbEnvio.ListEnvios();
@@ -505,6 +522,51 @@ public class Tecnico extends javax.swing.JFrame {
          }
          */
     }
+    
+    public void autoCompletePrestamo() {
+
+        int tipo = cmbPrestamo.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoPres);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT numero FROM salidas WHERE prestamo = 'SI'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("numero"));
+                    }
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+            case 1:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoPres);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT empresa FROM salidas WHERE prestamo = 'SI'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("empresa"));
+                    }
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+            case 2:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoPres);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT serie FROM salidas WHERE prestamo = 'SI'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("serie"));
+                    }
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+        }
+        }
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteEnvios() {
@@ -785,6 +847,25 @@ public class Tecnico extends javax.swing.JFrame {
         btnSalida8 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tbPrestamos = new javax.swing.JTable();
+        jPanel17 = new javax.swing.JPanel();
+        cmbPrestamo = new javax.swing.JComboBox();
+        autoPres = new javax.swing.JTextField();
+        btnBusca7 = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
+        txtIdPrestamo = new javax.swing.JTextField();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        areaPrestamo = new javax.swing.JTextArea();
+        jLabel28 = new javax.swing.JLabel();
+        btnSalida9 = new javax.swing.JButton();
+        btnSalida10 = new javax.swing.JButton();
+        btnSalida11 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -843,6 +924,8 @@ public class Tecnico extends javax.swing.JFrame {
         cmbHistorial1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTabbedPane1.setBackground(new java.awt.Color(0, 153, 153));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(null);
@@ -1085,11 +1168,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Fecha", "No.Rem", "Cliente", "Telefono", "Correo", "Equipo", "Modelo", "Serie", "Observacion", "id_cli"
+                "ID", "Fecha", "No.Rem", "Cliente", "Telefono", "Correo", "Equipo", "Modelo", "Serie", "Observacion", "Prestamo", "id_cli"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1553,6 +1636,221 @@ public class Tecnico extends javax.swing.JFrame {
         jButton16.setBounds(373, 400, 95, 40);
 
         jTabbedPane1.addTab("ENVIOS", jPanel3);
+
+        jPanel14.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel14.setLayout(null);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("REGISTRO DE PRESTAMOS");
+        jPanel14.add(jLabel26);
+        jLabel26.setBounds(270, 20, 330, 29);
+
+        tbPrestamos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbPrestamos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Fecha", "No.Rem", "Cliente", "Telefono", "Correo", "Equipo", "Modelo", "Serie", "Observacion", "Prestamo", "id_cli"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbPrestamos.setToolTipText("");
+        tbPrestamos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbPrestamos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbPrestamos.setGridColor(new java.awt.Color(0, 153, 153));
+        tbPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPrestamosMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tbPrestamos);
+
+        jPanel14.add(jScrollPane7);
+        jScrollPane7.setBounds(70, 180, 760, 202);
+
+        jPanel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        cmbPrestamo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NUMERO", "CLIENTE", "SERIE" }));
+        cmbPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPrestamoActionPerformed(evt);
+            }
+        });
+
+        autoPres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoPresActionPerformed(evt);
+            }
+        });
+
+        btnBusca7.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca7.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
+        btnBusca7.setBorder(null);
+        btnBusca7.setBorderPainted(false);
+        btnBusca7.setContentAreaFilled(false);
+        btnBusca7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca7.setIconTextGap(-1);
+        btnBusca7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca7ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(autoPres, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBusca7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnBusca7)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(cmbPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(autoPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel14.add(jPanel17);
+        jPanel17.setBounds(68, 75, 277, 90);
+
+        jLabel27.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("ID");
+        jPanel14.add(jLabel27);
+        jLabel27.setBounds(70, 410, 24, 14);
+        jPanel14.add(txtIdPrestamo);
+        txtIdPrestamo.setBounds(100, 410, 76, 20);
+
+        areaPrestamo.setColumns(20);
+        areaPrestamo.setRows(5);
+        jScrollPane12.setViewportView(areaPrestamo);
+
+        jPanel14.add(jScrollPane12);
+        jScrollPane12.setBounds(417, 75, 410, 84);
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Observaciones");
+        jPanel14.add(jLabel28);
+        jLabel28.setBounds(417, 54, 87, 15);
+
+        btnSalida9.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida9.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/entrada_mini.png"))); // NOI18N
+        btnSalida9.setBorder(null);
+        btnSalida9.setBorderPainted(false);
+        btnSalida9.setContentAreaFilled(false);
+        btnSalida9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida9.setIconTextGap(-1);
+        btnSalida9.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida9ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btnSalida9);
+        btnSalida9.setBounds(200, 390, 40, 40);
+
+        btnSalida10.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida10.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida_mini.png"))); // NOI18N
+        btnSalida10.setBorder(null);
+        btnSalida10.setBorderPainted(false);
+        btnSalida10.setContentAreaFilled(false);
+        btnSalida10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida10.setIconTextGap(-1);
+        btnSalida10.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida10ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btnSalida10);
+        btnSalida10.setBounds(240, 390, 40, 40);
+
+        btnSalida11.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalida11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalida11.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalida11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/envio_mini.png"))); // NOI18N
+        btnSalida11.setBorder(null);
+        btnSalida11.setBorderPainted(false);
+        btnSalida11.setContentAreaFilled(false);
+        btnSalida11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalida11.setIconTextGap(-1);
+        btnSalida11.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSalida11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalida11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalida11ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btnSalida11);
+        btnSalida11.setBounds(280, 390, 40, 40);
+
+        jButton18.setBackground(new java.awt.Color(0, 153, 153));
+        jButton18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton18.setForeground(new java.awt.Color(255, 255, 255));
+        jButton18.setText("EDITAR");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton18);
+        jButton18.setBounds(340, 390, 100, 40);
+
+        jButton19.setBackground(new java.awt.Color(0, 153, 153));
+        jButton19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton19.setForeground(new java.awt.Color(255, 255, 255));
+        jButton19.setText("ELIMINAR");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton19);
+        jButton19.setBounds(450, 390, 100, 40);
+
+        jButton6.setText("jButton3");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton6);
+        jButton6.setBounds(355, 75, 24, 23);
+
+        jTabbedPane1.addTab("PRESTAMO", jPanel14);
 
         jTabbedPane2.addTab("REGISTROS", jTabbedPane1);
 
@@ -2356,10 +2654,11 @@ public class Tecnico extends javax.swing.JFrame {
                         sal.setModelo(rs.getString("modelo"));
                         sal.setSerie(rs.getString("serie"));
                         sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
                         sal.setId_cli(rs.getInt("id_cli"));
                         salida.add(sal);
                         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
                         autoCompleteSalidas();
                     }
                     cn.close();
@@ -2388,10 +2687,11 @@ public class Tecnico extends javax.swing.JFrame {
                         sal.setModelo(rs.getString("modelo"));
                         sal.setSerie(rs.getString("serie"));
                         sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
                         sal.setId_cli(rs.getInt("id_cli"));
                         salida.add(sal);
                         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
                         autoCompleteSalidas();
                     }
                     cn.close();
@@ -2420,10 +2720,11 @@ public class Tecnico extends javax.swing.JFrame {
                         sal.setModelo(rs.getString("modelo"));
                         sal.setSerie(rs.getString("serie"));
                         sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
                         sal.setId_cli(rs.getInt("id_cli"));
                         salida.add(sal);
                         DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getId_cli()});
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
                         autoCompleteSalidas();
                     }
                     cn.close();
@@ -3379,7 +3680,8 @@ public class Tecnico extends javax.swing.JFrame {
             modelo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 7));
             serie_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 8));
             observacion_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 9));
-            id_cli_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 10));
+            prestamo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 10));
+            id_cli_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 11));
 
             Editar_Salida obj = new Editar_Salida();
             obj.setVisible(true);
@@ -3494,6 +3796,235 @@ public class Tecnico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_autoEnvioActionPerformed
 
+    private void tbPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPrestamosMouseClicked
+
+        int seleccion = tbPrestamos.getSelectedRow();
+        txtIdPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 0)));
+        areaPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 9)));
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbPrestamosMouseClicked
+
+    private void cmbPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPrestamoActionPerformed
+
+        autoPres.setText("");
+        autoCompletePrestamo();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPrestamoActionPerformed
+
+    private void autoPresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoPresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoPresActionPerformed
+
+    private void btnBusca7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca7ActionPerformed
+
+        String guardar = autoPres.getText();
+        int tipo = cmbPrestamo.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ? AND prestamo = 'SI'");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarPrestamo();
+                    if (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompletePrestamo();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                }
+                break;
+            case 1:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ? AND prestamo = 'SI'");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarPrestamo();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompletePrestamo();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                }
+                break;
+            case 2:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ? AND prestamo = 'SI'");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarPrestamo();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompletePrestamo();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.print("ERROR AL BUSCAR SERIE: " + e);
+                }
+                break;
+            default:
+                System.out.println("error");
+                break;
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca7ActionPerformed
+
+    private void btnSalida9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida9ActionPerformed
+
+        Entrada obj = new Entrada();
+        obj.setVisible(true);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida9ActionPerformed
+
+    private void btnSalida10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida10ActionPerformed
+
+        Salidass obj = new Salidass();
+        obj.setVisible(true);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida10ActionPerformed
+
+    private void btnSalida11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida11ActionPerformed
+
+        Envio obj = new Envio();
+        obj.setVisible(true);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida11ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+
+        if (txtIdPrestamo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+            int seleccion = tbPrestamos.getSelectedRow();
+
+            fecha_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 1));
+            numero_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 2));
+            cliente_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 3));
+            telefono_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 4));
+            correo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 5));
+            equipo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 6));
+            modelo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 7));
+            serie_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 8));
+            observacion_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 9));
+            prestamo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 10));
+            id_cli_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 11));
+
+            Editar_Salida obj = new Editar_Salida();
+            obj.setVisible(true);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+
+        try {
+            if (txtIdPrestamo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+
+            int seleccion = tbPrestamos.getSelectedRow();
+            Salidas sal = new Salidas();
+            sal.setNumero(String.valueOf(tbPrestamos.getValueAt(seleccion, 2)));
+
+            Object[] opciones = {"Aceptar", "Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION) {
+                dbSalida.EliminarSalida(sal);
+                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                LimpiarSalidas();
+                ListarSalidas();
+                LimpiarPrestamo();
+                ListarPrestamo();
+                txtIdSalida.setText("");
+                areaSalida.setText("");
+            } else {
+                txtIdSalida.setText("");
+                areaSalida.setText("");
+            }
+        }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error:"+e);
+        }
+        
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+        LimpiarPrestamo();
+        ListarPrestamo();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3540,9 +4071,11 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextArea areaEntrada;
     private javax.swing.JTextArea areaEnvio;
     private javax.swing.JTextArea areaGarantia1;
+    private javax.swing.JTextArea areaPrestamo;
     private javax.swing.JTextArea areaSalida;
     private javax.swing.JTextField autoEntra;
     private javax.swing.JTextField autoEnvio;
+    private javax.swing.JTextField autoPres;
     private javax.swing.JTextField autoProceso;
     private javax.swing.JTextField autoRevision;
     private javax.swing.JTextField autoSal;
@@ -3553,8 +4086,11 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton btnBusca4;
     private javax.swing.JButton btnBusca5;
     private javax.swing.JButton btnBusca6;
+    private javax.swing.JButton btnBusca7;
     private javax.swing.JButton btnSalida;
     private javax.swing.JButton btnSalida1;
+    private javax.swing.JButton btnSalida10;
+    private javax.swing.JButton btnSalida11;
     private javax.swing.JButton btnSalida2;
     private javax.swing.JButton btnSalida3;
     private javax.swing.JButton btnSalida4;
@@ -3562,6 +4098,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton btnSalida6;
     private javax.swing.JButton btnSalida7;
     private javax.swing.JButton btnSalida8;
+    private javax.swing.JButton btnSalida9;
     private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnSalir3;
     private javax.swing.JButton btnSalir4;
@@ -3577,6 +4114,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbEntradas;
     private javax.swing.JComboBox cmbEnvios;
     private javax.swing.JComboBox cmbHistorial1;
+    private javax.swing.JComboBox cmbPrestamo;
     private javax.swing.JComboBox cmbProceso;
     private javax.swing.JComboBox cmbRevision;
     private javax.swing.JComboBox cmbSalidas;
@@ -3587,10 +4125,13 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
@@ -3609,14 +4150,19 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3628,11 +4174,13 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
@@ -3644,6 +4192,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTable tbEntradas;
     private javax.swing.JTable tbEnvios;
     private javax.swing.JTable tbGarantias1;
+    private javax.swing.JTable tbPrestamos;
     private javax.swing.JTable tbProceso;
     private javax.swing.JTable tbSalidas;
     private javax.swing.JTextField txtCaso;
@@ -3651,6 +4200,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdEntrada;
     private javax.swing.JTextField txtIdEnvio;
     private javax.swing.JTextField txtIdForanea;
+    private javax.swing.JTextField txtIdPrestamo;
     private javax.swing.JTextField txtIdProceso;
     private javax.swing.JTextField txtIdSalida;
     private javax.swing.JTextField txtNitCliente4;

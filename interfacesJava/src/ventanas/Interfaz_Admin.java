@@ -10,6 +10,7 @@ package ventanas;
  * @author CPU_SYS
  */
 import clasesPrincipales.usuarios;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
@@ -161,7 +162,8 @@ public class Interfaz_Admin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No existe usuario, por favor revise sus datos");
             }
             cn.close();
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(this, "ERROR AL INGRESAR:"+e);
         }
 
         /*

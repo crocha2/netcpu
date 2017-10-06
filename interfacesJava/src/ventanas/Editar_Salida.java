@@ -9,6 +9,7 @@ import clasesPrincipales.Salidas;
 import clasesPrincipales.clientes;
 import conMySql.clienteMySql;
 import conMySql.salidaMySql;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,8 +46,8 @@ public class Editar_Salida extends javax.swing.JFrame {
         this.setTitle("CPU System Service S.A.S - FACTURAS DE SALIDA");
         //numeros();
         txtSec.setEnabled(false);
-        btnEditar.setEnabled(false);
-        btnEliminar.setEnabled(false);
+        //btnEditar.setEnabled(false);
+        //btnEliminar.setEnabled(false);
         txtIdCli.setEnabled(false);
         traerDatos();
     }
@@ -64,6 +65,7 @@ public class Editar_Salida extends javax.swing.JFrame {
         txtTelefono.setText(obj.telefono_salida);
         txtCorreo.setText(obj.correo_salida);
         areaComentario.setText(obj.observacion_salida);
+        txtPrestamo.setText(obj.prestamo_salida);
     
 }
 
@@ -155,19 +157,16 @@ public class Editar_Salida extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
-        jSeparator6 = new javax.swing.JSeparator();
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        jSeparator10 = new javax.swing.JSeparator();
-        jSeparator8 = new javax.swing.JSeparator();
-        btnBusca2 = new javax.swing.JButton();
-        jSeparator11 = new javax.swing.JSeparator();
         txtFechaFact = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtSec = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         txtIdCli = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
+        txtPrestamo = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -246,9 +245,6 @@ public class Editar_Salida extends javax.swing.JFrame {
         getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 40, 20));
         getContentPane().add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 150, -1));
 
-        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 10, 70));
-
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
@@ -287,40 +283,17 @@ public class Editar_Salida extends javax.swing.JFrame {
         });
         getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 40, 50));
 
-        jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 10, 70));
-        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 150, 10));
-
-        btnBusca2.setBackground(new java.awt.Color(255, 255, 255));
-        btnBusca2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnBusca2.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/juega.png"))); // NOI18N
-        btnBusca2.setBorder(null);
-        btnBusca2.setBorderPainted(false);
-        btnBusca2.setContentAreaFilled(false);
-        btnBusca2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBusca2.setIconTextGap(-1);
-        btnBusca2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBusca2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBusca2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusca2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBusca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 30, 30));
-        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 150, 10));
-
         txtFechaFact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaFactActionPerformed(evt);
             }
         });
-        getContentPane().add(txtFechaFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, -1));
+        getContentPane().add(txtFechaFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 110, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("FECHA");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, 20));
+        jLabel13.setText("PRESTAMO");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, 20));
 
         txtSec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,12 +312,18 @@ public class Editar_Salida extends javax.swing.JFrame {
                 txtIdCliActionPerformed(evt);
             }
         });
-        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 80, -1));
+        getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 80, -1));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(153, 255, 153));
         jLabel29.setText("ID_CLI");
-        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 50, 20));
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 50, 20));
+        getContentPane().add(txtPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 80, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("FECHA");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, 20));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 400));
@@ -388,6 +367,8 @@ public class Editar_Salida extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 tec.LimpiarSalidas();
                 tec.ListarSalidas();
+                tec.LimpiarPrestamo();
+                tec.ListarPrestamo();
                 limpiar();
                 this.setVisible(false);
             } else {
@@ -401,12 +382,8 @@ public class Editar_Salida extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-        if (txtEmpresa.getText().equals("") || txtTelefono.getText().equals("") || txtCorreo.getText().equals("")
-                || txtEquipo.getText().equals("") || txtModelo.getText().equals("") || txtSerie.getText().equals("") || areaComentario.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos", "", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-
-            Salidas sal = new Salidas();
+        try {
+             Salidas sal = new Salidas();
             clientes cli = new clientes();
 
             sal.setNumero(txtSec.getText());
@@ -418,6 +395,7 @@ public class Editar_Salida extends javax.swing.JFrame {
             sal.setModelo(txtModelo.getText().toUpperCase());
             sal.setSerie(txtSerie.getText().toUpperCase());
             sal.setComentario(areaComentario.getText().toUpperCase());
+            sal.setPrestamo(txtPrestamo.getText().toUpperCase());
             sal.setId_cli(Integer.parseInt(txtIdCli.getText()));
 
             cli.setId_cliente(Integer.parseInt(txtIdCli.getText()));
@@ -436,23 +414,19 @@ public class Editar_Salida extends javax.swing.JFrame {
                 limpiar();
                 tec.LimpiarSalidas();
                 tec.ListarSalidas();
+                tec.LimpiarPrestamo();
+                tec.ListarPrestamo();
                 this.setVisible(false);
             } else {
                 limpiar();
                 this.setVisible(false);
-            }          
+            } 
+        } catch (NumberFormatException | HeadlessException e) {
+            System.out.println("error_"+e);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca2ActionPerformed
-
-        btnEditar.setEnabled(true);
-        btnEliminar.setEnabled(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBusca2ActionPerformed
 
     private void txtFechaFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaFactActionPerformed
         // TODO add your handling code here:
@@ -534,11 +508,11 @@ public class Editar_Salida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaComentario;
-    private javax.swing.JButton btnBusca2;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -551,13 +525,9 @@ public class Editar_Salida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtEmpresa;
@@ -565,6 +535,7 @@ public class Editar_Salida extends javax.swing.JFrame {
     private javax.swing.JTextField txtFechaFact;
     private javax.swing.JTextField txtIdCli;
     private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtPrestamo;
     private javax.swing.JTextField txtSec;
     private javax.swing.JTextField txtSerie;
     private javax.swing.JTextField txtTelefono;
