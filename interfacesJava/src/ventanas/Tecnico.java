@@ -790,8 +790,6 @@ public class Tecnico extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         areaEntrada = new javax.swing.JTextArea();
-        btnVolver = new javax.swing.JButton();
-        btnSalir1 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         cmbEntradas = new javax.swing.JComboBox();
@@ -816,8 +814,6 @@ public class Tecnico extends javax.swing.JFrame {
         btnBusca1 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        btnSalir5 = new javax.swing.JButton();
-        btnVolver4 = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         txtIdSalida = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
@@ -832,8 +828,6 @@ public class Tecnico extends javax.swing.JFrame {
         tbEnvios = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         areaEnvio = new javax.swing.JTextArea();
-        btnSalir3 = new javax.swing.JButton();
-        btnVolver2 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         cmbEnvios = new javax.swing.JComboBox();
         autoEnvio = new javax.swing.JTextField();
@@ -869,8 +863,6 @@ public class Tecnico extends javax.swing.JFrame {
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        btnSalir6 = new javax.swing.JButton();
-        btnVolver5 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane11 = new javax.swing.JScrollPane();
         tbEntrada_garantia = new javax.swing.JTable();
@@ -887,8 +879,6 @@ public class Tecnico extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tbProceso = new javax.swing.JTable();
-        btnSalir4 = new javax.swing.JButton();
-        btnVolver3 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         autoProceso = new javax.swing.JTextField();
         btnBusca3 = new javax.swing.JButton();
@@ -916,8 +906,6 @@ public class Tecnico extends javax.swing.JFrame {
         areaGarantia1 = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
         tbGarantias1 = new javax.swing.JTable();
-        btnSalir7 = new javax.swing.JButton();
-        btnVolver6 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         txtNitCliente4 = new javax.swing.JTextField();
         btnBusca4 = new javax.swing.JButton();
@@ -972,30 +960,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane4);
         jScrollPane4.setBounds(430, 70, 459, 72);
-
-        btnVolver.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVolver);
-        btnVolver.setBounds(820, 410, 69, 23);
-
-        btnSalir1.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir1.setText("Salir");
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSalir1);
-        btnSalir1.setBounds(829, 17, 57, 23);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -1273,30 +1237,6 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel2.add(jLabel15);
         jLabel15.setBounds(417, 54, 87, 15);
 
-        btnSalir5.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir5.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir5.setText("Salir");
-        btnSalir5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir5ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnSalir5);
-        btnSalir5.setBounds(820, 10, 57, 23);
-
-        btnVolver4.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver4.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver4.setText("Volver");
-        btnVolver4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnVolver4);
-        btnVolver4.setBounds(820, 420, 69, 23);
-
         jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
@@ -1444,30 +1384,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane6);
         jScrollPane6.setBounds(433, 79, 367, 84);
-
-        btnSalir3.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir3.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir3.setText("Salir");
-        btnSalir3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnSalir3);
-        btnSalir3.setBounds(819, 11, 57, 23);
-
-        btnVolver2.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver2.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver2.setText("Volver");
-        btnVolver2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnVolver2);
-        btnVolver2.setBounds(807, 413, 69, 23);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -1864,30 +1780,6 @@ public class Tecnico extends javax.swing.JFrame {
         jLabel16.setText("GARANTIAS EN REVISION");
         jPanel9.add(jLabel16);
         jLabel16.setBounds(29, 11, 372, 29);
-
-        btnSalir6.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir6.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir6.setText("Salir");
-        btnSalir6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir6ActionPerformed(evt);
-            }
-        });
-        jPanel9.add(btnSalir6);
-        btnSalir6.setBounds(822, 11, 57, 23);
-
-        btnVolver5.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver5.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver5.setText("Volver");
-        btnVolver5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver5ActionPerformed(evt);
-            }
-        });
-        jPanel9.add(btnVolver5);
-        btnVolver5.setBounds(809, 402, 69, 23);
         jPanel9.add(jSeparator1);
         jSeparator1.setBounds(29, 41, 850, 10);
 
@@ -1965,19 +1857,19 @@ public class Tecnico extends javax.swing.JFrame {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBusca5)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(cmbRevision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(autoRevision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel9.add(jPanel13);
-        jPanel13.setBounds(39, 57, 291, 71);
+        jPanel13.setBounds(39, 57, 291, 80);
 
         txtIdForanea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1994,7 +1886,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel9.add(actualizar1);
-        actualizar1.setBounds(370, 57, 26, 23);
+        actualizar1.setBounds(350, 60, 26, 23);
 
         jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -2040,7 +1932,7 @@ public class Tecnico extends javax.swing.JFrame {
         );
 
         jPanel9.add(jPanel15);
-        jPanel15.setBounds(406, 57, 254, 71);
+        jPanel15.setBounds(400, 60, 254, 71);
 
         jTabbedPane3.addTab("REVISION", jPanel9);
 
@@ -2085,30 +1977,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane8);
         jScrollPane8.setBounds(33, 234, 837, 156);
-
-        btnSalir4.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir4.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir4.setText("Salir");
-        btnSalir4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir4ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnSalir4);
-        btnSalir4.setBounds(783, 11, 57, 23);
-
-        btnVolver3.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver3.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver3.setText("Volver");
-        btnVolver3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver3ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnVolver3);
-        btnVolver3.setBounds(801, 396, 69, 23);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -2371,30 +2239,6 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel11.add(jScrollPane10);
         jScrollPane10.setBounds(10, 191, 876, 227);
-
-        btnSalir7.setBackground(new java.awt.Color(51, 153, 255));
-        btnSalir7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSalir7.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir7.setText("Salir");
-        btnSalir7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir7ActionPerformed(evt);
-            }
-        });
-        jPanel11.add(btnSalir7);
-        btnSalir7.setBounds(829, 11, 57, 23);
-
-        btnVolver6.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver6.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver6.setText("Volver");
-        btnVolver6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver6ActionPerformed(evt);
-            }
-        });
-        jPanel11.add(btnVolver6);
-        btnVolver6.setBounds(817, 425, 69, 23);
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -3005,60 +2849,6 @@ public class Tecnico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca3ActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
-        Formatos_Tec obj = new Formatos_Tec();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir1ActionPerformed
-
-    private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir3ActionPerformed
-
-    private void btnVolver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver2ActionPerformed
-
-        Formatos_Tec obj = new Formatos_Tec();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver2ActionPerformed
-
-    private void btnSalir4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir4ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir4ActionPerformed
-
-    private void btnVolver3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver3ActionPerformed
-
-        Formatos_Tec obj = new Formatos_Tec();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver3ActionPerformed
-
     private void tbEntradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntradasMouseClicked
 
         int seleccion = tbEntradas.getSelectedRow();
@@ -3067,24 +2857,6 @@ public class Tecnico extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_tbEntradasMouseClicked
-
-    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir5ActionPerformed
-
-    private void btnVolver4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver4ActionPerformed
-
-        Formatos_Tec obj = new Formatos_Tec();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver4ActionPerformed
 
     private void tbSalidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSalidasMouseClicked
 
@@ -3112,40 +2884,6 @@ public class Tecnico extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_cmbEntradasActionPerformed
 
-    private void btnSalir6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir6ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir6ActionPerformed
-
-    private void btnVolver5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver5ActionPerformed
-
-        Formatos_Tec obj = new Formatos_Tec();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver5ActionPerformed
-
-    private void btnSalir7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir7ActionPerformed
-
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir7ActionPerformed
-
-    private void btnVolver6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver6ActionPerformed
-        Formatos_Tec obj = new Formatos_Tec();
-        obj.setVisible(true);
-        dispose();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolver6ActionPerformed
-
     private void btnBusca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca4ActionPerformed
@@ -3164,7 +2902,7 @@ public class Tecnico extends javax.swing.JFrame {
                     // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
                     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                     Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ?");
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ? and estado = 'REVISION'");
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarEntradas_Garantias();
@@ -3194,7 +2932,7 @@ public class Tecnico extends javax.swing.JFrame {
                 try {
                     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                     Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ? and estado = 'REVISION'");
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarEntradas_Garantias();
@@ -3224,7 +2962,7 @@ public class Tecnico extends javax.swing.JFrame {
                 try {
                     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                     Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ?");
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ? and estado = 'REVISION'");
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarEntradas_Garantias();
@@ -3254,7 +2992,7 @@ public class Tecnico extends javax.swing.JFrame {
                 try {
                     Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                     Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ?");
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ? and estado = 'REVISION'");
                     pst.setString(1, guardar);
                     ResultSet rs = pst.executeQuery();
                     LimpiarEntradas_Garantias();
@@ -4099,18 +3837,6 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton btnSalida7;
     private javax.swing.JButton btnSalida8;
     private javax.swing.JButton btnSalida9;
-    private javax.swing.JButton btnSalir1;
-    private javax.swing.JButton btnSalir3;
-    private javax.swing.JButton btnSalir4;
-    private javax.swing.JButton btnSalir5;
-    private javax.swing.JButton btnSalir6;
-    private javax.swing.JButton btnSalir7;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JButton btnVolver2;
-    private javax.swing.JButton btnVolver3;
-    private javax.swing.JButton btnVolver4;
-    private javax.swing.JButton btnVolver5;
-    private javax.swing.JButton btnVolver6;
     private javax.swing.JComboBox cmbEntradas;
     private javax.swing.JComboBox cmbEnvios;
     private javax.swing.JComboBox cmbHistorial1;
