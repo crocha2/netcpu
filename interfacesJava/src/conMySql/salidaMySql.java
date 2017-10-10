@@ -107,6 +107,7 @@ public class salidaMySql {
             pst.setString(13, salida.getPrestamo());
             pst.setInt(14, salida.getId_cli());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
@@ -131,6 +132,7 @@ public class salidaMySql {
             pst.setString(12, salida.getPrestamo());
             pst.setString(13, salida.getNumero());
          pst.executeUpdate();
+         JOptionPane.showMessageDialog(null, "Editado exitosamente");
          cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,6 +155,7 @@ public class salidaMySql {
             pst.setString(9, salida.getPrestamo());
             pst.setString(10, salida.getNumero());
          pst.executeUpdate();
+         JOptionPane.showMessageDialog(null, "Editado exitosamente");
          cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,6 +208,7 @@ public class salidaMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM salidas WHERE numero = ?");
             pst.setString(1, sal.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);

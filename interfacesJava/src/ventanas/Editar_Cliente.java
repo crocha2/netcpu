@@ -347,7 +347,7 @@ public class Editar_Cliente extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarCliente(cli);
-                JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
+                
                 LimpirTabla();
                 ListarDatos();
                 autoComplete();
@@ -412,7 +412,7 @@ public class Editar_Cliente extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
         // TODO add your handling code here:

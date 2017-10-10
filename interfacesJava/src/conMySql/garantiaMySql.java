@@ -77,8 +77,8 @@ public class garantiaMySql {
             pst.setString(10, garantia.getPrimera_serie());
             pst.setString(11, garantia.getEstado());
             pst.setInt(12, garantia.getId_entra());
-            
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
@@ -114,6 +114,7 @@ public class garantiaMySql {
             pst.setString(22, entrada.getTarjeta_red());
             pst.setString(23, entrada.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,6 +135,7 @@ public class garantiaMySql {
             pst.setString(6, garantia.getEstado());
             pst.setString(7, garantia.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,8 +153,8 @@ public class garantiaMySql {
             pst.setString(3, garantia.getNumero_caso());
             pst.setString(4, garantia.getSerie_nueva());
             pst.setInt(5, garantia.getId_entra());
-            
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Actualizado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -169,8 +171,8 @@ public class garantiaMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET estado=? WHERE id_entra = ?");
             pst.setString(1, entrada.getEstado());
             pst.setInt(2, entrada.getId_entrada());
-            
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Grarantia en proceso");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -186,8 +188,8 @@ public class garantiaMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET estado=? WHERE id_entra = ?");
             pst.setString(1, garantia.getEstado());
             pst.setInt(2, garantia.getId_entra());
-            
             pst.executeUpdate();
+            //JOptionPane.showMessageDialog(null, "Grarantia en proceso");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -204,8 +206,8 @@ public class garantiaMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET estado=? WHERE id_entra = ?");
             pst.setString(1, entrada.getEstado());
             pst.setInt(2, entrada.getId_entrada());
-            
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "LISTO");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,8 +241,8 @@ public class garantiaMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET estado=? WHERE id_entra = ?");
             pst.setString(1, entrada.getEstado());
             pst.setInt(2, entrada.getId_entrada());
-            
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Rechazado");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -256,8 +258,8 @@ public class garantiaMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET estado=? WHERE id_entra = ?");
             pst.setString(1, garantia.getEstado());
             pst.setInt(2, garantia.getId_entra());
-            
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Rechazado");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -274,6 +276,7 @@ public class garantiaMySql {
                     + " WHERE numero=?");
             pst.setString(1, en.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);

@@ -67,6 +67,7 @@ public class envioMySql {
             pst.setString(8, envio.getComentario());
             pst.setInt(9, envio.getId_cli());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
@@ -86,6 +87,7 @@ public class envioMySql {
             pst.setString(7, envio.getComentario());
             pst.setString(8, envio.getNumero());
          pst.executeUpdate();
+         JOptionPane.showMessageDialog(null, "Editado exitosamente");
          cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(envioMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,6 +101,7 @@ public class envioMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM envios WHERE numero = ?");
             pst.setString(1, envio.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(envioMySql.class.getName()).log(Level.SEVERE, null, ex);

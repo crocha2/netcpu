@@ -49,7 +49,7 @@ public class clienteMySql {
                 cl.setCiudad_cliente(rs.getString("ciudad_cli"));
                 cl.setCorreo_cliente(rs.getString("correo_cli"));
                 cl.setNombre_contacto(rs.getString("contacto_cli"));
-                cliente.add(cl);
+                cliente.add(cl);      
             }
             cn.close();
         } catch (SQLException ex) {
@@ -72,6 +72,7 @@ public class clienteMySql {
             pst.setString(6, cliente.getCorreo_cliente());
             pst.setString(7, cliente.getNombre_contacto());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Insertado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
@@ -113,6 +114,7 @@ public class clienteMySql {
             pst.setString(7, cli.getNombre_contacto());
             pst.setInt(8, cli.getId_cliente());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,6 +146,7 @@ public class clienteMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM clientes WHERE nombre_cli=?");
             pst.setString(1, cli.getNombre_cliente());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);

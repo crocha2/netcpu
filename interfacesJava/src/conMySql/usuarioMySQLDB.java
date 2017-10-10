@@ -55,6 +55,7 @@ public class usuarioMySQLDB {
             pst.setString(2, usuario.getPassword());
             pst.setInt(3, usuario.getTipoUsuario());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
@@ -80,6 +81,7 @@ public class usuarioMySQLDB {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM usuarios WHERE nombre_usu=?");
             pst.setString(1, usu.getNombre());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,6 +98,7 @@ public class usuarioMySQLDB {
             pst.setInt(3, usu.getTipoUsuario());
             pst.setInt(4, usu.getId_usuario());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(usuarioMySQLDB.class.getName()).log(Level.SEVERE, null, ex);

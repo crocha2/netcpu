@@ -70,6 +70,7 @@ public class contratoMySql {
             pst.setString(5, contrato.getNit_ced());
             pst.setString(6, contrato.getResponsable());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage()); 
@@ -109,6 +110,7 @@ public class contratoMySql {
             pst.setString(6, con.getResponsable());
             pst.setInt(8, con.getId_contrato());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(contratoMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -124,6 +126,7 @@ public class contratoMySql {
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("DELETE FROM contratos WHERE id_contrato = ?");
             pst.setInt(1, con.getId_contrato());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(contratoMySql.class.getName()).log(Level.SEVERE, null, ex);

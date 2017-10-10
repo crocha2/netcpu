@@ -126,26 +126,13 @@ public class entradaMySql {
             pst.setString(24, entrada.getEstado());
             pst.setInt(25, entrada.getId_cli());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
         }
     }
-    
-    /*
-    en.setFecha(txtFecha.getText().toUpperCase());
-            en.setElemento(txtElemento.getText().toUpperCase());
-            en.setMarca(txtMarca.getText().toUpperCase());
-            en.setModelo(txtModelo.getText().toUpperCase());
-            en.setSerie(txtSerie.getText().toUpperCase());
-            en.setEmpresa(txtEmpresa.getText().toUpperCase());
-            en.setNit(txtNitCliente.getText().toUpperCase());
-            en.setTelefono_contacto(txtTelefonoCliente.getText().toUpperCase());
-            en.setCorreo(txtCorreoCliente.getText().toUpperCase());
-            en.setGarantia(txtGarantia.getText().toUpperCase());
-            en.setObservaciones(areaObservaciones.getText().toUpperCase());
-            en.setId_cli(Integer.parseInt(txtIdCli.getText()));
-            */
+
     
     public void EditarTablaEntrada(Entradas entrada) {
         try {
@@ -166,6 +153,7 @@ public class entradaMySql {
             pst.setString(12, entrada.getEstado());
             pst.setString(13, entrada.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -202,6 +190,7 @@ public class entradaMySql {
             pst.setString(22, entrada.getTarjeta_red());
             pst.setString(23, entrada.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,6 +226,7 @@ public class entradaMySql {
                     + " WHERE numero=?");
             pst.setString(1, en.getNumero());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitosamente");
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);

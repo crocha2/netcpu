@@ -813,7 +813,7 @@ public class Contratos extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                    JOptionPane.showMessageDialog(this, "ERROR AL BUSCAR NUMERO: " + e);
                 }
                 break;
             case 1:
@@ -1094,7 +1094,6 @@ public class Contratos extends javax.swing.JFrame {
             con.setResponsable(txtResp.getText().toUpperCase());
 
             db.InsertarContrato(con);
-            JOptionPane.showMessageDialog(this, "Contrato guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
 
             limpiar2();
             LimpiarTabla2();
@@ -1149,7 +1148,7 @@ public class Contratos extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR Cliente " + e);
+                    JOptionPane.showMessageDialog(null, "error al buscar:"+e);
                 }
         
         
