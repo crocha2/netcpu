@@ -7,6 +7,7 @@ package conMySql;
 
 import clasesPrincipales.Entradas;
 import clasesPrincipales.clientes;
+import clasesPrincipales.cotizaciones;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,84 +23,50 @@ import javax.swing.JOptionPane;
  *
  * @author CPU_SYS
  */
-public class entradaMySql {
+public class cotizaMySql {
 
-    public ArrayList<Entradas> ListEntradas() {
-        ArrayList<Entradas> entrada = new ArrayList();
+    public ArrayList<cotizaciones> ListCotizaciones() {
+        ArrayList<cotizaciones> cotizacion = new ArrayList();
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones, tarjeta, estado, id_cli FROM entradas ORDER BY fecha DESC");
+            ResultSet rs = st.executeQuery("SELECT id_coti, item_coti, fecha_coti, numero, cliente_coti, ciudad_coti, pais_coti, comentario_1, descripcion, valor_unitario, valor_total, fletes, iva, total, firma, validez_oferta, formato_pago, tiempo_entrega,id_cli FROM cotizaciones ORDER BY fecha_coti DESC");
             while (rs.next()) {
-                Entradas en = new Entradas();
-                en.setId_entrada(rs.getInt("id_entra"));
-                en.setNumero(rs.getString("numero"));
-                en.setFecha(rs.getString("fecha"));
-                en.setElemento(rs.getString("elemento"));
-                en.setPotencia(rs.getString("potencia"));
-                en.setMarca(rs.getString("marca"));
-                en.setModelo(rs.getString("modelo"));
-                en.setSerie(rs.getString("serie"));
-                en.setEmpresa(rs.getString("empresa"));
-                en.setNit(rs.getString("nit"));
-                en.setPersona_remite(rs.getString("persona_remite"));
-                en.setCiudad(rs.getString("ciudad"));
-                en.setDireccion(rs.getString("direccion"));
-                en.setNombre_contacto(rs.getString("contacto"));
-                en.setTelefono_contacto(rs.getString("telefono"));
-                en.setCorreo(rs.getString("correo"));
-                en.setMotivo(rs.getString("motivo"));
-                en.setParrilla(rs.getString("parrilla"));
-                en.setBases_plasticas(rs.getString("bases_plas"));
-                en.setConector_origi(rs.getString("conector_ori"));
-                en.setGarantia(rs.getString("garantia"));
-                en.setEstado_carcasa(rs.getString("estado_car"));
-                en.setObservaciones(rs.getString("observaciones"));
-                en.setTarjeta_red(rs.getString("tarjeta"));
-                en.setEstado(rs.getString("estado"));
-                en.setId_cli(rs.getInt("id_cli"));
-                entrada.add(en);
+                cotizaciones cot = new cotizaciones();
+                cot.setId_coti(rs.getInt("id_coti"));
+                cot.setItem(rs.getInt("item_coti"));
+                cot.setFecha_coti(rs.getString("fecha_coti"));
+                cot.setNumero(rs.getString("numero"));
+                cot.setCliente_coti(rs.getString("cliente_coti"));
+                cot.setCiudad_coti(rs.getString("ciudad_coti"));
+                cot.setPais_coti(rs.getString("pais_coti"));   
+                cot.setComentario_1(rs.getString("comentario_1"));
+                cot.setDescripcion(rs.getString("descripcion"));
+                cot.setValor_unitario(rs.getInt("valor_unitario"));
+                cot.setValor_total(rs.getInt("valor_total"));
+                cot.setFletes(rs.getInt("fletes"));
+                cot.setIva(rs.getInt("iva"));
+                cot.setTotal(rs.getInt("total"));
+                cot.setFirma(rs.getString("firma"));
+                cot.setValidez_oferta(rs.getString("validez_oferta"));
+                cot.setFormato_pago(rs.getString("forma_pago"));
+                cot.setTiempo_entrega(rs.getString("tiempo_entrega"));
+                cot.setId_cli(rs.getInt("id_cli"));
+                cotizacion.add(cot);
             }
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en listado"+ex.getMessage());
         }
-        return entrada;
-    }
-    
-    public ArrayList<Entradas> ListEntradas_garantias() {
-        ArrayList<Entradas> entrada = new ArrayList();
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_entra, fecha, numero, empresa, nit, elemento, marca, modelo, serie, garantia, estado FROM entradas WHERE garantia = 'SI' AND estado = 'REVISION' ORDER BY fecha ASC");
-            while (rs.next()) {
-                Entradas en = new Entradas();
-                en.setId_entrada(rs.getInt("id_entra"));
-                en.setFecha(rs.getString("fecha"));
-                en.setNumero(rs.getString("numero"));
-                en.setEmpresa(rs.getString("empresa"));
-                en.setNit(rs.getString("nit"));
-                en.setElemento(rs.getString("elemento"));
-                en.setMarca(rs.getString("marca"));
-                en.setModelo(rs.getString("modelo"));
-                en.setSerie(rs.getString("serie"));
-                en.setGarantia(rs.getString("garantia"));
-                en.setEstado(rs.getString("estado"));
-                entrada.add(en);
-            }
-            cn.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
-        }
-        return entrada;
+        return cotizacion;
     }
 
     //Codigo para INSERTAR DATOS.........................................................
-    public void insertarEntrada(Entradas entrada) {
+    public void insertarCotizacion(cotizaciones cotizacion) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst =  cn.prepareStatement("INSERT INTO entradas(numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones, tarjeta, estado, id_cli) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            /*
             pst.setString(1, entrada.getNumero());
             pst.setString(2, entrada.getFecha());
             pst.setString(3, entrada.getElemento());
@@ -125,10 +92,37 @@ public class entradaMySql {
             pst.setString(23, entrada.getTarjeta_red());
             pst.setString(24, entrada.getEstado());
             pst.setInt(25, entrada.getId_cli());
+            
+            
+            
+            
+            
+            cot.setId_coti(rs.getInt("id_coti"));
+                cot.setItem(rs.getInt("item_coti"));
+                cot.setFecha_coti(rs.getString("fecha_coti"));
+                cot.setNumero(rs.getString("numero"));
+                cot.setCliente_coti(rs.getString("cliente_coti"));
+                cot.setCiudad_coti(rs.getString("ciudad_coti"));
+                cot.setPais_coti(rs.getString("pais_coti"));   
+                cot.setComentario_1(rs.getString("comentario_1"));
+                cot.setDescripcion(rs.getString("descripcion"));
+                cot.setValor_unitario(rs.getInt("valor_unitario"));
+                cot.setValor_total(rs.getInt("valor_total"));
+                cot.setFletes(rs.getInt("fletes"));
+                cot.setIva(rs.getInt("iva"));
+                cot.setTotal(rs.getInt("total"));
+                cot.setFirma(rs.getString("firma"));
+                cot.setValidez_oferta(rs.getString("validez_oferta"));
+                cot.setFormato_pago(rs.getString("forma_pago"));
+                cot.setTiempo_entrega(rs.getString("tiempo_entrega"));
+                cot.setId_cli(rs.getInt("id_cli"));
+            */
+            
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
+            System.out.println(ex.getMessage());
+            System.out.println("Error al insertar");
         }
     }
     
@@ -168,8 +162,7 @@ public class entradaMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
+            Logger.getLogger(cotizaMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -204,8 +197,7 @@ public class entradaMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
+            Logger.getLogger(cotizaMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -225,7 +217,6 @@ public class entradaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
 
     }
@@ -239,8 +230,7 @@ public class entradaMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
+            Logger.getLogger(cotizaMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

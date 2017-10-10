@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 //import run.Main;
 
 
@@ -51,7 +52,7 @@ public class contratoMySql {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println("Error en listado: \n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
         }
         return contrato;
     }
@@ -71,8 +72,7 @@ public class contratoMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            System.out.println("Error al insertar: \n"+ex.getMessage());
-            //JOptionPane.showMessageDialog(null, "Error en listado \n"+ex.getMessage());  
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage()); 
         }
     }
     /*
@@ -112,6 +112,7 @@ public class contratoMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(contratoMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
 
     }
@@ -126,6 +127,7 @@ public class contratoMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(contratoMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
         }
     }
     

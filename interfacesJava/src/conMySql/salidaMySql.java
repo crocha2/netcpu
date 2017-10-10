@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,8 +51,7 @@ public class salidaMySql {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error en listado");
+            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
         }
         return salida;
     }
@@ -83,8 +83,7 @@ public class salidaMySql {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error en listado");
+            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
         }
         return salida;
     }
@@ -110,8 +109,7 @@ public class salidaMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error al insertar");
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
         }
     }
     
@@ -136,6 +134,7 @@ public class salidaMySql {
          cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
     }
     
@@ -157,6 +156,7 @@ public class salidaMySql {
          cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
     }
     
@@ -176,6 +176,7 @@ public class salidaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
 
     }
@@ -193,6 +194,7 @@ public class salidaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
 
     }
@@ -206,6 +208,7 @@ public class salidaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(salidaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
         }
     }
     

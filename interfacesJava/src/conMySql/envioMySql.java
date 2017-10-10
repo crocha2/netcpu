@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -47,8 +48,7 @@ public class envioMySql {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error en listado");
+            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
         }
         return envio;
     }
@@ -69,8 +69,7 @@ public class envioMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error al insertar");
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
         }
     }
     
@@ -90,6 +89,7 @@ public class envioMySql {
          cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(envioMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
     }
     
@@ -102,6 +102,7 @@ public class envioMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(envioMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
         }
     }
     

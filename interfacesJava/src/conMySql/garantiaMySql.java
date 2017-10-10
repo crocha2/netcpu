@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,8 +51,7 @@ public class garantiaMySql {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error en listar");
+            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
         }
         return garantia;
     }
@@ -81,8 +81,7 @@ public class garantiaMySql {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error al insertar registro");
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
         }
     }
     
@@ -118,6 +117,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
     }
     
@@ -137,6 +137,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
     }
     
@@ -155,6 +156,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al actualizar:\n"+ex.getMessage());
         }
     }
     
@@ -172,6 +174,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al pasar a proceso:\n"+ex.getMessage());
         }
     }
     
@@ -188,6 +191,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al pasar a proceso:\n"+ex.getMessage());
         }
     }
     
@@ -205,6 +209,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error en LISTO:\n"+ex.getMessage());
         }
     }
     
@@ -221,6 +226,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error en LISTO:\n"+ex.getMessage());
         }
     }
     
@@ -238,6 +244,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al rechazar:\n"+ex.getMessage());
         }
     }
     
@@ -254,6 +261,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al rechazar:\n"+ex.getMessage());
         }
     }
     
@@ -269,6 +277,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
         }
     }
     
@@ -282,6 +291,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
         }
     }
 

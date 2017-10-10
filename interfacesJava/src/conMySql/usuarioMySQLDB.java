@@ -41,8 +41,7 @@ public class usuarioMySQLDB {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error en listado");
+           JOptionPane.showMessageDialog(null, "Error al listar:\n"+ex.getMessage());
         }
         return usuario;
     }
@@ -58,8 +57,7 @@ public class usuarioMySQLDB {
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error al insertar");
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
         }
     }
     
@@ -85,6 +83,7 @@ public class usuarioMySQLDB {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
         }
     }
     
@@ -100,6 +99,7 @@ public class usuarioMySQLDB {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(usuarioMySQLDB.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
         }
 
     }
