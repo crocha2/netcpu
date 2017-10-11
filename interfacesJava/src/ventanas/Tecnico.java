@@ -3213,12 +3213,12 @@ public class Tecnico extends javax.swing.JFrame {
             gar.setFecha_garantia(txtFechaGarantia.getText());
             gar.setRma(txtRmaGar.getText().toUpperCase());
             dbGarantia.Asignar(gar);
-            JOptionPane.showMessageDialog(this, "Registros asignados");
             LimpiarGarantiasProceso();
             ListarGarantiasProceso();
             limpiarTextFiealdProceso();
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error:\n"+e.getMessage());
         }
 
         // TODO add your handling code here:

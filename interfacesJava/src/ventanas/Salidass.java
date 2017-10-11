@@ -31,7 +31,6 @@ import javax.swing.JOptionPane;
 public class Salidass extends javax.swing.JFrame {
 
     ArrayList<Salidass> salida;
-    //salidaDB db = new salidaDB();
     salidaMySql db = new salidaMySql();
 
     /**
@@ -48,7 +47,7 @@ public class Salidass extends javax.swing.JFrame {
         numeros();
         txtSec.setEnabled(false);
         txtIdCli.setEnabled(false);
-        txtIdCli.setText(""+0);
+        txtIdCli.setText("" + 0);
         //CargarCmbFacturas();
     }
 
@@ -234,6 +233,7 @@ public class Salidass extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         cmbPrestamo = new javax.swing.JComboBox();
         jLabel29 = new javax.swing.JLabel();
+        btnBusca4 = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -492,6 +492,24 @@ public class Salidass extends javax.swing.JFrame {
         jLabel29.setText("FECHA");
         getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 40, 20));
 
+        btnBusca4.setBackground(new java.awt.Color(255, 255, 255));
+        btnBusca4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBusca4.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa2.png"))); // NOI18N
+        btnBusca4.setBorder(null);
+        btnBusca4.setBorderPainted(false);
+        btnBusca4.setContentAreaFilled(false);
+        btnBusca4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBusca4.setIconTextGap(-1);
+        btnBusca4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBusca4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBusca4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBusca4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 40, -1));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
 
@@ -532,7 +550,7 @@ public class Salidass extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"error\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "error\n" + ex.getMessage());
         }
 
         // TODO add your handling code here:
@@ -573,7 +591,7 @@ public class Salidass extends javax.swing.JFrame {
             cli.setNombre_contacto(txtContacto.getText().toUpperCase());
             cli.setTelefono_cliente(txtTelefono.getText().toUpperCase());
             cli.setCorreo_cliente(txtCorreo.getText().toUpperCase());
-            
+
             try {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
                 PreparedStatement pst = cn.prepareStatement("Select * From clientes Where nombre_cli = ?");
@@ -583,7 +601,7 @@ public class Salidass extends javax.swing.JFrame {
                     db.insertarSalida(sal);
                     numeros();
                     limpiar();
-                }else {
+                } else {
                     if (id == 0) {
                         JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
                         Nuevo_Cliente obj = new Nuevo_Cliente();
@@ -595,10 +613,6 @@ public class Salidass extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println("error" + e);
         }
-
-        
-        
-        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed
@@ -661,7 +675,7 @@ public class Salidass extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"error\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "error\n" + ex.getMessage());
         }
 
         // TODO add your handling code here:
@@ -671,7 +685,7 @@ public class Salidass extends javax.swing.JFrame {
 
         Facturas_Salida obj = new Facturas_Salida();
         obj.setVisible(true);
-    
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuarda1ActionPerformed
 
@@ -686,6 +700,48 @@ public class Salidass extends javax.swing.JFrame {
     private void txtIdCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdCliActionPerformed
+
+    private void btnBusca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca4ActionPerformed
+
+        try {
+
+            String guardar = cmbEntradas.getSelectedItem().toString();
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cn.createStatement();
+            PreparedStatement pst = cn.prepareStatement("SELECT e.empresa, e.ciudad, e.direccion, e.contacto , e.telefono, e.correo, e.elemento, e.modelo, e.serie, e.id_cli, g.serie_nueva\n"
+                    + "FROM entradas e \n"
+                    + "INNER JOIN garantias g \n"
+                    + "ON e.id_entra = g.id_entra\n"
+                    + "WHERE e.numero = ?");
+            pst.setString(1, guardar);
+            //pst.setString(1, CMBID.getName());
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+
+                txtEmpresa.setText(rs.getString("empresa").trim());
+                txtCiudad.setText(rs.getString("ciudad").trim());
+                txtDireccion.setText(rs.getString("direccion").trim());
+                txtContacto.setText(rs.getString("contacto").trim());
+                txtTelefono.setText(rs.getString("telefono").trim());
+                txtCorreo.setText(rs.getString("correo").trim());
+                txtEquipo.setText(rs.getString("elemento"));
+                txtModel.setText(rs.getString("modelo"));
+                txtSerie.setText(rs.getString("serie").trim());
+                txtIdCli.setText(rs.getString("id_cli"));
+                areaComentario.setText(rs.getString("serie_nueva").trim());
+                
+                //pst.setString(1, CMBID.getName());
+                //String guardar = txtBuscar.getText();
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe la factura");
+            }
+            cn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error\n" + ex.getMessage());
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBusca4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -759,6 +815,7 @@ public class Salidass extends javax.swing.JFrame {
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnBusca3;
+    private javax.swing.JButton btnBusca4;
     private javax.swing.JButton btnDescartar1;
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnGuarda1;
