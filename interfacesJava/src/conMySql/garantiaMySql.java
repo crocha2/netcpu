@@ -24,7 +24,6 @@ import javax.swing.JOptionPane;
  */
 public class garantiaMySql {
 
-    
     public ArrayList<Garantias> ListGarantias() {
         ArrayList<Garantias> garantia = new ArrayList();
         try {
@@ -51,20 +50,18 @@ public class garantiaMySql {
             }
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en listado:\n" + ex.getMessage());
         }
         return garantia;
     }
-
-    
 
     //Codigo para INSERTAR DATOS.........................................................
     public void insertarEntrada_Garantia(Garantias garantia) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             //PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
-            PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-                              
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO garantias(fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+
             pst.setString(1, garantia.getFecha_entrada());
             pst.setString(2, garantia.getFecha_garantia());
             pst.setString(3, garantia.getNumero());
@@ -81,10 +78,10 @@ public class garantiaMySql {
             JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n" + ex.getMessage());
         }
     }
-    
+
     public void EditarEntrada(Entradas entrada) {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
@@ -118,10 +115,10 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al editar:\n" + ex.getMessage());
         }
     }
-    
+
     public void EditarProceso(Garantias garantia) {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
@@ -139,13 +136,13 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al editar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al editar:\n" + ex.getMessage());
         }
     }
-    
+
     public void Asignar(Garantias garantia) {
         try {
-            
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET fecha_garantia=?, rma=?, numero_caso=?, serie_nueva=? WHERE id_entra = ?");
             pst.setString(1, garantia.getFecha_garantia());
@@ -158,12 +155,11 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al actualizar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al actualizar:\n" + ex.getMessage());
         }
     }
-    
+
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void RevisionAProcesoEntrada(Entradas entrada) {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
@@ -176,11 +172,10 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al pasar a proceso:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al pasar a proceso:\n" + ex.getMessage());
         }
     }
-    
-    
+
     public void RevisionAProcesoGarantia(Garantias garantia) {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
@@ -193,15 +188,14 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al pasar a proceso:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al pasar a proceso:\n" + ex.getMessage());
         }
     }
-    
+
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void ListoEntrada(Entradas entrada) {
         try {
-            
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET estado=? WHERE id_entra = ?");
             pst.setString(1, entrada.getEstado());
@@ -211,32 +205,30 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error en LISTO:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en LISTO:\n" + ex.getMessage());
         }
     }
-    
-    
+
     public void ListoGarantia(Garantias garantia) {
         try {
-            
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET estado=? WHERE id_entra = ?");
             pst.setString(1, garantia.getEstado());
             pst.setInt(2, garantia.getId_entra());
-            
+
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error en LISTO:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en LISTO:\n" + ex.getMessage());
         }
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void RechazarEntrada(Entradas entrada) {
         try {
-            
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET estado=? WHERE id_entra = ?");
             pst.setString(1, entrada.getEstado());
@@ -246,14 +238,13 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al rechazar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al rechazar:\n" + ex.getMessage());
         }
     }
-    
-    
+
     public void RechazarGarantia(Garantias garantia) {
         try {
-            
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET estado=? WHERE id_entra = ?");
             pst.setString(1, garantia.getEstado());
@@ -263,12 +254,11 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al rechazar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al rechazar:\n" + ex.getMessage());
         }
     }
-    
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    
     public void EliminarEntrada(Entradas en) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -280,10 +270,10 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n" + ex.getMessage());
         }
     }
-    
+
     public void EliminarGarantia(Garantias gar) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
@@ -294,7 +284,7 @@ public class garantiaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(garantiaMySql.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al eliminar:\n" + ex.getMessage());
         }
     }
 

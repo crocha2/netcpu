@@ -44,6 +44,7 @@ public class Salidass extends javax.swing.JFrame {
         //CargarCmbCliente();
         autoComplete();
         CargarCmbEntadas();
+        CargarCmbGarantias();
         numeros();
         txtSec.setEnabled(false);
         txtIdCli.setEnabled(false);
@@ -89,6 +90,20 @@ public class Salidass extends javax.swing.JFrame {
                 this.cmbEntradas.addItem(rs.getString("numero"));
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Servidor: error al cargar comboBox:\n"+e.getMessage());
+        }
+    }
+    
+    public void CargarCmbGarantias() {
+        try {
+            Connection cnx = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery("SELECT numero FROM garantias WHERE estado = 'LISTO' ORDER BY numero DESC");
+            while (rs.next()) {
+                this.cmbGarantias.addItem(rs.getString("numero"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Servidor: error al cargar comboBox:\n"+e.getMessage());
         }
     }
 
@@ -234,6 +249,8 @@ public class Salidass extends javax.swing.JFrame {
         cmbPrestamo = new javax.swing.JComboBox();
         jLabel29 = new javax.swing.JLabel();
         btnBusca4 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        cmbGarantias = new javax.swing.JComboBox();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -249,7 +266,7 @@ public class Salidass extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(153, 255, 153));
         jLabel6.setText("CLIENTES");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 70, 20));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 130, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 130, 10));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -352,7 +369,7 @@ public class Salidass extends javax.swing.JFrame {
                 btnBuscaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 40, -1));
+        getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 40, -1));
 
         btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -394,23 +411,23 @@ public class Salidass extends javax.swing.JFrame {
                 txtSecActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 160, -1));
-        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 100, 10));
+        getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 170, -1));
+        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 110, 10));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(153, 255, 153));
         jLabel26.setText("No. REM");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 60, 20));
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 60, 20));
 
         txtFecha.setDateFormatString("yyyy/MM/dd");
-        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 170, -1));
+        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 170, -1));
 
         cmbEntradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbEntradasActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 160, -1));
+        getContentPane().add(cmbEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 150, -1));
 
         btnBusca3.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -428,12 +445,12 @@ public class Salidass extends javax.swing.JFrame {
                 btnBusca3ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBusca3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 40, -1));
+        getContentPane().add(btnBusca3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 40, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(153, 255, 153));
-        jLabel8.setText("ENTRADAS");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 70, 20));
+        jLabel8.setText("GARANTIAS");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 100, 20));
 
         btnGuarda1.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -453,7 +470,7 @@ public class Salidass extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnGuarda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 50, -1));
-        getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 230, -1));
+        getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 210, -1));
 
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -490,7 +507,7 @@ public class Salidass extends javax.swing.JFrame {
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(153, 255, 153));
         jLabel29.setText("FECHA");
-        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 40, 20));
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 40, 20));
 
         btnBusca4.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -508,7 +525,14 @@ public class Salidass extends javax.swing.JFrame {
                 btnBusca4ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBusca4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 40, -1));
+        getContentPane().add(btnBusca4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 40, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 255, 153));
+        jLabel9.setText("ENTRADAS");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 70, 20));
+
+        getContentPane().add(cmbGarantias, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 160, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ima2.2_ampliada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 530));
@@ -704,8 +728,8 @@ public class Salidass extends javax.swing.JFrame {
     private void btnBusca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca4ActionPerformed
 
         try {
-
-            String guardar = cmbEntradas.getSelectedItem().toString();
+            String area ="";
+            String guardar = cmbGarantias.getSelectedItem().toString();
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
             PreparedStatement pst = cn.prepareStatement("SELECT e.empresa, e.ciudad, e.direccion, e.contacto , e.telefono, e.correo, e.elemento, e.modelo, e.serie, e.id_cli, g.serie_nueva\n"
@@ -717,7 +741,7 @@ public class Salidass extends javax.swing.JFrame {
             //pst.setString(1, CMBID.getName());
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-
+                Entradas en = new Entradas();
                 txtEmpresa.setText(rs.getString("empresa").trim());
                 txtCiudad.setText(rs.getString("ciudad").trim());
                 txtDireccion.setText(rs.getString("direccion").trim());
@@ -726,9 +750,9 @@ public class Salidass extends javax.swing.JFrame {
                 txtCorreo.setText(rs.getString("correo").trim());
                 txtEquipo.setText(rs.getString("elemento"));
                 txtModel.setText(rs.getString("modelo"));
-                txtSerie.setText(rs.getString("serie").trim());
+                txtSerie.setText(rs.getString("serie_nueva").trim());
                 txtIdCli.setText(rs.getString("id_cli"));
-                areaComentario.setText(rs.getString("serie_nueva").trim());
+                areaComentario.setText(rs.getString("serie").trim());
                 
                 //pst.setString(1, CMBID.getName());
                 //String guardar = txtBuscar.getText();
@@ -820,6 +844,7 @@ public class Salidass extends javax.swing.JFrame {
     private javax.swing.JButton btnGuarda;
     private javax.swing.JButton btnGuarda1;
     private javax.swing.JComboBox cmbEntradas;
+    private javax.swing.JComboBox cmbGarantias;
     private javax.swing.JComboBox cmbPrestamo;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -840,6 +865,7 @@ public class Salidass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

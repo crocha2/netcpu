@@ -907,11 +907,12 @@ public class Tecnico extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         areaGarantia1 = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
-        tbGarantias1 = new javax.swing.JTable();
+        tbListo = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         txtNitCliente4 = new javax.swing.JTextField();
         btnBusca4 = new javax.swing.JButton();
         cmbHistorial1 = new javax.swing.JComboBox();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -1109,7 +1110,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton10);
-        jButton10.setBounds(360, 370, 100, 40);
+        jButton10.setBounds(320, 370, 100, 40);
 
         jButton17.setBackground(new java.awt.Color(0, 153, 153));
         jButton17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1121,7 +1122,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton17);
-        jButton17.setBounds(470, 370, 100, 40);
+        jButton17.setBounds(430, 370, 100, 40);
 
         jTabbedPane1.addTab("ENTRADAS", jPanel1);
 
@@ -1539,7 +1540,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton15);
-        jButton15.setBounds(474, 400, 95, 40);
+        jButton15.setBounds(460, 400, 95, 40);
 
         jButton16.setBackground(new java.awt.Color(0, 153, 153));
         jButton16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1551,7 +1552,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton16);
-        jButton16.setBounds(373, 400, 95, 40);
+        jButton16.setBounds(360, 400, 95, 40);
 
         jTabbedPane1.addTab("ENVIOS", jPanel3);
 
@@ -1745,7 +1746,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel14.add(jButton18);
-        jButton18.setBounds(340, 390, 100, 40);
+        jButton18.setBounds(340, 400, 100, 40);
 
         jButton19.setBackground(new java.awt.Color(0, 153, 153));
         jButton19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1757,7 +1758,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel14.add(jButton19);
-        jButton19.setBounds(450, 390, 100, 40);
+        jButton19.setBounds(450, 400, 100, 40);
 
         jButton6.setText("jButton3");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -2198,9 +2199,9 @@ public class Tecnico extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("HISTORIAL DE GARANTIAS");
+        jLabel17.setText("GARANTIAS LISTAS");
         jPanel11.add(jLabel17);
-        jLabel17.setBounds(287, 11, 328, 29);
+        jLabel17.setBounds(300, 10, 250, 29);
 
         areaGarantia1.setColumns(20);
         areaGarantia1.setRows(5);
@@ -2211,36 +2212,31 @@ public class Tecnico extends javax.swing.JFrame {
 
         jScrollPane10.setAutoscrolls(true);
 
-        tbGarantias1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tbGarantias1.setModel(new javax.swing.table.DefaultTableModel(
+        tbListo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbListo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "FechaEntrada", "No.Rem", "Cliente", "Nit o Cedula", "Elemento", "Marca", "Modelo", "Serie", "FechaGarantia", "SerieNueva", "PrimeraSerie"
+                "ID", "FechaEntrada", "FechaGarantia", "No.Rem", "Cliente", "Nit o Cedula", "Elemento", "Marca", "Modelo", "Serie", "SerieNueva", "PrimeraSerie"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                true, false, true, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tbGarantias1.setToolTipText("");
-        tbGarantias1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tbGarantias1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tbGarantias1.setGridColor(new java.awt.Color(0, 153, 153));
-        jScrollPane10.setViewportView(tbGarantias1);
-        if (tbGarantias1.getColumnModel().getColumnCount() > 0) {
-            tbGarantias1.getColumnModel().getColumn(9).setHeaderValue("FechaGarantia");
-            tbGarantias1.getColumnModel().getColumn(10).setHeaderValue("SerieNueva");
-            tbGarantias1.getColumnModel().getColumn(11).setHeaderValue("PrimeraSerie");
-        }
+        tbListo.setToolTipText("");
+        tbListo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbListo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbListo.setGridColor(new java.awt.Color(0, 153, 153));
+        jScrollPane10.setViewportView(tbListo);
 
         jPanel11.add(jScrollPane10);
-        jScrollPane10.setBounds(10, 191, 876, 227);
+        jScrollPane10.setBounds(10, 191, 876, 220);
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -2296,8 +2292,10 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel11.add(jPanel12);
         jPanel12.setBounds(29, 77, 313, 81);
+        jPanel11.add(jTextField1);
+        jTextField1.setBounds(40, 420, 80, 20);
 
-        jTabbedPane3.addTab("HISTORIAL", jPanel11);
+        jTabbedPane3.addTab("LISTO", jPanel11);
 
         jTabbedPane2.addTab("GARANTIAS", jTabbedPane3);
 
@@ -3958,10 +3956,11 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbEntrada_garantia;
     private javax.swing.JTable tbEntradas;
     private javax.swing.JTable tbEnvios;
-    private javax.swing.JTable tbGarantias1;
+    private javax.swing.JTable tbListo;
     private javax.swing.JTable tbPrestamos;
     private javax.swing.JTable tbProceso;
     private javax.swing.JTable tbSalidas;
