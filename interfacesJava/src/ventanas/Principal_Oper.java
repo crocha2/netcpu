@@ -7,6 +7,7 @@ package ventanas;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -141,9 +142,15 @@ public class Principal_Oper extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea SALIR?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            Bienvenida obj = new Bienvenida();
+            obj.setVisible(true);
+            dispose();
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed

@@ -58,9 +58,9 @@ public class Principal_Admin extends javax.swing.JFrame {
                 en.setElemento(rs.getString("elemento"));
                 en.setModelo(rs.getString("modelo"));
                 en.setSerie(rs.getString("serie"));
-                str = "* "+en.getFecha()+"\n"+"* "+en.getNumero()+"\n"+"* "+en.getEmpresa()+"\n"+"* "+en.getElemento()+"\n"+"* "+en.getModelo()+"\n"+"* "+en.getSerie()+
-                        "\n\n"+"_____________________";
-                JOptionPane.showMessageDialog(this, "GARANTIAS PENDIENTES\n\n"+str+"\n");
+                str = "* " + en.getFecha() + "\n" + "* " + en.getNumero() + "\n" + "* " + en.getEmpresa() + "\n" + "* " + en.getElemento() + "\n" + "* " + en.getModelo() + "\n" + "* " + en.getSerie()
+                        + "\n\n" + "_____________________";
+                JOptionPane.showMessageDialog(this, "GARANTIAS PENDIENTES\n\n" + str + "\n");
             }
             //JOptionPane.showMessageDialog(this, "   GARANTIAS PENDIENTES\n\n"+str+"\n");
             cn.close();
@@ -197,9 +197,15 @@ public class Principal_Admin extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
-        Bienvenida obj = new Bienvenida();
-        obj.setVisible(true);
-        dispose();
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea SALIR?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            Bienvenida obj = new Bienvenida();
+            obj.setVisible(true);
+            dispose();
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed

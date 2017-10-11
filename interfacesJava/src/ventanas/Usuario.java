@@ -322,7 +322,6 @@ public class Usuario extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarUsuario(usu);
-                JOptionPane.showMessageDialog(this, "Datos EDITAR exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 LimpirTabla();
                 ListarDatos();
                 //this.cmbUsuarios.removeAllItems();
@@ -366,7 +365,6 @@ public class Usuario extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EliminarUsuarios(usu);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 LimpirTabla();
                 ListarDatos();
                 txtID.setText("");

@@ -292,7 +292,7 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,"error\n"+ex.getMessage());
         }
 
         // TODO add your handling code here:

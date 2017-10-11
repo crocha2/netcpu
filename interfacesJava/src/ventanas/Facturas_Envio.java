@@ -421,7 +421,7 @@ public class Facturas_Envio extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "error:"+ex.getMessage());
         }
 
         // TODO add your handling code here:
@@ -454,7 +454,6 @@ public class Facturas_Envio extends javax.swing.JFrame {
             en.setComentario(areaComentario.getText().toUpperCase());
             en.setId_cli(Integer.parseInt(txtIdCli.getText()));
             db.EditarEnvio(en);
-            JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
             this.cmbEnvios.removeAllItems();
             CargarCmbEnvios();
             limpiar();
@@ -480,7 +479,6 @@ public class Facturas_Envio extends javax.swing.JFrame {
             en.setComentario(areaComentario.getText().toUpperCase());
             en.setId_cli(Integer.parseInt(txtIdCli.getText()));
             db.EliminarEnvio(en);
-            JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
             this.cmbEnvios.removeAllItems();
             CargarCmbEnvios();
             limpiar();

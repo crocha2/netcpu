@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import reportes.GenerarReportes;
 
 /**
@@ -109,6 +110,7 @@ public class Garantias_Admin extends javax.swing.JFrame {
             GenerarReportes g = new GenerarReportes();
             g.reporteGarantia(dato1, dato2);
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error:\n"+e);
         }
         
         // TODO add your handling code here:

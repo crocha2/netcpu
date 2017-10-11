@@ -719,7 +719,6 @@ public class Entrada extends javax.swing.JFrame {
 
                     if (rs.next()) {
                         db.insertarEntrada(en);
-                        JOptionPane.showMessageDialog(this, "Entrada guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                         limpiar();
                     } else {
                         if (id == 0) {

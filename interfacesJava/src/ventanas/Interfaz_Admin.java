@@ -116,54 +116,50 @@ public class Interfaz_Admin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        /*
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         PreparedStatement pst =  cn.prepareStatement("INSERT INTO clientes(nit_cli, nombre_cli, telefono_cli, direccion_cli, ciudad_cli, correo_cli, contacto_cli) VALUES (?,?,?,?,?,?,?)");
-         //pst.setInt(1, cliente.getId_cliente());
-         pst.setString(1, cliente.getNit_cliente());
-         pst.setString(2, cliente.getNombre_cliente());
-         */
-        /*
-         Statement st = cn.createStatement();
-         PreparedStatement pst = cn.prepareStatement("Select * from clientes where nombre_cli = ?");
-         pst.setString(1, guardar);
-         */
-        usuarios usu = new usuarios();
-        usu.setNombre(this.txtNombreUsuario.getText());
-        usu.setPassword(this.txtPassword.getText());
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = cn.prepareStatement("Select id_tipo_usu From usuarios Where nombre_usu = ? And password_usu  = ?");
-            pst.setString(1, usu.getNombre());
-            pst.setString(2, usu.getPassword());
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
+        if (txtNombreUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar el campo USUARIO");
+        }
+        if (txtPassword.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar el campo PASSWORD");
+        }
+        if ((!txtNombreUsuario.getText().equals("")) && (!txtPassword.getText().equals(""))) {
+            usuarios usu = new usuarios();
+            usu.setNombre(this.txtNombreUsuario.getText());
+            usu.setPassword(this.txtPassword.getText());
+            try {
+                Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                PreparedStatement pst = cn.prepareStatement("Select id_tipo_usu From usuarios Where nombre_usu = ? And password_usu  = ?");
+                pst.setString(1, usu.getNombre());
+                pst.setString(2, usu.getPassword());
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
 
-                int tipo = rs.getInt("id_tipo_usu");
-                if (tipo == 1) {
+                    int tipo = rs.getInt("id_tipo_usu");
+                    if (tipo == 1) {
 
-                    new Principal_Admin().setVisible(true);
-                    dispose();
-                    this.setVisible(false);
+                        new Principal_Admin().setVisible(true);
+                        dispose();
+                        this.setVisible(false);
+                    }
+                    if (tipo == 2) {
+
+                        new Principal_Oper().setVisible(true);
+                        dispose();
+                        this.setVisible(false);
+                    }
+                    if (tipo == 3) {
+
+                        new Principal_Tec().setVisible(true);
+                        dispose();
+                        this.setVisible(false);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe usuario, por favor revise sus datos");
                 }
-                if (tipo == 2) {
-
-                    new Principal_Oper().setVisible(true);
-                    dispose();
-                    this.setVisible(false);
-                }
-                if (tipo == 3) {
-
-                    new Principal_Tec().setVisible(true);
-                    dispose();
-                    this.setVisible(false);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe usuario, por favor revise sus datos");
+                cn.close();
+            } catch (SQLException | HeadlessException e) {
+                JOptionPane.showMessageDialog(this, "ERROR AL INGRESAR:\n" + e);
             }
-            cn.close();
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "ERROR AL INGRESAR:"+e);
         }
 
         /*

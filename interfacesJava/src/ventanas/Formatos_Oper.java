@@ -45,7 +45,6 @@ public class Formatos_Oper extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         btnSalir2 = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         btnEntrada1 = new javax.swing.JButton();
         btnSalida1 = new javax.swing.JButton();
         btnEnvios1 = new javax.swing.JButton();
@@ -72,17 +71,6 @@ public class Formatos_Oper extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
-
-        btnVolver.setBackground(new java.awt.Color(51, 153, 255));
-        btnVolver.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 70, -1));
 
         btnEntrada1.setBackground(new java.awt.Color(255, 255, 255));
         btnEntrada1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -194,15 +182,6 @@ public class Formatos_Oper extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
-        Principal_Oper obj = new Principal_Oper();
-        obj.setVisible(true);
-        dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
-
     private void btnEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrada1ActionPerformed
 
         Entrada obj = new Entrada();
@@ -288,7 +267,6 @@ public class Formatos_Oper extends javax.swing.JFrame {
     private javax.swing.JButton btnEnvios1;
     private javax.swing.JButton btnSalida1;
     private javax.swing.JButton btnSalir2;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;

@@ -212,9 +212,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
-        if (txtNitCliente.getText().equals("") || txtNombreCliente.getText().equals("") || txtTelefonoCliente.getText().equals("") || txtDireccionCliente.getText().equals("") || txtCiudadCliente.getText().equals("") || txtCorreoCliente.getText().equals("") || txtContactoCliente.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos", "", JOptionPane.INFORMATION_MESSAGE);
-        } else {
             try {
                 clientes cl = new clientes();
                 cl.setNit_cliente(txtNitCliente.getText().toUpperCase());
@@ -225,7 +222,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
                 cl.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
                 cl.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
                 db.insertarCliente(cl);
-                JOptionPane.showMessageDialog(this, "Datos ingresados exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 txtNitCliente.setText("");
                 txtNombreCliente.setText("");
                 txtTelefonoCliente.setText("");
@@ -238,7 +234,6 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, e);
             }
 
-        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed

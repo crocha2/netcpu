@@ -224,7 +224,7 @@ public class Editar_Salida extends javax.swing.JFrame {
         areaComentario.setRows(5);
         jScrollPane1.setViewportView(areaComentario);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 470, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 500, 110));
         getContentPane().add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 250, 10));
 
         txtModelo.addActionListener(new java.awt.event.ActionListener() {
@@ -364,7 +364,6 @@ public class Editar_Salida extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EliminarSalida(sal);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 tec.LimpiarSalidas();
                 tec.ListarSalidas();
                 tec.LimpiarPrestamo();
@@ -410,7 +409,6 @@ public class Editar_Salida extends javax.swing.JFrame {
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarTablaSalida(sal);
                 db.EditarClienteSalida(cli);
-                JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
                 tec.LimpiarSalidas();
                 tec.ListarSalidas();

@@ -532,7 +532,7 @@ public class Salidass extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,"error\n"+ex.getMessage());
         }
 
         // TODO add your handling code here:
@@ -581,7 +581,6 @@ public class Salidass extends javax.swing.JFrame {
                 ResultSet rs = pst.executeQuery();
                 if (rs.next()) {
                     db.insertarSalida(sal);
-                    JOptionPane.showMessageDialog(this, "Salida guardada exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                     numeros();
                     limpiar();
                 }else {
@@ -662,7 +661,7 @@ public class Salidass extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,"error\n"+ex.getMessage());
         }
 
         // TODO add your handling code here:

@@ -447,7 +447,6 @@ public void limpiar() {
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarTablaEntrada(en);
                 dbcli.EditarClienteEntrada(cli);
-                JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
                 tec.LimpiarEntradas();
                 tec.LimpiarEntradas_Garantias();

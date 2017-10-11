@@ -296,7 +296,6 @@ public class Editar_Envio extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarEnvio(en);
-                JOptionPane.showMessageDialog(this, "Envio EDITADO exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
                 tec.LimpiarEnvios();
                 tec.ListarEnvios();
@@ -327,7 +326,6 @@ public class Editar_Envio extends javax.swing.JFrame {
             en.setComentario(areaComentario.getText().toUpperCase());
             en.setId_cli(Integer.parseInt(txtIdCli.getText()));
             db.EliminarEnvio(en);
-            JOptionPane.showMessageDialog(this, "Registro ELIMINADO exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
             limpiar();
             tec.LimpiarEnvios();
             tec.ListarEnvios();

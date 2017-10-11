@@ -165,8 +165,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
                 usu.setTipoUsuario(tipo);
             }
             db.insertarUsuario(usu);
-            JOptionPane.showMessageDialog(this, "Datos ingresados exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-
+            
             txtNombre.setText("");
             txtPasswordUsuario.setText("");
             txtNombre.requestFocus();

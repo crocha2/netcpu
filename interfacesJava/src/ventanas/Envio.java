@@ -459,7 +459,6 @@ public class Envio extends javax.swing.JFrame {
 
                 if (rs.next()) {
                     db.insertarEnvio(en);
-                    JOptionPane.showMessageDialog(this, "Envio guardado exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                     numerosEnvios();
                     limpiar();
                 } else {

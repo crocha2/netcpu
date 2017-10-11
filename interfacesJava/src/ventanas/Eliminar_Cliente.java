@@ -328,7 +328,6 @@ public class Eliminar_Cliente extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EliminarCliente(cli);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 LimpirTabla();
                 ListarDatos();
                 autoComplete();

@@ -15,6 +15,7 @@ import conMySql.entradaMySql;
 import conMySql.envioMySql;
 import conMySql.garantiaMySql;
 import conMySql.salidaMySql;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -171,7 +172,9 @@ public class Tecnico extends javax.swing.JFrame {
             tb.removeRow(i);
         }
     }
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
     public void ListarEnvios() {
         envio = dbEnvio.ListEnvios();
         DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
@@ -522,7 +525,7 @@ public class Tecnico extends javax.swing.JFrame {
          }
          */
     }
-    
+
     public void autoCompletePrestamo() {
 
         int tipo = cmbPrestamo.getSelectedIndex();
@@ -566,7 +569,7 @@ public class Tecnico extends javax.swing.JFrame {
                     System.out.println("error" + e);
                 }
         }
-        }
+    }
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     public void autoCompleteEnvios() {
@@ -632,7 +635,6 @@ public class Tecnico extends javax.swing.JFrame {
     }
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
     public void autoCompleteProceso() {
 
         int tipo = cmbProceso.getSelectedIndex();
@@ -2319,154 +2321,158 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
 
-        String guardar = autoEntra.getText();
-        int tipo = cmbEntradas.getSelectedIndex();
-        switch (tipo) {
-            case 0:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas();
-                    if (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setTelefono_contacto(rs.getString("telefono"));
-                        en.setCorreo(rs.getString("correo"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setObservaciones(rs.getString("observaciones"));
-                        en.setEstado(rs.getString("estado"));
-                        en.setId_cli((rs.getInt("id_cli")));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
-                        autoCompleteEntradas();
+        if (autoEntra.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        } else {
+            String guardar = autoEntra.getText();
+            int tipo = cmbEntradas.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas();
+                        if (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setTelefono_contacto(rs.getString("telefono"));
+                            en.setCorreo(rs.getString("correo"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setObservaciones(rs.getString("observaciones"));
+                            en.setEstado(rs.getString("estado"));
+                            en.setId_cli((rs.getInt("id_cli")));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                            autoCompleteEntradas();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
-                }
-                break;
-            case 1:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas();
-                    while (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setTelefono_contacto(rs.getString("telefono"));
-                        en.setCorreo(rs.getString("correo"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setObservaciones(rs.getString("observaciones"));
-                        en.setEstado(rs.getString("estado"));
-                        en.setId_cli((rs.getInt("id_cli")));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
-                        autoCompleteEntradas();
+                    break;
+                case 1:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas();
+                        while (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setTelefono_contacto(rs.getString("telefono"));
+                            en.setCorreo(rs.getString("correo"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setObservaciones(rs.getString("observaciones"));
+                            en.setEstado(rs.getString("estado"));
+                            en.setId_cli((rs.getInt("id_cli")));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                            autoCompleteEntradas();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
-                }
 
-                break;
-            case 2:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas();
-                    while (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setTelefono_contacto(rs.getString("telefono"));
-                        en.setCorreo(rs.getString("correo"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setObservaciones(rs.getString("observaciones"));
-                        en.setEstado(rs.getString("estado"));
-                        en.setId_cli((rs.getInt("id_cli")));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
-                        autoCompleteEntradas();
+                    break;
+                case 2:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas();
+                        while (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setTelefono_contacto(rs.getString("telefono"));
+                            en.setCorreo(rs.getString("correo"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setObservaciones(rs.getString("observaciones"));
+                            en.setEstado(rs.getString("estado"));
+                            en.setId_cli((rs.getInt("id_cli")));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                            autoCompleteEntradas();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR REGISTRO: " + e);
-                }
-                break;
-            case 3:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas();
-                    while (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setTelefono_contacto(rs.getString("telefono"));
-                        en.setCorreo(rs.getString("correo"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setObservaciones(rs.getString("observaciones"));
-                        en.setEstado(rs.getString("estado"));
-                        en.setId_cli((rs.getInt("id_cli")));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(),en.getId_cli()});
-                        autoCompleteEntradas();
+                    break;
+                case 3:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas();
+                        while (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setTelefono_contacto(rs.getString("telefono"));
+                            en.setCorreo(rs.getString("correo"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setObservaciones(rs.getString("observaciones"));
+                            en.setEstado(rs.getString("estado"));
+                            en.setId_cli((rs.getInt("id_cli")));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                            autoCompleteEntradas();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR SERIE: " + e);
-                }
-                break;
-            default:
-                System.out.println("error");
-                break;
+                    break;
+                default:
+                    System.out.println("error");
+                    break;
+            }
         }
 
         // TODO add your handling code here:
@@ -2474,7 +2480,10 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
 
-        String guardar = autoSal.getText();
+        if (autoSal.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        }else{
+            String guardar = autoSal.getText();
         int tipo = cmbSalidas.getSelectedIndex();
         switch (tipo) {
             case 0:
@@ -2507,7 +2516,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 1:
@@ -2540,7 +2549,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 2:
@@ -2573,12 +2582,13 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR SERIE: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             default:
                 System.out.println("error");
                 break;
+        }
         }
 
 // TODO add your handling code here:
@@ -2586,7 +2596,10 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca2ActionPerformed
 
-        String guardar = autoEnvio.getText();
+        if (autoEnvio.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        }else{
+            String guardar = autoEnvio.getText();
         int tipo = cmbEnvios.getSelectedIndex();
         switch (tipo) {
             case 0:
@@ -2617,7 +2630,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 1:
@@ -2648,8 +2661,9 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR DESTINATARIO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
+        }
         }
 
         // TODO add your handling code here:
@@ -2681,7 +2695,10 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBusca3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca3ActionPerformed
 
-        String guardar = autoProceso.getText();
+        if (autoProceso.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        }else{
+            String guardar = autoProceso.getText();
         int tipo = cmbProceso.getSelectedIndex();
         switch (tipo) {
             case 0:
@@ -2713,7 +2730,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR RMA: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 1:
@@ -2744,7 +2761,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR NO.CASO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
 
                 break;
@@ -2776,7 +2793,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR SERIE: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 3:
@@ -2807,7 +2824,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR REGISTRO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 4:
@@ -2844,6 +2861,7 @@ public class Tecnico extends javax.swing.JFrame {
             default:
                 System.out.println("error");
                 break;
+        }
         }
 
         // TODO add your handling code here:
@@ -2894,7 +2912,11 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBusca5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca5ActionPerformed
 
-        String guardar = autoRevision.getText();
+        
+        if (autoRevision.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        }else{
+            String guardar = autoRevision.getText();
         int tipo = cmbRevision.getSelectedIndex();
         switch (tipo) {
             case 0:
@@ -2925,7 +2947,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 1:
@@ -2955,7 +2977,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 2:
@@ -2985,7 +3007,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR REGISTRO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 3:
@@ -3015,12 +3037,13 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR SERIE: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             default:
                 System.out.println("error");
                 break;
+        }
         }
 
 // TODO add your handling code here:
@@ -3036,45 +3059,50 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        try {
-            Garantias gar = new Garantias();
-            Entradas en = new Entradas();
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
 
-            int seleccion = tbEntrada_garantia.getSelectedRow();
+                int seleccion = tbEntrada_garantia.getSelectedRow();
 
-            int idEn = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
-            en.setId_entrada(idEn);
-            en.setEstado("PROCESO");
+                int idEn = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("PROCESO");
 
-            /////////////////////PENDIENTE FECHA///////////////////////////
-            int id = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
-            gar.setId_entra(id);
-            gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
-            gar.setFecha_garantia(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
-            gar.setNumero(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 2)));
-            gar.setRma("");
-            gar.setNumero_caso("");
-            gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
-            gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
-            gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
-            gar.setSerie_nueva("");
-            gar.setPrimera_serie(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
-            gar.setEstado("PROCESO");
+                /////////////////////PENDIENTE FECHA///////////////////////////
+                int id = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
+                gar.setId_entra(id);
+                gar.setFecha_entrada(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
+                gar.setFecha_garantia(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 1)));
+                gar.setNumero(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 2)));
+                gar.setRma("");
+                gar.setNumero_caso("");
+                gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
+                gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
+                gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
+                gar.setSerie_nueva("");
+                gar.setPrimera_serie(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
+                gar.setEstado("PROCESO");
 
-            dbGarantia.insertarEntrada_Garantia(gar);
-            JOptionPane.showMessageDialog(this, "Garantia en proceso", "", JOptionPane.INFORMATION_MESSAGE);
+                dbGarantia.insertarEntrada_Garantia(gar);
+                JOptionPane.showMessageDialog(this, "Garantia en proceso", "", JOptionPane.INFORMATION_MESSAGE);
 
-            dbGarantia.RevisionAProcesoGarantia(gar);
-            dbGarantia.RevisionAProcesoEntrada(en);
-            LimpiarEntradas_Garantias();
-            ListarEntradas_Garantias();
-            LimpiarGarantiasProceso();
-            ListarGarantiasProceso();
-            LimpiarEntradas();
-            ListarEntradas();
-
-        } catch (Exception e) {
-            System.err.println("error::" + e);
+                dbGarantia.RevisionAProcesoGarantia(gar);
+                dbGarantia.RevisionAProcesoEntrada(en);
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarEntradas();
+                ListarEntradas();
+            } catch (NumberFormatException | HeadlessException e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
         }
 
         // TODO add your handling code here:
@@ -3102,33 +3130,39 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        try {
-            Garantias gar = new Garantias();
-            Entradas en = new Entradas();
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea RECHAZAR este registro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
 
-            int seleccion = tbProceso.getSelectedRow();
+                int seleccion = tbProceso.getSelectedRow();
 
-            int idEn = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
-            en.setId_entrada(idEn);
-            en.setEstado("RECHAZADO");
+                int idEn = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("RECHAZADO");
 
-            int id = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
-            gar.setId_entra(id);
-            gar.setEstado("RECHAZADO");
+                int id = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
+                gar.setId_entra(id);
+                gar.setEstado("RECHAZADO");
 
-            dbGarantia.RechazarGarantia(gar);
-            dbGarantia.RechazarEntrada(en);
-            JOptionPane.showMessageDialog(this, "REGISTRO RECHAZADO", "", JOptionPane.INFORMATION_MESSAGE);
+                dbGarantia.RechazarGarantia(gar);
+                dbGarantia.RechazarEntrada(en);
+                JOptionPane.showMessageDialog(this, "REGISTRO RECHAZADO", "", JOptionPane.INFORMATION_MESSAGE);
 
-            LimpiarEntradas_Garantias();
-            ListarEntradas_Garantias();
-            LimpiarGarantiasProceso();
-            ListarGarantiasProceso();
-            LimpiarEntradas();
-            ListarEntradas();
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarEntradas();
+                ListarEntradas();
 
-        } catch (Exception e) {
-            System.err.println("error::" + e);
+            } catch (NumberFormatException | HeadlessException e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
         }
 
 // TODO add your handling code here:
@@ -3204,33 +3238,39 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
 
-        try {
-            Garantias gar = new Garantias();
-            Entradas en = new Entradas();
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea RECHAZAR este registro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
 
-            int seleccion = tbEntrada_garantia.getSelectedRow();
+                int seleccion = tbEntrada_garantia.getSelectedRow();
 
-            int idEn = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
-            en.setId_entrada(idEn);
-            en.setEstado("RECHAZADO");
+                int idEn = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("RECHAZADO");
 
-            int id = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
-            gar.setId_entra(id);
-            gar.setEstado("RECHAZADO");
+                int id = Integer.parseInt("" + tbEntrada_garantia.getValueAt(seleccion, 0));
+                gar.setId_entra(id);
+                gar.setEstado("RECHAZADO");
 
-            dbGarantia.RechazarGarantia(gar);
-            dbGarantia.RechazarEntrada(en);
-            JOptionPane.showMessageDialog(this, "REGISTRO RECHAZADO", "", JOptionPane.INFORMATION_MESSAGE);
+                dbGarantia.RechazarGarantia(gar);
+                dbGarantia.RechazarEntrada(en);
+                JOptionPane.showMessageDialog(this, "REGISTRO RECHAZADO", "", JOptionPane.INFORMATION_MESSAGE);
 
-            LimpiarEntradas_Garantias();
-            ListarEntradas_Garantias();
-            LimpiarGarantiasProceso();
-            ListarGarantiasProceso();
-            LimpiarEntradas();
-            ListarEntradas();
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarEntradas();
+                ListarEntradas();
 
-        } catch (Exception e) {
-            System.err.println("error::" + e);
+            } catch (NumberFormatException | HeadlessException e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
         }
 
         // TODO add your handling code here:
@@ -3238,33 +3278,39 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBusca6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca6ActionPerformed
 
-        try {
-            Garantias gar = new Garantias();
-            Entradas en = new Entradas();
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            try {
+                Garantias gar = new Garantias();
+                Entradas en = new Entradas();
 
-            int seleccion = tbProceso.getSelectedRow();
+                int seleccion = tbProceso.getSelectedRow();
 
-            int idEn = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
-            en.setId_entrada(idEn);
-            en.setEstado("LISTO");
+                int idEn = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
+                en.setId_entrada(idEn);
+                en.setEstado("LISTO");
 
-            int id = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
-            gar.setId_entra(id);
-            gar.setEstado("LISTO");
+                int id = Integer.parseInt("" + tbProceso.getValueAt(seleccion, 0));
+                gar.setId_entra(id);
+                gar.setEstado("LISTO");
 
-            dbGarantia.ListoGarantia(gar);
-            dbGarantia.ListoEntrada(en);
-            JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
+                dbGarantia.ListoGarantia(gar);
+                dbGarantia.ListoEntrada(en);
+                JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
 
-            LimpiarEntradas_Garantias();
-            ListarEntradas_Garantias();
-            LimpiarGarantiasProceso();
-            ListarGarantiasProceso();
-            LimpiarEntradas();
-            ListarEntradas();
+                LimpiarEntradas_Garantias();
+                ListarEntradas_Garantias();
+                LimpiarGarantiasProceso();
+                ListarGarantiasProceso();
+                LimpiarEntradas();
+                ListarEntradas();
 
-        } catch (Exception e) {
-            System.err.println("error::" + e);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
+            }
         }
 
 // TODO add your handling code here:
@@ -3388,7 +3434,6 @@ public class Tecnico extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 dbSalida.EliminarSalida(sal);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                 LimpiarSalidas();
                 ListarSalidas();
                 txtIdSalida.setText("");
@@ -3445,7 +3490,6 @@ public class Tecnico extends javax.swing.JFrame {
                         JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
                 if (eleccion == JOptionPane.YES_OPTION) {
                     dbEnvio.EliminarEnvio(en);
-                    JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                     LimpiarEnvios();
                     ListarEnvios();
                     txtIdEnvio.setText("");
@@ -3505,7 +3549,6 @@ public class Tecnico extends javax.swing.JFrame {
                 if (eleccion == JOptionPane.YES_OPTION) {
                     dbEntrada.EliminarEntrada(en);
                     dbGarantia.EliminarGarantia(gar);
-                    JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
                     LimpiarEntradas();
                     LimpiarEntradas_Garantias();
                     LimpiarGarantiasProceso();
@@ -3539,7 +3582,7 @@ public class Tecnico extends javax.swing.JFrame {
         int seleccion = tbPrestamos.getSelectedRow();
         txtIdPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 0)));
         areaPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 9)));
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_tbPrestamosMouseClicked
 
@@ -3547,7 +3590,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         autoPres.setText("");
         autoCompletePrestamo();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbPrestamoActionPerformed
 
@@ -3557,7 +3600,10 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBusca7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca7ActionPerformed
 
-        String guardar = autoPres.getText();
+        if (autoPres.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        }else{
+            String guardar = autoPres.getText();
         int tipo = cmbPrestamo.getSelectedIndex();
         switch (tipo) {
             case 0:
@@ -3590,7 +3636,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR NUMERO: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 1:
@@ -3623,7 +3669,7 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             case 2:
@@ -3656,14 +3702,15 @@ public class Tecnico extends javax.swing.JFrame {
                     }
                     cn.close();
                 } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR SERIE: " + e);
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
                 break;
             default:
                 System.out.println("error");
                 break;
         }
-        
+        }
+ 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca7ActionPerformed
 
@@ -3671,7 +3718,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Entrada obj = new Entrada();
         obj.setVisible(true);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida9ActionPerformed
 
@@ -3679,7 +3726,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Salidass obj = new Salidass();
         obj.setVisible(true);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida10ActionPerformed
 
@@ -3687,7 +3734,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         Envio obj = new Envio();
         obj.setVisible(true);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalida11ActionPerformed
 
@@ -3713,7 +3760,7 @@ public class Tecnico extends javax.swing.JFrame {
             Editar_Salida obj = new Editar_Salida();
             obj.setVisible(true);
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton18ActionPerformed
 
@@ -3721,37 +3768,34 @@ public class Tecnico extends javax.swing.JFrame {
 
         try {
             if (txtIdPrestamo.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-        } else {
-
-            int seleccion = tbPrestamos.getSelectedRow();
-            Salidas sal = new Salidas();
-            sal.setNumero(String.valueOf(tbPrestamos.getValueAt(seleccion, 2)));
-
-            Object[] opciones = {"Aceptar", "Cancelar"};
-            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-            if (eleccion == JOptionPane.YES_OPTION) {
-                dbSalida.EliminarSalida(sal);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-                LimpiarSalidas();
-                ListarSalidas();
-                LimpiarPrestamo();
-                ListarPrestamo();
-                txtIdSalida.setText("");
-                areaSalida.setText("");
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
             } else {
-                txtIdSalida.setText("");
-                areaSalida.setText("");
+
+                int seleccion = tbPrestamos.getSelectedRow();
+                Salidas sal = new Salidas();
+                sal.setNumero(String.valueOf(tbPrestamos.getValueAt(seleccion, 2)));
+
+                Object[] opciones = {"Aceptar", "Cancelar"};
+                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+                if (eleccion == JOptionPane.YES_OPTION) {
+                    dbSalida.EliminarSalida(sal);
+                    LimpiarSalidas();
+                    ListarSalidas();
+                    LimpiarPrestamo();
+                    ListarPrestamo();
+                    txtIdSalida.setText("");
+                    areaSalida.setText("");
+                } else {
+                    txtIdSalida.setText("");
+                    areaSalida.setText("");
+                }
             }
-        }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "error:"+e);
+            JOptionPane.showMessageDialog(this, "error:" + e);
         }
-        
-        
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton19ActionPerformed
 
@@ -3759,7 +3803,7 @@ public class Tecnico extends javax.swing.JFrame {
 
         LimpiarPrestamo();
         ListarPrestamo();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 

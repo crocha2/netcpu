@@ -495,7 +495,7 @@ public class Facturas_Salida extends javax.swing.JFrame {
             }
             cn.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "error:"+ex.getMessage());
         }
 
         // TODO add your handling code here:
@@ -547,8 +547,6 @@ public class Facturas_Salida extends javax.swing.JFrame {
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EliminarSalida(sal);
-                JOptionPane.showMessageDialog(this, "Datos ELIMINADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-
                 //this.cmbClientes.removeAllItems();
                 //CargarCmbCliente();
                 this.cmbSalidas.removeAllItems();
@@ -628,8 +626,6 @@ public class Facturas_Salida extends javax.swing.JFrame {
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarSalida(sal);
                 db.EditarCliente(cli);
-                JOptionPane.showMessageDialog(this, "Datos EDITADOS exitosamente", "", JOptionPane.INFORMATION_MESSAGE);
-
                 this.cmbSalidas.removeAllItems();
                 CargarCmbSalidas();
 
