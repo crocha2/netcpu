@@ -8,6 +8,7 @@ package ventanas;
 import clasesPrincipales.Entradas;
 import clasesPrincipales.Envios;
 import clasesPrincipales.Garantias;
+import clasesPrincipales.Listos;
 import clasesPrincipales.Salidas;
 import clasesPrincipales.contratos;
 import com.mxrck.autocompleter.TextAutoCompleter;
@@ -15,6 +16,7 @@ import conMySql.entradaMySql;
 import conMySql.envioMySql;
 import conMySql.garantiaMySql;
 import conMySql.salidaMySql;
+import conMySql.listoMySql;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,6 +48,9 @@ public class Tecnico extends javax.swing.JFrame {
 
     ArrayList<Garantias> garantia;
     garantiaMySql dbGarantia = new garantiaMySql();
+    
+    ArrayList<Listos> listo;
+    listoMySql dbListo = new listoMySql();
 
     /**
      * Creates new form Tecnico
@@ -61,6 +66,7 @@ public class Tecnico extends javax.swing.JFrame {
         ListarEntradas_Garantias();
         ListarGarantiasProceso();
         ListarPrestamo();
+        ListarListos();
         //autoCompleteEntradas();
         //autoCompleteSalidas();
         //autoCompleteEnvios();
@@ -72,7 +78,7 @@ public class Tecnico extends javax.swing.JFrame {
         txtIdEnvio.setEnabled(false);
         txtIdProceso.setEnabled(false);
         txtIdPrestamo.setEnabled(false);
-
+        txtIdListo.setEnabled(false);
         //txtFechaEntrad.setEnabled(false);
     }
 
@@ -774,6 +780,22 @@ public class Tecnico extends javax.swing.JFrame {
         }
     }
 
+    public void ListarListos() {
+        listo = dbListo.ListListos();
+        DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
+        for (Listos en : listo) {
+            tb.addRow(new Object[]{en.getId_entra(), en.getNumero(), en.getFecha_entrada(), en.getFecha_garantia(), en.getCliente(), 
+                en.getNit(), en.getCiudad(), en.getElemento(), en.getMarca(),en.getModelo(), en.getSerie_vieja(), en.getSerie_nueva(), 
+                en.getNumero_caso(), en.getRma(),en.getPrimera_serie(),en.getGarantia(),en.getEstado(), en.getObservacion(),en.getId_cli()});
+        }
+    }
+
+    public void LimpiarListos() {
+        DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
+    }
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     /**
      * This method is called from within the constructor to initialize the form.
@@ -905,14 +927,14 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        areaGarantia1 = new javax.swing.JTextArea();
+        areaListo = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
         tbListo = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         txtNitCliente4 = new javax.swing.JTextField();
         btnBusca4 = new javax.swing.JButton();
         cmbHistorial1 = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdListo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -930,7 +952,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, true, true, true, true, true, true, true, true, true, true, true, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1025,14 +1047,14 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(10, 60, 345, 80);
         jPanel1.add(txtIdEntrada);
-        txtIdEntrada.setBounds(50, 370, 76, 20);
+        txtIdEntrada.setBounds(50, 370, 76, 30);
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("ID");
         jPanel1.add(jLabel22);
-        jLabel22.setBounds(20, 370, 24, 14);
+        jLabel22.setBounds(20, 380, 24, 14);
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -1139,7 +1161,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true, false
+                false, true, true, true, true, true, true, true, true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1247,7 +1269,7 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel2.add(jLabel23);
         jLabel23.setBounds(70, 390, 24, 14);
         jPanel2.add(txtIdSalida);
-        txtIdSalida.setBounds(100, 390, 76, 20);
+        txtIdSalida.setBounds(100, 380, 76, 30);
 
         jButton4.setText("jButton3");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -1360,7 +1382,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, true, true, true, true, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1456,7 +1478,7 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel3.add(jLabel24);
         jLabel24.setBounds(90, 410, 24, 14);
         jPanel3.add(txtIdEnvio);
-        txtIdEnvio.setBounds(120, 410, 76, 20);
+        txtIdEnvio.setBounds(120, 400, 76, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -1575,7 +1597,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, true, true, true, true, true, true, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1664,7 +1686,7 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel14.add(jLabel27);
         jLabel27.setBounds(70, 410, 24, 14);
         jPanel14.add(txtIdPrestamo);
-        txtIdPrestamo.setBounds(100, 410, 76, 20);
+        txtIdPrestamo.setBounds(100, 400, 76, 30);
 
         areaPrestamo.setColumns(20);
         areaPrestamo.setRows(5);
@@ -1798,7 +1820,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, true, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1880,7 +1902,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
         jPanel9.add(txtIdForanea);
-        txtIdForanea.setBounds(39, 403, 76, 20);
+        txtIdForanea.setBounds(39, 403, 76, 30);
 
         actualizar1.setText("jButton2");
         actualizar1.addActionListener(new java.awt.event.ActionListener() {
@@ -1960,7 +1982,7 @@ public class Tecnico extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, true, true, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2128,7 +2150,7 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel4.add(jSeparator2);
         jSeparator2.setBounds(39, 46, 831, 10);
         jPanel4.add(txtIdProceso);
-        txtIdProceso.setBounds(33, 403, 73, 20);
+        txtIdProceso.setBounds(33, 393, 73, 30);
 
         jButton8.setBackground(new java.awt.Color(0, 153, 153));
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -2203,12 +2225,12 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel11.add(jLabel17);
         jLabel17.setBounds(300, 10, 250, 29);
 
-        areaGarantia1.setColumns(20);
-        areaGarantia1.setRows(5);
-        jScrollPane9.setViewportView(areaGarantia1);
+        areaListo.setColumns(20);
+        areaListo.setRows(5);
+        jScrollPane9.setViewportView(areaListo);
 
         jPanel11.add(jScrollPane9);
-        jScrollPane9.setBounds(382, 77, 458, 96);
+        jScrollPane9.setBounds(382, 77, 458, 80);
 
         jScrollPane10.setAutoscrolls(true);
 
@@ -2218,11 +2240,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "FechaEntrada", "FechaGarantia", "No.Rem", "Cliente", "Nit o Cedula", "Elemento", "Marca", "Modelo", "Serie", "SerieNueva", "PrimeraSerie"
+                "ID", "No.Rem", "FechaEntrada", "FechaGarantia", "Cliente", "Nit o Cedula", "Ciudad", "Elemento", "Marca", "Modelo", "SerieVieja", "SerieNueva", "no.Caso", "RMA", "Serie 1", "Garantia", "Estado", "Observacion", "id_cli"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, true, true, true, true, true, true, true
+                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2233,10 +2255,15 @@ public class Tecnico extends javax.swing.JFrame {
         tbListo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tbListo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbListo.setGridColor(new java.awt.Color(0, 153, 153));
+        tbListo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbListoMouseClicked(evt);
+            }
+        });
         jScrollPane10.setViewportView(tbListo);
 
         jPanel11.add(jScrollPane10);
-        jScrollPane10.setBounds(10, 191, 876, 220);
+        jScrollPane10.setBounds(10, 171, 876, 220);
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -2292,8 +2319,8 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel11.add(jPanel12);
         jPanel12.setBounds(29, 77, 313, 81);
-        jPanel11.add(jTextField1);
-        jTextField1.setBounds(40, 420, 80, 20);
+        jPanel11.add(txtIdListo);
+        txtIdListo.setBounds(40, 400, 80, 30);
 
         jTabbedPane3.addTab("LISTO", jPanel11);
 
@@ -3805,6 +3832,15 @@ public class Tecnico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void tbListoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListoMouseClicked
+
+        int seleccion = tbListo.getSelectedRow();
+        txtIdListo.setText(String.valueOf(tbListo.getValueAt(seleccion, 0)));
+        areaListo.setText(String.valueOf(tbListo.getValueAt(seleccion, 17)));
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_tbListoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3850,7 +3886,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton actualizar1;
     private javax.swing.JTextArea areaEntrada;
     private javax.swing.JTextArea areaEnvio;
-    private javax.swing.JTextArea areaGarantia1;
+    private javax.swing.JTextArea areaListo;
     private javax.swing.JTextArea areaPrestamo;
     private javax.swing.JTextArea areaSalida;
     private javax.swing.JTextField autoEntra;
@@ -3956,7 +3992,6 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbEntrada_garantia;
     private javax.swing.JTable tbEntradas;
     private javax.swing.JTable tbEnvios;
@@ -3969,6 +4004,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdEntrada;
     private javax.swing.JTextField txtIdEnvio;
     private javax.swing.JTextField txtIdForanea;
+    private javax.swing.JTextField txtIdListo;
     private javax.swing.JTextField txtIdPrestamo;
     private javax.swing.JTextField txtIdProceso;
     private javax.swing.JTextField txtIdSalida;

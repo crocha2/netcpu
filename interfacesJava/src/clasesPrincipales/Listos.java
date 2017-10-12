@@ -31,6 +31,31 @@ public class Listos {
     String estado;
     int id_cli;
 
+    public Listos() {
+    }
+    
+    public Listos(int id_entra, String numero, String fecha_entrada, String fecha_garantia, String cliente, String nit, String ciudad, String garantia, String elemento, String marca, String modelo, String serie_vieja, String serie_nueva, String numero_caso, String rma, String primera_serie, String observacion, String estado, int id_cli) {
+        this.id_entra = id_entra;
+        this.numero = numero;
+        this.fecha_entrada = fecha_entrada;
+        this.fecha_garantia = fecha_garantia;
+        this.cliente = cliente;
+        this.nit = nit;
+        this.ciudad = ciudad;
+        this.garantia = garantia;
+        this.elemento = elemento;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.serie_vieja = serie_vieja;
+        this.serie_nueva = serie_nueva;
+        this.numero_caso = numero_caso;
+        this.rma = rma;
+        this.primera_serie = primera_serie;
+        this.observacion = observacion;
+        this.estado = estado;
+        this.id_cli = id_cli;
+    }
+
     public int getId_entra() {
         return id_entra;
     }
@@ -180,29 +205,6 @@ public class Listos {
     }
 
     public void setId_cli(int id_cli) {
-        this.id_cli = id_cli;
-    }
-    
-
-    public Listos(int id_entra, String numero, String fecha_entrada, String fecha_garantia, String cliente, String nit, String ciudad, String garantia, String elemento, String marca, String modelo, String serie_vieja, String serie_nueva, String numero_caso, String rma, String primera_serie, String observacion, String estado, int id_cli) {
-        this.id_entra = id_entra;
-        this.numero = numero;
-        this.fecha_entrada = fecha_entrada;
-        this.fecha_garantia = fecha_garantia;
-        this.cliente = cliente;
-        this.nit = nit;
-        this.ciudad = ciudad;
-        this.garantia = garantia;
-        this.elemento = elemento;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.serie_vieja = serie_vieja;
-        this.serie_nueva = serie_nueva;
-        this.numero_caso = numero_caso;
-        this.rma = rma;
-        this.primera_serie = primera_serie;
-        this.observacion = observacion;
-        this.estado = estado;
         this.id_cli = id_cli;
     }
     
