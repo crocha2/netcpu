@@ -148,6 +148,52 @@ public class GenerarNumeros {
             num = "EN00000000"+can;
         }
     }
+    
+    public void generarCotiza(int dato){
+        this.dato = dato;
+
+        if((this.dato >= 99999999)&&(this.dato<999999999)){
+            int can = cont+this.dato;
+            num = "CT"+can;
+        }
+        if((this.dato >= 9999999)&&(this.dato<99999999)){
+            int can = cont+this.dato;
+            num = "CT0"+can;
+        }
+        if((this.dato >= 999999)&&(this.dato<9999999)){
+            int can = cont+this.dato;
+            num = "CT00"+can;
+        }
+        if((this.dato >= 99999)&&(this.dato<999999)){
+            int can = cont+this.dato;
+            num = "CT000"+can;
+        }
+        if((this.dato >= 9999)&&(this.dato < 99999)){
+            int can = cont+this.dato;
+            num = "CT0000"+can;
+        }
+        if((this.dato >= 999)&&(this.dato < 9999)){
+            int can = cont+this.dato;
+            num = "CT00000"+can;
+        }
+        if((this.dato >= 99)&&(this.dato < 999)){
+            int can = cont+this.dato;
+            num = "CT000000"+can;
+        }
+        if((this.dato >= 9)&&(this.dato < 99)){
+            int can = cont+this.dato;
+            num = "CT0000000"+can;
+        }
+        if((this.dato >= 1)&&(this.dato < 9)){
+            int can = cont+this.dato;
+            num = "CT00000000"+can;
+        }
+        if(this.dato == 0){
+            int can = cont+this.dato;
+            num = "CT00000000"+can;
+        }
+    }
+    
     public String serie(){
         return this.num;
     }

@@ -935,6 +935,7 @@ public class Tecnico extends javax.swing.JFrame {
         btnBusca4 = new javax.swing.JButton();
         cmbHistorial1 = new javax.swing.JComboBox();
         txtIdListo = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -2223,14 +2224,14 @@ public class Tecnico extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("GARANTIAS LISTAS");
         jPanel11.add(jLabel17);
-        jLabel17.setBounds(300, 10, 250, 29);
+        jLabel17.setBounds(20, 10, 250, 29);
 
         areaListo.setColumns(20);
         areaListo.setRows(5);
         jScrollPane9.setViewportView(areaListo);
 
         jPanel11.add(jScrollPane9);
-        jScrollPane9.setBounds(382, 77, 458, 80);
+        jScrollPane9.setBounds(380, 70, 458, 80);
 
         jScrollPane10.setAutoscrolls(true);
 
@@ -2318,9 +2319,11 @@ public class Tecnico extends javax.swing.JFrame {
         );
 
         jPanel11.add(jPanel12);
-        jPanel12.setBounds(29, 77, 313, 81);
+        jPanel12.setBounds(20, 70, 313, 81);
         jPanel11.add(txtIdListo);
         txtIdListo.setBounds(40, 400, 80, 30);
+        jPanel11.add(jSeparator3);
+        jSeparator3.setBounds(20, 46, 850, 10);
 
         jTabbedPane3.addTab("LISTO", jPanel11);
 
@@ -3989,6 +3992,7 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
