@@ -13,6 +13,7 @@ import clasesPrincipales.usuarios;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.*;
@@ -91,12 +92,24 @@ public class Interfaz_Admin extends javax.swing.JFrame {
         jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img_3.png"))); // NOI18N
         getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 180, 190));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 290, 10));
+
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Usuario");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
+
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreUsuarioKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 140, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/new_1.png"))); // NOI18N
@@ -232,6 +245,34 @@ public class Interfaz_Admin extends javax.swing.JFrame {
          */
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtNombreUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyTyped
+
+        //Se asegura de capturar la tecla ENTER y descartar todas las demas...
+        char presionarBoton = evt.getKeyChar();
+        
+        //da clic al boton ingresar al detectar la tecla ENTER
+        if (presionarBoton==KeyEvent.VK_ENTER) {
+            //ejecuta el boton INGRESAR
+            btnIngresar.doClick();
+        }
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreUsuarioKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+
+        //Se asegura de capturar la tecla ENTER y descartar todas las demas...
+        char presionarBoton = evt.getKeyChar();
+        
+        //da clic al boton ingresar al detectar la tecla ENTER
+        if (presionarBoton==KeyEvent.VK_ENTER) {
+            //ejecuta el boton INGRESAR
+            btnIngresar.doClick();
+        }
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordKeyTyped
 
     /**
      * @param args the command line arguments
