@@ -725,6 +725,7 @@ public class Entrada extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "Debe registrar al cliente");
                             Nuevo_Cliente obj = new Nuevo_Cliente();
                             obj.setVisible(true);
+                            dispose();
                         }
                     }
                     cn.close();
@@ -752,6 +753,7 @@ public class Entrada extends javax.swing.JFrame {
 
         Nuevo_Cliente obj = new Nuevo_Cliente();
         obj.setVisible(true);
+        dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca1ActionPerformed

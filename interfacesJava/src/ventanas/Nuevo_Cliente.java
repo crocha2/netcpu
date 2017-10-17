@@ -233,7 +233,7 @@ public class Nuevo_Cliente extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
-
+           
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed

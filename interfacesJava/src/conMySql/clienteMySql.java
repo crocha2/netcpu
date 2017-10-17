@@ -75,8 +75,7 @@ public class clienteMySql {
             JOptionPane.showMessageDialog(null, "Insertado exitosamente");
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
-            //JOptionPane.showMessageDialog(null, "Error en listado \n"+ex.getMessage());  
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage()); 
         }
     }
     /*
