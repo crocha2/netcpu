@@ -3140,8 +3140,8 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="15" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtNitCliente4" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                  <Component id="cmbHistorial1" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Component id="autoListos" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="cmbListos" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnBusca4" min="-2" pref="40" max="-2" attributes="0"/>
@@ -3155,9 +3155,9 @@
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="cmbHistorial1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmbListos" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtNitCliente4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="autoListos" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="btnBusca4" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -3167,7 +3167,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="txtNitCliente4">
+                    <Component class="javax.swing.JTextField" name="autoListos">
                     </Component>
                     <Component class="javax.swing.JButton" name="btnBusca4">
                       <Properties>
@@ -3197,7 +3197,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBusca4ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="cmbHistorial1">
+                    <Component class="javax.swing.JComboBox" name="cmbListos">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="5">
@@ -3210,7 +3210,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbHistorial1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbListosActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -3404,7 +3404,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="areaListo1">
+                    <Component class="javax.swing.JTextArea" name="areaEntregados">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -3669,7 +3669,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JTextField" name="txtIdListo1">
+                <Component class="javax.swing.JTextField" name="txtIdEntregados">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="40" y="400" width="80" height="30"/>

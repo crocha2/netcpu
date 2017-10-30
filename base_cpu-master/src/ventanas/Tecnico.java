@@ -48,7 +48,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     ArrayList<Garantias> garantia;
     garantiaMySql dbGarantia = new garantiaMySql();
-    
+
     ArrayList<Listos> listo;
     listoMySql dbListo = new listoMySql();
 
@@ -82,6 +82,7 @@ public class Tecnico extends javax.swing.JFrame {
         txtIdPrestamo.setEnabled(false);
         txtIdListo.setEnabled(false);
         txtEstado.setEnabled(false);
+        txtIdEntregados.setEnabled(false);
         //txtFechaEntrad.setEnabled(false);
     }
 
@@ -135,8 +136,8 @@ public class Tecnico extends javax.swing.JFrame {
         txtRmaGar.setText("");
         txtCaso.requestFocus();
     }
-    
-    public void colorEstado(){
+
+    public void colorEstado() {
         txtEstado.setDisabledTextColor(java.awt.Color.BLUE);
         //txtSec.setText(gen.serie());
     }
@@ -188,7 +189,6 @@ public class Tecnico extends javax.swing.JFrame {
     }
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
     public void ListarEnvios() {
         envio = dbEnvio.ListEnvios();
         DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
@@ -346,6 +346,83 @@ public class Tecnico extends javax.swing.JFrame {
      }
      }
      */
+
+    public void autoCompleteListos() {
+
+        int tipo = cmbListos.getSelectedIndex();
+        switch (tipo) {
+            case 0:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoListos);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT rma FROM garantias WHERE estado = 'LISTO'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("rma"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+            case 1:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoListos);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT numero_caso FROM garantias WHERE estado = 'LISTO'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("numero_caso"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+            case 2:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoListos);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT cliente FROM garantias WHERE estado = 'LISTO'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("cliente"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+            case 3:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoListos);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT nit FROM garantias WHERE estado = 'LISTO'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("nit"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+            case 4:
+                try {
+                    TextAutoCompleter TextAutoCompleter = new TextAutoCompleter(autoListos);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = (Statement) cn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT serie_vieja FROM garantias WHERE estado = 'LISTO'");
+                    while (rs.next()) {
+                        TextAutoCompleter.addItem(rs.getString("serie_vieja"));
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    System.out.println("error" + e);
+                }
+                break;
+        }
+    }
 
     public void autoCompleteRevision() {
 
@@ -792,9 +869,9 @@ public class Tecnico extends javax.swing.JFrame {
         listo = dbListo.ListListos();
         DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
         for (Listos en : listo) {
-            tb.addRow(new Object[]{en.getId_entra(), en.getNumero(), en.getFecha_entrada(), en.getFecha_garantia(), en.getCliente(), 
-                en.getNit(), en.getCiudad(), en.getElemento(), en.getMarca(),en.getModelo(), en.getSerie_vieja(), en.getSerie_nueva(), 
-                en.getNumero_caso(), en.getRma(),en.getPrimera_serie(),en.getGarantia(),en.getEstado(), en.getObservacion(),en.getId_cli()});
+            tb.addRow(new Object[]{en.getId_entra(), en.getNumero(), en.getFecha_entrada(), en.getFecha_garantia(), en.getCliente(),
+                en.getNit(), en.getCiudad(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie_vieja(), en.getSerie_nueva(),
+                en.getNumero_caso(), en.getRma(), en.getPrimera_serie(), en.getGarantia(), en.getEstado(), en.getObservacion(), en.getId_cli()});
         }
     }
 
@@ -804,14 +881,14 @@ public class Tecnico extends javax.swing.JFrame {
             tb.removeRow(i);
         }
     }
-    
+
     public void ListarEntregados() {
         listo = dbListo.ListEntregados();
         DefaultTableModel tb = (DefaultTableModel) tbEntregados.getModel();
         for (Listos en : listo) {
-            tb.addRow(new Object[]{en.getId_entra(), en.getNumero(), en.getFecha_entrada(), en.getFecha_garantia(), en.getCliente(), 
-                en.getNit(), en.getCiudad(), en.getElemento(), en.getMarca(),en.getModelo(), en.getSerie_vieja(), en.getSerie_nueva(), 
-                en.getNumero_caso(), en.getRma(),en.getPrimera_serie(),en.getGarantia(),en.getEstado(), en.getObservacion(),en.getId_cli()});
+            tb.addRow(new Object[]{en.getId_entra(), en.getNumero(), en.getFecha_entrada(), en.getFecha_garantia(), en.getCliente(),
+                en.getNit(), en.getCiudad(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie_vieja(), en.getSerie_nueva(),
+                en.getNumero_caso(), en.getRma(), en.getPrimera_serie(), en.getGarantia(), en.getEstado(), en.getObservacion(), en.getId_cli()});
         }
     }
 
@@ -821,6 +898,7 @@ public class Tecnico extends javax.swing.JFrame {
             tb.removeRow(i);
         }
     }
+
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     /**
      * This method is called from within the constructor to initialize the form.
@@ -960,9 +1038,9 @@ public class Tecnico extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         tbListo = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
-        txtNitCliente4 = new javax.swing.JTextField();
+        autoListos = new javax.swing.JTextField();
         btnBusca4 = new javax.swing.JButton();
-        cmbHistorial1 = new javax.swing.JComboBox();
+        cmbListos = new javax.swing.JComboBox();
         txtIdListo = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jButton7 = new javax.swing.JButton();
@@ -973,14 +1051,14 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
-        areaListo1 = new javax.swing.JTextArea();
+        areaEntregados = new javax.swing.JTextArea();
         jScrollPane14 = new javax.swing.JScrollPane();
         tbEntregados = new javax.swing.JTable();
         jPanel19 = new javax.swing.JPanel();
         txtNitCliente5 = new javax.swing.JTextField();
         btnBusca8 = new javax.swing.JButton();
         cmbHistorial2 = new javax.swing.JComboBox();
-        txtIdListo1 = new javax.swing.JTextField();
+        txtIdEntregados = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jButton11 = new javax.swing.JButton();
         jPanel23 = new javax.swing.JPanel();
@@ -2358,10 +2436,10 @@ public class Tecnico extends javax.swing.JFrame {
             }
         });
 
-        cmbHistorial1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RMA", "SERIE", "NIT", "CEDULA", "CLIENTE" }));
-        cmbHistorial1.addActionListener(new java.awt.event.ActionListener() {
+        cmbListos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RMA", "SERIE", "NIT", "CEDULA", "CLIENTE" }));
+        cmbListos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbHistorial1ActionPerformed(evt);
+                cmbListosActionPerformed(evt);
             }
         });
 
@@ -2372,8 +2450,8 @@ public class Tecnico extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNitCliente4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbHistorial1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(autoListos, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbListos, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBusca4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -2384,9 +2462,9 @@ public class Tecnico extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(cmbHistorial1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbListos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNitCliente4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(autoListos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBusca4))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -2472,9 +2550,9 @@ public class Tecnico extends javax.swing.JFrame {
         jPanel18.add(jLabel29);
         jLabel29.setBounds(20, 10, 330, 29);
 
-        areaListo1.setColumns(20);
-        areaListo1.setRows(5);
-        jScrollPane13.setViewportView(areaListo1);
+        areaEntregados.setColumns(20);
+        areaEntregados.setRows(5);
+        jScrollPane13.setViewportView(areaEntregados);
 
         jPanel18.add(jScrollPane13);
         jScrollPane13.setBounds(380, 70, 458, 70);
@@ -2566,8 +2644,8 @@ public class Tecnico extends javax.swing.JFrame {
 
         jPanel18.add(jPanel19);
         jPanel19.setBounds(20, 70, 313, 100);
-        jPanel18.add(txtIdListo1);
-        txtIdListo1.setBounds(40, 400, 80, 30);
+        jPanel18.add(txtIdEntregados);
+        txtIdEntregados.setBounds(40, 400, 80, 30);
         jPanel18.add(jSeparator4);
         jSeparator4.setBounds(20, 46, 850, 10);
 
@@ -2792,113 +2870,113 @@ public class Tecnico extends javax.swing.JFrame {
 
         if (autoSal.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
-        }else{
+        } else {
             String guardar = autoSal.getText();
-        int tipo = cmbSalidas.getSelectedIndex();
-        switch (tipo) {
-            case 0:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarSalidas();
-                    if (rs.next()) {
-                        Salidas sal = new Salidas();
-                        sal.setId_salida(rs.getInt("id_salida"));
-                        sal.setFecha(rs.getString("fecha"));
-                        sal.setNumero(rs.getString("numero"));
-                        sal.setEmpresa(rs.getString("empresa"));
-                        sal.setTelefono(rs.getString("telefono"));
-                        sal.setCorreo(rs.getString("correo"));
-                        sal.setEquipo(rs.getString("equipo"));
-                        sal.setModelo(rs.getString("modelo"));
-                        sal.setSerie(rs.getString("serie"));
-                        sal.setComentario(rs.getString("comentario"));
-                        sal.setPrestamo(rs.getString("prestamo"));
-                        sal.setId_cli(rs.getInt("id_cli"));
-                        salida.add(sal);
-                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                        autoCompleteSalidas();
+            int tipo = cmbSalidas.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarSalidas();
+                        if (rs.next()) {
+                            Salidas sal = new Salidas();
+                            sal.setId_salida(rs.getInt("id_salida"));
+                            sal.setFecha(rs.getString("fecha"));
+                            sal.setNumero(rs.getString("numero"));
+                            sal.setEmpresa(rs.getString("empresa"));
+                            sal.setTelefono(rs.getString("telefono"));
+                            sal.setCorreo(rs.getString("correo"));
+                            sal.setEquipo(rs.getString("equipo"));
+                            sal.setModelo(rs.getString("modelo"));
+                            sal.setSerie(rs.getString("serie"));
+                            sal.setComentario(rs.getString("comentario"));
+                            sal.setPrestamo(rs.getString("prestamo"));
+                            sal.setId_cli(rs.getInt("id_cli"));
+                            salida.add(sal);
+                            DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                            autoCompleteSalidas();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 1:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarSalidas();
-                    while (rs.next()) {
-                        Salidas sal = new Salidas();
-                        sal.setId_salida(rs.getInt("id_salida"));
-                        sal.setFecha(rs.getString("fecha"));
-                        sal.setNumero(rs.getString("numero"));
-                        sal.setEmpresa(rs.getString("empresa"));
-                        sal.setTelefono(rs.getString("telefono"));
-                        sal.setCorreo(rs.getString("correo"));
-                        sal.setEquipo(rs.getString("equipo"));
-                        sal.setModelo(rs.getString("modelo"));
-                        sal.setSerie(rs.getString("serie"));
-                        sal.setComentario(rs.getString("comentario"));
-                        sal.setPrestamo(rs.getString("prestamo"));
-                        sal.setId_cli(rs.getInt("id_cli"));
-                        salida.add(sal);
-                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                        autoCompleteSalidas();
+                    break;
+                case 1:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarSalidas();
+                        while (rs.next()) {
+                            Salidas sal = new Salidas();
+                            sal.setId_salida(rs.getInt("id_salida"));
+                            sal.setFecha(rs.getString("fecha"));
+                            sal.setNumero(rs.getString("numero"));
+                            sal.setEmpresa(rs.getString("empresa"));
+                            sal.setTelefono(rs.getString("telefono"));
+                            sal.setCorreo(rs.getString("correo"));
+                            sal.setEquipo(rs.getString("equipo"));
+                            sal.setModelo(rs.getString("modelo"));
+                            sal.setSerie(rs.getString("serie"));
+                            sal.setComentario(rs.getString("comentario"));
+                            sal.setPrestamo(rs.getString("prestamo"));
+                            sal.setId_cli(rs.getInt("id_cli"));
+                            salida.add(sal);
+                            DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                            autoCompleteSalidas();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 2:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarSalidas();
-                    while (rs.next()) {
-                        Salidas sal = new Salidas();
-                        sal.setId_salida(rs.getInt("id_salida"));
-                        sal.setFecha(rs.getString("fecha"));
-                        sal.setNumero(rs.getString("numero"));
-                        sal.setEmpresa(rs.getString("empresa"));
-                        sal.setTelefono(rs.getString("telefono"));
-                        sal.setCorreo(rs.getString("correo"));
-                        sal.setEquipo(rs.getString("equipo"));
-                        sal.setModelo(rs.getString("modelo"));
-                        sal.setSerie(rs.getString("serie"));
-                        sal.setComentario(rs.getString("comentario"));
-                        sal.setPrestamo(rs.getString("prestamo"));
-                        sal.setId_cli(rs.getInt("id_cli"));
-                        salida.add(sal);
-                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                        autoCompleteSalidas();
+                    break;
+                case 2:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarSalidas();
+                        while (rs.next()) {
+                            Salidas sal = new Salidas();
+                            sal.setId_salida(rs.getInt("id_salida"));
+                            sal.setFecha(rs.getString("fecha"));
+                            sal.setNumero(rs.getString("numero"));
+                            sal.setEmpresa(rs.getString("empresa"));
+                            sal.setTelefono(rs.getString("telefono"));
+                            sal.setCorreo(rs.getString("correo"));
+                            sal.setEquipo(rs.getString("equipo"));
+                            sal.setModelo(rs.getString("modelo"));
+                            sal.setSerie(rs.getString("serie"));
+                            sal.setComentario(rs.getString("comentario"));
+                            sal.setPrestamo(rs.getString("prestamo"));
+                            sal.setId_cli(rs.getInt("id_cli"));
+                            salida.add(sal);
+                            DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                            autoCompleteSalidas();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            default:
-                System.out.println("error");
-                break;
-        }
+                    break;
+                default:
+                    System.out.println("error");
+                    break;
+            }
         }
 
 // TODO add your handling code here:
@@ -2908,72 +2986,72 @@ public class Tecnico extends javax.swing.JFrame {
 
         if (autoEnvio.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
-        }else{
+        } else {
             String guardar = autoEnvio.getText();
-        int tipo = cmbEnvios.getSelectedIndex();
-        switch (tipo) {
-            case 0:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from envios where numero = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEnvios();
-                    if (rs.next()) {
-                        Envios en = new Envios();
-                        en.setId_envio(rs.getInt("id_envio"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setDestinatario(rs.getString("destinatario"));
-                        en.setATN(rs.getString("atn"));
-                        en.setDireccion(rs.getString("direccion"));
-                        en.setTelefono(rs.getString("telefono"));
-                        en.setCiudad(rs.getString("ciudad"));
-                        en.setComentario(rs.getString("comentario"));
-                        en.setId_cli(rs.getInt("id_cli"));
-                        envio.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
-                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
+            int tipo = cmbEnvios.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from envios where numero = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEnvios();
+                        if (rs.next()) {
+                            Envios en = new Envios();
+                            en.setId_envio(rs.getInt("id_envio"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setDestinatario(rs.getString("destinatario"));
+                            en.setATN(rs.getString("atn"));
+                            en.setDireccion(rs.getString("direccion"));
+                            en.setTelefono(rs.getString("telefono"));
+                            en.setCiudad(rs.getString("ciudad"));
+                            en.setComentario(rs.getString("comentario"));
+                            en.setId_cli(rs.getInt("id_cli"));
+                            envio.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
+                            tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
 
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 1:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from envios where destinatario = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEnvios();
-                    while (rs.next()) {
-                        Envios en = new Envios();
-                        en.setId_envio(rs.getInt("id_envio"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setDestinatario(rs.getString("destinatario"));
-                        en.setATN(rs.getString("atn"));
-                        en.setDireccion(rs.getString("direccion"));
-                        en.setTelefono(rs.getString("telefono"));
-                        en.setCiudad(rs.getString("ciudad"));
-                        en.setComentario(rs.getString("comentario"));
-                        en.setId_cli(rs.getInt("id_cli"));
-                        envio.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
-                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
+                    break;
+                case 1:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from envios where destinatario = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEnvios();
+                        while (rs.next()) {
+                            Envios en = new Envios();
+                            en.setId_envio(rs.getInt("id_envio"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setDestinatario(rs.getString("destinatario"));
+                            en.setATN(rs.getString("atn"));
+                            en.setDireccion(rs.getString("direccion"));
+                            en.setTelefono(rs.getString("telefono"));
+                            en.setCiudad(rs.getString("ciudad"));
+                            en.setComentario(rs.getString("comentario"));
+                            en.setId_cli(rs.getInt("id_cli"));
+                            envio.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
+                            tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
 
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-        }
+            }
         }
 
         // TODO add your handling code here:
@@ -3007,171 +3085,171 @@ public class Tecnico extends javax.swing.JFrame {
 
         if (autoProceso.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
-        }else{
+        } else {
             String guardar = autoProceso.getText();
-        int tipo = cmbProceso.getSelectedIndex();
-        switch (tipo) {
-            case 0:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from garantias where rma = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarGarantiasProceso();
-                    while (rs.next()) {
-                        Garantias gar = new Garantias();
-                        gar.setId_entra(rs.getInt("id_entra"));
-                        gar.setFecha_entrada(rs.getString("fecha_entrada"));
-                        gar.setFecha_garantia(rs.getString("fecha_garantia"));
-                        gar.setNumero(rs.getString("numero"));
-                        gar.setRma(rs.getString("rma"));
-                        gar.setNumero_caso(rs.getString("numero_caso"));
-                        gar.setCliente(rs.getString("cliente"));
-                        gar.setNit(rs.getString("nit"));
-                        gar.setSerie_vieja(rs.getString("serie_vieja"));
-                        gar.setSerie_nueva(rs.getString("serie_nueva"));
-                        gar.setPrimera_serie(rs.getString("primera_serie"));
-                        gar.setEstado(rs.getString("estado"));
-                        garantia.add(gar);
-                        DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                        tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+            int tipo = cmbProceso.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where rma = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 1:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from garantias where numero_caso = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarGarantiasProceso();
-                    while (rs.next()) {
-                        Garantias gar = new Garantias();
-                        gar.setId_entra(rs.getInt("id_entra"));
-                        gar.setFecha_entrada(rs.getString("fecha_entrada"));
-                        gar.setFecha_garantia(rs.getString("fecha_garantia"));
-                        gar.setNumero(rs.getString("numero"));
-                        gar.setRma(rs.getString("rma"));
-                        gar.setNumero_caso(rs.getString("numero_caso"));
-                        gar.setCliente(rs.getString("cliente"));
-                        gar.setNit(rs.getString("nit"));
-                        gar.setSerie_vieja(rs.getString("serie_vieja"));
-                        gar.setSerie_nueva(rs.getString("serie_nueva"));
-                        gar.setPrimera_serie(rs.getString("primera_serie"));
-                        gar.setEstado(rs.getString("estado"));
-                        garantia.add(gar);
-                        DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                        tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                    break;
+                case 1:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where numero_caso = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
 
-                break;
-            case 2:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from garantias where cliente = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarGarantiasProceso();
-                    while (rs.next()) {
-                        Garantias gar = new Garantias();
-                        gar.setId_entra(rs.getInt("id_entra"));
-                        gar.setFecha_entrada(rs.getString("fecha_entrada"));
-                        gar.setFecha_garantia(rs.getString("fecha_garantia"));
-                        gar.setNumero(rs.getString("numero"));
-                        gar.setRma(rs.getString("rma"));
-                        gar.setNumero_caso(rs.getString("numero_caso"));
-                        gar.setCliente(rs.getString("cliente"));
-                        gar.setNit(rs.getString("nit"));
-                        gar.setSerie_vieja(rs.getString("serie_vieja"));
-                        gar.setSerie_nueva(rs.getString("serie_nueva"));
-                        gar.setPrimera_serie(rs.getString("primera_serie"));
-                        gar.setEstado(rs.getString("estado"));
-                        garantia.add(gar);
-                        DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                        tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                    break;
+                case 2:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where cliente = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 3:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from garantias where nit = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarGarantiasProceso();
-                    while (rs.next()) {
-                        Garantias gar = new Garantias();
-                        gar.setId_entra(rs.getInt("id_entra"));
-                        gar.setFecha_entrada(rs.getString("fecha_entrada"));
-                        gar.setFecha_garantia(rs.getString("fecha_garantia"));
-                        gar.setNumero(rs.getString("numero"));
-                        gar.setRma(rs.getString("rma"));
-                        gar.setNumero_caso(rs.getString("numero_caso"));
-                        gar.setCliente(rs.getString("cliente"));
-                        gar.setNit(rs.getString("nit"));
-                        gar.setSerie_vieja(rs.getString("serie_vieja"));
-                        gar.setSerie_nueva(rs.getString("serie_nueva"));
-                        gar.setPrimera_serie(rs.getString("primera_serie"));
-                        gar.setEstado(rs.getString("estado"));
-                        garantia.add(gar);
-                        DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                        tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                    break;
+                case 3:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where nit = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 4:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from garantias where serie_vieja = ?");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarGarantiasProceso();
-                    while (rs.next()) {
-                        Garantias gar = new Garantias();
-                        gar.setId_entra(rs.getInt("id_entra"));
-                        gar.setFecha_entrada(rs.getString("fecha_entrada"));
-                        gar.setFecha_garantia(rs.getString("fecha_garantia"));
-                        gar.setNumero(rs.getString("numero"));
-                        gar.setRma(rs.getString("rma"));
-                        gar.setNumero_caso(rs.getString("numero_caso"));
-                        gar.setCliente(rs.getString("cliente"));
-                        gar.setNit(rs.getString("nit"));
-                        gar.setSerie_vieja(rs.getString("serie_vieja"));
-                        gar.setSerie_nueva(rs.getString("serie_nueva"));
-                        gar.setPrimera_serie(rs.getString("primera_serie"));
-                        gar.setEstado(rs.getString("estado"));
-                        garantia.add(gar);
-                        DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                        tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                    break;
+                case 4:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where serie_vieja = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
-                }
-                break;
-            default:
-                System.out.println("error");
-                break;
-        }
+                    break;
+                default:
+                    System.out.println("error");
+                    break;
+            }
         }
 
         // TODO add your handling code here:
@@ -3214,147 +3292,320 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbEntradasActionPerformed
 
     private void btnBusca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca4ActionPerformed
-        // TODO add your handling code here:
+
+        if (autoListos.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        } else {
+            String guardar = autoListos.getText();
+            int tipo = cmbListos.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where rma = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                    }
+                    break;
+                case 1:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where numero_caso = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                    }
+
+                    break;
+                case 2:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where cliente = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                    }
+                    break;
+                case 3:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where nit = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                    }
+                    break;
+                case 4:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from garantias where serie_vieja = ?");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarGarantiasProceso();
+                        while (rs.next()) {
+                            Garantias gar = new Garantias();
+                            gar.setId_entra(rs.getInt("id_entra"));
+                            gar.setFecha_entrada(rs.getString("fecha_entrada"));
+                            gar.setFecha_garantia(rs.getString("fecha_garantia"));
+                            gar.setNumero(rs.getString("numero"));
+                            gar.setRma(rs.getString("rma"));
+                            gar.setNumero_caso(rs.getString("numero_caso"));
+                            gar.setCliente(rs.getString("cliente"));
+                            gar.setNit(rs.getString("nit"));
+                            gar.setSerie_vieja(rs.getString("serie_vieja"));
+                            gar.setSerie_nueva(rs.getString("serie_nueva"));
+                            gar.setPrimera_serie(rs.getString("primera_serie"));
+                            gar.setEstado(rs.getString("estado"));
+                            garantia.add(gar);
+                            DefaultTableModel tb = (DefaultTableModel) tbListo.getModel();
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        System.out.print("ERROR AL BUSCAR CLIENTE: " + e);
+                    }
+                    break;
+                default:
+                    System.out.println("error");
+                    break;
+            }
+        }
+
+// TODO add your handling code here:
     }//GEN-LAST:event_btnBusca4ActionPerformed
 
-    private void cmbHistorial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHistorial1ActionPerformed
+    private void cmbListosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbListosActionPerformed
+
+        autoListos.setText("");
+        autoCompleteListos();
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbHistorial1ActionPerformed
+    }//GEN-LAST:event_cmbListosActionPerformed
 
     private void btnBusca5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca5ActionPerformed
 
-        
         if (autoRevision.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
-        }else{
+        } else {
             String guardar = autoRevision.getText();
-        int tipo = cmbRevision.getSelectedIndex();
-        switch (tipo) {
-            case 0:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ? and estado = 'REVISION'");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas_Garantias();
-                    if (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setEstado(rs.getString("estado"));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+            int tipo = cmbRevision.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ? and estado = 'REVISION'");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas_Garantias();
+                        if (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setEstado(rs.getString("estado"));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 1:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ? and estado = 'REVISION'");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas_Garantias();
-                    while (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setEstado(rs.getString("estado"));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                    break;
+                case 1:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ? and estado = 'REVISION'");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas_Garantias();
+                        while (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setEstado(rs.getString("estado"));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 2:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ? and estado = 'REVISION'");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas_Garantias();
-                    while (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setEstado(rs.getString("estado"));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                    break;
+                case 2:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ? and estado = 'REVISION'");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas_Garantias();
+                        while (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setEstado(rs.getString("estado"));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 3:
-                try {
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ? and estado = 'REVISION'");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarEntradas_Garantias();
-                    while (rs.next()) {
-                        Entradas en = new Entradas();
-                        en.setId_entrada(rs.getInt("id_entra"));
-                        en.setFecha(rs.getString("fecha"));
-                        en.setNumero(rs.getString("numero"));
-                        en.setEmpresa(rs.getString("empresa"));
-                        en.setNit(rs.getString("nit"));
-                        en.setMarca(rs.getString("marca"));
-                        en.setElemento(rs.getString("elemento"));
-                        en.setModelo(rs.getString("modelo"));
-                        en.setSerie(rs.getString("serie"));
-                        en.setGarantia(rs.getString("garantia"));
-                        en.setEstado(rs.getString("estado"));
-                        entrada.add(en);
-                        DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
-                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                    break;
+                case 3:
+                    try {
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ? and estado = 'REVISION'");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarEntradas_Garantias();
+                        while (rs.next()) {
+                            Entradas en = new Entradas();
+                            en.setId_entrada(rs.getInt("id_entra"));
+                            en.setFecha(rs.getString("fecha"));
+                            en.setNumero(rs.getString("numero"));
+                            en.setEmpresa(rs.getString("empresa"));
+                            en.setNit(rs.getString("nit"));
+                            en.setMarca(rs.getString("marca"));
+                            en.setElemento(rs.getString("elemento"));
+                            en.setModelo(rs.getString("modelo"));
+                            en.setSerie(rs.getString("serie"));
+                            en.setGarantia(rs.getString("garantia"));
+                            en.setEstado(rs.getString("estado"));
+                            entrada.add(en);
+                            DefaultTableModel tb = (DefaultTableModel) tbEntrada_garantia.getModel();
+                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getMarca(), en.getElemento(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getEstado()});
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            default:
-                System.out.println("error");
-                break;
-        }
+                    break;
+                default:
+                    System.out.println("error");
+                    break;
+            }
         }
 
 // TODO add your handling code here:
@@ -3529,7 +3780,7 @@ public class Tecnico extends javax.swing.JFrame {
             limpiarTextFiealdProceso();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "error:\n"+e.getMessage());
+            JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
         }
 
         // TODO add your handling code here:
@@ -3915,115 +4166,115 @@ public class Tecnico extends javax.swing.JFrame {
 
         if (autoPres.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
-        }else{
+        } else {
             String guardar = autoPres.getText();
-        int tipo = cmbPrestamo.getSelectedIndex();
-        switch (tipo) {
-            case 0:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ? AND prestamo = 'SI'");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarPrestamo();
-                    if (rs.next()) {
-                        Salidas sal = new Salidas();
-                        sal.setId_salida(rs.getInt("id_salida"));
-                        sal.setFecha(rs.getString("fecha"));
-                        sal.setNumero(rs.getString("numero"));
-                        sal.setEmpresa(rs.getString("empresa"));
-                        sal.setTelefono(rs.getString("telefono"));
-                        sal.setCorreo(rs.getString("correo"));
-                        sal.setEquipo(rs.getString("equipo"));
-                        sal.setModelo(rs.getString("modelo"));
-                        sal.setSerie(rs.getString("serie"));
-                        sal.setComentario(rs.getString("comentario"));
-                        sal.setPrestamo(rs.getString("prestamo"));
-                        sal.setId_cli(rs.getInt("id_cli"));
-                        salida.add(sal);
-                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                        autoCompletePrestamo();
+            int tipo = cmbPrestamo.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ? AND prestamo = 'SI'");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarPrestamo();
+                        if (rs.next()) {
+                            Salidas sal = new Salidas();
+                            sal.setId_salida(rs.getInt("id_salida"));
+                            sal.setFecha(rs.getString("fecha"));
+                            sal.setNumero(rs.getString("numero"));
+                            sal.setEmpresa(rs.getString("empresa"));
+                            sal.setTelefono(rs.getString("telefono"));
+                            sal.setCorreo(rs.getString("correo"));
+                            sal.setEquipo(rs.getString("equipo"));
+                            sal.setModelo(rs.getString("modelo"));
+                            sal.setSerie(rs.getString("serie"));
+                            sal.setComentario(rs.getString("comentario"));
+                            sal.setPrestamo(rs.getString("prestamo"));
+                            sal.setId_cli(rs.getInt("id_cli"));
+                            salida.add(sal);
+                            DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                            autoCompletePrestamo();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 1:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ? AND prestamo = 'SI'");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarPrestamo();
-                    while (rs.next()) {
-                        Salidas sal = new Salidas();
-                        sal.setId_salida(rs.getInt("id_salida"));
-                        sal.setFecha(rs.getString("fecha"));
-                        sal.setNumero(rs.getString("numero"));
-                        sal.setEmpresa(rs.getString("empresa"));
-                        sal.setTelefono(rs.getString("telefono"));
-                        sal.setCorreo(rs.getString("correo"));
-                        sal.setEquipo(rs.getString("equipo"));
-                        sal.setModelo(rs.getString("modelo"));
-                        sal.setSerie(rs.getString("serie"));
-                        sal.setComentario(rs.getString("comentario"));
-                        sal.setPrestamo(rs.getString("prestamo"));
-                        sal.setId_cli(rs.getInt("id_cli"));
-                        salida.add(sal);
-                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                        autoCompletePrestamo();
+                    break;
+                case 1:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ? AND prestamo = 'SI'");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarPrestamo();
+                        while (rs.next()) {
+                            Salidas sal = new Salidas();
+                            sal.setId_salida(rs.getInt("id_salida"));
+                            sal.setFecha(rs.getString("fecha"));
+                            sal.setNumero(rs.getString("numero"));
+                            sal.setEmpresa(rs.getString("empresa"));
+                            sal.setTelefono(rs.getString("telefono"));
+                            sal.setCorreo(rs.getString("correo"));
+                            sal.setEquipo(rs.getString("equipo"));
+                            sal.setModelo(rs.getString("modelo"));
+                            sal.setSerie(rs.getString("serie"));
+                            sal.setComentario(rs.getString("comentario"));
+                            sal.setPrestamo(rs.getString("prestamo"));
+                            sal.setId_cli(rs.getInt("id_cli"));
+                            salida.add(sal);
+                            DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                            autoCompletePrestamo();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            case 2:
-                try {
-                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                    Statement st = cn.createStatement();
-                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ? AND prestamo = 'SI'");
-                    pst.setString(1, guardar);
-                    ResultSet rs = pst.executeQuery();
-                    LimpiarPrestamo();
-                    while (rs.next()) {
-                        Salidas sal = new Salidas();
-                        sal.setId_salida(rs.getInt("id_salida"));
-                        sal.setFecha(rs.getString("fecha"));
-                        sal.setNumero(rs.getString("numero"));
-                        sal.setEmpresa(rs.getString("empresa"));
-                        sal.setTelefono(rs.getString("telefono"));
-                        sal.setCorreo(rs.getString("correo"));
-                        sal.setEquipo(rs.getString("equipo"));
-                        sal.setModelo(rs.getString("modelo"));
-                        sal.setSerie(rs.getString("serie"));
-                        sal.setComentario(rs.getString("comentario"));
-                        sal.setPrestamo(rs.getString("prestamo"));
-                        sal.setId_cli(rs.getInt("id_cli"));
-                        salida.add(sal);
-                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
-                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                        autoCompletePrestamo();
+                    break;
+                case 2:
+                    try {
+                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                        Statement st = cn.createStatement();
+                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ? AND prestamo = 'SI'");
+                        pst.setString(1, guardar);
+                        ResultSet rs = pst.executeQuery();
+                        LimpiarPrestamo();
+                        while (rs.next()) {
+                            Salidas sal = new Salidas();
+                            sal.setId_salida(rs.getInt("id_salida"));
+                            sal.setFecha(rs.getString("fecha"));
+                            sal.setNumero(rs.getString("numero"));
+                            sal.setEmpresa(rs.getString("empresa"));
+                            sal.setTelefono(rs.getString("telefono"));
+                            sal.setCorreo(rs.getString("correo"));
+                            sal.setEquipo(rs.getString("equipo"));
+                            sal.setModelo(rs.getString("modelo"));
+                            sal.setSerie(rs.getString("serie"));
+                            sal.setComentario(rs.getString("comentario"));
+                            sal.setPrestamo(rs.getString("prestamo"));
+                            sal.setId_cli(rs.getInt("id_cli"));
+                            salida.add(sal);
+                            DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                            autoCompletePrestamo();
+                        }
+                        cn.close();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    cn.close();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                }
-                break;
-            default:
-                System.out.println("error");
-                break;
+                    break;
+                default:
+                    System.out.println("error");
+                    break;
+            }
         }
-        }
- 
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca7ActionPerformed
 
@@ -4125,7 +4376,7 @@ public class Tecnico extends javax.swing.JFrame {
         int seleccion = tbListo.getSelectedRow();
         txtIdListo.setText(String.valueOf(tbListo.getValueAt(seleccion, 0)));
         areaListo.setText(String.valueOf(tbListo.getValueAt(seleccion, 17)));
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_tbListoMouseClicked
 
@@ -4133,12 +4384,17 @@ public class Tecnico extends javax.swing.JFrame {
 
         LimpiarListos();
         ListarListos();
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void tbEntregadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntregadosMouseClicked
-        // TODO add your handling code here:
+
+        int seleccion = tbEntregados.getSelectedRow();
+        txtIdEntregados.setText(String.valueOf(tbEntregados.getValueAt(seleccion, 0)));
+        areaEntregados.setText(String.valueOf(tbEntregados.getValueAt(seleccion, 17)));
+        
+// TODO add your handling code here:
     }//GEN-LAST:event_tbEntregadosMouseClicked
 
     private void btnBusca8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca8ActionPerformed
@@ -4155,7 +4411,7 @@ public class Tecnico extends javax.swing.JFrame {
 
     private void btnBusca9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca9ActionPerformed
 
-         Object[] opciones = {"Aceptar", "Cancelar"};
+        Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
@@ -4193,7 +4449,7 @@ public class Tecnico extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca9ActionPerformed
 
@@ -4221,7 +4477,7 @@ public class Tecnico extends javax.swing.JFrame {
                 dbGarantia.estadoGarantia(gar);
                 dbGarantia.estadoEntrada(en);
                 dbGarantia.EliminarGarantiaBack(gar);
-                
+
                 JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
 
                 LimpiarEntradas_Garantias();
@@ -4239,13 +4495,13 @@ public class Tecnico extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
             }
         }
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca11ActionPerformed
 
     private void btnBusca10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca10ActionPerformed
 
-         Object[] opciones = {"Aceptar", "Cancelar"};
+        Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "¿seguro?", "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
@@ -4266,7 +4522,7 @@ public class Tecnico extends javax.swing.JFrame {
 
                 dbGarantia.estadoGarantia(gar);
                 dbGarantia.estadoEntrada(en);
-                
+
                 JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
 
                 LimpiarEntradas_Garantias();
@@ -4284,7 +4540,7 @@ public class Tecnico extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca10ActionPerformed
 
@@ -4311,7 +4567,7 @@ public class Tecnico extends javax.swing.JFrame {
 
                 dbGarantia.estadoGarantia(gar);
                 dbGarantia.estadoEntrada(en);
-                
+
                 JOptionPane.showMessageDialog(this, "PROCESO EXITOSO", "", JOptionPane.INFORMATION_MESSAGE);
 
                 LimpiarEntradas_Garantias();
@@ -4329,7 +4585,7 @@ public class Tecnico extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "error:\n" + e.getMessage());
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca12ActionPerformed
 
@@ -4377,13 +4633,14 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton actualizar;
     private javax.swing.JButton actualizar1;
     private javax.swing.JTextArea areaEntrada;
+    private javax.swing.JTextArea areaEntregados;
     private javax.swing.JTextArea areaEnvio;
     private javax.swing.JTextArea areaListo;
-    private javax.swing.JTextArea areaListo1;
     private javax.swing.JTextArea areaPrestamo;
     private javax.swing.JTextArea areaSalida;
     private javax.swing.JTextField autoEntra;
     private javax.swing.JTextField autoEnvio;
+    private javax.swing.JTextField autoListos;
     private javax.swing.JTextField autoPres;
     private javax.swing.JTextField autoProceso;
     private javax.swing.JTextField autoRevision;
@@ -4415,8 +4672,8 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JButton btnSalida9;
     private javax.swing.JComboBox cmbEntradas;
     private javax.swing.JComboBox cmbEnvios;
-    private javax.swing.JComboBox cmbHistorial1;
     private javax.swing.JComboBox cmbHistorial2;
+    private javax.swing.JComboBox cmbListos;
     private javax.swing.JComboBox cmbPrestamo;
     private javax.swing.JComboBox cmbProceso;
     private javax.swing.JComboBox cmbRevision;
@@ -4517,14 +4774,13 @@ public class Tecnico extends javax.swing.JFrame {
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFechaGarantia;
     private javax.swing.JTextField txtIdEntrada;
+    private javax.swing.JTextField txtIdEntregados;
     private javax.swing.JTextField txtIdEnvio;
     private javax.swing.JTextField txtIdForanea;
     private javax.swing.JTextField txtIdListo;
-    private javax.swing.JTextField txtIdListo1;
     private javax.swing.JTextField txtIdPrestamo;
     private javax.swing.JTextField txtIdProceso;
     private javax.swing.JTextField txtIdSalida;
-    private javax.swing.JTextField txtNitCliente4;
     private javax.swing.JTextField txtNitCliente5;
     private javax.swing.JTextField txtNuevaSerie;
     private javax.swing.JTextField txtRmaGar;
