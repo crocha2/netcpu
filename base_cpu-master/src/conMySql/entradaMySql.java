@@ -7,6 +7,8 @@ package conMySql;
 
 import clasesPrincipales.Entradas;
 import clasesPrincipales.clientes;
+import clasesPrincipales.imagen;
+import clasesPrincipales.usuarios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -231,6 +233,21 @@ public class entradaMySql {
         } catch (SQLException ex) {
             Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al eliminar:\n"+ex.getMessage());
+        }
+    }
+    
+    public void adjuntarImagen(imagen img) {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO imagen (nombre, image) VALUES (?,?)");
+            pst.setString(1, img.getNombre());
+            pst.setBlob(2, img.getImagen(),img.getLongitud());
+            //pst.setInt(3, img.getLongitud());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
+            cn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
         }
     }
 
