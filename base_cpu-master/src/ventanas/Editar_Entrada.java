@@ -435,19 +435,18 @@ public void limpiar() {
             gar.setFecha_entrada(txtFecha.getText().toUpperCase());
             gar.setCliente(txtEmpresa.getText().toUpperCase());
             gar.setNit(txtNitCliente.getText().toUpperCase());
+            gar.setModelo(txtModelo.getText().toUpperCase());
             gar.setPrimera_serie(txtSerie.getText().toUpperCase());
             gar.setSerie_vieja(txtSerie.getText().toUpperCase());
             gar.setEstado(txtEstado.getText().toUpperCase());
             gar.setNumero(txtSec.getText().toUpperCase());
-            
-            
-            dbgar.EditarProceso(gar);
 
             Object[] opciones = {"Aceptar", "Cancelar"};
             int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR este registro?", "Mensaje de Confirmacion",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
             if (eleccion == JOptionPane.YES_OPTION) {
+                dbgar.EditarProceso(gar);
                 db.EditarTablaEntrada(en);
                 dbcli.EditarClienteEntrada(cli);
                 limpiar();

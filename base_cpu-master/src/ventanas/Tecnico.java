@@ -209,7 +209,7 @@ public class Tecnico extends javax.swing.JFrame {
         garantia = dbGarantia.ListGarantias();
         DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
         for (Garantias gar : garantia) {
-            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getModelo(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
         }
     }
 
@@ -2114,11 +2114,11 @@ public class Tecnico extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID_FK", "FechaEntrada", "No.Rem", "Cliente", "Nit o Cedula", "SerieVieja", "PrimeraSerie", "FechaGarantia", "RMA", "No.Caso", "SerieNueva", "Estado"
+                "ID_FK", "FechaEntrada", "No.Rem", "Cliente", "Nit o Cedula", "Modelo", "SerieVieja", "Serie 1", "FechaGarantia", "RMA", "No.Caso", "SerieNueva", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true
+                false, true, true, true, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -3646,6 +3646,7 @@ public class Tecnico extends javax.swing.JFrame {
                 gar.setNumero_caso("");
                 gar.setCliente(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 3)));
                 gar.setNit(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 4)));
+                gar.setModelo(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 7)));
                 gar.setSerie_vieja(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
                 gar.setSerie_nueva("");
                 gar.setPrimera_serie(String.valueOf(tbEntrada_garantia.getValueAt(seleccion, 8)));
@@ -3790,10 +3791,10 @@ public class Tecnico extends javax.swing.JFrame {
 
         int seleccion = tbProceso.getSelectedRow();
         txtIdProceso.setText(String.valueOf(tbProceso.getValueAt(seleccion, 0)));
-        txtFechaGarantia.setText(String.valueOf(tbProceso.getValueAt(seleccion, 7)));
-        txtRmaGar.setText(String.valueOf(tbProceso.getValueAt(seleccion, 8)));
-        txtCaso.setText(String.valueOf(tbProceso.getValueAt(seleccion, 9)));
-        txtNuevaSerie.setText(String.valueOf(tbProceso.getValueAt(seleccion, 10)));
+        txtFechaGarantia.setText(String.valueOf(tbProceso.getValueAt(seleccion, 8)));
+        txtRmaGar.setText(String.valueOf(tbProceso.getValueAt(seleccion, 9)));
+        txtCaso.setText(String.valueOf(tbProceso.getValueAt(seleccion, 10)));
+        txtNuevaSerie.setText(String.valueOf(tbProceso.getValueAt(seleccion, 11)));
 
 // TODO add your handling code here:
     }//GEN-LAST:event_tbProcesoMouseClicked

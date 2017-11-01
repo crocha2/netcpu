@@ -29,7 +29,7 @@ public class garantiaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id_garantia, fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra FROM garantias WHERE estado = 'PROCESO' ORDER BY fecha_entrada ASC");
+            ResultSet rs = st.executeQuery("SELECT id_garantia, fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, modelo, serie_vieja, serie_nueva, primera_serie, estado, id_entra FROM garantias WHERE estado = 'PROCESO' ORDER BY fecha_entrada ASC");
             while (rs.next()) {
                 Garantias gar = new Garantias();
                 gar.setId_garantia(rs.getInt("id_garantia"));
@@ -40,6 +40,7 @@ public class garantiaMySql {
                 gar.setNumero_caso(rs.getString("numero_caso"));
                 gar.setCliente(rs.getString("cliente"));
                 gar.setNit(rs.getString("nit"));
+                gar.setModelo(rs.getString("modelo"));
                 gar.setSerie_vieja(rs.getString("serie_vieja"));
                 gar.setSerie_nueva(rs.getString("serie_nueva"));
                 gar.setPrimera_serie(rs.getString("primera_serie"));
@@ -60,7 +61,7 @@ public class garantiaMySql {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             //PreparedStatement pst =  cn.prepareStatement("INSERT INTO garantias(fecha_entrada, cliente, nit, serie_vieja, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?)");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO garantias(fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, serie_vieja, serie_nueva, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO garantias(fecha_entrada, fecha_garantia, numero, rma, numero_caso, cliente, nit, modelo, serie_vieja, serie_nueva, primera_serie, estado, id_entra) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pst.setString(1, garantia.getFecha_entrada());
             pst.setString(2, garantia.getFecha_garantia());
@@ -69,11 +70,12 @@ public class garantiaMySql {
             pst.setString(5, garantia.getNumero_caso());
             pst.setString(6, garantia.getCliente());
             pst.setString(7, garantia.getNit());
-            pst.setString(8, garantia.getSerie_vieja());
-            pst.setString(9, garantia.getSerie_nueva());
-            pst.setString(10, garantia.getPrimera_serie());
-            pst.setString(11, garantia.getEstado());
-            pst.setInt(12, garantia.getId_entra());
+            pst.setString(8, garantia.getModelo());
+            pst.setString(9, garantia.getSerie_vieja());
+            pst.setString(10, garantia.getSerie_nueva());
+            pst.setString(11, garantia.getPrimera_serie());
+            pst.setString(12, garantia.getEstado());
+            pst.setInt(13, garantia.getId_entra());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
@@ -86,7 +88,7 @@ public class garantiaMySql {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET fecha=?,elemento=?,potencia=?,marca=?,modelo=?,serie=?,empresa=?,nit=?,persona_remite=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,motivo=?,parrilla=?,bases_plas=?,conector_ori=?,garantia=?,estado_car=?,observaciones=?,tarjeta=? WHERE numero = ?");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE entradas SET fecha=?,elemento=?,potencia=?,marca=?,modelo=?,serie=?,empresa=?,nit=?,modelo=?,persona_remite=?,ciudad=?,direccion=?,contacto=?,telefono=?,correo=?,motivo=?,parrilla=?,bases_plas=?,conector_ori=?,garantia=?,estado_car=?,observaciones=?,tarjeta=? WHERE numero = ?");
             pst.setString(1, entrada.getFecha());
             pst.setString(2, entrada.getElemento());
             pst.setString(3, entrada.getPotencia());
@@ -95,21 +97,22 @@ public class garantiaMySql {
             pst.setString(6, entrada.getSerie());
             pst.setString(7, entrada.getEmpresa());
             pst.setString(8, entrada.getNit());
-            pst.setString(9, entrada.getPersona_remite());
-            pst.setString(10, entrada.getCiudad());
-            pst.setString(11, entrada.getDireccion());
-            pst.setString(12, entrada.getNombre_contacto());
-            pst.setString(13, entrada.getTelefono_contacto());
-            pst.setString(14, entrada.getCorreo());
-            pst.setString(15, entrada.getMotivo());
-            pst.setString(16, entrada.getParrilla());
-            pst.setString(17, entrada.getBases_plasticas());
-            pst.setString(18, entrada.getConector_origi());
-            pst.setString(19, entrada.getGarantia());
-            pst.setString(20, entrada.getEstado_carcasa());
-            pst.setString(21, entrada.getObservaciones());
-            pst.setString(22, entrada.getTarjeta_red());
-            pst.setString(23, entrada.getNumero());
+            pst.setString(9, entrada.getModelo());
+            pst.setString(10, entrada.getPersona_remite());
+            pst.setString(11, entrada.getCiudad());
+            pst.setString(12, entrada.getDireccion());
+            pst.setString(13, entrada.getNombre_contacto());
+            pst.setString(14, entrada.getTelefono_contacto());
+            pst.setString(15, entrada.getCorreo());
+            pst.setString(16, entrada.getMotivo());
+            pst.setString(17, entrada.getParrilla());
+            pst.setString(18, entrada.getBases_plasticas());
+            pst.setString(19, entrada.getConector_origi());
+            pst.setString(20, entrada.getGarantia());
+            pst.setString(21, entrada.getEstado_carcasa());
+            pst.setString(22, entrada.getObservaciones());
+            pst.setString(23, entrada.getTarjeta_red());
+            pst.setString(24, entrada.getNumero());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();
@@ -123,14 +126,15 @@ public class garantiaMySql {
         try {
             //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET fecha_entrada=?,cliente=?,nit=?,primera_serie=?,serie_vieja=?,estado=? WHERE numero = ?");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE garantias SET fecha_entrada=?,cliente=?,nit=?,modelo=?,primera_serie=?,serie_vieja=?,estado=? WHERE numero = ?");
             pst.setString(1, garantia.getFecha_entrada());
             pst.setString(2, garantia.getCliente());
             pst.setString(3, garantia.getNit());
-            pst.setString(4, garantia.getPrimera_serie());
-            pst.setString(5, garantia.getSerie_vieja());
-            pst.setString(6, garantia.getEstado());
-            pst.setString(7, garantia.getNumero());
+            pst.setString(4, garantia.getModelo());
+            pst.setString(5, garantia.getPrimera_serie());
+            pst.setString(6, garantia.getSerie_vieja());
+            pst.setString(7, garantia.getEstado());
+            pst.setString(8, garantia.getNumero());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Editado exitosamente");
             cn.close();

@@ -6,9 +6,11 @@
 package ventanas;
 
 import clasesPrincipales.Entradas;
+import clasesPrincipales.Garantias;
 import clasesPrincipales.clientes;
 import conMySql.clienteMySql;
 import conMySql.entradaMySql;
+import conMySql.garantiaMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,6 +32,9 @@ public class Facturas_Entrada extends javax.swing.JFrame {
     ArrayList<Entradas> entrada;
     //entradaDB db = new entradaDB();
     entradaMySql db = new entradaMySql();
+    
+    ArrayList<Garantias> garantia;
+    garantiaMySql dbGar = new garantiaMySql();
     
     ArrayList<clientes> cliente;
     //entradaDB dbcli = new entradaDB();
@@ -185,8 +190,8 @@ public class Facturas_Entrada extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         txtMotivo = new javax.swing.JTextField();
         txtTarjetaDeRed = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
         txtIdCli = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -498,12 +503,12 @@ public class Facturas_Entrada extends javax.swing.JFrame {
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 40, 20));
         getContentPane().add(txtMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 700, -1));
         getContentPane().add(txtTarjetaDeRed, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 110, -1));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setText("Marca");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 40, 20));
         getContentPane().add(txtIdCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 80, -1));
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Marca");
+        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 40, 20));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Entrada.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
@@ -599,6 +604,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
 
             Entradas en = new Entradas();
             clientes cli = new clientes();
+            Garantias gar = new Garantias();
 
             en.setNumero(cmbFacturas.getSelectedItem().toString());
             en.setFecha(txtFecha.getText().toUpperCase());
@@ -633,6 +639,17 @@ public class Facturas_Entrada extends javax.swing.JFrame {
             cli.setNombre_contacto(txtContactoCliente.getText().toUpperCase());
             cli.setTelefono_cliente(txtTelefonoCliente.getText().toUpperCase());
             cli.setCorreo_cliente(txtCorreoCliente.getText().toUpperCase());
+            
+            gar.setFecha_entrada(txtFecha.getText().toUpperCase());
+            gar.setCliente(txtEmpresa.getText().toUpperCase());
+            gar.setNit(txtNitCliente.getText().toUpperCase());
+            gar.setModelo(txtModelo.getText().toUpperCase());
+            gar.setPrimera_serie(txtSerie.getText().toUpperCase());
+            gar.setSerie_vieja(txtSerie.getText().toUpperCase());
+            gar.setEstado("REVISION");
+            gar.setNumero(txtSec.getText().toUpperCase());
+            
+            
 
             Object[] opciones = {"Aceptar", "Cancelar"};
             int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea EDITAR este registro?", "Mensaje de Confirmacion",
@@ -641,6 +658,7 @@ public class Facturas_Entrada extends javax.swing.JFrame {
             if (eleccion == JOptionPane.YES_OPTION) {
                 db.EditarEntrada(en);
                 dbcli.EditarCliente(cli);
+                dbGar.EditarProceso(gar);
                 this.cmbFacturas.removeAllItems();
                 CargarCmbFacturas();
             } else {
@@ -915,13 +933,13 @@ public class Facturas_Entrada extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

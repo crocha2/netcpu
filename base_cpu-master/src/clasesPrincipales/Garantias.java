@@ -19,6 +19,7 @@ public class Garantias {
     String numero_caso;
     String cliente;
     String nit;
+    String modelo;
     String serie_vieja;
     String serie_nueva;
     String primera_serie;
@@ -28,7 +29,7 @@ public class Garantias {
     public Garantias() {
     }
 
-    public Garantias(int id_garantia, String fecha_entrada, String fecha_garantia, String numero, String rma, String numero_caso, String cliente, String nit, String serie_vieja, String serie_nueva, String primera_serie, String estado, int id_entra) {
+    public Garantias(int id_garantia, String fecha_entrada, String fecha_garantia, String numero, String rma, String numero_caso, String cliente, String nit, String modelo, String serie_vieja, String serie_nueva, String primera_serie, String estado, int id_entra) {
         this.id_garantia = id_garantia;
         this.fecha_entrada = fecha_entrada;
         this.fecha_garantia = fecha_garantia;
@@ -37,6 +38,7 @@ public class Garantias {
         this.numero_caso = numero_caso;
         this.cliente = cliente;
         this.nit = nit;
+        this.modelo = modelo;
         this.serie_vieja = serie_vieja;
         this.serie_nueva = serie_nueva;
         this.primera_serie = primera_serie;
@@ -44,11 +46,12 @@ public class Garantias {
         this.id_entra = id_entra;
     }
     
-    public Garantias(int id_garantia, String fecha_entrada, String cliente, String nit, String serie_vieja, String primera_serie, String estado, int id_entra) {
+    public Garantias(int id_garantia, String fecha_entrada, String cliente, String nit, String modelo, String serie_vieja, String primera_serie, String estado, int id_entra) {
         this.id_garantia = id_garantia;
         this.fecha_entrada = fecha_entrada;
         this.cliente = cliente;
         this.nit = nit;
+        this.modelo = modelo;
         this.serie_vieja = serie_vieja;
         this.primera_serie = primera_serie;
         this.estado = estado;
@@ -117,6 +120,14 @@ public class Garantias {
 
     public void setNit(String nit) {
         this.nit = nit;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     public String getSerie_vieja() {
