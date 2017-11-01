@@ -97,32 +97,23 @@ public class entradaMySql {
         return entrada;
     }
     
-    public ArrayList<Entradas> ListImagen() {
-        ArrayList<Entradas> entrada = new ArrayList();
+    public ArrayList<imagen> ListImagen() {
+        ArrayList<imagen> ima = new ArrayList();
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre, image FROM imagen ORDER BY fecha ASC");
+            ResultSet rs = st.executeQuery("SELECT nombre, image FROM imagen ORDER BY 1");
             while (rs.next()) {
-                Entradas en = new Entradas();
-                en.setId_entrada(rs.getInt("id_entra"));
-                en.setFecha(rs.getString("fecha"));
-                en.setNumero(rs.getString("numero"));
-                en.setEmpresa(rs.getString("empresa"));
-                en.setNit(rs.getString("nit"));
-                en.setElemento(rs.getString("elemento"));
-                en.setMarca(rs.getString("marca"));
-                en.setModelo(rs.getString("modelo"));
-                en.setSerie(rs.getString("serie"));
-                en.setGarantia(rs.getString("garantia"));
-                en.setEstado(rs.getString("estado"));
-                entrada.add(en);
+                imagen im = new imagen();
+                im.setNombre(rs.getString("nombre"));
+                //im.setImagen(rs.String("fecha"));
+                ima.add(im);
             }
             cn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en listado:\n"+ex.getMessage());
         }
-        return entrada;
+        return ima;
     }
 
     //Codigo para INSERTAR DATOS.........................................................

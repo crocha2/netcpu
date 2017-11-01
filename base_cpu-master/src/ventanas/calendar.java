@@ -44,7 +44,7 @@ public class calendar extends javax.swing.JFrame {
     public calendar() {
         initComponents();
     }
-    
+    /*
     public void ListarEntradas() {
         entrada = dbEntrada.ListEntradas();
         DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
@@ -59,6 +59,7 @@ public class calendar extends javax.swing.JFrame {
             tb.removeRow(i);
         }
     }
+    */
 
     /**
      * This method is called from within the constructor to initialize the form.
