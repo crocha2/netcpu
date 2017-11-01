@@ -18,8 +18,7 @@ public class imagen {
     FileInputStream imagen;
     int longitud;
 
-    public imagen(int id_imagen, String nombre, FileInputStream imagen, int longitud) {
-        this.id_imagen = id_imagen;
+    public imagen(String nombre, FileInputStream imagen, int longitud) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.longitud = longitud;

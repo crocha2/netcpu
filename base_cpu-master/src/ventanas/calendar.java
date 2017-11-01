@@ -34,14 +34,30 @@ public class calendar extends javax.swing.JFrame {
 
     private FileInputStream fis;
     private int longitudBytes;
-    
+
     ArrayList<Entradas> entrada;
     entradaMySql dbEntrada = new entradaMySql();
+
     /**
      * Creates new form calendar
      */
     public calendar() {
         initComponents();
+    }
+    
+    public void ListarEntradas() {
+        entrada = dbEntrada.ListEntradas();
+        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+        for (Entradas en : entrada) {
+            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+        }
+    }
+
+    public void LimpiarEntradas() {
+        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
     }
 
     /**
@@ -61,6 +77,8 @@ public class calendar extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         txtNombreImagen = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb_imagen = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +113,21 @@ public class calendar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("NOMBRE IMAGEN");
 
+        tb_imagen.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "NOMBRE", "IMAGEN"
+            }
+        ));
+        tb_imagen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_imagenMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tb_imagen);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -103,43 +136,49 @@ public class calendar extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
                             .addComponent(txtNombreImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnAdjuntar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNombreImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addComponent(txtNombreImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
                         .addComponent(btnAdjuntar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -168,7 +207,7 @@ public class calendar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         String sql = "SELECT numero, fecha, empresa, elemento, modelo, serie  FROM `entradas` WHERE fecha = DATE_SUB(CURDATE(),INTERVAL 5 DAY) \n"
                 + "AND garantia = 'SI' \n"
                 + "AND estado = 'REVISION'";
@@ -178,17 +217,16 @@ public class calendar extends javax.swing.JFrame {
             Statement st = cn.createStatement();
             PreparedStatement pst = cn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            
+
             ResultSetMetaData rd = rs.getMetaData();//Obtenemos el meta data desde el resultSet
             int filas = rd.getColumnCount();
             correos_destino = new String[filas + 1];
             int indice = 0;
-            
+
             while (rs.next()) {
-                
-                
+
             }
-            
+
         } catch (Exception e) {
             System.out.println("error:\n" + e);
         }
@@ -198,8 +236,6 @@ public class calendar extends javax.swing.JFrame {
 
     private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
 
-        
-                
         // TODO add your handling code here:
     }//GEN-LAST:event_lblFotoMouseClicked
 
@@ -211,45 +247,53 @@ public class calendar extends javax.swing.JFrame {
         if (estado == JFileChooser.APPROVE_OPTION) { // si el usuario selecciono el archivo y dio ACEPTAR..
             try {
                 fis = new FileInputStream(se.getSelectedFile());
-                this.longitudBytes = (int)se.getSelectedFile().length();
-                
+                this.longitudBytes = (int) se.getSelectedFile().length();
+
                 //Dimenciona la imagen a la dimencion del label "lblFoto"
                 /*
+                 Image icono = ImageIO.read(se.getSelectedFile()).getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT);
+                 lblFoto.setIcon(new ImageIcon(icono));
+                 lblFoto.updateUI();
+                 */
                 Image icono = ImageIO.read(se.getSelectedFile()).getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT);
                 lblFoto.setIcon(new ImageIcon(icono));
                 lblFoto.updateUI();
-                */
-                
-                Image icono = ImageIO.read(se.getSelectedFile()).getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT);
-                lblFoto.setIcon(new ImageIcon(icono));
-                lblFoto.updateUI();
-                
+
             } catch (Exception e) {
-                System.out.println("error"+e);
+                System.out.println("error" + e);
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdjuntarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         try {
-            imagen ima = new imagen();
-            ima.setNombre(this.txtNombreImagen.getText());
-            ima.setImagen(this.fis);
+            imagen ima = new imagen(txtNombreImagen.getText(), this.fis, this.longitudBytes);
+            //ima.setNombre(this.txtNombreImagen.getText());
+            //ima.setImagen(this.fis);
             //ima.setImagen(this.longitudBytes);
 
-                    dbEntrada.adjuntarImagen(ima);
-                    JOptionPane.showMessageDialog(this, "Ingresado exitosamente");
-                
-           
+            dbEntrada.adjuntarImagen(ima);
+            JOptionPane.showMessageDialog(this, "Ingresado exitosamente");
+            
+            txtNombreImagen.setText("");
+            
+
         } catch (Exception e) {
             System.err.println("error" + e);
         }
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void tb_imagenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_imagenMouseClicked
+
+        
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_imagenMouseClicked
 
     /**
      * @param args the command line arguments
@@ -293,7 +337,9 @@ public class calendar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFoto;
+    private javax.swing.JTable tb_imagen;
     private javax.swing.JTextField txtNombreImagen;
     // End of variables declaration//GEN-END:variables
 }
