@@ -6,6 +6,7 @@
 package clasesPrincipales;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 /**
  *
@@ -17,6 +18,7 @@ public class imagen {
     String nombre;
     FileInputStream imagen;
     int longitud;
+
 
     public imagen(String nombre, FileInputStream imagen, int longitud) {
         this.nombre = nombre;
