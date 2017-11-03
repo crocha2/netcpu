@@ -108,8 +108,6 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         brnListar1 = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         btnBusca = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_clientes = new javax.swing.JTable();
@@ -148,44 +146,6 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(brnListar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 40, 50));
-
-        btnEdit.setBackground(new java.awt.Color(255, 255, 255));
-        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
-        btnEdit.setText("Editar");
-        btnEdit.setBorder(null);
-        btnEdit.setBorderPainted(false);
-        btnEdit.setContentAreaFilled(false);
-        btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEdit.setIconTextGap(-1);
-        btnEdit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 40, 50));
-
-        btnDelete.setBackground(new java.awt.Color(255, 255, 255));
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
-        btnDelete.setText("Eliminar");
-        btnDelete.setBorder(null);
-        btnDelete.setBorderPainted(false);
-        btnDelete.setContentAreaFilled(false);
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.setIconTextGap(-1);
-        btnDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 50, 50));
 
         btnBusca.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -245,22 +205,6 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_brnListar1ActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-
-        Editar_Cliente obj = new Editar_Cliente();
-        obj.setVisible(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
-        Eliminar_Cliente obj = new Eliminar_Cliente();
-        obj.setVisible(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
 
@@ -356,8 +300,6 @@ public class Tabla_Clientes_Admin extends javax.swing.JFrame {
     private javax.swing.JTextField auto;
     private javax.swing.JButton brnListar1;
     private javax.swing.JButton btnBusca;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelFondo;

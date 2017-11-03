@@ -263,7 +263,6 @@ public class Entrada extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jLabel26 = new javax.swing.JLabel();
         txtSec = new javax.swing.JTextField();
-        btnGuarda1 = new javax.swing.JButton();
         auto = new javax.swing.JTextField();
         btnBusca1 = new javax.swing.JButton();
         txtIdCli = new javax.swing.JTextField();
@@ -517,7 +516,7 @@ public class Entrada extends javax.swing.JFrame {
                 btnGuardaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 80, -1));
+        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 460, 80, -1));
         getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 120, 10));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -525,24 +524,6 @@ public class Entrada extends javax.swing.JFrame {
         jLabel26.setText("FECHA");
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 40, 20));
         getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 170, -1));
-
-        btnGuarda1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGuarda1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnGuarda1.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuarda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/generarr.png"))); // NOI18N
-        btnGuarda1.setText("Go");
-        btnGuarda1.setBorderPainted(false);
-        btnGuarda1.setContentAreaFilled(false);
-        btnGuarda1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuarda1.setIconTextGap(-1);
-        btnGuarda1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnGuarda1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuarda1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGuarda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 50, 70));
         getContentPane().add(auto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, -1));
 
         btnBusca1.setBackground(new java.awt.Color(255, 255, 255));
@@ -740,14 +721,6 @@ public class Entrada extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardaActionPerformed
 
-    private void btnGuarda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuarda1ActionPerformed
-
-        Facturas_Entrada obj = new Facturas_Entrada();
-        obj.setVisible(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuarda1ActionPerformed
-
     private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
 
         Nuevo_Cliente obj = new Nuevo_Cliente();
@@ -806,7 +779,6 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnGuarda;
-    private javax.swing.JButton btnGuarda1;
     private javax.swing.JComboBox cmbBasesPlasticas;
     private javax.swing.JComboBox cmbConectorOriginal;
     private javax.swing.JComboBox cmbEstadoCarcasa;

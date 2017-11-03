@@ -168,7 +168,6 @@ public class Envio extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         btnBusca = new javax.swing.JButton();
-        btnPdf = new javax.swing.JButton();
         btnGuarda = new javax.swing.JButton();
         txtSec = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
@@ -291,25 +290,6 @@ public class Envio extends javax.swing.JFrame {
         });
         getContentPane().add(btnBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 40, -1));
 
-        btnPdf.setBackground(new java.awt.Color(255, 255, 255));
-        btnPdf.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnPdf.setForeground(new java.awt.Color(255, 255, 255));
-        btnPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/generarr.png"))); // NOI18N
-        btnPdf.setText("Go");
-        btnPdf.setBorder(null);
-        btnPdf.setBorderPainted(false);
-        btnPdf.setContentAreaFilled(false);
-        btnPdf.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPdf.setIconTextGap(-1);
-        btnPdf.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnPdf.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnPdf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPdfActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 60, 70));
-
         btnGuarda.setBackground(new java.awt.Color(255, 255, 255));
         btnGuarda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnGuarda.setForeground(new java.awt.Color(255, 255, 255));
@@ -327,7 +307,7 @@ public class Envio extends javax.swing.JFrame {
                 btnGuardaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 60, -1));
+        getContentPane().add(btnGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 60, -1));
         getContentPane().add(txtSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 180, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 120, 10));
 
@@ -414,14 +394,6 @@ public class Envio extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscaActionPerformed
-
-    private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
-
-        Facturas_Envio obj = new Facturas_Envio();
-        obj.setVisible(true);
-     
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPdfActionPerformed
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
@@ -644,7 +616,6 @@ public class Envio extends javax.swing.JFrame {
     private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnDescartar;
     private javax.swing.JButton btnGuarda;
-    private javax.swing.JButton btnPdf;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
