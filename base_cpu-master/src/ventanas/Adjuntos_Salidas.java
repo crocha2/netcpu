@@ -6,8 +6,11 @@
 package ventanas;
 
 import clasesPrincipales.Entradas;
+import clasesPrincipales.Salidas;
 import clasesPrincipales.imagen;
+import clasesPrincipales.imagen_salida;
 import conMySql.entradaMySql;
+import conMySql.salidaMySql;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -27,24 +30,24 @@ import javax.swing.JOptionPane;
  *
  * @author Administrador
  */
-public class Adjuntos extends javax.swing.JFrame {
+public class Adjuntos_Salidas extends javax.swing.JFrame {
 
     private FileInputStream fis;
     private int longitudBytes;
 
-    ArrayList<Entradas> entrada;
-    entradaMySql dbEntrada = new entradaMySql();
+    ArrayList<Salidas> salida;
+    salidaMySql dbsalida = new salidaMySql();
 
     /**
      * Creates new form Adjuntos
      */
-    public Adjuntos() {
+    public Adjuntos_Salidas() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("CPU System Service S.A.S - ADJUNTAR");
-        CargarCmbEntrada();
-        txtIdEntrada.setEnabled(false);
+        CargarCmbSalida();
+        txtIdSalida.setEnabled(false);
         txtCliente.setEnabled(false);
         txtFecha.setEnabled(false);
         txtModelo.setEnabled(false);
@@ -55,20 +58,20 @@ public class Adjuntos extends javax.swing.JFrame {
         lblFoto.setVisible(false);
     }
 
-    public void CargarCmbEntrada() {
+    public void CargarCmbSalida() {
         try {
             Connection cnx = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery("SELECT numero FROM entradas ORDER BY numero DESC");
+            ResultSet rs = st.executeQuery("SELECT numero FROM salidas ORDER BY numero DESC");
             while (rs.next()) {
-                this.cmbEntradas.addItem(rs.getString("numero"));
+                this.cmbSalidas.addItem(rs.getString("numero"));
             }
         } catch (Exception e) {
         }
     }
 
     public void limpiar() {
-        txtIdEntrada.setText("");
+        txtIdSalida.setText("");
         txtCliente.setText("");
         txtFecha.setText("");
         txtModelo.setText("");
@@ -100,10 +103,10 @@ public class Adjuntos extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
         txtCliente = new javax.swing.JTextField();
-        cmbEntradas = new javax.swing.JComboBox();
+        cmbSalidas = new javax.swing.JComboBox();
         btnBusca = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        txtIdEntrada = new javax.swing.JTextField();
+        txtIdSalida = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
@@ -122,9 +125,9 @@ public class Adjuntos extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ADJUNTAR ENTRADA");
+        jLabel2.setText("ADJUNTAR SALIDA");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(10, 11, 280, 29);
+        jLabel2.setBounds(10, 11, 240, 29);
         jPanel2.add(jSeparator7);
         jSeparator7.setBounds(10, 41, 420, 10);
 
@@ -136,13 +139,13 @@ public class Adjuntos extends javax.swing.JFrame {
         jPanel2.add(txtCliente);
         txtCliente.setBounds(30, 140, 290, 30);
 
-        cmbEntradas.addActionListener(new java.awt.event.ActionListener() {
+        cmbSalidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbEntradasActionPerformed(evt);
+                cmbSalidasActionPerformed(evt);
             }
         });
-        jPanel2.add(cmbEntradas);
-        cmbEntradas.setBounds(30, 80, 160, 30);
+        jPanel2.add(cmbSalidas);
+        cmbSalidas.setBounds(30, 80, 160, 30);
 
         btnBusca.setBackground(new java.awt.Color(255, 255, 255));
         btnBusca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -168,8 +171,8 @@ public class Adjuntos extends javax.swing.JFrame {
         jLabel14.setText("ID");
         jPanel2.add(jLabel14);
         jLabel14.setBounds(350, 120, 60, 14);
-        jPanel2.add(txtIdEntrada);
-        txtIdEntrada.setBounds(350, 140, 70, 30);
+        jPanel2.add(txtIdSalida);
+        txtIdSalida.setBounds(350, 140, 70, 30);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -250,20 +253,20 @@ public class Adjuntos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEntradasActionPerformed
+    private void cmbSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSalidasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbEntradasActionPerformed
+    }//GEN-LAST:event_cmbSalidasActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
 
         //(FECHA, ELEMENTO, POTENCIA, MARCA, MODELO, SERIE, EMPRESA, NIT, PERSONA_REMITE, CIUDAD, DIRECCION, NOMBRE_CONTACTO, TELEFONO_CONTACTO, CORREO, MOTIVO, TARJETA_RED, PARRILLA, BASES_PLASTICAS, CONECTOR_ORIGI, GARANTIA, ESTADO_CARCASA, OBSERVACIONES)
         try {
 
-            String guardar = cmbEntradas.getSelectedItem().toString();
+            String guardar = cmbSalidas.getSelectedItem().toString();
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
             //PreparedStatement pst = cn.prepareStatement("SELECT numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones, tarjeta FROM entradas where numero = ? ORDER BY 2");
-            PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ?");
+            PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ?");
             pst.setString(1, guardar);
             //pst.setString(1, CMBID.getName());
             ResultSet rs = pst.executeQuery();
@@ -273,7 +276,7 @@ public class Adjuntos extends javax.swing.JFrame {
                 txtCliente.setText(rs.getString("empresa").trim());
                 txtModelo.setText(rs.getString("modelo").trim());
                 txtSerie.setText(rs.getString("serie").trim());
-                txtIdEntrada.setText(rs.getString("id_entra"));
+                txtIdSalida.setText(rs.getString("id_salida"));
                 habilitar();
 
                 //pst.setString(1, CMBID.getName());
@@ -283,6 +286,7 @@ public class Adjuntos extends javax.swing.JFrame {
             }
             cn.close();
             st.close();
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error:" + ex.getMessage());
         }
@@ -293,12 +297,12 @@ public class Adjuntos extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         try {
-            imagen ima = new imagen(this.fis, this.longitudBytes, Integer.parseInt(txtIdEntrada.getText()));
+            imagen_salida ima = new imagen_salida(this.fis, this.longitudBytes, Integer.parseInt(txtIdSalida.getText()));
             //ima.setNombre(this.txtNombreImagen.getText());
             //ima.setImagen(this.fis);
             //ima.setImagen(this.longitudBytes);
 
-            dbEntrada.adjuntarImagenINSERT(ima);
+            dbsalida.adjuntarImagenINSERT(ima);
             JOptionPane.showMessageDialog(this, "Ingresado exitosamente");
             
             limpiar();
@@ -341,7 +345,7 @@ public class Adjuntos extends javax.swing.JFrame {
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
 
-        if (txtIdEntrada.getText().isEmpty()) {
+        if (txtIdSalida.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar un registro ENTRADAS");
         } else {
 
@@ -389,20 +393,21 @@ public class Adjuntos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Adjuntos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Adjuntos_Salidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Adjuntos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Adjuntos_Salidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Adjuntos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Adjuntos_Salidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Adjuntos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Adjuntos_Salidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Adjuntos().setVisible(true);
+                new Adjuntos_Salidas().setVisible(true);
             }
         });
     }
@@ -411,7 +416,7 @@ public class Adjuntos extends javax.swing.JFrame {
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSeleccionar;
-    private javax.swing.JComboBox cmbEntradas;
+    private javax.swing.JComboBox cmbSalidas;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -424,7 +429,7 @@ public class Adjuntos extends javax.swing.JFrame {
     private javax.swing.JLabel lblFoto;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtIdEntrada;
+    private javax.swing.JTextField txtIdSalida;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtSerie;
     // End of variables declaration//GEN-END:variables

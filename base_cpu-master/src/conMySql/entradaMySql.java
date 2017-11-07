@@ -257,15 +257,15 @@ public class entradaMySql {
     public void adjuntarImagenINSERT(imagen img) {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO imagen (nombre, image) VALUES (?,?)");
-            pst.setString(1, img.getNombre());
-            pst.setBlob(2, img.getImagen(), img.getLongitud());
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO imagenes (imagen, id_entra) VALUES (?,?)");
+            pst.setBlob(1, img.getImagen(), img.getLongitud());
+            pst.setInt(2, img.getId_entra());
             //pst.setInt(3, img.getLongitud());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado exitosamente");
             cn.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar:\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al insertar::\n" + ex.getMessage());
         }
     }
 
@@ -275,11 +275,11 @@ public class entradaMySql {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE imagenes SET imagen = ? WHERE id_entra = ?");
             pst.setBlob(1, img.getImagen(), img.getLongitud());
-            pst.setInt(2, img.getId_imagen());
+            pst.setInt(2, img.getId_entra());
             pst.executeUpdate();
             cn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al editar:\n" + ex.getMessage());
         }
     }
@@ -287,21 +287,6 @@ public class entradaMySql {
     public void adjuntarImagenMOD(imagen img) {
         /*
          try {
-         Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-         PreparedStatement pst = cn.prepareStatement("INSERT INTO imagen (nombre, image) VALUES (?,?)");
-         pst.setString(1, img.getNombre());
-         pst.setBlob(2, img.getImagen(),img.getLongitud());
-         //pst.setInt(3, img.getLongitud());
-         pst.executeUpdate();
-         JOptionPane.showMessageDialog(null, "Guardado exitosamente");
-         cn.close();
-         } catch (SQLException ex) {
-         JOptionPane.showMessageDialog(null, "Error al insertar:\n"+ex.getMessage());
-         }
-        
-         */
-
-        try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE imagen SET image = ? WHERE id_imagen = ?");
             pst.setBlob(1, img.getImagen(), img.getLongitud());
@@ -310,6 +295,20 @@ public class entradaMySql {
             cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(clienteMySql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al editar:\n" + ex.getMessage());
+        }
+        
+         */
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("UPDATE imagenes SET imagen = ? WHERE id_imagen = ?");
+            pst.setBlob(1, img.getImagen(), img.getLongitud());
+            pst.setInt(2, img.getId_imagen());
+            pst.executeUpdate();
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(entradaMySql.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al editar:\n" + ex.getMessage());
         }
 
