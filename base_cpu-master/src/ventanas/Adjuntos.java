@@ -73,10 +73,7 @@ public class Adjuntos extends javax.swing.JFrame {
         txtFecha.setText("");
         txtModelo.setText("");
         txtSerie.setText("");
-        lblFoto.setText("");
-        btnSeleccionar.setVisible(false);
-        btnGuardar.setVisible(false);
-        lblFoto.setVisible(false);
+        lblFoto.setText(null);
     }
     
     public void habilitar() {
@@ -296,11 +293,12 @@ public class Adjuntos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debes seleccionar un registro ENTRADAS");
         } else {
             try {
-                imagen ima = new imagen(this.fis, this.longitudBytes,Integer.parseInt(txtIdEntrada.getText()));
+                imagen ima = new imagen(Integer.parseInt(txtIdEntrada.getText()), this.fis, this.longitudBytes);
+            //ima.setNombre(this.txtNombreImagen.getText());
                 //ima.setImagen(this.fis);
                 //ima.setImagen(this.longitudBytes);
 
-                dbEntrada.adjuntarImagenUPDATE(ima);
+                dbEntrada.adjuntarImagenMOD(ima);
                 JOptionPane.showMessageDialog(this, "Ingresado exitosamente");
                 limpiar();
 
