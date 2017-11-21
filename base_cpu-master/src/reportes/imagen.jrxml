@@ -8,9 +8,9 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT image FROM imagen WHERE id_imagen = $P{id_imagen}]]>
+		<![CDATA[SELECT imagen FROM imagenes WHERE id_entra = $P{id_imagen}]]>
 	</queryString>
-	<field name="image" class="java.io.InputStream"/>
+	<field name="imagen" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -27,7 +27,7 @@
 		<band height="621" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="555" height="621"/>
-				<imageExpression class="java.io.InputStream"><![CDATA[$F{image}]]></imageExpression>
+				<imageExpression class="java.io.InputStream"><![CDATA[$F{imagen}]]></imageExpression>
 			</image>
 		</band>
 	</detail>

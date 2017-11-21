@@ -9,8 +9,10 @@ import clasesPrincipales.Entradas;
 import clasesPrincipales.Salidas;
 import clasesPrincipales.imagen;
 import clasesPrincipales.imagen_salida;
+import conMySql.conector;
 import conMySql.entradaMySql;
 import conMySql.salidaMySql;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -25,6 +27,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import reportes.GenerarReportes;
 
 /**
  *
@@ -117,6 +120,7 @@ public class Adjuntos_Salidas extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
         btnSeleccionar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -235,6 +239,16 @@ public class Adjuntos_Salidas extends javax.swing.JFrame {
         jPanel2.add(btnSeleccionar);
         btnSeleccionar.setBounds(300, 260, 120, 30);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("GENERAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(303, 463, 120, 40);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,21 +310,50 @@ public class Adjuntos_Salidas extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
+        if (txtIdSalida.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        }
         try {
-            imagen_salida ima = new imagen_salida(this.fis, this.longitudBytes, Integer.parseInt(txtIdSalida.getText()));
-            //ima.setNombre(this.txtNombreImagen.getText());
-            //ima.setImagen(this.fis);
-            //ima.setImagen(this.longitudBytes);
+            boolean respuesta = false;
+            conector obj = new conector();
+            //imagen ima = new imagen();
+            int id = Integer.parseInt(txtIdSalida.getText());
+            PreparedStatement pst = obj.con.prepareStatement("Select id_salida From imagenes Where id_salida = ?");
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
 
-            dbsalida.adjuntarImagenINSERT(ima);
-            JOptionPane.showMessageDialog(this, "Ingresado exitosamente");
-            
-            limpiar();
-            lblFoto.setText(null);
-            
+                int id_en_db = rs.getInt("id_salida");
+                //int id_entrada = Integer.parseInt(txtIdEntrada.getText());
+                if (id_en_db == id) {
+                    respuesta = true;
+                } else {
+                    respuesta = false;
+                }
+                //boolean res = respuesta;
+                if (respuesta == true) {
+                    JOptionPane.showMessageDialog(this, "Este registro ya tiene imagen asignada");
+                } else {
+                    try {
+                        imagen_salida ima = new imagen_salida(this.cmbSalidas.getSelectedItem().toString(), this.fis, this.longitudBytes, Integer.parseInt(txtIdSalida.getText()));
+            // imagen ima = new imagen(this.fis, this.longitudBytes, Integer.parseInt(txtIdEntrada.getText()));
+                        //ima.setNombre(this.txtNombreImagen.getText());
+                        //ima.setImagen(this.fis);
+                        //ima.setImagen(this.longitudBytes);
 
-        } catch (Exception e) {
-            System.err.println("error" + e);
+                        dbsalida.adjuntarImagenINSERT(ima);
+
+                        limpiar();
+                        lblFoto.setText(null);
+
+                    } catch (NumberFormatException | HeadlessException e) {
+                        JOptionPane.showMessageDialog(this, "error" + e.getMessage());
+                    }
+                }
+            }
+
+        } catch (SQLException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "error" + e.getMessage());
         }
         
         /*
@@ -376,6 +419,20 @@ public class Adjuntos_Salidas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (txtIdSalida.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+           String nume = txtIdSalida.getText();
+        int id = Integer.parseInt(nume);
+        GenerarReportes g = new GenerarReportes();
+        g.reporteIMAGEN_SALIDA(id); 
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -417,6 +474,7 @@ public class Adjuntos_Salidas extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JComboBox cmbSalidas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
