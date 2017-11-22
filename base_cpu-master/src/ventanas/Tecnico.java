@@ -3104,13 +3104,14 @@ public class Tecnico extends javax.swing.JFrame {
                             gar.setNumero_caso(rs.getString("numero_caso"));
                             gar.setCliente(rs.getString("cliente"));
                             gar.setNit(rs.getString("nit"));
+                            gar.setModelo(rs.getString("modelo"));
                             gar.setSerie_vieja(rs.getString("serie_vieja"));
                             gar.setSerie_nueva(rs.getString("serie_nueva"));
                             gar.setPrimera_serie(rs.getString("primera_serie"));
                             gar.setEstado(rs.getString("estado"));
                             garantia.add(gar);
                             DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getModelo(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
                         }
                         cn.close();
                     } catch (Exception e) {
@@ -3135,13 +3136,14 @@ public class Tecnico extends javax.swing.JFrame {
                             gar.setNumero_caso(rs.getString("numero_caso"));
                             gar.setCliente(rs.getString("cliente"));
                             gar.setNit(rs.getString("nit"));
+                            gar.setModelo(rs.getString("modelo"));
                             gar.setSerie_vieja(rs.getString("serie_vieja"));
                             gar.setSerie_nueva(rs.getString("serie_nueva"));
                             gar.setPrimera_serie(rs.getString("primera_serie"));
                             gar.setEstado(rs.getString("estado"));
                             garantia.add(gar);
                             DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getModelo(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
                         }
                         cn.close();
                     } catch (Exception e) {
@@ -3167,13 +3169,14 @@ public class Tecnico extends javax.swing.JFrame {
                             gar.setNumero_caso(rs.getString("numero_caso"));
                             gar.setCliente(rs.getString("cliente"));
                             gar.setNit(rs.getString("nit"));
+                            gar.setModelo(rs.getString("modelo"));
                             gar.setSerie_vieja(rs.getString("serie_vieja"));
                             gar.setSerie_nueva(rs.getString("serie_nueva"));
                             gar.setPrimera_serie(rs.getString("primera_serie"));
                             gar.setEstado(rs.getString("estado"));
                             garantia.add(gar);
                             DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getModelo(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
                         }
                         cn.close();
                     } catch (Exception e) {
@@ -3198,13 +3201,14 @@ public class Tecnico extends javax.swing.JFrame {
                             gar.setNumero_caso(rs.getString("numero_caso"));
                             gar.setCliente(rs.getString("cliente"));
                             gar.setNit(rs.getString("nit"));
+                            gar.setModelo(rs.getString("modelo"));
                             gar.setSerie_vieja(rs.getString("serie_vieja"));
                             gar.setSerie_nueva(rs.getString("serie_nueva"));
                             gar.setPrimera_serie(rs.getString("primera_serie"));
                             gar.setEstado(rs.getString("estado"));
                             garantia.add(gar);
                             DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getModelo(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
                         }
                         cn.close();
                     } catch (Exception e) {
@@ -3229,13 +3233,14 @@ public class Tecnico extends javax.swing.JFrame {
                             gar.setNumero_caso(rs.getString("numero_caso"));
                             gar.setCliente(rs.getString("cliente"));
                             gar.setNit(rs.getString("nit"));
+                            gar.setModelo(rs.getString("modelo"));
                             gar.setSerie_vieja(rs.getString("serie_vieja"));
                             gar.setSerie_nueva(rs.getString("serie_nueva"));
                             gar.setPrimera_serie(rs.getString("primera_serie"));
                             gar.setEstado(rs.getString("estado"));
                             garantia.add(gar);
                             DefaultTableModel tb = (DefaultTableModel) tbProceso.getModel();
-                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
+                            tb.addRow(new Object[]{gar.getId_entra(), gar.getFecha_entrada(), gar.getNumero(), gar.getCliente(), gar.getNit(), gar.getModelo(), gar.getSerie_vieja(), gar.getPrimera_serie(), gar.getFecha_garantia(), gar.getRma(), gar.getNumero_caso(), gar.getSerie_nueva(), gar.getEstado()});
                         }
                         cn.close();
                     } catch (Exception e) {

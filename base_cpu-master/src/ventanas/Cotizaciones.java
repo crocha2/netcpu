@@ -22,6 +22,8 @@ public class Cotizaciones extends javax.swing.JFrame {
         this.setTitle("CPU System Service S.A.S - COTIZACIONES");
         //numeros();
         //txtSec.setEnabled(false);
+        panelProducto.setVisible(false);
+        panelServicio.setVisible(false);
     }
     
     
@@ -31,10 +33,9 @@ public class Cotizaciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbConcepto = new javax.swing.JComboBox();
         jSeparator1 = new javax.swing.JSeparator();
         numero = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -62,30 +63,42 @@ public class Cotizaciones extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        panelProducto = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox();
-        jLabel7 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
         jComboBox4 = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox();
+        panelServicio = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jComboBox6 = new javax.swing.JComboBox();
+        jComboBox7 = new javax.swing.JComboBox();
+        jLabel22 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jSeparator2 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        numero10 = new javax.swing.JTextField();
+        numero7 = new javax.swing.JTextField();
+        numero3 = new javax.swing.JTextField();
         numero1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Bienvenido.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(770, 510, 160, 140);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
@@ -96,10 +109,15 @@ public class Cotizaciones extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Concepto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), java.awt.Color.blue)); // NOI18N
         jPanel2.setLayout(null);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VENTAS - 01", "SERVICIOS APC - 02", "SERVICIOS CPU - 03", "PARTES - 04" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(10, 20, 220, 23);
+        cmbConcepto.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        cmbConcepto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VENTAS - 01", "SERVICIOS APC - 02", "SERVICIOS CPU - 03", "PARTES - 04" }));
+        cmbConcepto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbConceptoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmbConcepto);
+        cmbConcepto.setBounds(10, 20, 220, 23);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 30, 240, 50);
@@ -166,7 +184,7 @@ public class Cotizaciones extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable2);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(420, 210, 490, 240);
+        jScrollPane3.setBounds(420, 210, 490, 190);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos De Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel5.setLayout(null);
@@ -223,79 +241,155 @@ public class Cotizaciones extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(20, 210, 390, 250);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos De Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), java.awt.Color.red)); // NOI18N
-        jPanel3.setLayout(null);
+        panelProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Del Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), java.awt.Color.red)); // NOI18N
+        panelProducto.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("TIEMPO DE REALIZACION DE SERVICIO:");
-        jPanel3.add(jLabel5);
-        jLabel5.setBounds(20, 110, 250, 20);
+        jLabel5.setText("TIEMPO DE ENTREGA:");
+        panelProducto.add(jLabel5);
+        jLabel5.setBounds(20, 120, 140, 20);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("FORMA DE PAGO:");
-        jPanel3.add(jLabel6);
+        panelProducto.add(jLabel6);
         jLabel6.setBounds(20, 70, 120, 20);
 
         jButton1.setText("QUITAR");
-        jPanel3.add(jButton1);
+        panelProducto.add(jButton1);
         jButton1.setBounds(260, 200, 110, 30);
 
         jButton2.setText("INSERTAR");
-        jPanel3.add(jButton2);
+        panelProducto.add(jButton2);
         jButton2.setBounds(20, 200, 110, 30);
 
         jButton3.setText("EDITAR");
-        jPanel3.add(jButton3);
+        panelProducto.add(jButton3);
         jButton3.setBounds(140, 200, 110, 30);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
-        jPanel3.add(jComboBox2);
-        jComboBox2.setBounds(400, 100, 60, 30);
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("...........................................");
-        jPanel3.add(jLabel7);
-        jLabel7.setBounds(220, 30, 170, 20);
-
+        jComboBox3.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
-        jPanel3.add(jComboBox3);
-        jComboBox3.setBounds(400, 20, 60, 30);
+        panelProducto.add(jComboBox3);
+        jComboBox3.setBounds(20, 40, 90, 20);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ANTICIPADO", "CONTADO", "TREINTA (30) DIAS RECIBO FECHA DE FACTIRA", "TREINTA (45) DIAS RECIBO FECHA DE FACTIRA", "TREINTA (60) DIAS RECIBO FECHA DE FACTIRA" }));
-        jPanel3.add(jComboBox4);
-        jComboBox4.setBounds(180, 60, 280, 30);
+        jComboBox4.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ANTICIPADO", "CONTADO", "(30) DIAS RECIBO FECHA DE FACTURA", "(45) DIAS RECIBO FECHA DE FACTURA", "(60) DIAS RECIBO FECHA DE FACTURA" }));
+        panelProducto.add(jComboBox4);
+        jComboBox4.setBounds(20, 90, 250, 20);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(102, 102, 102));
         jLabel16.setText("VALIDEZ DE LA OFERTA (DIAS):");
-        jPanel3.add(jLabel16);
-        jLabel16.setBounds(20, 30, 200, 20);
+        panelProducto.add(jLabel16);
+        jLabel16.setBounds(20, 20, 200, 20);
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel17.setText("..............................");
-        jPanel3.add(jLabel17);
-        jLabel17.setBounds(270, 110, 120, 20);
+        jComboBox5.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "INMEDIATO", "1 dia despues de recibida la orden de compra", "2 dias despues de recibida la orden de compra", "3 dias despues de recibida la orden de compra", "4 dias despues de recibida la orden de compra", "5 dias despues de recibida la orden de compra", "6 dias despues de recibida la orden de compra", "7 dias despues de recibida la orden de compra", "8 dias despues de recibida la orden de compra", "9 dias despues de recibida la orden de compra", "10 dias despues de recibida la orden de compra", "11 dias despues de recibida la orden de compra", "12 dias despues de recibida la orden de compra", "13 dias despues de recibida la orden de compra", "14 dias despues de recibida la orden de compra", "15 dias despues de recibida la orden de compra", "16 dias despues de recibida la orden de compra", "17 dias despues de recibida la orden de compra", "18 dias despues de recibida la orden de compra", "19 dias despues de recibida la orden de compra", "20 dias despues de recibida la orden de compra", "21 dias despues de recibida la orden de compra", "22 dias despues de recibida la orden de compra", "23 dias despues de recibida la orden de compra", "24 dias despues de recibida la orden de compra", "25 dias despues de recibida la orden de compra", "26 dias despues de recibida la orden de compra", "27 dias despues de recibida la orden de compra", "28 dias despues de recibida la orden de compra", "29 dias despues de recibida la orden de compra", "30 dias despues de recibida la orden de compra", "31 dias despues de recibida la orden de compra", "32 dias despues de recibida la orden de compra", "33 dias despues de recibida la orden de compra", "34 dias despues de recibida la orden de compra", "35 dias despues de recibida la orden de compra", "36 dias despues de recibida la orden de compra", "37 dias despues de recibida la orden de compra", "38 dias despues de recibida la orden de compra", "39 dias despues de recibida la orden de compra", "40 dias despues de recibida la orden de compra", "41 dias despues de recibida la orden de compra", "42 dias despues de recibida la orden de compra", "43 dias despues de recibida la orden de compra", "44 dias despues de recibida la orden de compra", "45 dias despues de recibida la orden de compra", "46 dias despues de recibida la orden de compra", "47 dias despues de recibida la orden de compra", "48 dias despues de recibida la orden de compra", "49 dias despues de recibida la orden de compra", "50 dias despues de recibida la orden de compra", "51 dias despues de recibida la orden de compra", "52 dias despues de recibida la orden de compra", "53 dias despues de recibida la orden de compra", "54 dias despues de recibida la orden de compra", "55 dias despues de recibida la orden de compra", "56 dias despues de recibida la orden de compra", "57 dias despues de recibida la orden de compra", "58 dias despues de recibida la orden de compra", "59 dias despues de recibida la orden de compra", "60 dias despues de recibida la orden de compra" }));
+        panelProducto.add(jComboBox5);
+        jComboBox5.setBounds(20, 140, 330, 20);
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel18.setText("...........");
-        jPanel3.add(jLabel18);
-        jLabel18.setBounds(130, 70, 50, 20);
+        jPanel1.add(panelProducto);
+        panelProducto.setBounds(20, 470, 390, 180);
 
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(20, 470, 480, 170);
+        panelServicio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Del Servicio", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), java.awt.Color.red)); // NOI18N
+        panelServicio.setLayout(null);
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel19.setText("TIEMPO REALIZACION DE SERVICIO:");
+        panelServicio.add(jLabel19);
+        jLabel19.setBounds(20, 120, 230, 20);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel20.setText("FORMA DE PAGO:");
+        panelServicio.add(jLabel20);
+        jLabel20.setBounds(20, 70, 120, 20);
+
+        jButton7.setText("QUITAR");
+        panelServicio.add(jButton7);
+        jButton7.setBounds(260, 200, 110, 30);
+
+        jButton8.setText("INSERTAR");
+        panelServicio.add(jButton8);
+        jButton8.setBounds(20, 200, 110, 30);
+
+        jButton9.setText("EDITAR");
+        panelServicio.add(jButton9);
+        jButton9.setBounds(140, 200, 110, 30);
+
+        jComboBox6.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
+        panelServicio.add(jComboBox6);
+        jComboBox6.setBounds(20, 40, 90, 20);
+
+        jComboBox7.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ANTICIPADO", "CONTADO", "(30) DIAS RECIBO FECHA DE FACTURA", "(45) DIAS RECIBO FECHA DE FACTURA", "(60) DIAS RECIBO FECHA DE FACTURA" }));
+        panelServicio.add(jComboBox7);
+        jComboBox7.setBounds(20, 90, 260, 20);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel22.setText("VALIDEZ DE LA OFERTA (DIAS):");
+        panelServicio.add(jLabel22);
+        jLabel22.setBounds(20, 20, 200, 20);
+
+        jComboBox2.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "INMEDIATO", "DE COMUN ACUERDO", "45 DIAS DESPUES DE LA ORDEN DEL PEDIDO", "60 DIAS DESPUES DE LA ORDEN DEL PEDIDO" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        panelServicio.add(jComboBox2);
+        jComboBox2.setBounds(20, 140, 320, 20);
+
+        jPanel1.add(panelServicio);
+        panelServicio.setBounds(20, 470, 390, 180);
+        jPanel1.add(jSeparator2);
+        jSeparator2.setBounds(670, 550, 240, 0);
+
+        jPanel3.setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel4.setText("V. TOTAL");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(570, 470, 80, 20);
-        jPanel1.add(numero1);
-        numero1.setBounds(570, 490, 150, 30);
+        jLabel4.setText("SUB-TOTAL");
+        jPanel3.add(jLabel4);
+        jLabel4.setBounds(10, 20, 70, 20);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel7.setText("FLETES");
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(10, 50, 70, 20);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel17.setText("IVA");
+        jPanel3.add(jLabel17);
+        jLabel17.setBounds(10, 80, 70, 20);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel18.setText("GRAN TOTAL");
+        jPanel3.add(jLabel18);
+        jLabel18.setBounds(10, 120, 80, 20);
+        jPanel3.add(numero10);
+        numero10.setBounds(100, 110, 160, 30);
+        jPanel3.add(numero7);
+        numero7.setBounds(100, 70, 160, 30);
+        jPanel3.add(numero3);
+        numero3.setBounds(100, 40, 160, 30);
+        jPanel3.add(numero1);
+        numero1.setBounds(100, 10, 160, 30);
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(420, 410, 270, 150);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Bienvenido.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(750, 500, 170, 140);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -305,11 +399,32 @@ public class Cotizaciones extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void cmbConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConceptoActionPerformed
+
+        if(cmbConcepto.getSelectedIndex()==1||cmbConcepto.getSelectedIndex()==2){
+            panelProducto.setVisible(false);
+            panelServicio.setVisible(true);
+        }else{
+            panelServicio.setVisible(false);
+            panelProducto.setVisible(true);
+        }
+        
+        
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_cmbConceptoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,16 +462,22 @@ public class Cotizaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cmbConcepto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox5;
+    private javax.swing.JComboBox jComboBox6;
+    private javax.swing.JComboBox jComboBox7;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -368,7 +489,10 @@ public class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -384,15 +508,21 @@ public class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField numero;
     private javax.swing.JTextField numero1;
+    private javax.swing.JTextField numero10;
     private javax.swing.JTextField numero2;
+    private javax.swing.JTextField numero3;
     private javax.swing.JTextField numero4;
     private javax.swing.JTextField numero5;
     private javax.swing.JTextField numero6;
+    private javax.swing.JTextField numero7;
     private javax.swing.JTextField numero8;
     private javax.swing.JTextField numero9;
+    private javax.swing.JPanel panelProducto;
+    private javax.swing.JPanel panelServicio;
     // End of variables declaration//GEN-END:variables
 }

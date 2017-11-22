@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
@@ -28,7 +28,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="655" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" pref="663" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -44,18 +47,6 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/Bienvenido.png"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="770" y="510" width="160" height="140"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -93,10 +84,10 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="cmbConcepto">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Calibri Light" size="14" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -107,6 +98,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbConceptoActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="20" width="220" height="-1"/>
@@ -273,7 +267,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="420" y="210" width="490" height="240"/>
+              <AbsoluteConstraints x="420" y="210" width="490" height="190"/>
             </Constraint>
           </Constraints>
 
@@ -489,11 +483,11 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+        <Container class="javax.swing.JPanel" name="panelProducto">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="2" title="Datos De Producto">
+                <TitledBorder justification="2" title="Datos Del Producto">
                   <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
                   <Color PropertyName="color" blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
                 </TitledBorder>
@@ -502,7 +496,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="470" width="480" height="170"/>
+              <AbsoluteConstraints x="20" y="470" width="390" height="180"/>
             </Constraint>
           </Constraints>
 
@@ -518,11 +512,11 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="TIEMPO DE REALIZACION DE SERVICIO:"/>
+                <Property name="text" type="java.lang.String" value="TIEMPO DE ENTREGA:"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="20" y="110" width="250" height="20"/>
+                  <AbsoluteConstraints x="20" y="120" width="140" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -572,67 +566,11 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox2">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="30">
-                    <StringItem index="0" value="1"/>
-                    <StringItem index="1" value="2"/>
-                    <StringItem index="2" value="3"/>
-                    <StringItem index="3" value="4"/>
-                    <StringItem index="4" value="5"/>
-                    <StringItem index="5" value="6"/>
-                    <StringItem index="6" value="7"/>
-                    <StringItem index="7" value="8"/>
-                    <StringItem index="8" value="9"/>
-                    <StringItem index="9" value="10"/>
-                    <StringItem index="10" value="11"/>
-                    <StringItem index="11" value="12"/>
-                    <StringItem index="12" value="13"/>
-                    <StringItem index="13" value="14"/>
-                    <StringItem index="14" value="15"/>
-                    <StringItem index="15" value="16"/>
-                    <StringItem index="16" value="17"/>
-                    <StringItem index="17" value="18"/>
-                    <StringItem index="18" value="19"/>
-                    <StringItem index="19" value="20"/>
-                    <StringItem index="20" value="21"/>
-                    <StringItem index="21" value="22"/>
-                    <StringItem index="22" value="23"/>
-                    <StringItem index="23" value="24"/>
-                    <StringItem index="24" value="25"/>
-                    <StringItem index="25" value="26"/>
-                    <StringItem index="26" value="27"/>
-                    <StringItem index="27" value="28"/>
-                    <StringItem index="28" value="29"/>
-                    <StringItem index="29" value="30"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="400" y="100" width="60" height="30"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="3"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="..........................................."/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="220" y="30" width="170" height="20"/>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="javax.swing.JComboBox" name="jComboBox3">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="12" style="1"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="30">
                     <StringItem index="0" value="1"/>
@@ -670,25 +608,28 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="400" y="20" width="60" height="30"/>
+                  <AbsoluteConstraints x="20" y="40" width="90" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBox4">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="12" style="1"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="ANTICIPADO"/>
                     <StringItem index="1" value="CONTADO"/>
-                    <StringItem index="2" value="TREINTA (30) DIAS RECIBO FECHA DE FACTIRA"/>
-                    <StringItem index="3" value="TREINTA (45) DIAS RECIBO FECHA DE FACTIRA"/>
-                    <StringItem index="4" value="TREINTA (60) DIAS RECIBO FECHA DE FACTIRA"/>
+                    <StringItem index="2" value="(30) DIAS RECIBO FECHA DE FACTURA"/>
+                    <StringItem index="3" value="(45) DIAS RECIBO FECHA DE FACTURA"/>
+                    <StringItem index="4" value="(60) DIAS RECIBO FECHA DE FACTURA"/>
                   </StringArray>
                 </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="180" y="60" width="280" height="30"/>
+                  <AbsoluteConstraints x="20" y="90" width="250" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -704,64 +645,401 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="20" y="30" width="200" height="20"/>
+                  <AbsoluteConstraints x="20" y="20" width="200" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBox5">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="12" style="1"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="61">
+                    <StringItem index="0" value="INMEDIATO"/>
+                    <StringItem index="1" value="1 dia despues de recibida la orden de compra"/>
+                    <StringItem index="2" value="2 dias despues de recibida la orden de compra"/>
+                    <StringItem index="3" value="3 dias despues de recibida la orden de compra"/>
+                    <StringItem index="4" value="4 dias despues de recibida la orden de compra"/>
+                    <StringItem index="5" value="5 dias despues de recibida la orden de compra"/>
+                    <StringItem index="6" value="6 dias despues de recibida la orden de compra"/>
+                    <StringItem index="7" value="7 dias despues de recibida la orden de compra"/>
+                    <StringItem index="8" value="8 dias despues de recibida la orden de compra"/>
+                    <StringItem index="9" value="9 dias despues de recibida la orden de compra"/>
+                    <StringItem index="10" value="10 dias despues de recibida la orden de compra"/>
+                    <StringItem index="11" value="11 dias despues de recibida la orden de compra"/>
+                    <StringItem index="12" value="12 dias despues de recibida la orden de compra"/>
+                    <StringItem index="13" value="13 dias despues de recibida la orden de compra"/>
+                    <StringItem index="14" value="14 dias despues de recibida la orden de compra"/>
+                    <StringItem index="15" value="15 dias despues de recibida la orden de compra"/>
+                    <StringItem index="16" value="16 dias despues de recibida la orden de compra"/>
+                    <StringItem index="17" value="17 dias despues de recibida la orden de compra"/>
+                    <StringItem index="18" value="18 dias despues de recibida la orden de compra"/>
+                    <StringItem index="19" value="19 dias despues de recibida la orden de compra"/>
+                    <StringItem index="20" value="20 dias despues de recibida la orden de compra"/>
+                    <StringItem index="21" value="21 dias despues de recibida la orden de compra"/>
+                    <StringItem index="22" value="22 dias despues de recibida la orden de compra"/>
+                    <StringItem index="23" value="23 dias despues de recibida la orden de compra"/>
+                    <StringItem index="24" value="24 dias despues de recibida la orden de compra"/>
+                    <StringItem index="25" value="25 dias despues de recibida la orden de compra"/>
+                    <StringItem index="26" value="26 dias despues de recibida la orden de compra"/>
+                    <StringItem index="27" value="27 dias despues de recibida la orden de compra"/>
+                    <StringItem index="28" value="28 dias despues de recibida la orden de compra"/>
+                    <StringItem index="29" value="29 dias despues de recibida la orden de compra"/>
+                    <StringItem index="30" value="30 dias despues de recibida la orden de compra"/>
+                    <StringItem index="31" value="31 dias despues de recibida la orden de compra"/>
+                    <StringItem index="32" value="32 dias despues de recibida la orden de compra"/>
+                    <StringItem index="33" value="33 dias despues de recibida la orden de compra"/>
+                    <StringItem index="34" value="34 dias despues de recibida la orden de compra"/>
+                    <StringItem index="35" value="35 dias despues de recibida la orden de compra"/>
+                    <StringItem index="36" value="36 dias despues de recibida la orden de compra"/>
+                    <StringItem index="37" value="37 dias despues de recibida la orden de compra"/>
+                    <StringItem index="38" value="38 dias despues de recibida la orden de compra"/>
+                    <StringItem index="39" value="39 dias despues de recibida la orden de compra"/>
+                    <StringItem index="40" value="40 dias despues de recibida la orden de compra"/>
+                    <StringItem index="41" value="41 dias despues de recibida la orden de compra"/>
+                    <StringItem index="42" value="42 dias despues de recibida la orden de compra"/>
+                    <StringItem index="43" value="43 dias despues de recibida la orden de compra"/>
+                    <StringItem index="44" value="44 dias despues de recibida la orden de compra"/>
+                    <StringItem index="45" value="45 dias despues de recibida la orden de compra"/>
+                    <StringItem index="46" value="46 dias despues de recibida la orden de compra"/>
+                    <StringItem index="47" value="47 dias despues de recibida la orden de compra"/>
+                    <StringItem index="48" value="48 dias despues de recibida la orden de compra"/>
+                    <StringItem index="49" value="49 dias despues de recibida la orden de compra"/>
+                    <StringItem index="50" value="50 dias despues de recibida la orden de compra"/>
+                    <StringItem index="51" value="51 dias despues de recibida la orden de compra"/>
+                    <StringItem index="52" value="52 dias despues de recibida la orden de compra"/>
+                    <StringItem index="53" value="53 dias despues de recibida la orden de compra"/>
+                    <StringItem index="54" value="54 dias despues de recibida la orden de compra"/>
+                    <StringItem index="55" value="55 dias despues de recibida la orden de compra"/>
+                    <StringItem index="56" value="56 dias despues de recibida la orden de compra"/>
+                    <StringItem index="57" value="57 dias despues de recibida la orden de compra"/>
+                    <StringItem index="58" value="58 dias despues de recibida la orden de compra"/>
+                    <StringItem index="59" value="59 dias despues de recibida la orden de compra"/>
+                    <StringItem index="60" value="60 dias despues de recibida la orden de compra"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="140" width="330" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="panelServicio">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder justification="2" title="Datos Del Servicio">
+                  <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                  <Color PropertyName="color" blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="470" width="390" height="180"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="true"/>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel19">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="3"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="TIEMPO REALIZACION DE SERVICIO:"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="120" width="230" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel20">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="3"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="FORMA DE PAGO:"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="70" width="120" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="QUITAR"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="260" y="200" width="110" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="INSERTAR"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="200" width="110" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="EDITAR"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="140" y="200" width="110" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBox6">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="12" style="1"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="30">
+                    <StringItem index="0" value="1"/>
+                    <StringItem index="1" value="2"/>
+                    <StringItem index="2" value="3"/>
+                    <StringItem index="3" value="4"/>
+                    <StringItem index="4" value="5"/>
+                    <StringItem index="5" value="6"/>
+                    <StringItem index="6" value="7"/>
+                    <StringItem index="7" value="8"/>
+                    <StringItem index="8" value="9"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                    <StringItem index="12" value="13"/>
+                    <StringItem index="13" value="14"/>
+                    <StringItem index="14" value="15"/>
+                    <StringItem index="15" value="16"/>
+                    <StringItem index="16" value="17"/>
+                    <StringItem index="17" value="18"/>
+                    <StringItem index="18" value="19"/>
+                    <StringItem index="19" value="20"/>
+                    <StringItem index="20" value="21"/>
+                    <StringItem index="21" value="22"/>
+                    <StringItem index="22" value="23"/>
+                    <StringItem index="23" value="24"/>
+                    <StringItem index="24" value="25"/>
+                    <StringItem index="25" value="26"/>
+                    <StringItem index="26" value="27"/>
+                    <StringItem index="27" value="28"/>
+                    <StringItem index="28" value="29"/>
+                    <StringItem index="29" value="30"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="40" width="90" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBox7">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="12" style="1"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="ANTICIPADO"/>
+                    <StringItem index="1" value="CONTADO"/>
+                    <StringItem index="2" value="(30) DIAS RECIBO FECHA DE FACTURA"/>
+                    <StringItem index="3" value="(45) DIAS RECIBO FECHA DE FACTURA"/>
+                    <StringItem index="4" value="(60) DIAS RECIBO FECHA DE FACTURA"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="90" width="260" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel22">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="3"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="VALIDEZ DE LA OFERTA (DIAS):"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="20" width="200" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBox2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri Light" size="12" style="1"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="INMEDIATO"/>
+                    <StringItem index="1" value="DE COMUN ACUERDO"/>
+                    <StringItem index="2" value="45 DIAS DESPUES DE LA ORDEN DEL PEDIDO"/>
+                    <StringItem index="3" value="60 DIAS DESPUES DE LA ORDEN DEL PEDIDO"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="20" y="140" width="320" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JSeparator" name="jSeparator2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="670" y="550" width="240" height="0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Container class="javax.swing.JPanel" name="jPanel3">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="420" y="410" width="270" height="150"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="true"/>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="SUB-TOTAL"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="10" y="20" width="70" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="FLETES"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="10" y="50" width="70" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="3"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
+                  <Color blue="99" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value=".............................."/>
+                <Property name="text" type="java.lang.String" value="IVA"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="270" y="110" width="120" height="20"/>
+                  <AbsoluteConstraints x="10" y="80" width="70" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="3"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
+                  <Color blue="33" green="99" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="..........."/>
+                <Property name="text" type="java.lang.String" value="GRAN TOTAL"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="130" y="70" width="50" height="20"/>
+                  <AbsoluteConstraints x="10" y="120" width="80" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JTextField" name="numero10">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="100" y="110" width="160" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JTextField" name="numero7">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="100" y="70" width="160" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JTextField" name="numero3">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="100" y="40" width="160" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JTextField" name="numero1">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="100" y="10" width="160" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagenes/Bienvenido.png"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="V. TOTAL"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="570" y="470" width="80" height="20"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JTextField" name="numero1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="570" y="490" width="150" height="30"/>
+              <AbsoluteConstraints x="750" y="500" width="170" height="140"/>
             </Constraint>
           </Constraints>
         </Component>
