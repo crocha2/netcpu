@@ -1495,280 +1495,325 @@ public class Tecnico_Oper extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        if (autoEntra.getText().equals("")) {
+        LimpiarPrestamo();
+        ListarPrestamo();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+
+        try {
+            if (txtIdPrestamo.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+            } else {
+
+                int seleccion = tbPrestamos.getSelectedRow();
+                Salidas sal = new Salidas();
+                sal.setNumero(String.valueOf(tbPrestamos.getValueAt(seleccion, 2)));
+
+                Object[] opciones = {"Aceptar", "Cancelar"};
+                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+                if (eleccion == JOptionPane.YES_OPTION) {
+                    dbSalida.EliminarSalida(sal);
+                    LimpiarSalidas();
+                    ListarSalidas();
+                    LimpiarPrestamo();
+                    ListarPrestamo();
+                    txtIdSalida.setText("");
+                    areaSalida.setText("");
+                } else {
+                    txtIdSalida.setText("");
+                    areaSalida.setText("");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error:" + e);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+
+        if (txtIdPrestamo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+            int seleccion = tbPrestamos.getSelectedRow();
+
+            fecha_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 1));
+            numero_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 2));
+            cliente_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 3));
+            telefono_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 4));
+            correo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 5));
+            equipo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 6));
+            modelo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 7));
+            serie_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 8));
+            observacion_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 9));
+            prestamo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 10));
+            id_cli_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 11));
+
+            Editar_Salida obj = new Editar_Salida();
+            obj.setVisible(true);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void btnSalida11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida11ActionPerformed
+
+        Envio obj = new Envio();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida11ActionPerformed
+
+    private void btnSalida10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida10ActionPerformed
+
+        Salidass obj = new Salidass();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida10ActionPerformed
+
+    private void btnSalida9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida9ActionPerformed
+
+        Entrada obj = new Entrada();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida9ActionPerformed
+
+    private void btnBusca7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca7ActionPerformed
+
+        if (autoPres.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
         } else {
-            String guardar = autoEntra.getText();
-            int tipo = cmbEntradas.getSelectedIndex();
+            String guardar = autoPres.getText();
+            int tipo = cmbPrestamo.getSelectedIndex();
             switch (tipo) {
                 case 0:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarEntradas();
-                        if (rs.next()) {
-                            Entradas en = new Entradas();
-                            en.setId_entrada(rs.getInt("id_entra"));
-                            en.setFecha(rs.getString("fecha"));
-                            en.setNumero(rs.getString("numero"));
-                            en.setEmpresa(rs.getString("empresa"));
-                            en.setNit(rs.getString("nit"));
-                            en.setTelefono_contacto(rs.getString("telefono"));
-                            en.setCorreo(rs.getString("correo"));
-                            en.setElemento(rs.getString("elemento"));
-                            en.setMarca(rs.getString("marca"));
-                            en.setModelo(rs.getString("modelo"));
-                            en.setSerie(rs.getString("serie"));
-                            en.setGarantia(rs.getString("garantia"));
-                            en.setObservaciones(rs.getString("observaciones"));
-                            en.setEstado(rs.getString("estado"));
-                            en.setId_cli((rs.getInt("id_cli")));
-                            entrada.add(en);
-                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
-                            autoCompleteEntradas();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ? AND prestamo = 'SI'");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarPrestamo();
+                    if (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompletePrestamo();
                     }
-                    break;
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
                 case 1:
-                    try {
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarEntradas();
-                        while (rs.next()) {
-                            Entradas en = new Entradas();
-                            en.setId_entrada(rs.getInt("id_entra"));
-                            en.setFecha(rs.getString("fecha"));
-                            en.setNumero(rs.getString("numero"));
-                            en.setEmpresa(rs.getString("empresa"));
-                            en.setNit(rs.getString("nit"));
-                            en.setTelefono_contacto(rs.getString("telefono"));
-                            en.setCorreo(rs.getString("correo"));
-                            en.setElemento(rs.getString("elemento"));
-                            en.setMarca(rs.getString("marca"));
-                            en.setModelo(rs.getString("modelo"));
-                            en.setSerie(rs.getString("serie"));
-                            en.setGarantia(rs.getString("garantia"));
-                            en.setObservaciones(rs.getString("observaciones"));
-                            en.setEstado(rs.getString("estado"));
-                            en.setId_cli((rs.getInt("id_cli")));
-                            entrada.add(en);
-                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
-                            autoCompleteEntradas();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ? AND prestamo = 'SI'");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarPrestamo();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompletePrestamo();
                     }
-
-                    break;
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
                 case 2:
-                    try {
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarEntradas();
-                        while (rs.next()) {
-                            Entradas en = new Entradas();
-                            en.setId_entrada(rs.getInt("id_entra"));
-                            en.setFecha(rs.getString("fecha"));
-                            en.setNumero(rs.getString("numero"));
-                            en.setEmpresa(rs.getString("empresa"));
-                            en.setNit(rs.getString("nit"));
-                            en.setTelefono_contacto(rs.getString("telefono"));
-                            en.setCorreo(rs.getString("correo"));
-                            en.setElemento(rs.getString("elemento"));
-                            en.setMarca(rs.getString("marca"));
-                            en.setModelo(rs.getString("modelo"));
-                            en.setSerie(rs.getString("serie"));
-                            en.setGarantia(rs.getString("garantia"));
-                            en.setObservaciones(rs.getString("observaciones"));
-                            en.setEstado(rs.getString("estado"));
-                            en.setId_cli((rs.getInt("id_cli")));
-                            entrada.add(en);
-                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
-                            autoCompleteEntradas();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ? AND prestamo = 'SI'");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarPrestamo();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompletePrestamo();
                     }
-                    break;
-                case 3:
-                    try {
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarEntradas();
-                        while (rs.next()) {
-                            Entradas en = new Entradas();
-                            en.setId_entrada(rs.getInt("id_entra"));
-                            en.setFecha(rs.getString("fecha"));
-                            en.setNumero(rs.getString("numero"));
-                            en.setEmpresa(rs.getString("empresa"));
-                            en.setNit(rs.getString("nit"));
-                            en.setTelefono_contacto(rs.getString("telefono"));
-                            en.setCorreo(rs.getString("correo"));
-                            en.setElemento(rs.getString("elemento"));
-                            en.setMarca(rs.getString("marca"));
-                            en.setModelo(rs.getString("modelo"));
-                            en.setSerie(rs.getString("serie"));
-                            en.setGarantia(rs.getString("garantia"));
-                            en.setObservaciones(rs.getString("observaciones"));
-                            en.setEstado(rs.getString("estado"));
-                            en.setId_cli((rs.getInt("id_cli")));
-                            entrada.add(en);
-                            DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
-                            tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
-                            autoCompleteEntradas();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                    }
-                    break;
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
                 default:
-                    System.out.println("error");
-                    break;
+                System.out.println("error");
+                break;
             }
         }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscaActionPerformed
+    }//GEN-LAST:event_btnBusca7ActionPerformed
 
-    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+    private void autoPresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoPresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoPresActionPerformed
 
-        if (autoSal.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+    private void cmbPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPrestamoActionPerformed
+
+        autoPres.setText("");
+        autoCompletePrestamo();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPrestamoActionPerformed
+
+    private void tbPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPrestamosMouseClicked
+
+        int seleccion = tbPrestamos.getSelectedRow();
+        txtIdPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 0)));
+        areaPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 9)));
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbPrestamosMouseClicked
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+
+        if (txtIdEnvio.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
         } else {
-            String guardar = autoSal.getText();
-            int tipo = cmbSalidas.getSelectedIndex();
-            switch (tipo) {
-                case 0:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarSalidas();
-                        if (rs.next()) {
-                            Salidas sal = new Salidas();
-                            sal.setId_salida(rs.getInt("id_salida"));
-                            sal.setFecha(rs.getString("fecha"));
-                            sal.setNumero(rs.getString("numero"));
-                            sal.setEmpresa(rs.getString("empresa"));
-                            sal.setTelefono(rs.getString("telefono"));
-                            sal.setCorreo(rs.getString("correo"));
-                            sal.setEquipo(rs.getString("equipo"));
-                            sal.setModelo(rs.getString("modelo"));
-                            sal.setSerie(rs.getString("serie"));
-                            sal.setComentario(rs.getString("comentario"));
-                            sal.setPrestamo(rs.getString("prestamo"));
-                            sal.setId_cli(rs.getInt("id_cli"));
-                            salida.add(sal);
-                            DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                            autoCompleteSalidas();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                    }
-                    break;
-                case 1:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarSalidas();
-                        while (rs.next()) {
-                            Salidas sal = new Salidas();
-                            sal.setId_salida(rs.getInt("id_salida"));
-                            sal.setFecha(rs.getString("fecha"));
-                            sal.setNumero(rs.getString("numero"));
-                            sal.setEmpresa(rs.getString("empresa"));
-                            sal.setTelefono(rs.getString("telefono"));
-                            sal.setCorreo(rs.getString("correo"));
-                            sal.setEquipo(rs.getString("equipo"));
-                            sal.setModelo(rs.getString("modelo"));
-                            sal.setSerie(rs.getString("serie"));
-                            sal.setComentario(rs.getString("comentario"));
-                            sal.setPrestamo(rs.getString("prestamo"));
-                            sal.setId_cli(rs.getInt("id_cli"));
-                            salida.add(sal);
-                            DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                            autoCompleteSalidas();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                    }
-                    break;
-                case 2:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarSalidas();
-                        while (rs.next()) {
-                            Salidas sal = new Salidas();
-                            sal.setId_salida(rs.getInt("id_salida"));
-                            sal.setFecha(rs.getString("fecha"));
-                            sal.setNumero(rs.getString("numero"));
-                            sal.setEmpresa(rs.getString("empresa"));
-                            sal.setTelefono(rs.getString("telefono"));
-                            sal.setCorreo(rs.getString("correo"));
-                            sal.setEquipo(rs.getString("equipo"));
-                            sal.setModelo(rs.getString("modelo"));
-                            sal.setSerie(rs.getString("serie"));
-                            sal.setComentario(rs.getString("comentario"));
-                            sal.setPrestamo(rs.getString("prestamo"));
-                            sal.setId_cli(rs.getInt("id_cli"));
-                            salida.add(sal);
-                            DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
-                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                            autoCompleteSalidas();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                    }
-                    break;
-                default:
-                    System.out.println("error");
-                    break;
-            }
+            int seleccion = tbEnvios.getSelectedRow();
+
+            id_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 0));
+            fecha_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 1));
+            numero_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 2));
+            destinatario_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            atn_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            direccion_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            telefono_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            ciudad_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            comentario_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+            id_cli_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
+
+            Editar_Envio obj = new Editar_Envio();
+            obj.setVisible(true);
         }
 
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnBusca1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+
+        try {
+
+            if (txtIdEnvio.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+            } else {
+                int seleccion = tbEnvios.getSelectedRow();
+                Envios en = new Envios();
+                en.setNumero(String.valueOf(tbEnvios.getValueAt(seleccion, 2)));
+
+                Object[] opciones = {"Aceptar", "Cancelar"};
+                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+                if (eleccion == JOptionPane.YES_OPTION) {
+                    dbEnvio.EliminarEnvio(en);
+                    LimpiarEnvios();
+                    ListarEnvios();
+                    txtIdEnvio.setText("");
+                    areaEnvio.setText("");
+                } else {
+                    txtIdSalida.setText("");
+                    areaSalida.setText("");
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("error" + e);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void btnSalida8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida8ActionPerformed
+
+        Envio obj = new Envio();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida8ActionPerformed
+
+    private void btnSalida7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida7ActionPerformed
+
+        Salidass obj = new Salidass();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida7ActionPerformed
+
+    private void btnSalida6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida6ActionPerformed
+
+        Entrada obj = new Entrada();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        LimpiarEnvios();
+        ListarEnvios();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca2ActionPerformed
 
@@ -1779,79 +1824,75 @@ public class Tecnico_Oper extends javax.swing.JFrame {
             int tipo = cmbEnvios.getSelectedIndex();
             switch (tipo) {
                 case 0:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from envios where numero = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarEnvios();
-                        if (rs.next()) {
-                            Envios en = new Envios();
-                            en.setId_envio(rs.getInt("id_envio"));
-                            en.setFecha(rs.getString("fecha"));
-                            en.setNumero(rs.getString("numero"));
-                            en.setDestinatario(rs.getString("destinatario"));
-                            en.setATN(rs.getString("atn"));
-                            en.setDireccion(rs.getString("direccion"));
-                            en.setTelefono(rs.getString("telefono"));
-                            en.setCiudad(rs.getString("ciudad"));
-                            en.setComentario(rs.getString("comentario"));
-                            en.setId_cli(rs.getInt("id_cli"));
-                            envio.add(en);
-                            DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
-                            tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from envios where numero = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEnvios();
+                    if (rs.next()) {
+                        Envios en = new Envios();
+                        en.setId_envio(rs.getInt("id_envio"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setDestinatario(rs.getString("destinatario"));
+                        en.setATN(rs.getString("atn"));
+                        en.setDireccion(rs.getString("direccion"));
+                        en.setTelefono(rs.getString("telefono"));
+                        en.setCiudad(rs.getString("ciudad"));
+                        en.setComentario(rs.getString("comentario"));
+                        en.setId_cli(rs.getInt("id_cli"));
+                        envio.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
+                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
 
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
-                    break;
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
                 case 1:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from envios where destinatario = ?");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarEnvios();
-                        while (rs.next()) {
-                            Envios en = new Envios();
-                            en.setId_envio(rs.getInt("id_envio"));
-                            en.setFecha(rs.getString("fecha"));
-                            en.setNumero(rs.getString("numero"));
-                            en.setDestinatario(rs.getString("destinatario"));
-                            en.setATN(rs.getString("atn"));
-                            en.setDireccion(rs.getString("direccion"));
-                            en.setTelefono(rs.getString("telefono"));
-                            en.setCiudad(rs.getString("ciudad"));
-                            en.setComentario(rs.getString("comentario"));
-                            en.setId_cli(rs.getInt("id_cli"));
-                            envio.add(en);
-                            DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
-                            tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from envios where destinatario = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEnvios();
+                    while (rs.next()) {
+                        Envios en = new Envios();
+                        en.setId_envio(rs.getInt("id_envio"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setDestinatario(rs.getString("destinatario"));
+                        en.setATN(rs.getString("atn"));
+                        en.setDireccion(rs.getString("direccion"));
+                        en.setTelefono(rs.getString("telefono"));
+                        en.setCiudad(rs.getString("ciudad"));
+                        en.setComentario(rs.getString("comentario"));
+                        en.setId_cli(rs.getInt("id_cli"));
+                        envio.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEnvios.getModel();
+                        tb.addRow(new Object[]{en.getId_envio(), en.getFecha(), en.getNumero(), en.getDestinatario(), en.getATN(), en.getDireccion(), en.getTelefono(), en.getCiudad(), en.getComentario(), en.getId_cli()});
 
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                     }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
             }
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusca2ActionPerformed
 
-    private void cmbSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSalidasActionPerformed
-
-        autoSal.setText("");
-        autoCompleteSalidas();
-
+    private void autoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoEnvioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbSalidasActionPerformed
+    }//GEN-LAST:event_autoEnvioActionPerformed
 
     private void cmbEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEnviosActionPerformed
 
@@ -1861,49 +1902,93 @@ public class Tecnico_Oper extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbEnviosActionPerformed
 
-    private void tbEntradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntradasMouseClicked
-
-        int seleccion = tbEntradas.getSelectedRow();
-        txtIdEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 0)));
-        areaEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 12)));
-        txtEstado.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 13)));
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_tbEntradasMouseClicked
-
-    private void tbSalidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSalidasMouseClicked
-
-        int seleccion = tbSalidas.getSelectedRow();
-        txtIdSalida.setText(String.valueOf(tbSalidas.getValueAt(seleccion, 0)));
-        areaSalida.setText(String.valueOf(tbSalidas.getValueAt(seleccion, 9)));
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_tbSalidasMouseClicked
-
     private void tbEnviosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEnviosMouseClicked
 
         int seleccion = tbEnvios.getSelectedRow();
         txtIdEnvio.setText(String.valueOf(tbEnvios.getValueAt(seleccion, 0)));
         areaEnvio.setText(String.valueOf(tbEnvios.getValueAt(seleccion, 8)));
 
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_tbEnviosMouseClicked
 
-    private void cmbEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEntradasActionPerformed
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
 
-        autoEntra.setText("");
-        autoCompleteEntradas();
+        if (txtIdSalida.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+            int seleccion = tbSalidas.getSelectedRow();
 
-// TODO add your handling code here:
-    }//GEN-LAST:event_cmbEntradasActionPerformed
+            fecha_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 1));
+            numero_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 2));
+            cliente_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 3));
+            telefono_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 4));
+            correo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 5));
+            equipo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 6));
+            modelo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 7));
+            serie_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 8));
+            observacion_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 9));
+            prestamo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 10));
+            id_cli_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 11));
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-        LimpiarEntradas();
-        ListarEntradas();
+            Editar_Salida obj = new Editar_Salida();
+            obj.setVisible(true);
+        }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+
+        if (txtIdSalida.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        } else {
+
+            int seleccion = tbSalidas.getSelectedRow();
+            Salidas sal = new Salidas();
+            sal.setNumero(String.valueOf(tbSalidas.getValueAt(seleccion, 2)));
+
+            Object[] opciones = {"Aceptar", "Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION) {
+                dbSalida.EliminarSalida(sal);
+                LimpiarSalidas();
+                ListarSalidas();
+                txtIdSalida.setText("");
+                areaSalida.setText("");
+            } else {
+                txtIdSalida.setText("");
+                areaSalida.setText("");
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void btnSalida5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida5ActionPerformed
+
+        Envio obj = new Envio();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida5ActionPerformed
+
+    private void btnSalida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida4ActionPerformed
+
+        Salidass obj = new Salidass();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida4ActionPerformed
+
+    private void btnSalida3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida3ActionPerformed
+
+        Entrada obj = new Entrada();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
@@ -1913,85 +1998,176 @@ public class Tecnico_Oper extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
 
-        LimpiarEnvios();
-        ListarEnvios();
+        if (autoSal.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
+        } else {
+            String guardar = autoSal.getText();
+            int tipo = cmbSalidas.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarSalidas();
+                    if (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompleteSalidas();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
+                case 1:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarSalidas();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompleteSalidas();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
+                case 2:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarSalidas();
+                    while (rs.next()) {
+                        Salidas sal = new Salidas();
+                        sal.setId_salida(rs.getInt("id_salida"));
+                        sal.setFecha(rs.getString("fecha"));
+                        sal.setNumero(rs.getString("numero"));
+                        sal.setEmpresa(rs.getString("empresa"));
+                        sal.setTelefono(rs.getString("telefono"));
+                        sal.setCorreo(rs.getString("correo"));
+                        sal.setEquipo(rs.getString("equipo"));
+                        sal.setModelo(rs.getString("modelo"));
+                        sal.setSerie(rs.getString("serie"));
+                        sal.setComentario(rs.getString("comentario"));
+                        sal.setPrestamo(rs.getString("prestamo"));
+                        sal.setId_cli(rs.getInt("id_cli"));
+                        salida.add(sal);
+                        DefaultTableModel tb = (DefaultTableModel) tbSalidas.getModel();
+                        tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
+                        autoCompleteSalidas();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
+                default:
+                System.out.println("error");
+                break;
+            }
+        }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnBusca1ActionPerformed
 
-    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+    private void autoSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoSalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoSalActionPerformed
 
-        Entrada obj = new Entrada();
-        obj.setVisible(true);
+    private void cmbSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSalidasActionPerformed
+
+        autoSal.setText("");
+        autoCompleteSalidas();
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalidaActionPerformed
+    }//GEN-LAST:event_cmbSalidasActionPerformed
 
-    private void btnSalida2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida2ActionPerformed
+    private void tbSalidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSalidasMouseClicked
 
-        Salidass obj = new Salidass();
-        obj.setVisible(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida2ActionPerformed
-
-    private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
-
-        Envio obj = new Envio();
-        obj.setVisible(true);
+        int seleccion = tbSalidas.getSelectedRow();
+        txtIdSalida.setText(String.valueOf(tbSalidas.getValueAt(seleccion, 0)));
+        areaSalida.setText(String.valueOf(tbSalidas.getValueAt(seleccion, 9)));
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida1ActionPerformed
+    }//GEN-LAST:event_tbSalidasMouseClicked
 
-    private void btnSalida3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida3ActionPerformed
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
 
-        Entrada obj = new Entrada();
-        obj.setVisible(true);
+        try {
+            if (txtIdEntrada.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+            } else {
+                Entradas en = new Entradas();
+                Garantias gar = new Garantias();
+                int seleccion = tbEntradas.getSelectedRow();
+                en.setNumero(String.valueOf(tbEntradas.getValueAt(seleccion, 2)));
+                gar.setId_entra(Integer.parseInt(txtIdEntrada.getText()));
+                Object[] opciones = {"Aceptar", "Cancelar"};
+                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+                if (eleccion == JOptionPane.YES_OPTION) {
+                    dbEntrada.EliminarEntrada(en);
+                    dbGarantia.EliminarGarantia(gar);
+                    LimpiarEntradas();
+                    ListarEntradas();
+                    txtIdEntrada.setText("");
+                    areaEntrada.setText("");
+                } else {
+                    LimpiarEntradas();
+                    ListarEntradas();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "error:" + e);
+        }
 
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida3ActionPerformed
-
-    private void btnSalida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida4ActionPerformed
-
-        Salidass obj = new Salidass();
-        obj.setVisible(true);
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida4ActionPerformed
-
-    private void btnSalida5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida5ActionPerformed
-
-        Envio obj = new Envio();
-        obj.setVisible(true);
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida5ActionPerformed
-
-    private void btnSalida6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida6ActionPerformed
-
-        Entrada obj = new Entrada();
-        obj.setVisible(true);
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida6ActionPerformed
-
-    private void btnSalida7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida7ActionPerformed
-
-        Salidass obj = new Salidass();
-        obj.setVisible(true);
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida7ActionPerformed
-
-    private void btnSalida8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida8ActionPerformed
-
-        Envio obj = new Envio();
-        obj.setVisible(true);
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
@@ -2020,393 +2196,217 @@ public class Tecnico_Oper extends javax.swing.JFrame {
             obj.setVisible(true);
         }
 
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-
-        if (txtIdSalida.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-        } else {
-
-            int seleccion = tbSalidas.getSelectedRow();
-            Salidas sal = new Salidas();
-            sal.setNumero(String.valueOf(tbSalidas.getValueAt(seleccion, 2)));
-
-            Object[] opciones = {"Aceptar", "Cancelar"};
-            int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-            if (eleccion == JOptionPane.YES_OPTION) {
-                dbSalida.EliminarSalida(sal);
-                LimpiarSalidas();
-                ListarSalidas();
-                txtIdSalida.setText("");
-                areaSalida.setText("");
-            } else {
-                txtIdSalida.setText("");
-                areaSalida.setText("");
-            }
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-
-        if (txtIdSalida.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-        } else {
-            int seleccion = tbSalidas.getSelectedRow();
-
-            fecha_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 1));
-            numero_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 2));
-            cliente_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 3));
-            telefono_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 4));
-            correo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 5));
-            equipo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 6));
-            modelo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 7));
-            serie_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 8));
-            observacion_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 9));
-            prestamo_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 10));
-            id_cli_salida = String.valueOf(tbSalidas.getValueAt(seleccion, 11));
-
-            Editar_Salida obj = new Editar_Salida();
-            obj.setVisible(true);
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-
-        try {
-
-            if (txtIdEnvio.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-            } else {
-                int seleccion = tbEnvios.getSelectedRow();
-                Envios en = new Envios();
-                en.setNumero(String.valueOf(tbEnvios.getValueAt(seleccion, 2)));
-
-                Object[] opciones = {"Aceptar", "Cancelar"};
-                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-                if (eleccion == JOptionPane.YES_OPTION) {
-                    dbEnvio.EliminarEnvio(en);
-                    LimpiarEnvios();
-                    ListarEnvios();
-                    txtIdEnvio.setText("");
-                    areaEnvio.setText("");
-                } else {
-                    txtIdSalida.setText("");
-                    areaSalida.setText("");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("error" + e);
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-
-        if (txtIdEnvio.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-        } else {
-            int seleccion = tbEnvios.getSelectedRow();
-
-            id_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 0));
-            fecha_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 1));
-            numero_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 2));
-            destinatario_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
-            atn_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
-            direccion_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
-            telefono_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
-            ciudad_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
-            comentario_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
-            id_cli_envio = String.valueOf(tbEnvios.getValueAt(seleccion, 3));
-
-            Editar_Envio obj = new Editar_Envio();
-            obj.setVisible(true);
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-
-        try {
-            if (txtIdEntrada.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-            } else {
-                Entradas en = new Entradas();
-                Garantias gar = new Garantias();
-                int seleccion = tbEntradas.getSelectedRow();
-                en.setNumero(String.valueOf(tbEntradas.getValueAt(seleccion, 2)));
-                gar.setId_entra(Integer.parseInt(txtIdEntrada.getText()));
-                Object[] opciones = {"Aceptar", "Cancelar"};
-                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-                if (eleccion == JOptionPane.YES_OPTION) {
-                    dbEntrada.EliminarEntrada(en);
-                    dbGarantia.EliminarGarantia(gar);
-                    LimpiarEntradas();
-                    ListarEntradas();
-                    txtIdEntrada.setText("");
-                    areaEntrada.setText("");
-                } else {
-                    LimpiarEntradas();
-                    ListarEntradas();
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "error:" + e);
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void autoSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoSalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_autoSalActionPerformed
-
-    private void autoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoEnvioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_autoEnvioActionPerformed
-
-    private void tbPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPrestamosMouseClicked
-
-        int seleccion = tbPrestamos.getSelectedRow();
-        txtIdPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 0)));
-        areaPrestamo.setText(String.valueOf(tbPrestamos.getValueAt(seleccion, 9)));
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbPrestamosMouseClicked
-
-    private void cmbPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPrestamoActionPerformed
-
-        autoPres.setText("");
-        autoCompletePrestamo();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPrestamoActionPerformed
-
-    private void autoPresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoPresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_autoPresActionPerformed
-
-    private void btnBusca7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca7ActionPerformed
-
-        if (autoPres.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
-        } else {
-            String guardar = autoPres.getText();
-            int tipo = cmbPrestamo.getSelectedIndex();
-            switch (tipo) {
-                case 0:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where numero = ? AND prestamo = 'SI'");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarPrestamo();
-                        if (rs.next()) {
-                            Salidas sal = new Salidas();
-                            sal.setId_salida(rs.getInt("id_salida"));
-                            sal.setFecha(rs.getString("fecha"));
-                            sal.setNumero(rs.getString("numero"));
-                            sal.setEmpresa(rs.getString("empresa"));
-                            sal.setTelefono(rs.getString("telefono"));
-                            sal.setCorreo(rs.getString("correo"));
-                            sal.setEquipo(rs.getString("equipo"));
-                            sal.setModelo(rs.getString("modelo"));
-                            sal.setSerie(rs.getString("serie"));
-                            sal.setComentario(rs.getString("comentario"));
-                            sal.setPrestamo(rs.getString("prestamo"));
-                            sal.setId_cli(rs.getInt("id_cli"));
-                            salida.add(sal);
-                            DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
-                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                            autoCompletePrestamo();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                    }
-                    break;
-                case 1:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where empresa = ? AND prestamo = 'SI'");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarPrestamo();
-                        while (rs.next()) {
-                            Salidas sal = new Salidas();
-                            sal.setId_salida(rs.getInt("id_salida"));
-                            sal.setFecha(rs.getString("fecha"));
-                            sal.setNumero(rs.getString("numero"));
-                            sal.setEmpresa(rs.getString("empresa"));
-                            sal.setTelefono(rs.getString("telefono"));
-                            sal.setCorreo(rs.getString("correo"));
-                            sal.setEquipo(rs.getString("equipo"));
-                            sal.setModelo(rs.getString("modelo"));
-                            sal.setSerie(rs.getString("serie"));
-                            sal.setComentario(rs.getString("comentario"));
-                            sal.setPrestamo(rs.getString("prestamo"));
-                            sal.setId_cli(rs.getInt("id_cli"));
-                            salida.add(sal);
-                            DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
-                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                            autoCompletePrestamo();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                    }
-                    break;
-                case 2:
-                    try {
-                        // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
-                        Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
-                        Statement st = cn.createStatement();
-                        PreparedStatement pst = cn.prepareStatement("Select * from salidas where serie = ? AND prestamo = 'SI'");
-                        pst.setString(1, guardar);
-                        ResultSet rs = pst.executeQuery();
-                        LimpiarPrestamo();
-                        while (rs.next()) {
-                            Salidas sal = new Salidas();
-                            sal.setId_salida(rs.getInt("id_salida"));
-                            sal.setFecha(rs.getString("fecha"));
-                            sal.setNumero(rs.getString("numero"));
-                            sal.setEmpresa(rs.getString("empresa"));
-                            sal.setTelefono(rs.getString("telefono"));
-                            sal.setCorreo(rs.getString("correo"));
-                            sal.setEquipo(rs.getString("equipo"));
-                            sal.setModelo(rs.getString("modelo"));
-                            sal.setSerie(rs.getString("serie"));
-                            sal.setComentario(rs.getString("comentario"));
-                            sal.setPrestamo(rs.getString("prestamo"));
-                            sal.setId_cli(rs.getInt("id_cli"));
-                            salida.add(sal);
-                            DefaultTableModel tb = (DefaultTableModel) tbPrestamos.getModel();
-                            tb.addRow(new Object[]{sal.getId_salida(), sal.getFecha(), sal.getNumero(), sal.getEmpresa(), sal.getTelefono(), sal.getCorreo(), sal.getEquipo(), sal.getModelo(), sal.getSerie(), sal.getComentario(), sal.getPrestamo(), sal.getId_cli()});
-                            autoCompletePrestamo();
-                        }
-                        cn.close();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
-                    }
-                    break;
-                default:
-                    System.out.println("error");
-                    break;
-            }
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBusca7ActionPerformed
-
-    private void btnSalida9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida9ActionPerformed
-
-        Entrada obj = new Entrada();
-        obj.setVisible(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida9ActionPerformed
-
-    private void btnSalida10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida10ActionPerformed
-
-        Salidass obj = new Salidass();
-        obj.setVisible(true);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida10ActionPerformed
-
-    private void btnSalida11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida11ActionPerformed
+    private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
 
         Envio obj = new Envio();
         obj.setVisible(true);
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalida11ActionPerformed
+    }//GEN-LAST:event_btnSalida1ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void btnSalida2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida2ActionPerformed
 
-        if (txtIdPrestamo.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        Salidass obj = new Salidass();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalida2ActionPerformed
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+
+        Entrada obj = new Entrada();
+        obj.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalidaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        LimpiarEntradas();
+        ListarEntradas();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+
+        if (autoEntra.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe llenar campo para su busqueda");
         } else {
-            int seleccion = tbPrestamos.getSelectedRow();
-
-            fecha_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 1));
-            numero_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 2));
-            cliente_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 3));
-            telefono_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 4));
-            correo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 5));
-            equipo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 6));
-            modelo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 7));
-            serie_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 8));
-            observacion_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 9));
-            prestamo_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 10));
-            id_cli_salida = String.valueOf(tbPrestamos.getValueAt(seleccion, 11));
-
-            Editar_Salida obj = new Editar_Salida();
-            obj.setVisible(true);
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-
-        try {
-            if (txtIdPrestamo.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
-            } else {
-
-                int seleccion = tbPrestamos.getSelectedRow();
-                Salidas sal = new Salidas();
-                sal.setNumero(String.valueOf(tbPrestamos.getValueAt(seleccion, 2)));
-
-                Object[] opciones = {"Aceptar", "Cancelar"};
-                int eleccion = JOptionPane.showOptionDialog(rootPane, "¿En realidad desea ELIMINAR este registro?", "Mensaje de Confirmacion",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-                if (eleccion == JOptionPane.YES_OPTION) {
-                    dbSalida.EliminarSalida(sal);
-                    LimpiarSalidas();
-                    ListarSalidas();
-                    LimpiarPrestamo();
-                    ListarPrestamo();
-                    txtIdSalida.setText("");
-                    areaSalida.setText("");
-                } else {
-                    txtIdSalida.setText("");
-                    areaSalida.setText("");
+            String guardar = autoEntra.getText();
+            int tipo = cmbEntradas.getSelectedIndex();
+            switch (tipo) {
+                case 0:
+                try {
+                    // id_entra,  numero, fecha, elemento, potencia, marca, modelo, serie, empresa, nit, persona_remite, ciudad, direccion, contacto, telefono, correo, motivo, parrilla, bases_plas, conector_ori, garantia, estado_car, observaciones,
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where numero = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEntradas();
+                    if (rs.next()) {
+                        Entradas en = new Entradas();
+                        en.setId_entrada(rs.getInt("id_entra"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setEmpresa(rs.getString("empresa"));
+                        en.setNit(rs.getString("nit"));
+                        en.setTelefono_contacto(rs.getString("telefono"));
+                        en.setCorreo(rs.getString("correo"));
+                        en.setElemento(rs.getString("elemento"));
+                        en.setMarca(rs.getString("marca"));
+                        en.setModelo(rs.getString("modelo"));
+                        en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
+                        en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
+                        entrada.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                        autoCompleteEntradas();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
                 }
+                break;
+                case 1:
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where empresa = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEntradas();
+                    while (rs.next()) {
+                        Entradas en = new Entradas();
+                        en.setId_entrada(rs.getInt("id_entra"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setEmpresa(rs.getString("empresa"));
+                        en.setNit(rs.getString("nit"));
+                        en.setTelefono_contacto(rs.getString("telefono"));
+                        en.setCorreo(rs.getString("correo"));
+                        en.setElemento(rs.getString("elemento"));
+                        en.setMarca(rs.getString("marca"));
+                        en.setModelo(rs.getString("modelo"));
+                        en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
+                        en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
+                        entrada.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                        autoCompleteEntradas();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+
+                break;
+                case 2:
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where nit = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEntradas();
+                    while (rs.next()) {
+                        Entradas en = new Entradas();
+                        en.setId_entrada(rs.getInt("id_entra"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setEmpresa(rs.getString("empresa"));
+                        en.setNit(rs.getString("nit"));
+                        en.setTelefono_contacto(rs.getString("telefono"));
+                        en.setCorreo(rs.getString("correo"));
+                        en.setElemento(rs.getString("elemento"));
+                        en.setMarca(rs.getString("marca"));
+                        en.setModelo(rs.getString("modelo"));
+                        en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
+                        en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
+                        entrada.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                        autoCompleteEntradas();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
+                case 3:
+                try {
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+                    Statement st = cn.createStatement();
+                    PreparedStatement pst = cn.prepareStatement("Select * from entradas where serie = ?");
+                    pst.setString(1, guardar);
+                    ResultSet rs = pst.executeQuery();
+                    LimpiarEntradas();
+                    while (rs.next()) {
+                        Entradas en = new Entradas();
+                        en.setId_entrada(rs.getInt("id_entra"));
+                        en.setFecha(rs.getString("fecha"));
+                        en.setNumero(rs.getString("numero"));
+                        en.setEmpresa(rs.getString("empresa"));
+                        en.setNit(rs.getString("nit"));
+                        en.setTelefono_contacto(rs.getString("telefono"));
+                        en.setCorreo(rs.getString("correo"));
+                        en.setElemento(rs.getString("elemento"));
+                        en.setMarca(rs.getString("marca"));
+                        en.setModelo(rs.getString("modelo"));
+                        en.setSerie(rs.getString("serie"));
+                        en.setGarantia(rs.getString("garantia"));
+                        en.setObservaciones(rs.getString("observaciones"));
+                        en.setEstado(rs.getString("estado"));
+                        en.setId_cli((rs.getInt("id_cli")));
+                        entrada.add(en);
+                        DefaultTableModel tb = (DefaultTableModel) tbEntradas.getModel();
+                        tb.addRow(new Object[]{en.getId_entrada(), en.getFecha(), en.getNumero(), en.getEmpresa(), en.getNit(), en.getTelefono_contacto(), en.getCorreo(), en.getElemento(), en.getMarca(), en.getModelo(), en.getSerie(), en.getGarantia(), en.getObservaciones(), en.getEstado(), en.getId_cli()});
+                        autoCompleteEntradas();
+                    }
+                    cn.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERROR EN BUSQUEDA: " + e.getMessage());
+                }
+                break;
+                default:
+                System.out.println("error");
+                break;
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "error:" + e);
         }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void cmbEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEntradasActionPerformed
 
-        LimpiarPrestamo();
-        ListarPrestamo();
+        autoEntra.setText("");
+        autoCompleteEntradas();
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_cmbEntradasActionPerformed
+
+    private void tbEntradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEntradasMouseClicked
+
+        int seleccion = tbEntradas.getSelectedRow();
+        txtIdEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 0)));
+        areaEntrada.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 12)));
+        txtEstado.setText(String.valueOf(tbEntradas.getValueAt(seleccion, 13)));
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbEntradasMouseClicked
 
     /**
      * @param args the command line arguments
