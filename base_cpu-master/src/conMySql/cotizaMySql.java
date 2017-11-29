@@ -32,6 +32,7 @@ public class cotizaMySql {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery("SELECT id_coti, item_coti, fecha_coti, numero, cliente_coti, ciudad_coti, pais_coti, comentario_1, descripcion, valor_unitario, valor_total, fletes, iva, total, firma, validez_oferta, formato_pago, tiempo_entrega,id_cli FROM cotizaciones ORDER BY fecha_coti DESC");
             while (rs.next()) {
+                /*
                 cotizaciones cot = new cotizaciones();
                 cot.setId_coti(rs.getInt("id_coti"));
                 cot.setItem(rs.getInt("item_coti"));
@@ -53,6 +54,7 @@ public class cotizaMySql {
                 cot.setTiempo_entrega(rs.getString("tiempo_entrega"));
                 cot.setId_cli(rs.getInt("id_cli"));
                 cotizacion.add(cot);
+                */
             }
             cn.close();
         } catch (SQLException ex) {
