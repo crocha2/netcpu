@@ -38,10 +38,15 @@ public final class Cotizaciones extends javax.swing.JFrame {
         //txtSec.setEnabled(false);
         panelProducto.setVisible(false);
         panelServicio.setVisible(false);
+        txtIdProducto.setVisible(false);
         txtIdCliente.setEnabled(false);
         txtTotal.setEnabled(false);
         txtItem.setEnabled(false);
         numero.setEnabled(false);
+        txtSubTotal.setEnabled(false);
+        txtFletes.setEnabled(false);
+        txtIva.setEnabled(false);
+        txtGranTotal.setEnabled(false);
         colorNumero();
         autoCompleteCliente();
         cero();
@@ -87,6 +92,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         txtTotal.setText("");
         txtDescripcion.setText("");
         txtCantidad.requestFocus();
+        txtItem.setVisible(true);
     }
 
     public void ListarProductos() {
@@ -418,6 +424,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
         txtItem = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        txtIdProducto = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
         panelProducto = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -444,15 +453,16 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        numero10 = new javax.swing.JTextField();
-        numero7 = new javax.swing.JTextField();
-        numero3 = new javax.swing.JTextField();
-        numero1 = new javax.swing.JTextField();
+        txtGranTotal = new javax.swing.JTextField();
+        txtIva = new javax.swing.JTextField();
+        txtFletes = new javax.swing.JTextField();
+        txtSubTotal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtComentario = new javax.swing.JTextArea();
         jLabel23 = new javax.swing.JLabel();
+        jButton14 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -560,6 +570,11 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 tbProductosMouseClicked(evt);
             }
         });
+        tbProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbProductosKeyReleased(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbProductos);
 
         jPanel1.add(jScrollPane3);
@@ -635,7 +650,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButton5);
-        jButton5.setBounds(90, 200, 140, 40);
+        jButton5.setBounds(120, 200, 140, 40);
 
         jButton6.setBackground(new java.awt.Color(0, 0, 153));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -661,8 +676,33 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("QUITAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton4);
         jButton4.setBounds(360, 200, 90, 40);
+
+        jButton12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton12.setText("...");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton12);
+        jButton12.setBounds(409, 10, 50, 23);
+        jPanel5.add(txtIdProducto);
+        txtIdProducto.setBounds(390, 70, 59, 20);
+
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton13);
+        jButton13.setBounds(80, 210, 30, 30);
 
         jPanel1.add(jPanel5);
         jPanel5.setBounds(20, 200, 470, 250);
@@ -802,21 +842,34 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel18.setText("GRAN TOTAL");
         jPanel3.add(jLabel18);
         jLabel18.setBounds(10, 120, 80, 20);
-        jPanel3.add(numero10);
-        numero10.setBounds(100, 110, 160, 30);
-        jPanel3.add(numero7);
-        numero7.setBounds(100, 70, 160, 30);
-        jPanel3.add(numero3);
-        numero3.setBounds(100, 40, 160, 30);
-        jPanel3.add(numero1);
-        numero1.setBounds(100, 10, 160, 30);
+
+        txtGranTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel3.add(txtGranTotal);
+        txtGranTotal.setBounds(100, 110, 160, 30);
+
+        txtIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel3.add(txtIva);
+        txtIva.setBounds(100, 70, 160, 30);
+
+        txtFletes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel3.add(txtFletes);
+        txtFletes.setBounds(100, 40, 160, 30);
+
+        txtSubTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtSubTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSubTotalKeyReleased(evt);
+            }
+        });
+        jPanel3.add(txtSubTotal);
+        txtSubTotal.setBounds(100, 10, 160, 30);
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(1030, 470, 270, 150);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Bienvenido.png"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(1160, 340, 150, 120);
+        jLabel1.setBounds(1160, 200, 150, 120);
 
         jButton11.setBackground(new java.awt.Color(0, 0, 102));
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -837,6 +890,18 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel23.setText("COMENTARIO");
         jPanel1.add(jLabel23);
         jLabel23.setBounds(20, 460, 120, 20);
+
+        jButton14.setBackground(new java.awt.Color(255, 0, 51));
+        jButton14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton14.setForeground(new java.awt.Color(255, 255, 255));
+        jButton14.setText("+");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton14);
+        jButton14.setBounds(1150, 420, 150, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1020,8 +1085,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 pro.setItem(txtItem.getText());
                 pro.setCantidad(Integer.parseInt(txtCantidad.getText()));
                 pro.setDescripcion(txtDescripcion.getText().toUpperCase());
-                pro.setValor_unitario(Double.parseDouble(txtValorUnitario.getText()));
-                pro.setValor_total(Double.parseDouble(txtTotal.getText()));
+                pro.setValor_unitario(Integer.parseInt(txtValorUnitario.getText()));
+                pro.setValor_total(Integer.parseInt(txtTotal.getText()));
+                pro.setEstado("PROCESO");
                 pro.setId_cli(Integer.parseInt(txtIdCliente.getText()));
 
                 dbProducto.insertarProducto(pro);
@@ -1046,8 +1112,8 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        if (txtIdCliente.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "DEBE SELECCIONAR UN CLIENTE");
+        if (txtIdProducto.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "DEBE SELECCIONAR UN REGISTRO");
         }
         if (txtCantidad.getText().equals("") || txtValorUnitario.getText().equals("") || txtDescripcion.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "DEBE GESTIONAR TODOS LOS DATOS DE PRODUCTO");
@@ -1056,54 +1122,156 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
                 productos pro = new productos();
 
-                pro.setNumero(numero.getText());
-
-                String formato = txtFecha.getDateFormatString();
-                Date date = txtFecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String dato = String.valueOf(sdf.format(date));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                pro.setFecha(dato);
-
-                pro.setItem(txtItem.getText());
                 pro.setCantidad(Integer.parseInt(txtCantidad.getText()));
                 pro.setDescripcion(txtDescripcion.getText().toUpperCase());
-                pro.setValor_unitario(Double.parseDouble(txtValorUnitario.getText()));
-                pro.setValor_total(Double.parseDouble(txtTotal.getText()));
-                pro.setId_cli(Integer.parseInt(txtIdCliente.getText()));
+                pro.setValor_unitario(Integer.parseInt(txtValorUnitario.getText()));
+                pro.setValor_total(Integer.parseInt(txtTotal.getText()));
+                pro.setId_producto(Integer.parseInt(txtIdProducto.getText()));
 
-                dbProducto.insertarProducto(pro);
-
-                int cont = 1;
-                int aux = Integer.parseInt(txtItem.getText());
-
-                int item = cont + aux;
-                txtItem.setText("" + item);
+                dbProducto.EditarProducto(pro);
 
                 LimpiarPanelProductos();
                 LimpiarProductos();
                 ListarProductos();
+                txtItem.setVisible(true);
 
             } catch (Exception e) {
                 System.err.println("error" + e);
             }
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void tbProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseClicked
 
-        /*
+        txtItem.setVisible(false);
+
         int seleccion = tbProductos.getSelectedRow();
 
-        txtId.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 0)));
-        txtNumeroCont.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 1)));
-        txtFechaInicial.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 2)));
-        */
-        
+        txtCantidad.setText(String.valueOf(tbProductos.getValueAt(seleccion, 1)));
+        txtDescripcion.setText(String.valueOf(tbProductos.getValueAt(seleccion, 2)));
+        txtValorUnitario.setText(String.valueOf(tbProductos.getValueAt(seleccion, 3)));
+        txtTotal.setText(String.valueOf(tbProductos.getValueAt(seleccion, 4)));
+        txtIdProducto.setText(String.valueOf(tbProductos.getValueAt(seleccion, 5)));
+
         // TODO add your handling code here:
     }//GEN-LAST:event_tbProductosMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        if (txtIdProducto.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "DEBE SELECCIONAR UN REGISTRO");
+        } else {
+            try {
+
+                productos pro = new productos();
+
+                pro.setId_producto(Integer.parseInt(txtIdProducto.getText()));
+
+                dbProducto.EliminarProducto(pro);
+
+                LimpiarPanelProductos();
+                LimpiarProductos();
+                ListarProductos();
+                txtItem.setVisible(true);
+
+            } catch (Exception e) {
+                System.err.println("error" + e);
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+
+        LimpiarPanelProductos();
+        LimpiarProductos();
+        ListarProductos();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+
+        int cont = 1;
+        int aux = Integer.parseInt(txtItem.getText());
+
+        int item = cont + aux;
+        txtItem.setText("" + item);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+
+        txtSubTotal.setText("0");
+        int ta = tbProductos.getRowCount();
+        System.out.println("filas: " + ta);
+        int c = 0;
+
+        do {
+            try {
+                int f = c++;
+                double num1 = Double.parseDouble(tbProductos.getValueAt(f, 4).toString());
+                String dato = txtSubTotal.getText();
+                double num2 = Double.parseDouble(dato);
+
+                double resultado = num1 + num2;
+                txtSubTotal.setDisabledTextColor(java.awt.Color.RED);
+                txtSubTotal.setText(String.valueOf(resultado));
+
+                double fletes = resultado * (0.015);
+                txtFletes.setDisabledTextColor(java.awt.Color.RED);
+                txtFletes.setText(String.valueOf(fletes));
+
+                double iva = (resultado + fletes) * 0.19;
+                txtIva.setDisabledTextColor(java.awt.Color.RED);
+                txtIva.setText(String.valueOf(iva));
+
+                
+
+                double granTotal = resultado + fletes + iva;
+                //numero en formato monetario...
+                Locale locale = new Locale("es", "AR");
+                NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+
+                txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
+                txtGranTotal.setText(nf.format(granTotal));
+                //txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
+                //txtGranTotal.setText(String.valueOf(granTotal));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
+            }
+        } while (c < ta);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void txtSubTotalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSubTotalKeyReleased
+
+        /*    
+         String dato = txtSubTotal.getText();
+         //String dato2 = txtValorUnitario.getText();
+         if (dato.equals("") == false && dato.matches("[0-9]*")) {
+         double SubTotal = Double.parseDouble(dato);
+         //int valor_unitario = Integer.parseInt(dato2);
+
+         double total = SubTotal * (0.015);
+         txtFletes.setDisabledTextColor(java.awt.Color.BLUE);
+         txtFletes.setText("" + total);
+         }
+         */
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSubTotalKeyReleased
+
+    private void tbProductosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbProductosKeyReleased
+
+        
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_tbProductosKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1145,6 +1313,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1193,10 +1364,6 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField numero;
-    private javax.swing.JTextField numero1;
-    private javax.swing.JTextField numero10;
-    private javax.swing.JTextField numero3;
-    private javax.swing.JTextField numero7;
     private javax.swing.JPanel panelProducto;
     private javax.swing.JPanel panelServicio;
     private javax.swing.JTable tbProductos;
@@ -1206,9 +1373,14 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JTextField txtCuidadCliente;
     private javax.swing.JTextArea txtDescripcion;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private javax.swing.JTextField txtFletes;
+    private javax.swing.JTextField txtGranTotal;
     private javax.swing.JTextField txtIdCliente;
+    private javax.swing.JTextField txtIdProducto;
     private javax.swing.JTextField txtItem;
+    private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtPais;
+    private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtValorUnitario;
     // End of variables declaration//GEN-END:variables

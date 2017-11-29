@@ -17,14 +17,15 @@ public class productos {
     String item;
     int cantidad;
     String descripcion;
-    double valor_unitario;
-    double valor_total;
+    int valor_unitario;
+    int valor_total;
+    String estado;
     int id_cli;
 
     public productos() {
     }
 
-    public productos(int id_producto, String numero, String fecha, String item, int cantidad, String descripcion, double valor_unitario, double valor_total, int id_cli) {
+    public productos(int id_producto, String numero, String fecha, String item, int cantidad, String descripcion, int valor_unitario, int valor_total, String estado,int id_cli) {
         this.id_producto = id_producto;
         this.numero = numero;
         this.fecha = fecha;
@@ -33,6 +34,7 @@ public class productos {
         this.descripcion = descripcion;
         this.valor_unitario = valor_unitario;
         this.valor_total = valor_total;
+        this.estado = estado;
         this.id_cli = id_cli;
     }
 
@@ -88,7 +90,7 @@ public class productos {
         return valor_unitario;
     }
 
-    public void setValor_unitario(double valor_unitario) {
+    public void setValor_unitario(int valor_unitario) {
         this.valor_unitario = valor_unitario;
     }
 
@@ -96,10 +98,18 @@ public class productos {
         return valor_total;
     }
 
-    public void setValor_total(double valor_total) {
+    public void setValor_total(int valor_total) {
         this.valor_total = valor_total;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     public int getId_cli() {
         return id_cli;
     }
