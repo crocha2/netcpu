@@ -638,6 +638,7 @@ public class Entrada extends javax.swing.JFrame {
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
 
+        
         if (txtEmpresa.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "DEBE DILIGENCIAR EL FORMULARIO");
         }

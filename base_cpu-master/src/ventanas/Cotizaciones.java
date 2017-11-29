@@ -2,20 +2,31 @@ package ventanas;
 
 import clasesPrincipales.Entradas;
 import clasesPrincipales.clientes;
+import clasesPrincipales.productos;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import conMySql.GenerarNumeros;
+import conMySql.productosMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.DocFlavor;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public final class Cotizaciones extends javax.swing.JFrame {
+
+    ArrayList<productos> producto;
+    productosMySql dbProducto = new productosMySql();
 
     public Cotizaciones() {
         initComponents();
@@ -34,6 +45,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         colorNumero();
         autoCompleteCliente();
         cero();
+        traerNumeros();
         txtItem.setText("1");
     }
 
@@ -67,6 +79,144 @@ public final class Cotizaciones extends javax.swing.JFrame {
     public void LimpiarCliente() {
         txtCuidadCliente.setText("");
         txtIdCliente.setText("");
+    }
+
+    public void LimpiarPanelProductos() {
+        txtCantidad.setText("0");
+        txtValorUnitario.setText("0");
+        txtTotal.setText("");
+        txtDescripcion.setText("");
+        txtCantidad.requestFocus();
+    }
+
+    public void ListarProductos() {
+        producto = dbProducto.ListProductos();
+        DefaultTableModel tb = (DefaultTableModel) tbProductos.getModel();
+        for (productos pro : producto) {
+            tb.addRow(new Object[]{pro.getItem(), pro.getCantidad(), pro.getDescripcion(), pro.getValor_unitario(), pro.getValor_total(), pro.getId_producto()});
+        }
+    }
+
+    public void LimpiarProductos() {
+        DefaultTableModel tb = (DefaultTableModel) tbProductos.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
+    }
+
+    void traerNumeros() {
+        int j;
+        String c = "";
+        String SQL = "SELECT MAX(numero) AS numero FROM cotizaciones";
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            if (rs.next()) {
+                c = rs.getString("numero");
+            }
+            if (c == null) {
+                numero.setText("01-000001");
+                System.out.println(c);
+            } else {
+                char n1 = c.charAt(0);
+                char n2 = c.charAt(1);
+                String junto = "" + n1 + n2;
+
+                if (junto.equals("01")) {
+                    cmbConcepto.setSelectedIndex(0);
+                    char r1 = c.charAt(3);
+                    char r2 = c.charAt(4);
+                    char r3 = c.charAt(5);
+                    char r4 = c.charAt(6);
+                    char r5 = c.charAt(7);
+                    char r6 = c.charAt(8);
+
+                    System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6);
+                    String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6;
+                    int var = Integer.parseInt(juntar);
+                    String concepto = "01";
+                    System.out.println(concepto + var);
+
+                    System.out.println("\n lo que vale: " + var);
+                    GenerarNumeros gen = new GenerarNumeros();
+                    gen.generarCotiza(var, concepto);
+
+                    numero.setDisabledTextColor(java.awt.Color.BLUE);
+                    numero.setText(gen.serie());
+                }
+                if (junto.equals("02")) {
+                    cmbConcepto.setSelectedIndex(1);
+                    char r1 = c.charAt(3);
+                    char r2 = c.charAt(4);
+                    char r3 = c.charAt(5);
+                    char r4 = c.charAt(6);
+                    char r5 = c.charAt(7);
+                    char r6 = c.charAt(8);
+
+                    System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6);
+                    String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6;
+                    int var = Integer.parseInt(juntar);
+                    String concepto = "02";
+                    System.out.println(concepto + var);
+
+                    System.out.println("\n lo que vale: " + var);
+                    GenerarNumeros gen = new GenerarNumeros();
+                    gen.generarCotiza(var, concepto);
+
+                    numero.setDisabledTextColor(java.awt.Color.BLUE);
+                    numero.setText(gen.serie());
+                }
+                if (junto.equals("03")) {
+                    cmbConcepto.setSelectedIndex(2);
+                    char r1 = c.charAt(3);
+                    char r2 = c.charAt(4);
+                    char r3 = c.charAt(5);
+                    char r4 = c.charAt(6);
+                    char r5 = c.charAt(7);
+                    char r6 = c.charAt(8);
+
+                    System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6);
+                    String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6;
+                    int var = Integer.parseInt(juntar);
+                    String concepto = "03";
+                    System.out.println(concepto + var);
+
+                    System.out.println("\n lo que vale: " + var);
+                    GenerarNumeros gen = new GenerarNumeros();
+                    gen.generarCotiza(var, concepto);
+
+                    numero.setDisabledTextColor(java.awt.Color.BLUE);
+                    numero.setText(gen.serie());
+                }
+                if (junto.equals("04")) {
+                    cmbConcepto.setSelectedIndex(3);
+                    char r1 = c.charAt(3);
+                    char r2 = c.charAt(4);
+                    char r3 = c.charAt(5);
+                    char r4 = c.charAt(6);
+                    char r5 = c.charAt(7);
+                    char r6 = c.charAt(8);
+
+                    System.out.println("" + r1 + r2 + r3 + r4 + r5 + r6);
+                    String juntar = "" + r1 + r2 + r3 + r4 + r5 + r6;
+                    int var = Integer.parseInt(juntar);
+                    String concepto = "04";
+                    System.out.println(concepto + var);
+
+                    System.out.println("\n lo que vale: " + var);
+                    GenerarNumeros gen = new GenerarNumeros();
+                    gen.generarCotiza(var, concepto);
+
+                    numero.setDisabledTextColor(java.awt.Color.BLUE);
+                    numero.setText(gen.serie());
+                }
+            }
+
+        } catch (Exception e) {
+        }
+
     }
 
     void numeros() {
@@ -252,7 +402,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         txtIdCliente = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbProductos = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -267,6 +417,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         txtItem = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         panelProducto = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -299,7 +450,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
         numero1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtComentario = new javax.swing.JTextArea();
+        jLabel23 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -310,7 +463,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("COTIZACIÓN");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(310, 10, 410, 70);
+        jLabel2.setBounds(460, 10, 410, 70);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Concepto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), java.awt.Color.blue)); // NOI18N
         jPanel2.setLayout(null);
@@ -331,15 +484,15 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 102));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 153));
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(20, 90, 890, 10);
+        jSeparator1.setBounds(20, 90, 1270, 10);
         jPanel1.add(numero);
-        numero.setBounds(750, 50, 160, 30);
+        numero.setBounds(1130, 50, 160, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("No.");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(710, 60, 40, 20);
+        jLabel3.setBounds(1090, 60, 40, 20);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Generales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel4.setLayout(null);
@@ -348,19 +501,19 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 153));
         jLabel8.setText("CIUDAD");
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(720, 20, 80, 20);
+        jLabel8.setBounds(1040, 20, 80, 20);
 
         txtFecha.setDateFormatString("yyyy-MM-dd");
         jPanel4.add(txtFecha);
-        txtFecha.setBounds(410, 40, 140, 30);
+        txtFecha.setBounds(600, 40, 200, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 153));
         jLabel9.setText("FECHA");
         jPanel4.add(jLabel9);
-        jLabel9.setBounds(410, 20, 40, 20);
+        jLabel9.setBounds(600, 20, 40, 20);
         jPanel4.add(txtCuidadCliente);
-        txtCuidadCliente.setBounds(720, 40, 160, 30);
+        txtCuidadCliente.setBounds(1040, 40, 210, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 153));
@@ -372,11 +525,11 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 153));
         jLabel11.setText("PAIS");
         jPanel4.add(jLabel11);
-        jLabel11.setBounds(560, 20, 80, 20);
+        jLabel11.setBounds(820, 20, 80, 20);
         jPanel4.add(txtCliente);
-        txtCliente.setBounds(10, 40, 280, 30);
+        txtCliente.setBounds(10, 40, 440, 30);
         jPanel4.add(txtPais);
-        txtPais.setBounds(560, 40, 150, 30);
+        txtPais.setBounds(820, 40, 200, 30);
 
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton10.setText(">>");
@@ -386,14 +539,14 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton10);
-        jButton10.setBounds(290, 40, 60, 30);
+        jButton10.setBounds(460, 40, 60, 30);
         jPanel4.add(txtIdCliente);
-        txtIdCliente.setBounds(350, 40, 50, 30);
+        txtIdCliente.setBounds(520, 40, 50, 30);
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(20, 110, 890, 90);
+        jPanel4.setBounds(20, 100, 1270, 90);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -401,10 +554,16 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 "ITEM", "CANT", "DESCRIPCIÓN", "V.UNITARIO", "V.TOTAL", "ID"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        tbProductos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tbProductos);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(420, 210, 490, 190);
+        jScrollPane3.setBounds(500, 200, 640, 250);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos De Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel5.setLayout(null);
@@ -413,7 +572,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 0, 153));
         jLabel12.setText("ITEM");
         jPanel5.add(jLabel12);
-        jLabel12.setBounds(90, 220, 40, 20);
+        jLabel12.setBounds(20, 190, 40, 20);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
@@ -423,7 +582,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel5.add(txtTotal);
-        txtTotal.setBounds(220, 40, 150, 30);
+        txtTotal.setBounds(290, 40, 160, 30);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 153));
@@ -435,7 +594,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(0, 0, 153));
         jLabel15.setText("V. UNITARIO");
         jPanel5.add(jLabel15);
-        jLabel15.setBounds(80, 20, 80, 20);
+        jLabel15.setBounds(130, 20, 80, 20);
 
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -446,7 +605,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel5.add(txtCantidad);
-        txtCantidad.setBounds(20, 40, 50, 30);
+        txtCantidad.setBounds(20, 40, 80, 30);
 
         txtValorUnitario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -457,14 +616,14 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel5.add(txtValorUnitario);
-        txtValorUnitario.setBounds(80, 40, 130, 30);
+        txtValorUnitario.setBounds(130, 40, 140, 30);
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         jScrollPane4.setViewportView(txtDescripcion);
 
         jPanel5.add(jScrollPane4);
-        jScrollPane4.setBounds(20, 100, 350, 96);
+        jScrollPane4.setBounds(20, 100, 430, 90);
 
         jButton5.setBackground(new java.awt.Color(0, 153, 51));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -476,14 +635,19 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButton5);
-        jButton5.setBounds(160, 200, 100, 40);
+        jButton5.setBounds(90, 200, 140, 40);
 
         jButton6.setBackground(new java.awt.Color(0, 0, 153));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("EDITAR");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton6);
-        jButton6.setBounds(270, 200, 100, 40);
+        jButton6.setBounds(270, 200, 90, 40);
         jPanel5.add(txtItem);
         txtItem.setBounds(20, 210, 60, 30);
 
@@ -491,10 +655,17 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(0, 0, 153));
         jLabel21.setText("V. TOTAL");
         jPanel5.add(jLabel21);
-        jLabel21.setBounds(220, 20, 80, 20);
+        jLabel21.setBounds(290, 20, 80, 20);
+
+        jButton4.setBackground(new java.awt.Color(204, 0, 0));
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("QUITAR");
+        jPanel5.add(jButton4);
+        jButton4.setBounds(360, 200, 90, 40);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(20, 210, 390, 250);
+        jPanel5.setBounds(20, 200, 470, 250);
 
         panelProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Del Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), java.awt.Color.red)); // NOI18N
         panelProducto.setLayout(null);
@@ -545,7 +716,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jComboBox5.setBounds(20, 140, 330, 20);
 
         jPanel1.add(panelProducto);
-        panelProducto.setBounds(20, 470, 390, 180);
+        panelProducto.setBounds(620, 470, 390, 180);
 
         panelServicio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Del Servicio", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), java.awt.Color.red)); // NOI18N
         panelServicio.setLayout(null);
@@ -601,7 +772,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jComboBox2.setBounds(20, 140, 320, 20);
 
         jPanel1.add(panelServicio);
-        panelServicio.setBounds(20, 470, 390, 180);
+        panelServicio.setBounds(620, 470, 390, 180);
         jPanel1.add(jSeparator2);
         jSeparator2.setBounds(670, 550, 240, 0);
 
@@ -630,9 +801,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(0, 153, 51));
         jLabel18.setText("GRAN TOTAL");
         jPanel3.add(jLabel18);
-        jLabel18.setBounds(10, 140, 80, 20);
+        jLabel18.setBounds(10, 120, 80, 20);
         jPanel3.add(numero10);
-        numero10.setBounds(100, 130, 160, 30);
+        numero10.setBounds(100, 110, 160, 30);
         jPanel3.add(numero7);
         numero7.setBounds(100, 70, 160, 30);
         jPanel3.add(numero3);
@@ -641,37 +812,41 @@ public final class Cotizaciones extends javax.swing.JFrame {
         numero1.setBounds(100, 10, 160, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(640, 410, 270, 170);
+        jPanel3.setBounds(1030, 470, 270, 150);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Bienvenido.png"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(440, 490, 160, 140);
+        jLabel1.setBounds(1160, 340, 150, 120);
 
         jButton11.setBackground(new java.awt.Color(0, 0, 102));
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("COTIZAR");
         jPanel1.add(jButton11);
-        jButton11.setBounds(710, 600, 200, 50);
+        jButton11.setBounds(1030, 630, 270, 40);
 
-        jButton4.setBackground(new java.awt.Color(204, 0, 0));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("QUITAR");
-        jPanel1.add(jButton4);
-        jButton4.setBounds(420, 410, 110, 40);
+        txtComentario.setColumns(20);
+        txtComentario.setRows(5);
+        jScrollPane1.setViewportView(txtComentario);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(20, 480, 590, 170);
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel23.setText("COMENTARIO");
+        jPanel1.add(jLabel23);
+        jLabel23.setBounds(20, 460, 120, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1312, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
         );
 
         pack();
@@ -756,16 +931,15 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
         String dato = txtCantidad.getText();
         String dato2 = txtValorUnitario.getText();
-        
-            if (dato.equals("") == false && dato.matches("[0-9]*")&&(dato2.equals("") == false && dato2.matches("[0-9]*"))) {
-                int cant = Integer.parseInt(dato);
-                int valor_unitario = Integer.parseInt(dato2);
 
-                int total = cant * valor_unitario;
-                txtTotal.setDisabledTextColor(java.awt.Color.BLUE);
-                txtTotal.setText("" + total);
-            }
-        
+        if (dato.equals("") == false && dato.matches("[0-9]*") && (dato2.equals("") == false && dato2.matches("[0-9]*"))) {
+            int cant = Integer.parseInt(dato);
+            int valor_unitario = Integer.parseInt(dato2);
+
+            int total = cant * valor_unitario;
+            txtTotal.setDisabledTextColor(java.awt.Color.BLUE);
+            txtTotal.setText("" + total);
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantidadKeyReleased
@@ -774,30 +948,162 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
         String dato = txtCantidad.getText();
         String dato2 = txtValorUnitario.getText();
+
+        if (dato.equals("") == false && dato.matches("[0-9]*") && (dato2.equals("") == false && dato2.matches("[0-9]*"))) {
+            int cant = Integer.parseInt(dato);
+            int valor_unitario = Integer.parseInt(dato2);
+
+            int total = cant * valor_unitario;
+            txtTotal.setDisabledTextColor(java.awt.Color.BLUE);
+            txtTotal.setText("" + total);
+        }
+
+        /*
+         String dato = txtCantidad.getText();
+         String dato2 = txtValorUnitario.getText();
         
-            if (dato.equals("") == false && dato.matches("[0-9]*")&&(dato2.equals("") == false && dato2.matches("[0-9]*"))) {
-                int cant = Integer.parseInt(dato);
-                int valor_unitario = Integer.parseInt(dato2);
+         if (dato.equals("") == false && dato.matches("[0-9]*")&&(dato2.equals("") == false && dato2.matches("[0-9]*"))) {
+         double cant = Integer.parseInt(dato);
+         double valor_unitario = Integer.parseInt(dato2);
+         double total = cant * valor_unitario;
+         //String numero = String.valueOf(total);
+                
+                
+         //numero en formato monetario...
+         Locale locale = new Locale("es","AR");
+         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+                
+         txtTotal.setDisabledTextColor(java.awt.Color.BLUE);
+         //txtTotal.setText("" + total);
+         txtTotal.setText(nf.format(total));
+                
+         double num = Double.parseDouble(txtTotal.getText());
+         System.out.println(""+num);
+                
+                
+         //txtTotal.setText("" + nf.format(total));
+         //System.out.println("El monto a pagar es de: " + nf.format(total));
+        
+         }
+         */
+        /*
+         double monto = 500000.00;
 
-                int total = cant * valor_unitario;
-                txtTotal.setDisabledTextColor(java.awt.Color.BLUE);
-                txtTotal.setText("" + total);
-            }
-       
+         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.getDefault());
 
+         System.out.println("El monto a pagar es de: " + nf.format(monto));
+         */
 // TODO add your handling code here:
     }//GEN-LAST:event_txtValorUnitarioKeyReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        int cont = 1;
-        int dato = Integer.parseInt(txtItem.getText());
-        
-        int item = cont + dato;
-        txtItem.setText(""+item);
-        
+        if (txtIdCliente.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "DEBE SELECCIONAR UN CLIENTE");
+        }
+        if (txtCantidad.getText().equals("") || txtValorUnitario.getText().equals("") || txtDescripcion.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "DEBE GESTIONAR TODOS LOS DATOS DE PRODUCTO");
+        } else {
+            try {
+
+                productos pro = new productos();
+
+                pro.setNumero(numero.getText());
+
+                String formato = txtFecha.getDateFormatString();
+                Date date = txtFecha.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String dato = String.valueOf(sdf.format(date));
+                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+                pro.setFecha(dato);
+
+                pro.setItem(txtItem.getText());
+                pro.setCantidad(Integer.parseInt(txtCantidad.getText()));
+                pro.setDescripcion(txtDescripcion.getText().toUpperCase());
+                pro.setValor_unitario(Double.parseDouble(txtValorUnitario.getText()));
+                pro.setValor_total(Double.parseDouble(txtTotal.getText()));
+                pro.setId_cli(Integer.parseInt(txtIdCliente.getText()));
+
+                dbProducto.insertarProducto(pro);
+
+                int cont = 1;
+                int aux = Integer.parseInt(txtItem.getText());
+
+                int item = cont + aux;
+                txtItem.setText("" + item);
+
+                LimpiarPanelProductos();
+                LimpiarProductos();
+                ListarProductos();
+
+            } catch (Exception e) {
+                System.err.println("error" + e);
+            }
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+        if (txtIdCliente.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "DEBE SELECCIONAR UN CLIENTE");
+        }
+        if (txtCantidad.getText().equals("") || txtValorUnitario.getText().equals("") || txtDescripcion.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "DEBE GESTIONAR TODOS LOS DATOS DE PRODUCTO");
+        } else {
+            try {
+
+                productos pro = new productos();
+
+                pro.setNumero(numero.getText());
+
+                String formato = txtFecha.getDateFormatString();
+                Date date = txtFecha.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String dato = String.valueOf(sdf.format(date));
+                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
+                pro.setFecha(dato);
+
+                pro.setItem(txtItem.getText());
+                pro.setCantidad(Integer.parseInt(txtCantidad.getText()));
+                pro.setDescripcion(txtDescripcion.getText().toUpperCase());
+                pro.setValor_unitario(Double.parseDouble(txtValorUnitario.getText()));
+                pro.setValor_total(Double.parseDouble(txtTotal.getText()));
+                pro.setId_cli(Integer.parseInt(txtIdCliente.getText()));
+
+                dbProducto.insertarProducto(pro);
+
+                int cont = 1;
+                int aux = Integer.parseInt(txtItem.getText());
+
+                int item = cont + aux;
+                txtItem.setText("" + item);
+
+                LimpiarPanelProductos();
+                LimpiarProductos();
+                ListarProductos();
+
+            } catch (Exception e) {
+                System.err.println("error" + e);
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void tbProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseClicked
+
+        /*
+        int seleccion = tbProductos.getSelectedRow();
+
+        txtId.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 0)));
+        txtNumeroCont.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 1)));
+        txtFechaInicial.setText(String.valueOf(tabla_contrato.getValueAt(seleccion, 2)));
+        */
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbProductosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -868,6 +1174,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -880,11 +1187,11 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField numero;
     private javax.swing.JTextField numero1;
     private javax.swing.JTextField numero10;
@@ -892,8 +1199,10 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JTextField numero7;
     private javax.swing.JPanel panelProducto;
     private javax.swing.JPanel panelServicio;
+    private javax.swing.JTable tbProductos;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCliente;
+    private javax.swing.JTextArea txtComentario;
     private javax.swing.JTextField txtCuidadCliente;
     private javax.swing.JTextArea txtDescripcion;
     private com.toedter.calendar.JDateChooser txtFecha;
