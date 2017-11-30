@@ -901,7 +901,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton14);
-        jButton14.setBounds(1150, 420, 150, 50);
+        jButton14.setBounds(1150, 400, 150, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1230,21 +1230,42 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 txtIva.setDisabledTextColor(java.awt.Color.RED);
                 txtIva.setText(String.valueOf(iva));
 
-                
-
                 double granTotal = resultado + fletes + iva;
-                //numero en formato monetario...
-                Locale locale = new Locale("es", "AR");
-                NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
-
                 txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
-                txtGranTotal.setText(nf.format(granTotal));
+                txtGranTotal.setText(String.valueOf(granTotal));
+                
                 //txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
                 //txtGranTotal.setText(String.valueOf(granTotal));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
             }
         } while (c < ta);
+       
+        double sub = Double.parseDouble(txtSubTotal.getText());
+        double fle = Double.parseDouble(txtFletes.getText());
+        double iva = Double.parseDouble(txtIva.getText());
+        double GranTotal = Double.parseDouble(txtGranTotal.getText());
+        
+        Locale locale = new Locale("es", "AR");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
+        txtGranTotal.setText(nf.format(GranTotal));
+   
+        Locale locale2 = new Locale("es", "AR");
+        NumberFormat nf2 = NumberFormat.getCurrencyInstance(locale2);
+        txtIva.setDisabledTextColor(java.awt.Color.RED);
+        txtIva.setText(nf2.format(iva));
+        
+        Locale locale3 = new Locale("es", "AR");
+        NumberFormat nf3 = NumberFormat.getCurrencyInstance(locale3);
+        txtFletes.setDisabledTextColor(java.awt.Color.RED);
+        txtFletes.setText(nf2.format(fle));
+        
+        Locale locale4 = new Locale("es", "AR");
+        NumberFormat nf4 = NumberFormat.getCurrencyInstance(locale4);
+        txtSubTotal.setDisabledTextColor(java.awt.Color.RED);
+        txtSubTotal.setText(nf2.format(sub));
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
