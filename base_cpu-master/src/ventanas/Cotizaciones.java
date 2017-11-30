@@ -2,9 +2,11 @@ package ventanas;
 
 import clasesPrincipales.Entradas;
 import clasesPrincipales.clientes;
+import clasesPrincipales.cotizaciones;
 import clasesPrincipales.productos;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import conMySql.GenerarNumeros;
+import conMySql.cotizaMySql;
 import conMySql.productosMySql;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,6 +29,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
     ArrayList<productos> producto;
     productosMySql dbProducto = new productosMySql();
+    
+    ArrayList<cotizaciones> cotizacion;
+    cotizaMySql dbCotiza = new cotizaMySql();
 
     public Cotizaciones() {
         initComponents();
@@ -875,6 +880,11 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("COTIZAR");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton11);
         jButton11.setBounds(1030, 630, 270, 40);
 
@@ -1293,6 +1303,27 @@ public final class Cotizaciones extends javax.swing.JFrame {
         
 // TODO add your handling code here:
     }//GEN-LAST:event_tbProductosKeyReleased
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+        if(txtIdCliente.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un cliente para cotizar");
+        }
+        if(txtSubTotal.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Presione el boton + para calcular cotización");
+        }else{
+            try {
+                cotizaciones co = new cotizaciones();
+                
+                co.setNumero(numero.getText());
+                
+                
+            } catch (Exception e) {
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
