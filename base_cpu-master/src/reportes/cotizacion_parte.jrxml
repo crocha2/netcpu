@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+     productos.`item` AS productos_item,
+     productos.`cantidad` AS productos_cantidad,
+     productos.`descripcion` AS productos_descripcion,
+     productos.`valor_unitario` AS productos_valor_unitario,
+     productos.`valor_total` AS productos_valor_total,
+     cotizaciones.`fecha_coti` AS cotizaciones_fecha_coti,
+     cotizaciones.`numero` AS cotizaciones_numero,
+     cotizaciones.`cliente_coti` AS cotizaciones_cliente_coti,
+     cotizaciones.`ciudad_coti` AS cotizaciones_ciudad_coti,
+     cotizaciones.`pais_coti` AS cotizaciones_pais_coti,
+     cotizaciones.`comentario_1` AS cotizaciones_comentario_1,
+     cotizaciones.`sub_total` AS cotizaciones_sub_total,
+     cotizaciones.`fletes` AS cotizaciones_fletes,
+     cotizaciones.`iva` AS cotizaciones_iva,
+     cotizaciones.`gran_total` AS cotizaciones_gran_total,
+     cotizaciones.`validez_oferta` AS cotizaciones_validez_oferta,
+     cotizaciones.`formato_pago` AS cotizaciones_formato_pago,
+     cotizaciones.`tiempo_entrega` AS cotizaciones_tiempo_entrega
+FROM
+     `productos` productos,
+     `cotizaciones` cotizaciones]]>
+	</queryString>
+	<field name="productos_item" class="java.lang.String"/>
+	<field name="productos_cantidad" class="java.lang.Integer"/>
+	<field name="productos_descripcion" class="java.lang.String"/>
+	<field name="productos_valor_unitario" class="java.lang.Integer"/>
+	<field name="productos_valor_total" class="java.lang.Integer"/>
+	<field name="cotizaciones_fecha_coti" class="java.sql.Date"/>
+	<field name="cotizaciones_numero" class="java.lang.String"/>
+	<field name="cotizaciones_cliente_coti" class="java.lang.String"/>
+	<field name="cotizaciones_ciudad_coti" class="java.lang.String"/>
+	<field name="cotizaciones_pais_coti" class="java.lang.String"/>
+	<field name="cotizaciones_comentario_1" class="java.lang.String"/>
+	<field name="cotizaciones_sub_total" class="java.lang.Integer"/>
+	<field name="cotizaciones_fletes" class="java.lang.Integer"/>
+	<field name="cotizaciones_iva" class="java.lang.Integer"/>
+	<field name="cotizaciones_gran_total" class="java.lang.Integer"/>
+	<field name="cotizaciones_validez_oferta" class="java.lang.String"/>
+	<field name="cotizaciones_formato_pago" class="java.lang.String"/>
+	<field name="cotizaciones_tiempo_entrega" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="254" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="233" width="552" height="21" forecolor="#000000" backcolor="#000066"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="407" y="1" width="144" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="2" y="4" width="109" height="77"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="111" y="12" width="379" height="69" forecolor="#003366"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPU  SYSTEM SERVICE S.A.S.
+NIT. 802012349-6
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="432" y="105" width="121" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cotizaciones_numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="105" width="157" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COTIZACION DE EQUIPOS: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="104" width="109" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BARRANQUILLA ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="111" y="104" width="101" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{cotizaciones_fecha_coti}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="2" y="0" width="555" height="18"/>
+				<staticText>
+					<reportElement style="Column header" x="48" y="0" width="48" height="18" forecolor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CANT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="96" y="0" width="282" height="18" forecolor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DESCRIPCIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="378" y="0" width="86" height="18" forecolor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VAL. UNIT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="465" y="0" width="88" height="18" forecolor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VAL.TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="48" height="18" forecolor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ITEM]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="89" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="47" y="0" width="48" height="18"/>
+				<textElement>
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{productos_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="95" y="0" width="285" height="18"/>
+				<textElement>
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{productos_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="380" y="0" width="86" height="18"/>
+				<textElement>
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{productos_valor_unitario}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="466" y="0" width="88" height="18"/>
+				<textElement>
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{productos_valor_total}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="2" y="0" width="48" height="18"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{productos_item}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="24" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
