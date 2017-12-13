@@ -122,27 +122,27 @@ public class GenerarNumeros {
         }
         if((this.dato >= 9999)&&(this.dato < 99999)){
             int can = cont+this.dato;
-            num = concepto+"-"+can;
+            num = concepto+"-0"+can;
         }
         if((this.dato >= 999)&&(this.dato < 9999)){
             int can = cont+this.dato;
-            num = concepto+"-"+can;
+            num = concepto+"-00"+can;
         }
         if((this.dato >= 99)&&(this.dato < 999)){
             int can = cont+this.dato;
-            num = concepto+"-"+can;
+            num = concepto+"-000"+can;
         }
         if((this.dato >= 9)&&(this.dato < 99)){
             int can = cont+this.dato;
-            num = concepto+"-"+can;
+            num = concepto+"-0000"+can;
         }
         if((this.dato >= 1)&&(this.dato < 9)){
             int can = cont+this.dato;
-            num = concepto+"-"+can;
+            num = concepto+"-00000"+can;
         }
         if(this.dato == 0){
             int can = cont+this.dato;
-            num = concepto+"-"+can;
+            num = concepto+"-00000"+can;
         }
     }
     
