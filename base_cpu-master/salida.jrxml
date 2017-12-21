@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="146"/>
 	<parameter name="nume" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -89,7 +89,7 @@ TEL: 3686813 – 3689219
 				<reportElement x="0" y="14" width="555" height="91"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="50" y="115" width="53" height="15"/>
+				<reportElement x="20" y="115" width="53" height="15"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -120,7 +120,7 @@ TEL: 3686813 – 3689219
 				<text><![CDATA[No Rem:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="254" y="115" width="97" height="15"/>
+				<reportElement x="230" y="115" width="121" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
@@ -170,7 +170,7 @@ TEL: 3686813 – 3689219
 				<text><![CDATA[CORREO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="198" y="115" width="56" height="15"/>
+				<reportElement x="174" y="115" width="56" height="15"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -189,7 +189,7 @@ TEL: 3686813 – 3689219
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{correo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="103" y="115" width="95" height="15"/>
+				<reportElement x="73" y="115" width="97" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{equipo}]]></textFieldExpression>
 			</textField>
@@ -359,26 +359,26 @@ TEL: 3686813 – 3689219
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{comentario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="50" y="521" width="53" height="17"/>
+				<reportElement x="20" y="521" width="53" height="17"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Equipo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="103" y="521" width="95" height="17"/>
+				<reportElement x="73" y="521" width="97" height="17"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{equipo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="198" y="521" width="56" height="17"/>
+				<reportElement x="174" y="521" width="56" height="17"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Modelo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="254" y="521" width="86" height="17"/>
+				<reportElement x="230" y="521" width="121" height="17"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
