@@ -389,6 +389,68 @@ public final class Cotizaciones extends javax.swing.JFrame {
         }
 
     }
+    
+    public void calcular(){
+        txtSubTotal.setText("0");
+        int ta = tbProductos.getRowCount();
+        System.out.println("filas: " + ta);
+        int c = 0;
+
+        do {
+            try {
+                int f = c++;
+                double num1 = Double.parseDouble(tbProductos.getValueAt(f, 4).toString());
+                String dato = txtSubTotal.getText();
+                double num2 = Double.parseDouble(dato);
+
+                double resultado = num1 + num2;
+                txtSubTotal.setDisabledTextColor(java.awt.Color.RED);
+                txtSubTotal.setText(String.valueOf(resultado));
+
+                double fletes = resultado * (0.015);
+                txtFletes.setDisabledTextColor(java.awt.Color.RED);
+                txtFletes.setText(String.valueOf(fletes));
+
+                double iva = (resultado + fletes) * 0.19;
+                txtIva.setDisabledTextColor(java.awt.Color.RED);
+                txtIva.setText(String.valueOf(iva));
+
+                double granTotal = resultado + fletes + iva;
+                txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
+                txtGranTotal.setText(String.valueOf(granTotal));
+                
+                //txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
+                //txtGranTotal.setText(String.valueOf(granTotal));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
+            }
+        } while (c < ta);
+       
+        double sub = Double.parseDouble(txtSubTotal.getText());
+        double fle = Double.parseDouble(txtFletes.getText());
+        double iva = Double.parseDouble(txtIva.getText());
+        double GranTotal = Double.parseDouble(txtGranTotal.getText());
+        
+        Locale locale = new Locale("es", "AR");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
+        txtGranTotal.setText(nf.format(GranTotal));
+   
+        Locale locale2 = new Locale("es", "AR");
+        NumberFormat nf2 = NumberFormat.getCurrencyInstance(locale2);
+        txtIva.setDisabledTextColor(java.awt.Color.RED);
+        txtIva.setText(nf2.format(iva));
+        
+        Locale locale3 = new Locale("es", "AR");
+        NumberFormat nf3 = NumberFormat.getCurrencyInstance(locale3);
+        txtFletes.setDisabledTextColor(java.awt.Color.RED);
+        txtFletes.setText(nf2.format(fle));
+        
+        Locale locale4 = new Locale("es", "AR");
+        NumberFormat nf4 = NumberFormat.getCurrencyInstance(locale4);
+        txtSubTotal.setDisabledTextColor(java.awt.Color.RED);
+        txtSubTotal.setText(nf2.format(sub));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -432,6 +494,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         txtIdProducto = new javax.swing.JTextField();
         jButton13 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
         panelProducto = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -601,6 +664,11 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel13.setBounds(20, 20, 50, 20);
 
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
         jPanel5.add(txtTotal);
         txtTotal.setBounds(290, 40, 160, 30);
 
@@ -701,13 +769,23 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jPanel5.add(txtIdProducto);
         txtIdProducto.setBounds(390, 70, 59, 20);
 
+        jButton13.setText("+");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
         jPanel5.add(jButton13);
-        jButton13.setBounds(80, 210, 30, 30);
+        jButton13.setBounds(80, 200, 40, 20);
+
+        jButton15.setText("-");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton15);
+        jButton15.setBounds(80, 220, 40, 20);
 
         jPanel1.add(jPanel5);
         jPanel5.setBounds(20, 200, 470, 250);
@@ -899,7 +977,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(0, 0, 153));
         jLabel23.setText("COMENTARIO");
         jPanel1.add(jLabel23);
-        jLabel23.setBounds(20, 460, 120, 20);
+        jLabel23.setBounds(20, 460, 100, 20);
 
         jButton14.setBackground(new java.awt.Color(255, 0, 51));
         jButton14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -1085,12 +1163,14 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
                 pro.setNumero(numero.getText());
 
+               
                 String formato = txtFecha.getDateFormatString();
                 Date date = txtFecha.getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
                 String dato = String.valueOf(sdf.format(date));
                 //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
                 pro.setFecha(dato);
+               
 
                 pro.setItem(txtItem.getText());
                 pro.setCantidad(Integer.parseInt(txtCantidad.getText()));
@@ -1111,7 +1191,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 LimpiarPanelProductos();
                 LimpiarProductos();
                 ListarProductos();
-
+                calcular();
             } catch (Exception e) {
                 System.err.println("error" + e);
             }
@@ -1144,6 +1224,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 LimpiarProductos();
                 ListarProductos();
                 txtItem.setVisible(true);
+                calcular();
 
             } catch (Exception e) {
                 System.err.println("error" + e);
@@ -1185,6 +1266,10 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 LimpiarProductos();
                 ListarProductos();
                 txtItem.setVisible(true);
+                txtSubTotal.setText("0");
+                txtFletes.setText("0");
+                txtIva.setText("0");
+                txtGranTotal.setText("0");
 
             } catch (Exception e) {
                 System.err.println("error" + e);
@@ -1216,67 +1301,8 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
 
-        txtSubTotal.setText("0");
-        int ta = tbProductos.getRowCount();
-        System.out.println("filas: " + ta);
-        int c = 0;
-
-        do {
-            try {
-                int f = c++;
-                double num1 = Double.parseDouble(tbProductos.getValueAt(f, 4).toString());
-                String dato = txtSubTotal.getText();
-                double num2 = Double.parseDouble(dato);
-
-                double resultado = num1 + num2;
-                txtSubTotal.setDisabledTextColor(java.awt.Color.RED);
-                txtSubTotal.setText(String.valueOf(resultado));
-
-                double fletes = resultado * (0.015);
-                txtFletes.setDisabledTextColor(java.awt.Color.RED);
-                txtFletes.setText(String.valueOf(fletes));
-
-                double iva = (resultado + fletes) * 0.19;
-                txtIva.setDisabledTextColor(java.awt.Color.RED);
-                txtIva.setText(String.valueOf(iva));
-
-                double granTotal = resultado + fletes + iva;
-                txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
-                txtGranTotal.setText(String.valueOf(granTotal));
-                
-                //txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
-                //txtGranTotal.setText(String.valueOf(granTotal));
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
-            }
-        } while (c < ta);
-       
-        double sub = Double.parseDouble(txtSubTotal.getText());
-        double fle = Double.parseDouble(txtFletes.getText());
-        double iva = Double.parseDouble(txtIva.getText());
-        double GranTotal = Double.parseDouble(txtGranTotal.getText());
+        calcular();
         
-        Locale locale = new Locale("es", "AR");
-        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
-        txtGranTotal.setDisabledTextColor(java.awt.Color.RED);
-        txtGranTotal.setText(nf.format(GranTotal));
-   
-        Locale locale2 = new Locale("es", "AR");
-        NumberFormat nf2 = NumberFormat.getCurrencyInstance(locale2);
-        txtIva.setDisabledTextColor(java.awt.Color.RED);
-        txtIva.setText(nf2.format(iva));
-        
-        Locale locale3 = new Locale("es", "AR");
-        NumberFormat nf3 = NumberFormat.getCurrencyInstance(locale3);
-        txtFletes.setDisabledTextColor(java.awt.Color.RED);
-        txtFletes.setText(nf2.format(fle));
-        
-        Locale locale4 = new Locale("es", "AR");
-        NumberFormat nf4 = NumberFormat.getCurrencyInstance(locale4);
-        txtSubTotal.setDisabledTextColor(java.awt.Color.RED);
-        txtSubTotal.setText(nf2.format(sub));
-        
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -1325,6 +1351,25 @@ public final class Cotizaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+
+        int cont = 1;
+        int aux = Integer.parseInt(txtItem.getText());
+        
+        if (aux==1) {
+            txtItem.setText("" + 1);
+        }else{
+            int item = aux - cont;
+        txtItem.setText("" + item);
+        }
+  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1368,6 +1413,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
