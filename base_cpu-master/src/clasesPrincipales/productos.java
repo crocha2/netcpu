@@ -76,7 +76,7 @@ public class productos {
         this.descripcion = descripcion;
     }
 
-    public double getValor_unitario() {
+    public int getValor_unitario() {
         return valor_unitario;
     }
 
@@ -84,7 +84,7 @@ public class productos {
         this.valor_unitario = valor_unitario;
     }
 
-    public double getValor_total() {
+    public int getValor_total() {
         return valor_total;
     }
 
@@ -99,7 +99,7 @@ public class productos {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     public int getId_cli() {
         return id_cli;
     }
@@ -107,7 +107,7 @@ public class productos {
     public void setId_cli(int id_cli) {
         this.id_cli = id_cli;
     }
-    
+
     
     
 }

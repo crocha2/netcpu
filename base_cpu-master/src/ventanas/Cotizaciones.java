@@ -679,7 +679,6 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 "ITEM", "CANT", "DESCRIPCIÓN", "V.UNITARIO", "V.TOTAL", "ID"
             }
         ));
-        tbProductos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbProductosMouseClicked(evt);
@@ -784,7 +783,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jPanel5.add(jButton6);
         jButton6.setBounds(270, 200, 90, 40);
         jPanel5.add(txtItem);
-        txtItem.setBounds(20, 210, 60, 30);
+        txtItem.setBounds(20, 210, 50, 30);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 153));
@@ -804,6 +803,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jPanel5.add(jButton4);
         jButton4.setBounds(360, 200, 90, 40);
 
+        jButton12.setBackground(new java.awt.Color(255, 255, 102));
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton12.setText("...");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -816,6 +816,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jPanel5.add(txtIdProducto);
         txtIdProducto.setBounds(390, 70, 59, 20);
 
+        jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton13.setText("+");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -823,8 +824,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButton13);
-        jButton13.setBounds(80, 200, 40, 20);
+        jButton13.setBounds(70, 200, 50, 20);
 
+        jButton15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton15.setText("-");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -832,7 +834,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButton15);
-        jButton15.setBounds(80, 220, 40, 20);
+        jButton15.setBounds(70, 220, 50, 20);
 
         jPanel1.add(jPanel5);
         jPanel5.setBounds(20, 200, 470, 250);
@@ -1250,14 +1252,13 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
                 productos pro = new productos();
 
+                pro.setItem(txtItem.getText());
                 pro.setCantidad(Integer.parseInt(txtCantidad.getText()));
                 pro.setDescripcion(txtDescripcion.getText().toUpperCase());
                 pro.setValor_unitario(Integer.parseInt(txtValorUnitario.getText()));
                 pro.setValor_total(Integer.parseInt(txtTotal.getText()));
                 pro.setId_producto(Integer.parseInt(txtIdProducto.getText()));
-                pro.setItem(txtItem.getText());
                 
-
                 dbProducto.EditarProducto(pro);
 
                 LimpiarPanelProductos();
@@ -1267,7 +1268,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 calcular();
 
             } catch (Exception e) {
-                System.err.println("error" + e);
+                JOptionPane.showMessageDialog(this, e);
             }
         }
 
@@ -1278,15 +1279,13 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
         int seleccion = tbProductos.getSelectedRow();
 
+        txtItem.setText(String.valueOf(tbProductos.getValueAt(seleccion, 0)));
         txtCantidad.setText(String.valueOf(tbProductos.getValueAt(seleccion, 1)));
         txtDescripcion.setText(String.valueOf(tbProductos.getValueAt(seleccion, 2)));
         txtValorUnitario.setText(String.valueOf(tbProductos.getValueAt(seleccion, 3)));
         txtTotal.setText(String.valueOf(tbProductos.getValueAt(seleccion, 4)));
         txtIdProducto.setText(String.valueOf(tbProductos.getValueAt(seleccion, 5)));
-        txtItem.setText(String.valueOf(tbProductos.getValueAt(seleccion, 0)));
         
-        txtItem.setVisible(true);
-
         // TODO add your handling code here:
     }//GEN-LAST:event_tbProductosMouseClicked
 

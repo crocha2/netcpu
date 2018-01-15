@@ -68,8 +68,8 @@ public class productosMySql {
             pst.setString(2, pro.getItem());
             pst.setInt(3, pro.getCantidad());
             pst.setString(4, pro.getDescripcion());
-            pst.setDouble(5, pro.getValor_unitario());
-            pst.setDouble(6, pro.getValor_total());
+            pst.setInt(5, pro.getValor_unitario());
+            pst.setInt(6, pro.getValor_total());
             pst.setString(7, pro.getEstado());
             pst.setInt(8, pro.getId_cli());
             pst.executeUpdate();
