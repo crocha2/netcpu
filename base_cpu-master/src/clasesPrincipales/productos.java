@@ -13,7 +13,6 @@ public class productos {
     
     int id_producto;
     String numero;
-    String fecha;
     String item;
     int cantidad;
     String descripcion;
@@ -25,10 +24,9 @@ public class productos {
     public productos() {
     }
 
-    public productos(int id_producto, String numero, String fecha, String item, int cantidad, String descripcion, int valor_unitario, int valor_total, String estado,int id_cli) {
+    public productos(int id_producto, String numero, String item, int cantidad, String descripcion, int valor_unitario, int valor_total, String estado,int id_cli) {
         this.id_producto = id_producto;
         this.numero = numero;
-        this.fecha = fecha;
         this.item = item;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
@@ -52,14 +50,6 @@ public class productos {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 
     public String getItem() {

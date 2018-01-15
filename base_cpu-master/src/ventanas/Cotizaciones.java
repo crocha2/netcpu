@@ -107,6 +107,53 @@ public final class Cotizaciones extends javax.swing.JFrame {
             tb.addRow(new Object[]{pro.getItem(), pro.getCantidad(), pro.getDescripcion(), pro.getValor_unitario(), pro.getValor_total(), pro.getId_producto()});
         }
     }
+    
+    public void traerClienteYNumero() {
+        
+        //int seleccion = tbProductos.getSelectedRow();
+        
+        
+        try {
+            int guardar = Integer.parseInt("" + tbProductos.getValueAt(0, 5));
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cn.createStatement();
+            PreparedStatement pst = cn.prepareStatement("SELECT p.id_cli FROM productos p WHERE id_producto = ?");
+            pst.setInt(1, guardar);
+            ResultSet rs = pst.executeQuery();
+            txtIdCliente.setText("");
+            if (rs.next()) {
+                clientes cl = new clientes();
+                txtIdCliente.setText(rs.getString("id_cli"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el cliente");
+            }
+            cn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error\n" + ex.getMessage());
+        }
+        
+        try {
+            int guar = Integer.parseInt(txtIdCliente.getText());
+            Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
+            Statement st = cn.createStatement();
+            PreparedStatement pst = cn.prepareStatement("SELECT c.nombre_cli, c.ciudad_cli FROM clientes c WHERE id_cli = ?");
+            pst.setInt(1, guar);
+            ResultSet rs = pst.executeQuery();
+            txtCliente.setText("");
+            txtCuidadCliente.setText("");
+            if (rs.next()) {
+                clientes cl = new clientes();
+                txtCliente.setText(rs.getString("nombre_cli"));
+                txtCuidadCliente.setText(rs.getString("ciudad_cli"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el cliente");
+            }
+            cn.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error\n" + ex.getMessage());
+        }
+        
+    }
 
     public void LimpiarProductos() {
         DefaultTableModel tb = (DefaultTableModel) tbProductos.getModel();
@@ -1162,16 +1209,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 productos pro = new productos();
 
                 pro.setNumero(numero.getText());
-
-               
-                String formato = txtFecha.getDateFormatString();
-                Date date = txtFecha.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String dato = String.valueOf(sdf.format(date));
-                //no_rem.setDisabledTextColor(java.awt.Color.BLUE);
-                pro.setFecha(dato);
-               
-
+             
                 pro.setItem(txtItem.getText());
                 pro.setCantidad(Integer.parseInt(txtCantidad.getText()));
                 pro.setDescripcion(txtDescripcion.getText().toUpperCase());
@@ -1217,6 +1255,8 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 pro.setValor_unitario(Integer.parseInt(txtValorUnitario.getText()));
                 pro.setValor_total(Integer.parseInt(txtTotal.getText()));
                 pro.setId_producto(Integer.parseInt(txtIdProducto.getText()));
+                pro.setItem(txtItem.getText());
+                
 
                 dbProducto.EditarProducto(pro);
 
@@ -1236,8 +1276,6 @@ public final class Cotizaciones extends javax.swing.JFrame {
 
     private void tbProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseClicked
 
-        txtItem.setVisible(false);
-
         int seleccion = tbProductos.getSelectedRow();
 
         txtCantidad.setText(String.valueOf(tbProductos.getValueAt(seleccion, 1)));
@@ -1245,6 +1283,9 @@ public final class Cotizaciones extends javax.swing.JFrame {
         txtValorUnitario.setText(String.valueOf(tbProductos.getValueAt(seleccion, 3)));
         txtTotal.setText(String.valueOf(tbProductos.getValueAt(seleccion, 4)));
         txtIdProducto.setText(String.valueOf(tbProductos.getValueAt(seleccion, 5)));
+        txtItem.setText(String.valueOf(tbProductos.getValueAt(seleccion, 0)));
+        
+        txtItem.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_tbProductosMouseClicked
@@ -1284,6 +1325,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
         LimpiarPanelProductos();
         LimpiarProductos();
         ListarProductos();
+        traerClienteYNumero();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
