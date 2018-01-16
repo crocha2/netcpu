@@ -12,9 +12,11 @@ package clasesPrincipales;
 public class cotizaciones {
     
     int id_coti;
+    String tipo_coti;
     String fecha_coti;
     String numero;
     String cliente_coti;
+    String contacto;
     String ciudad_coti;
     String pais_coti;
     String comentario_1;
@@ -30,11 +32,13 @@ public class cotizaciones {
     public cotizaciones() {
     }
 
-    public cotizaciones(int id_coti, String fecha_coti, String numero, String cliente_coti, String ciudad_coti, String pais_coti, String comentario_1, String sub_total, String fletes, String iva, String gran_total, String validez_oferta, String formato_pago, String tiempo_entrega, int id_cli) {
+    public cotizaciones(int id_coti, String tipo_coti, String fecha_coti, String numero, String cliente_coti, String contacto, String ciudad_coti, String pais_coti, String comentario_1, String sub_total, String fletes, String iva, String gran_total, String validez_oferta, String formato_pago, String tiempo_entrega, int id_cli) {
         this.id_coti = id_coti;
+        this.tipo_coti = tipo_coti;
         this.fecha_coti = fecha_coti;
         this.numero = numero;
         this.cliente_coti = cliente_coti;
+        this.contacto = contacto;
         this.ciudad_coti = ciudad_coti;
         this.pais_coti = pais_coti;
         this.comentario_1 = comentario_1;
@@ -54,6 +58,14 @@ public class cotizaciones {
 
     public void setId_coti(int id_coti) {
         this.id_coti = id_coti;
+    }
+
+    public String getTipo_coti() {
+        return tipo_coti;
+    }
+
+    public void setTipo_coti(String tipo_coti) {
+        this.tipo_coti = tipo_coti;
     }
 
     public String getFecha_coti() {
@@ -78,6 +90,14 @@ public class cotizaciones {
 
     public void setCliente_coti(String cliente_coti) {
         this.cliente_coti = cliente_coti;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 
     public String getCiudad_coti() {
@@ -168,6 +188,10 @@ public class cotizaciones {
         this.id_cli = id_cli;
     }
 
+    
+
+    
+    
     
 
 }

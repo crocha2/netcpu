@@ -15,13 +15,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.print.DocFlavor;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -136,15 +133,17 @@ public final class Cotizaciones extends javax.swing.JFrame {
             int guar = Integer.parseInt(txtIdCliente.getText());
             Connection cn = DriverManager.getConnection("jdbc:mysql://69.73.129.251:3306/cpusysc1_cpudb", "cpusysc1_root", "c8020123496");
             Statement st = cn.createStatement();
-            PreparedStatement pst = cn.prepareStatement("SELECT c.nombre_cli, c.ciudad_cli FROM clientes c WHERE id_cli = ?");
+            PreparedStatement pst = cn.prepareStatement("SELECT c.nombre_cli, c.ciudad_cli, c.contacto_cli FROM clientes c WHERE id_cli = ?");
             pst.setInt(1, guar);
             ResultSet rs = pst.executeQuery();
             txtCliente.setText("");
             txtCuidadCliente.setText("");
+            txtContacto.setText("");
             if (rs.next()) {
                 clientes cl = new clientes();
                 txtCliente.setText(rs.getString("nombre_cli"));
                 txtCuidadCliente.setText(rs.getString("ciudad_cli"));
+                txtContacto.setText(rs.getString("contacto_cli"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el cliente");
             }
@@ -521,6 +520,8 @@ public final class Cotizaciones extends javax.swing.JFrame {
         txtPais = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
         txtIdCliente = new javax.swing.JTextField();
+        txtContacto = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbProductos = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -626,19 +627,19 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 153));
         jLabel8.setText("CIUDAD");
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(1040, 20, 80, 20);
+        jLabel8.setBounds(1060, 20, 80, 20);
 
         txtFecha.setDateFormatString("yyyy-MM-dd");
         jPanel4.add(txtFecha);
-        txtFecha.setBounds(600, 40, 200, 30);
+        txtFecha.setBounds(680, 40, 160, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel9.setText("FECHA");
+        jLabel9.setText("CONTACTO");
         jPanel4.add(jLabel9);
-        jLabel9.setBounds(600, 20, 40, 20);
+        jLabel9.setBounds(440, 20, 90, 20);
         jPanel4.add(txtCuidadCliente);
-        txtCuidadCliente.setBounds(1040, 40, 210, 30);
+        txtCuidadCliente.setBounds(1060, 40, 190, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 153));
@@ -650,11 +651,11 @@ public final class Cotizaciones extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 153));
         jLabel11.setText("PAIS");
         jPanel4.add(jLabel11);
-        jLabel11.setBounds(820, 20, 80, 20);
+        jLabel11.setBounds(850, 20, 80, 20);
         jPanel4.add(txtCliente);
-        txtCliente.setBounds(10, 40, 440, 30);
+        txtCliente.setBounds(10, 40, 300, 30);
         jPanel4.add(txtPais);
-        txtPais.setBounds(820, 40, 200, 30);
+        txtPais.setBounds(850, 40, 200, 30);
 
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton10.setText(">>");
@@ -664,9 +665,17 @@ public final class Cotizaciones extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton10);
-        jButton10.setBounds(460, 40, 60, 30);
+        jButton10.setBounds(310, 40, 60, 30);
         jPanel4.add(txtIdCliente);
-        txtIdCliente.setBounds(520, 40, 50, 30);
+        txtIdCliente.setBounds(370, 40, 50, 30);
+        jPanel4.add(txtContacto);
+        txtContacto.setBounds(440, 40, 230, 30);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel24.setText("FECHA");
+        jPanel4.add(jLabel24);
+        jLabel24.setBounds(680, 20, 40, 20);
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(20, 100, 1270, 90);
@@ -1089,7 +1098,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
                 clientes cl = new clientes();
                 txtIdCliente.setText(rs.getString("id_cli"));
                 txtCuidadCliente.setText(rs.getString("ciudad_cli"));
-
+                txtContacto.setText(rs.getString("contacto_cli"));
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el usuario");
             }
@@ -1485,6 +1494,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1509,6 +1519,7 @@ public final class Cotizaciones extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextArea txtComentario;
+    private javax.swing.JTextField txtContacto;
     private javax.swing.JTextField txtCuidadCliente;
     private javax.swing.JTextArea txtDescripcion;
     private com.toedter.calendar.JDateChooser txtFecha;
